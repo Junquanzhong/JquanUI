@@ -2825,7 +2825,9 @@ h1 {
 
 .bg-emerald-500,
 .emerald,
-.bg-emerald
+.bg-emerald,
+.hover-bg-emerald:hover,
+.focus-bg-emerald:focus,
 .hover-bg-emerald-500:hover,
 .focus-bg-emerald-500:focus {
   --bg-opacity: 1;
@@ -2973,7 +2975,7 @@ h1 {
 
 .bg-cyan-500,
 .cyan,
-.bg-cyan
+.bg-cyan,
 .hover-bg-cyan-500:hover,
 .focus-bg-cyan-500:focus,
 .hover-bg-cyan:hover,
@@ -10747,48 +10749,60 @@ h1 {
 /* 基础类 */
 
 .bg-auto {
-  background-size: auto auto !important;
+  --bg-size: auto auto;
+  background-size: var(--bg-size) !important;
 }
 
 .bg-cover {
-  background-size: cover !important;
+  --bg-size: cover;
+  background-size: var(--bg-size) !important;
 }
 
 .bg-contain {
-  background-size: contain !important;
+  --bg-size: contain;
+  background-size: var(--bg-size) !important;
 }
 
 .bg-fixed {
-  background-attachment: fixed !important;
+  --bg-attachment: fixed;
+  background-attachment: var(--bg-attachment) !important; 
 }
 
 .bg-local {
-  background-attachment: local !important;
+  --bg-attachment: local;
+  background-attachment: var(--bg-attachment) !important; 
 }
 
 .bg-scroll {
-  background-attachment: scroll !important;
+  --bg-attachment: scroll;
+  background-attachment: var(--bg-attachment) !important; 
 }
 
 /* 背景剪辑 */
 .bg-clip-border {
-  background-clip: border-box !important;
+  --bg-clip: border-box;
+  background-clip: var(--bg-clip) !important;
 }
 .bg-clip-content {
-  background-clip: content-box !important;
+  --bg-clip: content-box;
+  background-clip: var(--bg-clip) !important;
 }
-.bg-clip-padding {
-  background-clip: padding-box !important;
+.bg-clip-padding {    
+  --bg-clip: padding-box;
+  background-clip: var(--bg-clip) !important;
 }
 /* 背景起源 */
 .bg-origin-border {
-  background-origin: border-box !important;
+  --bg-origin: border-box;
+  background-origin: var(--bg-origin) !important;
 }
 .bg-origin-content {
-  background-origin: content-box !important;
+  --bg-origin: content-box;
+  background-origin: var(--bg-origin) !important;
 }
 .bg-origin-padding {
-  background-origin: padding-box !important;
+  --bg-origin: padding-box;
+  background-origin: var(--bg-origin) !important;
 }
 
 /* 透明背景 */
@@ -10800,63 +10814,78 @@ h1 {
 /* ---------- Background Position (背景位置) ---------- */
 /* 单轴与中心定位 */
 .bg-center {
-  background-position: center !important;
+  --bg-position: center;
+  background-position: var(--bg-position) !important;
 }
 
 .bg-top {
-  background-position: top !important;
+  --bg-position: top;
+  background-position: var(--bg-position) !important;
 }
 
 .bg-bottom {
-  background-position: bottom !important;
+  --bg-position: bottom;
+  background-position: var(--bg-position) !important;
 }
 
 .bg-left {
-  background-position: left !important;
+  --bg-position: left;
+  background-position: var(--bg-position) !important;
 }
 
 .bg-right {
-  background-position: right !important;
+  --bg-position: right;
+  background-position: var(--bg-position) !important;
 }
 
 /* 组合定位 */
 .bg-top-left {
-  background-position: top left !important;
+  --bg-position: top left;
+  background-position: var(--bg-position) !important;
 }
 
 .bg-top-right {
-  background-position: top right !important;
+  --bg-position: top right;
+  background-position: var(--bg-position) !important;
 }
 
 .bg-bottom-left {
-  background-position: bottom left !important;
+  --bg-position: bottom left;
+  background-position: var(--bg-position) !important;
 }
 
 .bg-bottom-right {
-  background-position: bottom right !important;
+  --bg-position: bottom right;
+  background-position: var(--bg-position) !important;
 }
 .bg-center-left {
-  background-position: center left !important;
+  --bg-position: center left;
+  background-position: var(--bg-position) !important;
 }
 .bg-center-right {
-  background-position: center right !important;
+  --bg-position: center right;
+  background-position: var(--bg-position) !important;
 }
 
 /* ---------- Background Repeat (背景重复) ---------- */
 .bg-repeat {
-  background-repeat: repeat !important;
+  --bg-repeat: repeat;
+  background-repeat: var(--bg-repeat) !important;
 }
 
 .bg-no-repeat {
-  background-repeat: no-repeat !important;
+  --bg-repeat: no-repeat;
+  background-repeat: var(--bg-repeat) !important;
 }
 
 .bg-repeat-x {
-  background-repeat: repeat-x !important;
+  --bg-repeat: repeat-x;
+  background-repeat: var(--bg-repeat) !important;
 }
 
 .bg-repeat-y {
-  background-repeat: repeat-y !important;
+  --bg-repeat: repeat-y;
+  background-repeat: var(--bg-repeat) !important;
 }
 
 /*布局*/

@@ -1,3 +1,205 @@
+:root{
+  /* 拓展中式色 */
+  /* 金盏花黄（Placer Gold）*/
+  --placergold-50: 254 252 232;
+  --placergold-100: 254 249 195;
+  --placergold-200: 254 240 138;
+  --placergold-300: 253 224 71;
+  --placergold-400: 250 204 21;
+  --placergold-500: 234 179 8;
+  --placergold-600: 202 138 4;
+  --placergold-700: 161 98 7;
+  --placergold-800: 133 77 14;
+  --placergold-900: 113 63 18;
+  /* 珊瑚橙 */
+  --coralorange-50: 255 248 242;
+  --coralorange-100: 255 235 220;
+  --coralorange-200: 255 213 189;
+  --coralorange-300: 255 182 147;
+  --coralorange-400: 255 145 99;
+  --coralorange-500: 255 127 80;
+  --coralorange-600: 230 102 58;
+  --coralorange-700: 191 77 42;
+  --coralorange-800: 153 59 32;
+  --coralorange-900: 122 47 26;
+/* 樱桃粉 */
+--cherrypink-50: 255 247 249;
+--cherrypink-100: 255 232 237;
+--cherrypink-200: 255 207 214;
+--cherrypink-300: 255 171 186;
+--cherrypink-400: 255 128 152;
+--cherrypink-500: 255 107 129;
+--cherrypink-600: 230 82 105;
+--cherrypink-700: 191 61 82;
+--cherrypink-800: 153 47 65;
+--cherrypink-900: 122 37 52;
+ /* 金菊黄 */
+ --goldenmarigold-50: 255 251 235;
+--goldenmarigold-100: 255 243 199;
+--goldenmarigold-200: 255 230 138;
+--goldenmarigold-300: 255 211 77;
+--goldenmarigold-400: 255 191 36;
+--goldenmarigold-500: 255 165 2;
+--goldenmarigold-600: 230 138 0;
+--goldenmarigold-700: 191 103 0;
+--goldenmarigold-800: 153 77 0;
+--goldenmarigold-900: 122 61 0;
+/* 番茄红 */
+--tomatored-50: 255 245 242;
+--tomatored-100: 255 228 222;
+--tomatored-200: 255 202 191;
+--tomatored-300: 255 165 147;
+--tomatored-400: 255 120 99;
+--tomatored-500: 255 99 72;
+--tomatored-600: 230 74 50;
+--tomatored-700: 191 55 37;
+--tomatored-800: 153 42 29;
+--tomatored-900: 122 34 23;
+/* 西瓜红 */
+--watermelonred-50: 255 244 245;
+--watermelonred-100: 255 227 229;
+--watermelonred-200: 255 199 203;
+--watermelonred-300: 255 160 169;
+--watermelonred-400: 255 113 128;
+--watermelonred-500: 255 71 87;
+--watermelonred-600: 230 50 67;
+--watermelonred-700: 191 37 52;
+--watermelonred-800: 153 29 41;
+--watermelonred-900: 122 23 33;
+ /* 薄荷青 */
+ --mintgreen-50: 240 254 247;
+--mintgreen-100: 220 252 236;
+--mintgreen-200: 187 247 215;
+--mintgreen-300: 134 239 185;
+--mintgreen-400: 74 222 148;
+--mintgreen-500: 123 237 159;
+--mintgreen-600: 34 197 110;
+--mintgreen-700: 21 155 85;
+--mintgreen-800: 17 122 67;
+--mintgreen-900: 14 98 54;
+/* 天霁蓝 */
+--skyazure-50: 240 248 255;
+--skyazure-100: 224 240 254;
+--skyazure-200: 186 222 253;
+--skyazure-300: 125 193 252;
+--skyazure-400: 56 159 248;
+--skyazure-500: 112 161 255; 
+--skyazure-600: 14 133 233;
+--skyazure-700: 3 105 199;
+--skyazure-800: 7 89 166;
+--skyazure-900: 12 74 138;
+/* 翡翠绿 */
+--jadegreen-50: 237 253 243;
+--jadegreen-100: 216 250 231;
+--jadegreen-200: 175 244 208;
+--jadegreen-300: 114 234 172;
+--jadegreen-400: 46 213 128;
+--jadegreen-500: 46 213 115;
+--jadegreen-600: 22 163 94;
+--jadegreen-700: 18 128 74;
+--jadegreen-800: 17 101 59;
+--jadegreen-900: 15 83 48;
+/* 道奇蓝 */
+--dodgerblue-50: 239 246 255;
+--dodgerblue-100: 219 234 254;
+--dodgerblue-200: 191 219 254;
+--dodgerblue-300: 147 197 253;
+--dodgerblue-400: 96 165 250;
+--dodgerblue-500: 30 144 255;
+--dodgerblue-600: 25 110 235;
+--dodgerblue-700: 21 88 216;
+--dodgerblue-800: 22 69 175;
+--dodgerblue-900: 22 57 138;
+/* 皇家蓝 */
+--royalblue-50: 239 241 254;
+--royalblue-100: 224 228 253;
+--royalblue-200: 199 206 251;
+--royalblue-300: 165 178 249;
+--royalblue-400: 129 146 247;
+--royalblue-500: 55 66 250;
+--royalblue-600: 49 46 229;
+--royalblue-700: 43 38 202;
+--royalblue-800: 37 33 163;
+--royalblue-900: 33 30 129;
+/* 宁静灰蓝 */
+--peace-50: 248 250 252;
+--peace-100: 241 245 249;
+--peace-200: 226 232 240;
+--peace-300: 203 213 225;
+--peace-400: 168 184 200;
+--peace-500: 164 176 190;
+--peace-600: 115 128 145;
+--peace-700: 82 94 110;
+--peace-800: 58 67 80;
+--peace-900: 42 49 58;
+/* 石墨灰 */
+--graphite-50: 249 250 251;
+--graphite-100: 243 244 246;
+--graphite-200: 229 231 235;
+--graphite-300: 209 213 219;
+--graphite-400: 156 163 175;
+--graphite-500: 87 96 111;
+--graphite-600: 75 85 99;
+--graphite-700: 55 65 81;
+--graphite-800: 39 48 60;
+--graphite-900: 28 35 44;
+/* 银灰 */
+--silvergray-50: 249 250 251;
+--silvergray-100: 243 244 246;
+--silvergray-200: 229 231 235;
+--silvergray-300: 209 213 219;
+--silvergray-400: 156 163 175;
+--silvergray-500: 116 125 140;
+--silvergray-600: 88 97 112;
+--silvergray-700: 64 72 85;
+--silvergray-800: 45 51 60;
+--silvergray-900: 32 37 44;
+/* 午夜蓝 */
+--midnight-50: 248 250 252;
+--midnight-100: 241 245 249;
+--midnight-200: 226 232 240;
+--midnight-300: 203 213 225;
+--midnight-400: 148 163 184;
+--midnight-500: 47 53 66;
+--midnight-600: 30 36 48;
+--midnight-700: 20 24 32;
+--midnight-800: 14 17 23;
+--midnight-900: 9 11 16;
+/* 雾灰白 */
+--mistwhite-50: 255 255 255;
+--mistwhite-100: 250 251 252;
+--mistwhite-200: 245 246 248;
+--mistwhite-300: 235 238 242;
+--mistwhite-400: 220 225 232;
+--mistwhite-500: 223 228 234;
+--mistwhite-600: 190 197 207;
+--mistwhite-700: 153 161 173;
+--mistwhite-800: 122 129 139;
+--mistwhite-900: 98 103 111;
+/* 雪青白 */
+--snowwhite-50: 255 255 255;
+--snowwhite-100: 252 253 254;
+--snowwhite-200: 249 250 252;
+--snowwhite-300: 243 244 247;
+--snowwhite-400: 232 234 239;
+--snowwhite-500: 241 242 246;
+--snowwhite-600: 209 211 217;
+--snowwhite-700: 173 176 184;
+--snowwhite-800: 139 142 149;
+--snowwhite-900: 111 114 120;
+/* 云灰 */
+--cloudgray-50: 255 255 255;
+--cloudgray-100: 250 251 252;
+--cloudgray-200: 245 246 248;
+--cloudgray-300: 235 238 242;
+--cloudgray-400: 220 225 232;
+--cloudgray-500: 206 214 224;
+--cloudgray-600: 173 184 197;
+--cloudgray-700: 139 150 167;
+--cloudgray-800: 111 120 134;
+--cloudgray-900: 89 96 107;
+}
+
 /* 导航 */
 
 
@@ -2438,8 +2640,840 @@ input[type="year"]::-webkit-datetime-edit-text {
 }
 
 /**
- * 特殊背景
+ * 拓展背景色
  */
+ /* 金盏花 */
+ .bg-placergold-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--placergold-50) / var(--bg-opacity));
+ }
+ .bg-placergold-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--placergold-100) / var(--bg-opacity));
+ }
+ .bg-placergold-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--placergold-200) / var(--bg-opacity));
+ }
+ .bg-placergold-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--placergold-300) / var(--bg-opacity));
+ }
+ .bg-placergold-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--placergold-400) / var(--bg-opacity));
+ }
+
+.placergold,
+.bg-placergold,
+.bg-placergold-500,
+.hover-bg-placergold:hover,
+.hover-bg-placergold-500:hover,
+.btn-placergold{
+  --bg-opacity: 1;
+  background-color: rgba(var(--placergold-500) / var(--bg-opacity));
+}
+.bg-placergold-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--placergold-600) / var(--bg-opacity));
+ }
+.bg-placergold-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--placergold-700) / var(--bg-opacity));
+ }
+.bg-placergold-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--placergold-800) / var(--bg-opacity));
+ }
+.bg-placergold-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--placergold-900) / var(--bg-opacity));
+ }
+/* 珊瑚橙 */
+.bg-coralorange-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--coralorange-50) / var(--bg-opacity));
+ }
+ .bg-coralorange-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--coralorange-100) / var(--bg-opacity));
+ }
+ .bg-coralorange-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--coralorange-200) / var(--bg-opacity));
+ }
+ .bg-coralorange-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--coralorange-300) / var(--bg-opacity));
+ }
+ .bg-coralorange-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--coralorange-400) / var(--bg-opacity));
+ }
+.coralorange,
+.bg-coralorange,
+.bg-coralorange-500,
+.hover-bg-coralorange-500:hover
+.hover-bg-coralorange:hover
+.btn-coralorange{
+  --bg-opacity: 1;
+  background-color: rgba(var(--coralorange-500) / var(--bg-opacity));
+}
+.bg-coralorange-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--coralorange-600) / var(--bg-opacity));
+ }
+.bg-coralorange-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--coralorange-700) / var(--bg-opacity));
+ }
+.bg-coralorange-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--coralorange-800) / var(--bg-opacity));
+ }
+.bg-coralorange-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--coralorange-900) / var(--bg-opacity));
+ }
+ /* 樱桃粉 */
+.bg-cherrypink-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cherrypink-50) / var(--bg-opacity));
+ }
+.bg-cherrypink-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cherrypink-100) / var(--bg-opacity));
+ }
+ .bg-cherrypink-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cherrypink-200) / var(--bg-opacity));
+ }
+ .bg-cherrypink-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cherrypink-300) / var(--bg-opacity));
+ }
+ .bg-cherrypink-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cherrypink-400) / var(--bg-opacity));
+ }
+ .cherrypink,
+ .bg-cherrypink-500,
+ .bg-cherrypink,
+ .hover-bg-cherrypink-500:hover,
+ .hover-bg-cherrypink:hover,
+ .btn-cherrypink{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cherrypink-500) / var(--bg-opacity));
+ }
+ .bg-cherrypink-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cherrypink-600) / var(--bg-opacity));
+ }
+.bg-cherrypink-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cherrypink-700) / var(--bg-opacity));
+ }
+.bg-cherrypink-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cherrypink-800) / var(--bg-opacity));
+ }
+.bg-cherrypink-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cherrypink-900) / var(--bg-opacity));
+ }
+/* 金菊黄 */
+.bg-goldenmarigold-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--goldenmarigold-50) / var(--bg-opacity));
+}
+.bg-goldenmarigold-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--goldenmarigold-100) / var(--bg-opacity));
+}
+.bg-goldenmarigold-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--goldenmarigold-200) / var(--bg-opacity));
+}
+.bg-goldenmarigold-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--goldenmarigold-300) / var(--bg-opacity));
+}
+.bg-goldenmarigold-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--goldenmarigold-400) / var(--bg-opacity));
+}
+.goldenmarigold,
+.bg-goldenmarigold,
+.bg-goldenmarigold-500,
+.hover-bg-goldenmarigold:hover,
+.hover-bg-goldenmarigold-500:hover,
+.btn-goldenmarigold{
+  --bg-opacity: 1;
+  background-color: rgba(var(--goldenmarigold-500) / var(--bg-opacity));
+}
+.bg-goldenmarigold-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--goldenmarigold-600) / var(--bg-opacity));
+ }
+.bg-goldenmarigold-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--goldenmarigold-700) / var(--bg-opacity));
+ }
+.bg-goldenmarigold-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--goldenmarigold-800) / var(--bg-opacity));
+ }
+.bg-goldenmarigold-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--goldenmarigold-900) / var(--bg-opacity));
+ }
+
+/* 番茄红 */
+.bg-tomatored-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--tomatored-50) / var(--bg-opacity));
+}
+.bg-tomatored-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--tomatored-100) / var(--bg-opacity));
+}
+.bg-tomatored-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--tomatored-200) / var(--bg-opacity));
+}
+.bg-tomatored-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--tomatored-300) / var(--bg-opacity));
+}
+.bg-tomatored-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--tomatored-400) / var(--bg-opacity));
+}
+.tomatored,
+.bg-tomatored,
+.bg-tomatored-500,
+.hover-bg-tomatored-500:hover,
+.btn-tomatored,
+.hover-bg-tomatored:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--tomatored-500) / var(--bg-opacity));
+}
+.bg-tomatored-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--tomatored-600) / var(--bg-opacity));
+}
+.bg-tomatored-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--tomatored-700) / var(--bg-opacity));
+}
+.bg-tomatored-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--tomatored-800) / var(--bg-opacity));
+}
+.bg-tomatored-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--tomatored-900) / var(--bg-opacity));
+}
+/* 西瓜红 */
+.bg-watermelonred-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--watermelonred-50) / var(--bg-opacity));
+}
+.bg-watermelonred-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--watermelonred-100) / var(--bg-opacity));
+}
+.bg-watermelonred-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--watermelonred-200) / var(--bg-opacity));
+}
+.bg-watermelonred-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--watermelonred-300) / var(--bg-opacity));
+}
+.bg-watermelonred-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--watermelonred-400) / var(--bg-opacity));
+}
+.watermelonred,
+.bg-watermelonred,
+.bg-watermelonred-500,
+.hover-bg-watermelonred-500:hover,
+.btn-watermelonred,
+.hover-bg-watermelonred:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--watermelonred-500) / var(--bg-opacity));
+}
+.bg-watermelonred-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--watermelonred-600) / var(--bg-opacity));
+}
+.bg-watermelonred-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--watermelonred-700) / var(--bg-opacity));
+}
+.bg-watermelonred-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--watermelonred-800) / var(--bg-opacity));
+}
+.bg-watermelonred-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--watermelonred-900) / var(--bg-opacity));
+}
+/* 薄荷青 */
+.bg-mintgreen-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mintgreen-50) / var(--bg-opacity));
+}
+.bg-mintgreen-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mintgreen-100) / var(--bg-opacity));
+}
+.bg-mintgreen-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mintgreen-200) / var(--bg-opacity));
+}
+.bg-mintgreen-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mintgreen-300) / var(--bg-opacity));
+}
+.bg-mintgreen-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mintgreen-400) / var(--bg-opacity));
+}
+.mintgreen,
+.bg-mintgreen,
+.bg-mintgreen-500,
+.btn-mintgreen,
+.hover-bg-mintgreen:hover,
+.hover-bg-mintgreen-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mintgreen-500) / var(--bg-opacity));
+}
+.bg-mintgreen-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mintgreen-600) / var(--bg-opacity));
+}
+.bg-mintgreen-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mintgreen-700) / var(--bg-opacity));
+}
+.bg-mintgreen-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mintgreen-800) / var(--bg-opacity));
+}
+.bg-mintgreen-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mintgreen-900) / var(--bg-opacity));
+}
+/* 天霁蓝 */
+.bg-skyazure-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--skyazure-50) / var(--bg-opacity));
+}
+.bg-skyazure-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--skyazure-100) / var(--bg-opacity));
+}
+.bg-skyazure-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--skyazure-200) / var(--bg-opacity));
+}
+.bg-skyazure-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--skyazure-300) / var(--bg-opacity));
+}
+.bg-skyazure-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--skyazure-400) / var(--bg-opacity));
+}
+.skyazure,
+.bg-skyazure,
+.bg-skyazure-500,
+.btn-skyazure,
+.hover-bg-skyazure:hover,
+.hover-bg-skyazure-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--skyazure-500) / var(--bg-opacity));
+}
+.bg-skyazure-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--skyazure-600) / var(--bg-opacity));
+}
+.bg-skyazure-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--skyazure-700) / var(--bg-opacity));
+}
+.bg-skyazure-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--skyazure-800) / var(--bg-opacity));
+}
+.bg-skyazure-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--skyazure-900) / var(--bg-opacity));
+}
+/* 翡翠绿 */
+.bg-jadegreen-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--jadegreen-50) / var(--bg-opacity));
+}
+.bg-jadegreen-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--jadegreen-100) / var(--bg-opacity));
+}
+.bg-jadegreen-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--jadegreen-200) / var(--bg-opacity));
+}
+.bg-jadegreen-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--jadegreen-300) / var(--bg-opacity));
+}
+.bg-jadegreen-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--jadegreen-400) / var(--bg-opacity));
+}
+.jadegreen,
+.bg-jadegreen,
+.bg-jadegreen-500,
+.btn-jadegreen,
+.hover-bg-jadegreen:hover,
+.hover-bg-jadegreen-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--jadegreen-500) / var(--bg-opacity));
+}
+.bg-jadegreen-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--jadegreen-600) / var(--bg-opacity));
+}
+.bg-jadegreen-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--jadegreen-700) / var(--bg-opacity));
+}
+.bg-jadegreen-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--jadegreen-800) / var(--bg-opacity));
+}
+.bg-jadegreen-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--jadegreen-900) / var(--bg-opacity));
+}
+/* 道奇蓝 */
+.bg-dodgerblue-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--dodgerblue-50) / var(--bg-opacity));
+}
+.bg-dodgerblue-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--dodgerblue-100) / var(--bg-opacity));
+}
+.bg-dodgerblue-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--dodgerblue-200) / var(--bg-opacity));
+}
+.bg-dodgerblue-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--dodgerblue-300) / var(--bg-opacity));
+}
+.bg-dodgerblue-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--dodgerblue-400) / var(--bg-opacity));
+}
+.dodgerblue,
+.bg-dodgerblue,
+.bg-dodgerblue-500,
+.btn-dodgerblue,
+.hover-bg-dodgerblue:hover,
+.hover-bg-dodgerblue-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--dodgerblue-500) / var(--bg-opacity));
+}
+.bg-dodgerblue-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--dodgerblue-600) / var(--bg-opacity));
+}
+.bg-dodgerblue-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--dodgerblue-700) / var(--bg-opacity));
+}
+.bg-dodgerblue-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--dodgerblue-800) / var(--bg-opacity));
+}
+.bg-dodgerblue-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--dodgerblue-900) / var(--bg-opacity));
+}
+/* 皇家蓝 */
+.bg-royalblue-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--royalblue-50) / var(--bg-opacity));
+}
+.bg-royalblue-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--royalblue-100) / var(--bg-opacity));
+}
+.bg-royalblue-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--royalblue-200) / var(--bg-opacity));
+}
+.bg-royalblue-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--royalblue-300) / var(--bg-opacity));
+}
+.bg-royalblue-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--royalblue-400) / var(--bg-opacity));
+}
+.royalblue,
+.bg-royalblue,
+.bg-royalblue-500,
+.btn-royalblue,
+.hover-bg-royalblue:hover,
+.hover-bg-royalblue-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--royalblue-500) / var(--bg-opacity));
+}
+.bg-royalblue-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--royalblue-600) / var(--bg-opacity));
+}
+.bg-royalblue-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--royalblue-700) / var(--bg-opacity));
+}
+.bg-royalblue-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--royalblue-800) / var(--bg-opacity));
+}
+.bg-royalblue-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--royalblue-900) / var(--bg-opacity));
+}
+/* 宁静灰蓝 */
+.bg-peace-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--peace-50) / var(--bg-opacity));
+}
+.bg-peace-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--peace-100) / var(--bg-opacity));
+}
+.bg-peace-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--peace-200) / var(--bg-opacity));
+}
+.bg-peace-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--peace-300) / var(--bg-opacity));
+}
+.bg-peace-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--peace-400) / var(--bg-opacity));
+}
+.peace,
+.bg-peace,
+.bg-peace-500,
+.btn-peace,
+.hover-bg-peace:hover,
+.hover-bg-peace-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--peace-500) / var(--bg-opacity));
+}
+.bg-peace-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--peace-600) / var(--bg-opacity));
+}
+.bg-peace-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--peace-700) / var(--bg-opacity));
+}
+.bg-peace-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--peace-800) / var(--bg-opacity));
+}
+.bg-peace-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--peace-900) / var(--bg-opacity));
+}
+/* 石墨灰 */
+.bg-graphite-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--graphite-50) / var(--bg-opacity));
+}
+.bg-graphite-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--graphite-100) / var(--bg-opacity));
+}
+.bg-graphite-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--graphite-200) / var(--bg-opacity));
+}
+.bg-graphite-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--graphite-300) / var(--bg-opacity));
+}
+.bg-graphite-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--graphite-400) / var(--bg-opacity));
+}
+.graphite,
+.bg-graphite,
+.bg-graphite-500,
+.btn-graphite,
+.hover-bg-graphite:hover,
+.hover-bg-graphite-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--graphite-500) / var(--bg-opacity));
+}
+.bg-graphite-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--graphite-600) / var(--bg-opacity));
+}
+.bg-graphite-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--graphite-700) / var(--bg-opacity));
+}
+.bg-graphite-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--graphite-800) / var(--bg-opacity));
+}
+.bg-graphite-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--graphite-900) / var(--bg-opacity));
+}
+/* 银灰 */
+.bg-silvergray-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--silvergray-50) / var(--bg-opacity));
+}
+.bg-silvergray-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--silvergray-100) / var(--bg-opacity));
+}
+.bg-silvergray-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--silvergray-200) / var(--bg-opacity));
+}
+.bg-silvergray-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--silvergray-300) / var(--bg-opacity));
+}
+.bg-silvergray-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--silvergray-400) / var(--bg-opacity));
+}
+.bg-silvergray-500,
+.bg-silvergray,
+.btn-silvergray,
+.hover-bg-silvergray:hover,
+.hover-bg-silvergray-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--silvergray-500) / var(--bg-opacity));
+}
+.bg-silvergray-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--silvergray-600) / var(--bg-opacity));
+}
+.bg-silvergray-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--silvergray-700) / var(--bg-opacity));
+}
+.bg-silvergray-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--silvergray-800) / var(--bg-opacity));
+}
+.bg-silvergray-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--silvergray-900) / var(--bg-opacity));
+}
+
+
+
+/* 午夜蓝 */
+.bg-midnight-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--midnight-50) / var(--bg-opacity));
+}
+.bg-midnight-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--midnight-100) / var(--bg-opacity));
+}
+.bg-midnight-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--midnight-200) / var(--bg-opacity));
+}
+.bg-midnight-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--midnight-300) / var(--bg-opacity));
+}
+.bg-midnight-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--midnight-400) / var(--bg-opacity));
+}
+.midnight,
+.bg-midnight,
+.bg-midnight-500,
+.btn-midnight,
+.hover-bg-midnight:hover,
+.hover-bg-midnight-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--midnight-500) / var(--bg-opacity));
+}
+.bg-midnight-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--midnight-600) / var(--bg-opacity));
+}
+.bg-midnight-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--midnight-700) / var(--bg-opacity));
+}
+.bg-midnight-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--midnight-800) / var(--bg-opacity));
+}
+.bg-midnight-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--midnight-900) / var(--bg-opacity));
+}
+/* 雾灰白 */
+.bg-mistwhite-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mistwhite-50) / var(--bg-opacity));
+}
+.bg-mistwhite-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mistwhite-100) / var(--bg-opacity));
+}
+.bg-mistwhite-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mistwhite-200) / var(--bg-opacity));
+}
+.bg-mistwhite-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mistwhite-300) / var(--bg-opacity));
+}
+.bg-mistwhite-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mistwhite-400) / var(--bg-opacity));
+}
+.mistwhite,
+.bg-mistwhite,
+.bg-mistwhite-500,
+.btn-mistwhite,
+.hover-bg-mistwhite:hover,
+.hover-bg-mistwhite-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mistwhite-500) / var(--bg-opacity));
+}
+.bg-mistwhite-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mistwhite-600) / var(--bg-opacity));
+}
+.bg-mistwhite-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mistwhite-700) / var(--bg-opacity));
+}
+.bg-mistwhite-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mistwhite-800) / var(--bg-opacity));
+}
+.bg-mistwhite-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--mistwhite-900) / var(--bg-opacity));
+}
+/* 雪青白 */
+.bg-snowwhite-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--snowwhite-50) / var(--bg-opacity));
+}
+.bg-snowwhite-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--snowwhite-100) / var(--bg-opacity));
+}
+.bg-snowwhite-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--snowwhite-200) / var(--bg-opacity));
+}
+.bg-snowwhite-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--snowwhite-300) / var(--bg-opacity));
+}
+.bg-snowwhite-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--snowwhite-400) / var(--bg-opacity));
+}
+.snowwhite,
+.bg-snowwhite,
+.bg-snowwhite-500,
+.btn-snowwhite,
+.hover-bg-snowwhite:hover,
+.hover-bg-snowwhite-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--snowwhite-500) / var(--bg-opacity));
+}
+.bg-snowwhite-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--snowwhite-600) / var(--bg-opacity));
+}
+.bg-snowwhite-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--snowwhite-700) / var(--bg-opacity));
+}
+.bg-snowwhite-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--snowwhite-800) / var(--bg-opacity));
+}
+.bg-snowwhite-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--snowwhite-900) / var(--bg-opacity));
+}
+/* 云灰 */
+.bg-cloudgray-50{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cloudgray-50) / var(--bg-opacity));
+}
+.bg-cloudgray-100{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cloudgray-100) / var(--bg-opacity));
+}
+.bg-cloudgray-200{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cloudgray-200) / var(--bg-opacity));
+}
+.bg-cloudgray-300{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cloudgray-300) / var(--bg-opacity));
+}
+.bg-cloudgray-400{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cloudgray-400) / var(--bg-opacity));
+}
+.cloudgray,
+.bg-cloudgray,
+.bg-cloudgray-500,
+.btn-cloudgray,
+.hover-bg-cloudgray:hover,
+.hover-bg-cloudgray-500:hover{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cloudgray-500) / var(--bg-opacity));
+}
+.bg-cloudgray-600{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cloudgray-600) / var(--bg-opacity));
+}
+.bg-cloudgray-700{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cloudgray-700) / var(--bg-opacity));
+}
+.bg-cloudgray-800{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cloudgray-800) / var(--bg-opacity));
+}
+.bg-cloudgray-900{
+  --bg-opacity: 1;
+  background-color: rgba(var(--cloudgray-900) / var(--bg-opacity));
+}
 /* 左斜杠 */
 .bg-img-leftslash {
   background-image: repeating-linear-gradient(135deg,
@@ -2613,6 +3647,256 @@ input[type="year"]::-webkit-datetime-edit-text {
   background-image: url('../images/white-waves.png');
   background-repeat: repeat;
 }
+/* 渐变背景 */
+/* 光晕 */
+.bg-gradient-halo{
+  background-image: radial-gradient( circle farthest-corner at 33.1% 43.3%, rgba(60,157,226,0.63) 4%, rgba(223,203,235,0.63) 26%, rgba(247,196,157,0.66) 41.4%, rgba(182,203,222,0.63) 99.5% );
+}
+/*日光*/
+.bg-gradient-sunlight{
+  background-image: radial-gradient( circle 387px at 42.9% 1%, #f7e15a 0%, rgba(227,234,156,1) 25%, rgba(225,217,175,1) 34.7%, rgba(155,222,212,1) 45.2%, rgba(146,213,201,1) 61.8%, rgba(128,206,191,1) 76.6%, rgba(117,193,179,1) 90%, rgba(110,206,188,1) 94.2%, rgba(87,197,177,1) 98.9% );
+}
+/* 暮光云母 */
+.bg-gradient-twilightmica{
+  background-image:conic-gradient(from 210deg, rgb(197, 187, 184) 0deg, rgb(197, 187, 184) 24deg, rgb(184, 181, 184) calc(24.1deg), rgb(184, 181, 184) 48deg, rgb(169, 175, 183) calc(48.1deg), rgb(169, 175, 183) 72deg, rgb(154, 168, 181) calc(72.1deg), rgb(154, 168, 181) 96deg, rgb(139, 161, 179) calc(96.1deg), rgb(139, 161, 179) 120deg, rgb(125, 152, 175) calc(120.1deg), rgb(125, 152, 175) 144deg, rgb(112, 144, 171) calc(144.1deg), rgb(112, 144, 171) 168deg, rgb(101, 135, 166) calc(168.1deg), rgb(101, 135, 166) 192deg, rgb(92, 126, 161) calc(192.1deg), rgb(92, 126, 161) 216deg, rgb(85, 117, 155) calc(216.1deg), rgb(85, 117, 155) 240deg, rgb(81, 108, 148) calc(240.1deg), rgb(81, 108, 148) 264deg, rgb(79, 99, 141) calc(264.1deg), rgb(79, 99, 141) 288deg, rgb(80, 90, 133) calc(288.1deg), rgb(80, 90, 133) 312deg, rgb(84, 83, 125) calc(312.1deg), rgb(84, 83, 125) 336deg, rgb(91, 75, 116) calc(336.1deg), rgb(91, 75, 116) 360deg)
+}
+/*深海光轮*/
+.bg-gradient-Deepoceanwwheel{
+  background-image:conic-gradient(from 45deg, rgb(10, 74, 89) 0deg, rgb(10, 74, 89) 27.692deg, rgb(11, 82, 124) calc(27.792deg), rgb(11, 82, 124) 55.385deg, rgb(13, 92, 159) calc(55.485deg), rgb(13, 92, 159) 83.077deg, rgb(16, 104, 194) calc(83.177deg), rgb(16, 104, 194) 110.769deg, rgb(18, 118, 227) calc(110.869deg), rgb(18, 118, 227) 138.462deg, rgb(21, 133, 255) calc(138.562deg), rgb(21, 133, 255) 166.154deg, rgb(24, 150, 255) calc(166.254deg), rgb(24, 150, 255) 193.846deg, rgb(28, 169, 255) calc(193.946deg), rgb(28, 169, 255) 221.538deg, rgb(31, 188, 255) calc(221.638deg), rgb(31, 188, 255) 249.231deg, rgb(35, 209, 255) calc(249.331deg), rgb(35, 209, 255) 276.923deg, rgb(39, 230, 255) calc(277.023deg), rgb(39, 230, 255) 304.615deg, rgb(43, 251, 255) calc(304.715deg), rgb(43, 251, 255) 332.308deg, rgb(47, 255, 255) calc(332.408deg), rgb(47, 255, 255) 360deg)
+}
+/* 玄砥 */
+.bg-gradient-deepstrata{
+  background-image:linear-gradient(90deg, rgb(5, 5, 10) 0%, rgb(5, 5, 10) 7.692%, rgb(9, 10, 14) calc(7.692% + 1px), rgb(9, 10, 14) 15.385%, rgb(13, 14, 18) calc(15.385% + 1px), rgb(13, 14, 18) 23.077%, rgb(18, 19, 22) calc(23.077% + 1px), rgb(18, 19, 22) 30.769%, rgb(22, 23, 26) calc(30.769% + 1px), rgb(22, 23, 26) 38.462%, rgb(26, 27, 30) calc(38.462% + 1px), rgb(26, 27, 30) 46.154%, rgb(30, 31, 34) calc(46.154% + 1px), rgb(30, 31, 34) 53.846%, rgb(34, 35, 38) calc(53.846% + 1px), rgb(34, 35, 38) 61.538%, rgb(38, 39, 42) calc(61.538% + 1px), rgb(38, 39, 42) 69.231%, rgb(41, 42, 45) calc(69.231% + 1px), rgb(41, 42, 45) 76.923%, rgb(44, 45, 48) calc(76.923% + 1px), rgb(44, 45, 48) 84.615%, rgb(46, 47, 51) calc(84.615% + 1px), rgb(46, 47, 51) 92.308%, rgb(48, 49, 53) calc(92.308% + 1px), rgb(48, 49, 53) 100%)
+}
+/* 霞绡 */
+.bg-gradient-aurorasilk{
+  background-image:conic-gradient(from 45deg, rgb(255, 255, 214) 0deg, rgb(255, 241, 197) 60deg, rgb(240, 220, 184) 120deg, rgb(219, 198, 179) 180deg, rgb(198, 181, 184) 240deg, rgb(183, 172, 196) 300deg, rgb(176, 175, 213) 360deg)
+}
+/* 苍筤 */
+.bg-gradient-verdantstrata{
+  background-image:conic-gradient(from 285deg, rgb(218, 197, 179) 0deg, rgb(172, 182, 164) 90deg, rgb(121, 157, 141) 180deg, rgb(86, 127, 112) 270deg, rgb(81, 95, 79) 360deg)
+}
+/* 渟滢 */
+.bg-gradient-aquabreeze{
+  background-image:linear-gradient(90deg, rgb(235, 251, 229) 0%, rgb(164, 184, 163) 25%, rgb(126, 166, 141) 50%, rgb(147, 211, 182) 75%, rgb(212, 255, 250) 100%)
+}
+/* 霁霓 */
+.bg-gradient-auroratide{
+  background-image:linear-gradient(45deg, rgb(65, 89, 208) 0%, rgb(251, 145, 149) 50%, rgb(148, 93, 183) 100%)
+}
+/* 烟绯 */
+.bg-gradient-tideblush{
+  background-image:linear-gradient(90deg, rgb(193, 209, 204) 0%, rgb(223, 180, 175) 16.667%, rgb(244, 160, 154) 33.333%, rgb(249, 157, 149) 50%, rgb(235, 171, 162) 66.667%, rgb(208, 198, 188) 83.333%, rgb(179, 225, 217) 100%)
+}
+/* 月魄 */
+.bg-gradient-auroramist{
+  background-image:linear-gradient(90deg, rgb(245, 245, 245) 0%, rgb(220, 220, 220) 25%, rgb(195, 195, 195) 50%, rgb(170, 170, 170) 75%, rgb(145, 145, 145) 100%)
+}
+/* 温玉 */
+.bg-gradient-patinawhite{
+  background-image:linear-gradient(rgb(255, 255, 255) 0%, rgb(255, 255, 255) 7.692%, rgb(255, 255, 253) calc(7.692% + 1px), rgb(255, 255, 253) 15.385%, rgb(255, 255, 243) calc(15.385% + 1px), rgb(255, 255, 243) 23.077%, rgb(255, 248, 233) calc(23.077% + 1px), rgb(255, 248, 233) 30.769%, rgb(255, 238, 224) calc(30.769% + 1px), rgb(255, 238, 224) 38.462%, rgb(251, 228, 215) calc(38.462% + 1px), rgb(251, 228, 215) 46.154%, rgb(245, 219, 207) calc(46.154% + 1px), rgb(245, 219, 207) 53.846%, rgb(239, 211, 199) calc(53.846% + 1px), rgb(239, 211, 199) 61.538%, rgb(233, 202, 192) calc(61.538% + 1px), rgb(233, 202, 192) 69.231%, rgb(227, 194, 185) calc(69.231% + 1px), rgb(227, 194, 185) 76.923%, rgb(221, 187, 179) calc(76.923% + 1px), rgb(221, 187, 179) 84.615%, rgb(215, 181, 175) calc(84.615% + 1px), rgb(215, 181, 175) 92.308%, rgb(210, 175, 170) calc(92.308% + 1px), rgb(210, 175, 170) 100%)
+}
+/* 晴岚 */
+.bg-gradient-cyanbloom{
+  background-image:linear-gradient(90deg, rgb(255, 255, 138) 0%, rgb(255, 255, 164) 16.667%, rgb(255, 255, 202) 33.333%, rgb(255, 255, 245) 50%, rgb(208, 255, 255) 66.667%, rgb(163, 212, 255) 83.333%, rgb(134, 157, 255) 100%)
+}
+/* 靛魄 */
+.bg-gradient-deepskyfade{
+  background-image:linear-gradient(rgb(0, 59, 255) 0%, rgb(0, 75, 255) 8.333%, rgb(18, 92, 255) 16.667%, rgb(43, 108, 255) 25%, rgb(68, 123, 255) 33.333%, rgb(93, 139, 255) 41.667%, rgb(116, 153, 255) 50%, rgb(138, 167, 255) 58.333%, rgb(157, 179, 255) 66.667%, rgb(173, 191, 255) 75%, rgb(185, 201, 255) 83.333%, rgb(194, 210, 255) 91.667%, rgb(198, 217, 255) 100%)
+}
+/* 青霭 */
+.bg-gradient-bamboowhorl{
+  background-image:conic-gradient(from 90deg, rgb(198, 227, 190) 0deg, rgb(198, 227, 190) 10.588deg, rgb(195, 228, 193) calc(10.688deg), rgb(195, 228, 193) 21.176deg, rgb(192, 228, 196) calc(21.276deg), rgb(192, 228, 196) 31.765deg, rgb(189, 227, 199) calc(31.865deg), rgb(189, 227, 199) 42.353deg, rgb(185, 227, 201) calc(42.453deg), rgb(185, 227, 201) 52.941deg, rgb(182, 226, 203) calc(53.041deg), rgb(182, 226, 203) 63.529deg, rgb(178, 225, 205) calc(63.629deg), rgb(178, 225, 205) 74.118deg, rgb(174, 224, 207) calc(74.218deg), rgb(174, 224, 207) 84.706deg, rgb(169, 223, 208) calc(84.806deg), rgb(169, 223, 208) 95.294deg, rgb(165, 221, 209) calc(95.394deg), rgb(165, 221, 209) 105.882deg, rgb(160, 219, 210) calc(105.982deg), rgb(160, 219, 210) 116.471deg, rgb(155, 217, 210) calc(116.571deg), rgb(155, 217, 210) 127.059deg, rgb(150, 215, 210) calc(127.159deg), rgb(150, 215, 210) 137.647deg, rgb(145, 212, 210) calc(137.747deg), rgb(145, 212, 210) 148.235deg, rgb(140, 209, 210) calc(148.335deg), rgb(140, 209, 210) 158.824deg, rgb(135, 206, 209) calc(158.924deg), rgb(135, 206, 209) 169.412deg, rgb(130, 203, 208) calc(169.512deg), rgb(130, 203, 208) 180deg, rgb(124, 200, 206) calc(180.1deg), rgb(124, 200, 206) 190.588deg, rgb(119, 196, 205) calc(190.688deg), rgb(119, 196, 205) 201.176deg, rgb(113, 192, 203) calc(201.276deg), rgb(113, 192, 203) 211.765deg, rgb(108, 188, 201) calc(211.865deg), rgb(108, 188, 201) 222.353deg, rgb(102, 184, 198) calc(222.453deg), rgb(102, 184, 198) 232.941deg, rgb(97, 180, 196) calc(233.041deg), rgb(97, 180, 196) 243.529deg, rgb(91, 175, 193) calc(243.629deg), rgb(91, 175, 193) 254.118deg, rgb(86, 171, 189) calc(254.218deg), rgb(86, 171, 189) 264.706deg, rgb(80, 166, 186) calc(264.806deg), rgb(80, 166, 186) 275.294deg, rgb(75, 161, 182) calc(275.394deg), rgb(75, 161, 182) 285.882deg, rgb(70, 156, 178) calc(285.982deg), rgb(70, 156, 178) 296.471deg, rgb(65, 151, 174) calc(296.571deg), rgb(65, 151, 174) 307.059deg, rgb(60, 146, 170) calc(307.159deg), rgb(60, 146, 170) 317.647deg, rgb(55, 140, 166) calc(317.747deg), rgb(55, 140, 166) 328.235deg, rgb(50, 135, 161) calc(328.335deg), rgb(50, 135, 161) 338.824deg, rgb(45, 129, 156) calc(338.924deg), rgb(45, 129, 156) 349.412deg, rgb(40, 124, 151) calc(349.512deg), rgb(40, 124, 151) 360deg)
+}
+/* 岫澂 */
+.bg-gradient-jademist{
+  background-image:linear-gradient(90deg, rgb(114, 164, 140) 0%, rgb(120, 170, 158) 16.667%, rgb(137, 195, 203) 33.333%, rgb(164, 231, 255) 50%, rgb(193, 255, 255) 66.667%, rgb(220, 255, 255) 83.333%, rgb(239, 255, 255) 100%)
+}
+/* 紫府澂 */
+.bg-gradient-quantumaurora{
+  background-image:linear-gradient(90deg, rgb(85, 73, 255) 0%, rgb(85, 73, 255) 2.941%, rgb(75, 72, 255) calc(2.941% + 1px), rgb(75, 72, 255) 5.882%, rgb(64, 71, 255) calc(5.882% + 1px), rgb(64, 71, 255) 8.824%, rgb(55, 71, 255) calc(8.824% + 1px), rgb(55, 71, 255) 11.765%, rgb(45, 72, 255) calc(11.765% + 1px), rgb(45, 72, 255) 14.706%, rgb(37, 73, 255) calc(14.706% + 1px), rgb(37, 73, 255) 17.647%, rgb(28, 75, 255) calc(17.647% + 1px), rgb(28, 75, 255) 20.588%, rgb(21, 77, 255) calc(20.588% + 1px), rgb(21, 77, 255) 23.529%, rgb(14, 80, 255) calc(23.529% + 1px), rgb(14, 80, 255) 26.471%, rgb(7, 84, 255) calc(26.471% + 1px), rgb(7, 84, 255) 29.412%, rgb(2, 88, 255) calc(29.412% + 1px), rgb(2, 88, 255) 32.353%, rgb(0, 93, 255) calc(32.353% + 1px), rgb(0, 93, 255) 35.294%, rgb(0, 98, 255) calc(35.294% + 1px), rgb(0, 98, 255) 38.235%, rgb(0, 103, 255) calc(38.235% + 1px), rgb(0, 103, 255) 41.176%, rgb(0, 110, 255) calc(41.176% + 1px), rgb(0, 110, 255) 44.118%, rgb(0, 116, 255) calc(44.118% + 1px), rgb(0, 116, 255) 47.059%, rgb(0, 123, 255) calc(47.059% + 1px), rgb(0, 123, 255) 50%, rgb(0, 131, 255) calc(50% + 1px), rgb(0, 131, 255) 52.941%, rgb(0, 139, 255) calc(52.941% + 1px), rgb(0, 139, 255) 55.882%, rgb(0, 147, 255) calc(55.882% + 1px), rgb(0, 147, 255) 58.824%, rgb(0, 155, 255) calc(58.824% + 1px), rgb(0, 155, 255) 61.765%, rgb(0, 164, 255) calc(61.765% + 1px), rgb(0, 164, 255) 64.706%, rgb(0, 173, 255) calc(64.706% + 1px), rgb(0, 173, 255) 67.647%, rgb(0, 183, 255) calc(67.647% + 1px), rgb(0, 183, 255) 70.588%, rgb(0, 192, 255) calc(70.588% + 1px), rgb(0, 192, 255) 73.529%, rgb(4, 202, 255) calc(73.529% + 1px), rgb(4, 202, 255) 76.471%, rgb(9, 212, 255) calc(76.471% + 1px), rgb(9, 212, 255) 79.412%, rgb(16, 221, 255) calc(79.412% + 1px), rgb(16, 221, 255) 82.353%, rgb(23, 231, 255) calc(82.353% + 1px), rgb(23, 231, 255) 85.294%, rgb(31, 241, 255) calc(85.294% + 1px), rgb(31, 241, 255) 88.235%, rgb(39, 251, 255) calc(88.235% + 1px), rgb(39, 251, 255) 91.176%, rgb(48, 255, 255) calc(91.176% + 1px), rgb(48, 255, 255) 94.118%, rgb(58, 255, 255) calc(94.118% + 1px), rgb(58, 255, 255) 97.059%, rgb(68, 255, 255) calc(97.059% + 1px), rgb(68, 255, 255) 100%)
+}
+/* 霙澂 */
+.bg-gradient-velvetdawn{
+  background-image:linear-gradient(135deg, rgb(65, 94, 208) 0%, rgb(65, 94, 208) 2.941%, rgb(67, 95, 209) calc(2.941% + 1px), rgb(67, 95, 209) 5.882%, rgb(69, 96, 210) calc(5.882% + 1px), rgb(69, 96, 210) 8.824%, rgb(71, 97, 210) calc(8.824% + 1px), rgb(71, 97, 210) 11.765%, rgb(74, 98, 211) calc(11.765% + 1px), rgb(74, 98, 211) 14.706%, rgb(76, 100, 212) calc(14.706% + 1px), rgb(76, 100, 212) 17.647%, rgb(79, 101, 212) calc(17.647% + 1px), rgb(79, 101, 212) 20.588%, rgb(83, 102, 213) calc(20.588% + 1px), rgb(83, 102, 213) 23.529%, rgb(86, 103, 214) calc(23.529% + 1px), rgb(86, 103, 214) 26.471%, rgb(89, 104, 214) calc(26.471% + 1px), rgb(89, 104, 214) 29.412%, rgb(93, 105, 215) calc(29.412% + 1px), rgb(93, 105, 215) 32.353%, rgb(97, 107, 216) calc(32.353% + 1px), rgb(97, 107, 216) 35.294%, rgb(101, 108, 216) calc(35.294% + 1px), rgb(101, 108, 216) 38.235%, rgb(105, 109, 217) calc(38.235% + 1px), rgb(105, 109, 217) 41.176%, rgb(109, 110, 217) calc(41.176% + 1px), rgb(109, 110, 217) 44.118%, rgb(114, 111, 218) calc(44.118% + 1px), rgb(114, 111, 218) 47.059%, rgb(119, 113, 219) calc(47.059% + 1px), rgb(119, 113, 219) 50%, rgb(123, 114, 219) calc(50% + 1px), rgb(123, 114, 219) 52.941%, rgb(128, 115, 220) calc(52.941% + 1px), rgb(128, 115, 220) 55.882%, rgb(133, 116, 221) calc(55.882% + 1px), rgb(133, 116, 221) 58.824%, rgb(139, 118, 221) calc(58.824% + 1px), rgb(139, 118, 221) 61.765%, rgb(144, 119, 222) calc(61.765% + 1px), rgb(144, 119, 222) 64.706%, rgb(149, 120, 223) calc(64.706% + 1px), rgb(149, 120, 223) 67.647%, rgb(155, 121, 223) calc(67.647% + 1px), rgb(155, 121, 223) 70.588%, rgb(161, 123, 224) calc(70.588% + 1px), rgb(161, 123, 224) 73.529%, rgb(167, 124, 225) calc(73.529% + 1px), rgb(167, 124, 225) 76.471%, rgb(172, 125, 225) calc(76.471% + 1px), rgb(172, 125, 225) 79.412%, rgb(178, 127, 226) calc(79.412% + 1px), rgb(178, 127, 226) 82.353%, rgb(184, 128, 227) calc(82.353% + 1px), rgb(184, 128, 227) 85.294%, rgb(190, 129, 227) calc(85.294% + 1px), rgb(190, 129, 227) 88.235%, rgb(197, 131, 228) calc(88.235% + 1px), rgb(197, 131, 228) 91.176%, rgb(203, 132, 228) calc(91.176% + 1px), rgb(203, 132, 228) 94.118%, rgb(209, 133, 229) calc(94.118% + 1px), rgb(209, 133, 229) 97.059%, rgb(216, 134, 230) calc(97.059% + 1px), rgb(216, 134, 230) 100%)
+}
+/* 渊潨 */
+.bg-gradient-aquafrost{
+  background-image:linear-gradient(135deg, rgb(192, 255, 255) 0%, rgb(192, 255, 255) 2.941%, rgb(187, 255, 255) calc(2.941% + 1px), rgb(187, 255, 255) 5.882%, rgb(181, 255, 255) calc(5.882% + 1px), rgb(181, 255, 255) 8.824%, rgb(176, 252, 255) calc(8.824% + 1px), rgb(176, 252, 255) 11.765%, rgb(170, 243, 255) calc(11.765% + 1px), rgb(170, 243, 255) 14.706%, rgb(165, 233, 255) calc(14.706% + 1px), rgb(165, 233, 255) 17.647%, rgb(159, 222, 255) calc(17.647% + 1px), rgb(159, 222, 255) 20.588%, rgb(154, 211, 255) calc(20.588% + 1px), rgb(154, 211, 255) 23.529%, rgb(148, 199, 255) calc(23.529% + 1px), rgb(148, 199, 255) 26.471%, rgb(142, 187, 255) calc(26.471% + 1px), rgb(142, 187, 255) 29.412%, rgb(137, 175, 255) calc(29.412% + 1px), rgb(137, 175, 255) 32.353%, rgb(131, 163, 255) calc(32.353% + 1px), rgb(131, 163, 255) 35.294%, rgb(125, 150, 255) calc(35.294% + 1px), rgb(125, 150, 255) 38.235%, rgb(120, 137, 255) calc(38.235% + 1px), rgb(120, 137, 255) 41.176%, rgb(114, 124, 254) calc(41.176% + 1px), rgb(114, 124, 254) 44.118%, rgb(108, 112, 251) calc(44.118% + 1px), rgb(108, 112, 251) 47.059%, rgb(103, 99, 248) calc(47.059% + 1px), rgb(103, 99, 248) 50%, rgb(97, 86, 244) calc(50% + 1px), rgb(97, 86, 244) 52.941%, rgb(92, 74, 241) calc(52.941% + 1px), rgb(92, 74, 241) 55.882%, rgb(87, 62, 237) calc(55.882% + 1px), rgb(87, 62, 237) 58.824%, rgb(81, 50, 233) calc(58.824% + 1px), rgb(81, 50, 233) 61.765%, rgb(76, 39, 228) calc(61.765% + 1px), rgb(76, 39, 228) 64.706%, rgb(71, 28, 224) calc(64.706% + 1px), rgb(71, 28, 224) 67.647%, rgb(66, 18, 220) calc(67.647% + 1px), rgb(66, 18, 220) 70.588%, rgb(61, 8, 215) calc(70.588% + 1px), rgb(61, 8, 215) 73.529%, rgb(56, 0, 210) calc(73.529% + 1px), rgb(56, 0, 210) 76.471%, rgb(52, 0, 205) calc(76.471% + 1px), rgb(52, 0, 205) 79.412%, rgb(47, 0, 200) calc(79.412% + 1px), rgb(47, 0, 200) 82.353%, rgb(43, 0, 195) calc(82.353% + 1px), rgb(43, 0, 195) 85.294%, rgb(38, 0, 190) calc(85.294% + 1px), rgb(38, 0, 190) 88.235%, rgb(34, 0, 185) calc(88.235% + 1px), rgb(34, 0, 185) 91.176%, rgb(30, 0, 179) calc(91.176% + 1px), rgb(30, 0, 179) 94.118%, rgb(27, 0, 174) calc(94.118% + 1px), rgb(27, 0, 174) 97.059%, rgb(23, 0, 169) calc(97.059% + 1px), rgb(23, 0, 169) 100%)
+}
+/* 素朏 */
+.bg-gradient-lunamist{
+  background-image:radial-gradient(476px at 54.8% 51.5%, rgb(168, 229, 253) 0%, rgb(244, 244, 254) 42.3%, rgb(244, 244, 254) 100.2%)
+}
+/* 皇家海绿 */
+.bg-img-royalheath{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/01.-Royal-Heath.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* 蛋汤 */
+.bg-img-eggsour{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/02.-Egg-Sour.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* 雪月 */
+.bg-img-snowymint{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/03.-Snowy-Mint.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* 跳草 */
+.bg-img-hopbush{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/04.-Hopbush.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+.bg-img-flax{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/05.-Flax.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* 紫藤 */
+.bg-img-wisteria{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/06.-Wisteria.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* 泰坦蓝 */
+.bg-img-tidal{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/07.-Tidal.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* 紫罗兰蓝 */
+.bg-img-violetblue{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/08.-Violet-Blue.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+.bg-img-lightsky{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/09.-Light-Sky-Blue.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* 明Dar */
+.bg-img-mindaro{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/10.-Mindaro.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* 紫红色 */
+.bg-img-fuchsia{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/11.-Fuchsia.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* umblingweed */
+.bg-img-tumblingweed{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/12.-Tumbleweed_1.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* Violet Red */
+.bg-img-violetred{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/13.-Pale-Violet-Red_1.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* Prim */
+.bg-img-prim{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/14.-Prim.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* Perfume */
+.bg-img-perfume{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/15.-Perfume.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+.bg-img-purple{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/16.-Medium-Purple_1.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+.bg-img-darksalmon{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/17.-Dark-Salmon.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* Buttercup */
+.bg-img-buttercup{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/18.-Buttercup.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+.bg-img-cancan{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/19.-Can-Can_1.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+/* Melanie */
+.bg-img-melanie{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/20.-Melanie.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+
+/* Columbia Blue */
+.bg-img-columbiablue{
+  --bg-size:100% 100%;
+  --bg-position:0px 0px;
+  background: url('https://products.ls.graphics/mesh-gradients/images/21.-Columbia-Blue_1.jpg') no-repeat;
+  background-size: var(--bg-size);
+  background-position: var(--bg-position);
+}
+
+
+
+
+
 
 /*文字特效*/
 .text-neonglow {
