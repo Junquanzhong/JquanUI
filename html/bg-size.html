@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb bg-surface-50% breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>背景</a></li>
+            <li class="active">背景大小</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite>背景大小</cite>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>属性</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>bg-auto</td>
+                                <td>background-size: auto auto;</td>
+                                <td>背景大小自动</td>
+                            </tr>
+                            <tr>
+                                <td>bg-cover</td>
+                                <td>background-size: cover;</td>
+                                <td>背景大小覆盖</td>
+                            </tr>
+                            <tr>
+                                <td>bg-contain</td>
+                                <td>background-size: contain;</td>
+                                <td>背景大小包含</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite>bg-auto</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-4">使用<code>bg-auto</code> 类，背景图片不会被拉伸或压缩，背景图像将保持其原始大小，因此可能会被裁剪。</p>
+                    <div class="h-60 w-96 rounded p-4 bg-auto bg-no-repeat" style="background: url('https://www.jquan.win/upload/20250626/2a170408a3db79.webp');"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite>bg-cover</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-4">使用<code>bg-cover</code> 类，会调整背景图像大小确保它完全覆盖容器</p>
+                    <div class="h-60 w-full rounded p-4 bg-cover bg-no-repeat" style="background: url('https://www.jquan.win/upload/20250626/2a170408a3db79.webp');"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite>bg-contain</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-4">使用<code>bg-contain</code> 类会调整背景图像大小确保它依然完全可见</p>
+                    <div class="h-60 w-full rounded p-4 bg-contain bg-no-repeat" style="background: url('https://www.jquan.win/upload/20250626/2a170408a3db79.webp');"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

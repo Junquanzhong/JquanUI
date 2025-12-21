@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>效果</a></li>
+            <li class="active">阴影</li>
+        </ul>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">阴影</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none bg-gray-200 p-4 rounded-md flex flex-wrap justify-between bgimg-leftslash">
+                        <li class="w-28 h-12 bg-white rounded-md text-sm center cursor-auto border border-strong" onclick=" setupCopyOnClick();" data-copy="cursor-auto">cursor-auto</li>
+                        <li class="w-28 h-12 bg-white rounded-md text-sm center cursor-default border border-strong" onclick=" setupCopyOnClick();" data-copy="cursor-default">cursor-default</li>
+                        <li class="w-28 h-12 bg-white rounded-md text-sm center cursor-pointer border border-strong" onclick=" setupCopyOnClick();" data-copy="cursor-pointer">cursor-pointer</li>
+                        <li class="w-28 h-12 bg-white rounded-md text-sm center cursor-wait border border-strong" onclick=" setupCopyOnClick();" data-copy="cursor-wait">cursor-wait</li>
+                        <li class="w-28 h-12 bg-white rounded-md text-sm center cursor-text border border-strong" onclick=" setupCopyOnClick();" data-copy="cursor-text">cursor-text</li>
+                        <li class="w-28 h-12 bg-white rounded-md text-sm center cursor-move border border-strong" onclick=" setupCopyOnClick();" data-copy="cursor-move">cursor-move</li>
+                        <li class="w-28 h-12 bg-white rounded-md text-sm center cursor-help border border-strong" onclick=" setupCopyOnClick();" data-copy="cursor-help">cursor-help</li>
+                        <li class="w-28 h-12 bg-white rounded-md text-sm center cursor-not-allowed border border-strong" onclick=" setupCopyOnClick();" data-copy="cursor-not-allowed">cursor-not-allowed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

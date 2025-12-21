@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+            <li class="active">溢出控制</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">溢出控制</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">overflow-*</span> 对溢出屏幕的内容进行处理</p>
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>作用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>overflow-hidden</td>
+                                <td>隐藏溢出内容</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-scroll</td>
+                                <td>显示滚动条</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-auto</td>
+                                <td>当内容超出时显示滚动条</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-visible</td>
+                                <td>显示溢出内容</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-clip</td>
+                                <td>裁剪内容</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">溢出方向控制</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">overflow-*(x/y)-*</span> 对溢出屏幕的内容进行指定方向处理</p>
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>作用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>overflow-x-auto</td>
+                                <td>当水平方向内容超出时出现滚动条</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-y-auto</td>
+                                <td>当垂直方向内容超出时出现滚动条</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-x-hidden</td>
+                                <td>水平方向内容溢出被裁剪且不出现滚动条</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-y-hidden</td>
+                                <td>垂直方向内容溢出被裁剪且不出现滚动条</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-x-scroll</td>
+                                <td>无论水平内容是否超出都显示水平滚动条</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-y-scroll</td>
+                                <td>无论垂直内容是否超出都显示垂直滚动条</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-x-visible</td>
+                                <td>水平方向溢出内容可见，无滚动条</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-y-visible</td>
+                                <td>垂直方向溢出内容可见，无滚动条</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-x-clip</td>
+                                <td>水平方向溢出内容被裁剪且禁止访问超出部分</td>
+                            </tr>
+                            <tr>
+                                <td>overflow-y-clip</td>
+                                <td>垂直方向溢出内容被裁剪且禁止访问超出部分</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

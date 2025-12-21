@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+            <li class="active">内容适配</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">包含</cite>
+                </div>
+                <div class="card-body">
+                    <p class="leading-6">使用 <span class="tags radius">object-contain</span> 来指定元素如何适应容器的高度与宽度</p>
+                    <p class="leading-6">保持原比例，完整缩放进容器，不一定填满</p>
+                    <p class="leading-6">不会出现裁剪，不失真,可能左右或上下留空白。</p>
+                    <div class="mt-5 radius bg-slate-100 w-full h-40">
+                        <img src="https://picsum.photos/100/100" alt="" class="radius object-contain">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">覆盖</cite>
+                </div>
+                <div class="card-body">
+                    <p class="leading-6">使用 <span class="tags radius">object-cover</span> 来指定元素如何适应容器的高度与宽度</p>
+                    <p class="leading-6">保持比例，填满整个容器，不一定会完整显示</p>
+                    <p class="leading-6">填充满，不失真，适合封面图，多余部分会被裁剪掉。</p>
+                    <div class="mt-5 radius bg-slate-100 w-full h-40">
+                        <img src="https://picsum.photos/500/300" alt="" class="radius object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">充满</cite>
+                </div>
+                <div class="card-body">
+                    <p class="leading-6">使用 <span class="tags radius">object-fill</span> 来指定元素如何适应容器的高度与宽度</p>
+                    <p class="leading-6">强制拉伸填满容器，不保持比例</p>
+                    <p class="leading-6">填满无留白，可能变形。</p>
+                    <div class="mt-5 radius bg-slate-100 w-full h-40">
+                        <img src="https://picsum.photos/100/100" alt="" class="radius object-fill">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">无充满方式</cite>
+                </div>
+                <div class="card-body">
+                    <p class="leading-6">使用 <span class="tags radius">object-none</span> 来指定元素如何适应容器的高度与宽度</p>
+                    <p class="leading-6">不缩放，按原图大小放入容器</p>
+                    <p class="leading-6">只显示能容下的部分，不会缩放也不会适应,常用于“裁剪预览”类场景。</p>
+                    <div class="mt-5 radius bg-slate-100 w-full h-40">
+                        <img src="https://picsum.photos/100/100" alt="" class="radius object-none">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">缩小</cite>
+                </div>
+                <div class="card-body">
+                    <p class="leading-6">使用 <span class="tags radius">object-scale-down</span> 来指定元素如何适应容器的高度与宽度</p>
+                    <p class="leading-6">有缩放行为，但只会缩小图像，不会放大</p>
+                    <p class="leading-6">更像 contain 的“保守版本”：比容器大就缩小，比容器小就保持原样。</p>
+                    <p class="leading-6">注意缩小的概念，是图像自适应放大时，尺寸超过容器时，才会缩小，如果有给图像固定尺寸，这个尺寸大于容器，则可能会溢出容器。</p>
+                    <div class="mt-5 radius bg-slate-100 w-full h-40">
+                        <img src="https://picsum.photos/500/200" alt="" class="w-full h-full radius object-scale-down">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

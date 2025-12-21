@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body class="theme-indigo">
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>排版</a></li>
+            <li class="active">字号</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">初始化</cite>
+                </div>
+                <div class="card-body">
+                    <h1>一级标题.<small>副标题</small></h1>
+                    <h2>二级标题<small>副标题</small></h2>
+                    <h3>三级标题<small>副标题</small></h3>
+                    <h4>四级标题<small>副标题</small></h4>
+                    <h5>五级标题<small>副标题</small></h5>
+                    <h6>六级标题<small>副标题</small></h6>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">自定义</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <code>.text-{ number } px-96</code> 来控制字号</p>
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>字号</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>text-xs</td>
+                                <td>12px/0.75rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-sm</td>
+                                <td>14px/0.875rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-md</td>
+                                <td>16px/1rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-lg</td>
+                                <td>18px/1.125rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-xl</td>
+                                <td>20px/1.25rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-2xl</td>
+                                <td>24px/1.5rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-3xl</td>
+                                <td>30px/1.875rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-4xl</td>
+                                <td>36px/2.25rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-5xl</td>
+                                <td>48px/3rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-6xl</td>
+                                <td>60px/3.75rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-7xl</td>
+                                <td>72px/4.5rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-8xl</td>
+                                <td>96px/6rem</td>
+                            </tr>
+                            <tr>
+                                <td>text-9xl</td>
+                                <td>128px/8rem</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">通过属性自定义</cite>
+                </div>
+                <div class="card-body">
+                    <p>通过类名 <code>.text-sn</code> 和属性 <code>data-font-size="26px"</code> 来满足特殊场景自定义</p>
+                    <div id="demo" class="w-full max-w-2xl mx-auto p-3 mt-5 rounded-md">
+                        <div class="flex justify-center mb-3">
+                            <nav class="tabs-nav p-2 bg-surface-100 rounded-lg space-x-2">
+                                <span class="tabs-item rounded-md text-sm center inline-block tabs-active"><i
+                                        class='bxr bx-eye align-middle'></i> 预览</span>
+                                <span class="tabs-item rounded-md text-sm center inline-block"><i
+                                        class='bxr bx-code align-middle'></i> 代码</span>
+                            </nav>
+                        </div>
+                        <div class="tabs-content">
+                            <div class="tabs-track">
+                                <section class="tabs-panel">
+                                    <div class="border border-strong rounded-md p-3 h-full overflow-auto">
+                                        <p class="text-sn" data-font-size="26px">默认字体</p>
+                                    </div>
+                                </section>
+                                <section class="tabs-panel overflow-auto">
+                                    <div
+                                        class="codeblock codeblock-line-numbers border border-strong rounded-md h-full">
+                                        <pre><code class="code-block" data-language="css" data-show-lines="true"><p class="text-sn" data-font-size="26px">默认字体</p></code></pre>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="../js/apps/Fontsize.js" type="module"></script>
+            <script src="../js/Communication.js"></script>
+            <script src="../js/apps/app.js" type="module"></script>
+        </div>
+    </div>
+</body>
+
+</html>

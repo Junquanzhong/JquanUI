@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>ESM</a></li>
+            <li class="active">手风琴</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">默认多开模式</cite>
+                </div>
+
+                <div class="card-body">
+                    <div class="demo-section">
+                        <h2>服务流程 (多开模式)</h2>
+                        <p>这是默认模式，可以同时展开多个项目。</p>
+
+                        <div class="accordion" data-accordion="multiple">
+                            <div class="accordion-item bg-white overflow-hidden mb-4 mt-2 border border-gray-200 rounded">
+                                <button
+                                    class="accordion-header center-x w-full p-4 text-left bg-gray-100 cursor-pointer border-none text-md justify-between">第一步：咨询与需求分析</button>
+                                <div class="accordion-content overflow-hidden">
+                                    <div class="accordion-content-inner p-4">
+                                        <p>我们首先会与您进行深入沟通，了解您的业务目标、目标用户以及项目的核心需求。这个阶段是整个项目成功的基石。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-white overflow-hidden mb-4 mt-2 border border-gray-200 rounded">
+                                <button
+                                    class="accordion-header center-x w-full p-4 text-left bg-gray-100 cursor-pointer border-none text-md justify-between">第二步：方案设计与原型</button>
+                                <div class="accordion-content overflow-hidden">
+                                    <div class="accordion-content-inner p-4">
+                                        <p>基于需求分析，我们的设计师和产品经理将创建详细的解决方案和交互原型，让您在开发前就能直观地感受到产品的形态和流程。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-white overflow-hidden mb-4 mt-2 border border-gray-200 rounded">
+                                <button
+                                    class="accordion-header center-x w-full p-4 text-left bg-gray-100 cursor-pointer border-none text-md justify-between">第三步：开发与测试</button>
+                                <div class="accordion-content overflow-hidden">
+                                    <div class="accordion-content-inner p-4">
+                                        <p>进入正式的开发阶段。我们的工程师将采用敏捷开发模式，分模块、分阶段进行编码，并持续进行单元测试和集成测试，确保代码质量和稳定性。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-white overflow-hidden mb-4 mt-2 border border-gray-200 rounded">
+                                <button
+                                    class="accordion-header center-x w-full p-4 text-left bg-gray-100 cursor-pointer border-none text-md justify-between">第四步：部署与维护</button>
+                                <div class="accordion-content overflow-hidden">
+                                    <div class="accordion-content-inner p-4">
+                                        <p>项目开发完成后，我们将协助您进行服务器部署和上线。上线后，我们还提供持续的技术支持和维护服务，确保您的应用长期稳定运行。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">手风琴模式，并默认展开第一项</cite>
+                </div>
+
+                <div class="card-body">
+                    <div class="demo-section">
+                        <h2>常见问题 (手风琴模式，默认展开)</h2>
+                        <p>这是手风琴模式 (data-accordion="single")，一次只能展开一个项目。并且我们设置了 <code>data-accordion-open="true"</code>
+                            来默认展开第一项。</p>
+
+                        <div class="accordion" data-accordion="single" data-accordion-open="true">
+                            <div class="accordion-item bg-white overflow-hidden mb-4 mt-2 border border-gray-200 rounded">
+                                <button
+                                    class="accordion-header center-x w-full p-4 text-left bg-gray-100 cursor-pointer border-none text-md justify-between">这个手风琴组件是免费的吗？</button>
+                                <div class="accordion-content overflow-hidden">
+                                    <div class="accordion-content-inner p-4">
+                                        <p>是的，这个组件是 JquanUI 框架的一部分，完全免费和开源。您可以自由地在个人或商业项目中使用它。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-white overflow-hidden mb-4 mt-2 border border-gray-200 rounded">
+                                <button
+                                    class="accordion-header center-x w-full p-4 text-left bg-gray-100 cursor-pointer border-none text-md justify-between">它需要依赖
+                                    jQuery 或其他库吗？</button>
+                                <div class="accordion-content overflow-hidden">
+                                    <div class="accordion-content-inner p-4">
+                                        <p>不需要。这个组件是使用原生现代 JavaScript (ES Modules) 编写的，不依赖任何第三方库，加载速度快，性能优异。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-white overflow-hidden mb-4 mt-2 border border-gray-200 rounded">
+                                <button
+                                    class="accordion-header center-x w-full p-4 text-left bg-gray-100 cursor-pointer border-none text-md justify-between">如何自定义动画速度？</button>
+                                <div class="accordion-content overflow-hidden">
+                                    <div class="accordion-content-inner p-4">
+                                        <p>您可以通过在容器上添加 <code>data-accordion-duration="500"</code> (单位是毫秒) 来自定义动画的持续时间。例如，设置为
+                                            500ms 会让动画更慢一些。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-white overflow-hidden mb-4 mt-2 border border-gray-200 rounded">
+                                <button
+                                    class="accordion-header center-x w-full p-4 text-left bg-gray-100 cursor-pointer border-none text-md justify-between">可以在一个页面使用多个不同的手风琴吗？</button>
+                                <div class="accordion-content overflow-hidden">
+                                    <div class="accordion-content-inner p-4">
+                                        <p>当然可以！每个带有 <code>data-accordion</code>
+                                            属性的容器都会被独立初始化为一个手风琴实例。您可以在同一个页面上混合使用不同的模式和配置。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">参数文档</cite>
+                </div>
+
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>参数类别</th>
+                                <th>参数名称 / HTML 属性</th>
+                                <th>类型 / 可选值</th>
+                                <th>默认值</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- JavaScript 配置选项 -->
+                            <tr>
+                                <td rowspan="4">JavaScript 选项</td>
+                                <td><code>mode</code></td>
+                                <td><code>string</code></td>
+                                <td><code>'multiple'</code></td>
+                                <td>设置手风琴的模式。<code>'single'</code> 表示同时只能展开一个面板；<code>'multiple'</code> 表示可以同时展开多个面板。</td>
+                            </tr>
+                            <tr>
+                                <td><code>defaultOpen</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>false</code></td>
+                                <td>是否在初始化时默认展开第一个面板（仅在 <code>mode</code> 为 <code>'single'</code> 时有效）。</td>
+                            </tr>
+                            <tr>
+                                <td><code>animationDuration</code></td>
+                                <td><code>number</code></td>
+                                <td><code>300</code></td>
+                                <td>展开和收起动画的持续时间，单位为毫秒（ms）。</td>
+                            </tr>
+                            <tr>
+                                <td><code>options</code></td>
+                                <td><code>object</code></td>
+                                <td><code>{}</code></td>
+                                <td>在通过 <code>new Accordion(element, options)</code> 实例化时，用于传入上述所有配置的对象。</td>
+                            </tr>
+                            <!-- HTML 数据属性 -->
+                            <tr>
+                                <td rowspan="4">HTML 数据属性</td>
+                                <td><code>data-accordion</code></td>
+                                <td><code>string</code></td>
+                                <td><code>null</code></td>
+                                <td>在 HTML 标签上设置，用于覆盖 JavaScript 中的 <code>mode</code> 选项。值应为 <code>'single'</code> 或
+                                    <code>'multiple'</code>。</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-accordion-open</code></td>
+                                <td><code>boolean</code></td>
+                                <td><code>false</code></td>
+                                <td>在 HTML 标签上设置（存在即表示 <code>true</code>），用于覆盖 <code>defaultOpen</code> 选项。</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-accordion-duration</code></td>
+                                <td><code>number</code></td>
+                                <td><code>300</code></td>
+                                <td>在 HTML 标签上设置，用于覆盖 <code>animationDuration</code> 选项，值应为毫秒数。</td>
+                            </tr>
+                            <tr>
+                                <td><code>data-accordion-initialized</code></td>
+                                <td><code>string</code></td>
+                                <td><code>'true'</code></td>
+                                <td>由组件自动添加的属性，用于标记手风琴元素已被初始化，防止重复初始化。开发者无需手动设置。</td>
+                            </tr>
+                            <!-- CSS 类 / 选择器 -->
+                            <tr>
+                                <td rowspan="3">CSS 类 / 选择器</td>
+                                <td><code>.is-open</code></td>
+                                <td><code>class</code></td>
+                                <td><code>-</code></td>
+                                <td>动态添加到 <code>.accordion-item</code> 上的类，表示该项当前处于展开状态。用于控制图标的旋转等。</td>
+                            </tr>
+                            <tr>
+                                <td><code>.is-fully-opened</code></td>
+                                <td><code>class</code></td>
+                                <td><code>-</code></td>
+                                <td>动画结束后动态添加到 <code>.accordion-item</code> 上的类，用于将内容的 <code>max-height</code> 设为
+                                    <code>none</code>，以适应动态内容变化。</td>
+                            </tr>
+                            <tr>
+                                <td><code>.focus-visible</code></td>
+                                <td><code>class</code></td>
+                                <td><code>-</code></td>
+                                <td>当通过键盘（Tab键）使 <code>.accordion-header</code> 获得焦点时，动态添加的类，用于显示自定义的焦点样式。</td>
+                            </tr>
+                            <!-- CSS 变量 -->
+                            <tr>
+                                <td rowspan="1">CSS 变量</td>
+                                <td><code>--accordion-duration</code></td>
+                                <td><code><time></code></td>
+                                <td><code>300ms</code></td>
+                                <td>由 JavaScript 根据 <code>animationDuration</code> 选项动态设置的 CSS 变量，用于控制
+                                    <code>transition-duration</code>，确保 CSS 和 JS 动画时长同步。</td>
+                            </tr>
+                            <!-- DOM 结构 -->
+                            <tr>
+                                <td rowspan="1">DOM 结构</td>
+                                <td><code>.accordion-item</code></td>
+                                <td><code>selector</code></td>
+                                <td><code>-</code></td>
+                                <td>每个手风琴项的容器。必须包含 <code>.accordion-header</code> 和 <code>.accordion-content</code>。</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><code>.accordion-header</code></td>
+                                <td><code>selector</code></td>
+                                <td><code>-</code></td>
+                                <td>手风琴的触发器，通常是一个 &lt;button&gt; 元素。</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><code>.accordion-content</code></td>
+                                <td><code>selector</code></td>
+                                <td><code>-</code></td>
+                                <td>内容面板的包裹层，用于 <code>max-height</code> 动画。</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><code>.accordion-content-inner</code></td>
+                                <td><code>selector</code></td>
+                                <td><code>-</code></td>
+                                <td>内容面板的内层包裹，用于存放实际内容和 <code>padding</code>，方便 JS 测量其真实高度（<code>scrollHeight</code>）。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/modules/accordion.mjs"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

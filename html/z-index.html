@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>层级</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+            <li class="active">层级</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">层级</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用<span>z-*</span> 进行层级设定</p>
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>属性</th>
+                                <th>复制类</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>z-0</td>
+                                <td>z-index: 0;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-0">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-1</td>
+                                <td>z-index: 1;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-1">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-2</td>
+                                <td>z-index: 2;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-2">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-5</td>
+                                <td>z-index: 5;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-5">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-10</td>
+                                <td>z-index: 10;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-10">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-20</td>
+                                <td>z-index: 20;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-20">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-30</td>
+                                <td>z-index: 30;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-30">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-40</td>
+                                <td>z-index: 40;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-40">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-50</td>
+                                <td>z-index: 50;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-50">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-auto</td>
+                                <td>z-index: auto;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-auto">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-base</td>
+                                <td>z-index: 1100;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-base">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-above</td>
+                                <td>z-index: -50;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-above">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-dropdown</td>
+                                <td>z-index: 1200;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-dropdown">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-sticky</td>
+                                <td>z-index: 1300;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-sticky">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-fixed</td>
+                                <td>z-index: 1400;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-fixed">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-modal</td>
+                                <td>z-index: 1500;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-modal">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-overlay</td>
+                                <td>z-index: 1600;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-overlay">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-popover</td>
+                                <td>z-index: 1700;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-popover">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-tooltip</td>
+                                <td>z-index: 1800;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-tooltip">复制</button></td>
+                            </tr>
+                            <tr>
+                                <td>z-messager</td>
+                                <td>z-index: 1900;</td>
+                                <td><button class="btn btn-primary btn-sm" onclick=" setupCopyOnClick();" data-copy="z-messager">复制</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script> 
+</body>
+</html>

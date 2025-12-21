@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+    <link rel="stylesheet" href="../css/JquanUIex@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>组件</a></li>
+            <li class="active">表单</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">基础样式</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <div class="form-group w-60">
+                        <label for="input-default" class="text-sm my-2 text-surface-500">用户名</label>
+                        <input type="text" id="input-default"
+                            class="block w-full my-1 px-3 py-2 focus-outline-ring focus-outline-1 focus-ring-primary rounded-md text-sm"
+                            placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group w-60 relative focus-within-text-primary">
+                        <label for="input-default-1"
+                            class="text-sm inline-table absolute top-1/2 left-2.5 translate-y-1/2 text-surface-500">用户名</label>
+                        <input type="text" id="input-default-1"
+                            class="block w-full my-1 px-3 py-2 pl-16 focus-outline-ring focus-outline-1 focus-ring-primary rounded-md text-sm"
+                            placeholder="请输入用户名">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">验证样式</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <p>使用标签属性data-verify="success"或data-verify="danger"添加验证样式</p>
+                    <div class="form-group-within w-60 relative focus-within-text-primary">
+                        <label for="input-default-2"
+                            class="text-sm inline-table absolute top-1/2 left-3 translate-y-1/2 text-surface-500">用户名</label>
+                        <input type="text" id="input-default-2"
+                            class="block w-full my-1 px-3 py-2 pl-16 outline-ring outline-1 rounded-md text-sm"
+                            placeholder="正确样式" data-verify="success">
+                    </div>
+                    <div class="form-group-within w-60 relative focus-within-text-primary">
+                        <label for="input-default-3"
+                            class="text-sm inline-table absolute top-1/2 left-3 translate-y-1/2 text-surface-500">用户名</label>
+                        <input type="text" id="input-default-3"
+                            class="block w-full my-1 px-3 py-2 pl-16 outline-ring outline-1 rounded-md text-sm"
+                            placeholder="错误样式" data-verify="danger">
+                    </div>
+                    <div class="form-group-within w-60 relative focus-within-text-primary">
+                        <label for="input-default-4"
+                            class="text-sm inline-table absolute top-1/2 left-3 translate-y-1/2 text-surface-500">用户名</label>
+                        <input type="text" id="input-default-4"
+                            class="block w-full my-1 px-3 py-2 pl-16 outline-ring outline-1 focus-ring-primary rounded-md text-sm"
+                            placeholder="禁用状态" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">图标样式</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <div class="form-group w-60 relative focus-within-text-primary">
+                        <input type="text" id="input-default-5"
+                            class="block w-full my-1 px-3 py-2 pl-8 outline-ring outline-1 focus-ring-primary rounded-md text-sm"
+                            placeholder="请输入用户名">
+                        <label for="input-default-5"
+                            class="text-sm inline-table absolute top-1/2 left-2.5 translate-y-1/2 text-surface-500 center">
+                            <i class="bx bx-user"></i>
+                        </label>
+                    </div>
+                    <div class="form-group w-60 relative focus-within-text-primary">
+                        <input type="password" id="input-default-6"
+                            class="block w-full my-1 px-3 py-2 pr-8 outline-ring outline-1 focus-ring-primary rounded-md text-sm"
+                            placeholder="请输入用户名">
+                        <label for="input-default-6"
+                            class="text-sm inline-table absolute top-1/2 translate-y-1/2 right-2.5 text-surface-500 center">
+                            <i class="bx bx-lock"></i>
+                        </label>
+                    </div>
+                    <div class="form-group-within w-60 relative focus-within-text-primary">
+                        <input type="text" id="input-default-7"
+                            class="block w-full px-3 py-2 pl-10 text-sm bg-white border border-gray-300 rounded-md outline-none ring-1 ring-inset ring-gray-300 focus-ring-1 focus-ring-inset focus-ring-primary focus-border-primary transition duration-150 ease-in-out"
+                            placeholder="请输入用户名">
+                        <label for="input-default-7"
+                            class="absolute top-1/2 left-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center">
+                            <i class="bx bx-user text-sm"></i>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">按钮样式</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <div class="form-group-within w-60 relative focus-within-text-primary">
+                        <input type="search" id="input-default-8"
+                            class="block w-full px-3 py-2 pr-10 text-sm bg-white border rounded-full border-gray-300 rounded-md outline-none ring-1 ring-inset ring-gray-300 focus-ring-1 focus-ring-inset focus-ring-primary focus-border-primary transition duration-150 ease-in-out"
+                            placeholder="请输入搜索内容">
+                        <button type="submit"
+                            class="absolute top-1/2 right-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 rounded-full center">
+                            <i class="bx bx-search text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="form-group-within w-60 focus-within-text-primary flex items-center justify-center">
+                        <input type="search" id="input-default-9"
+                            class="block w-full px-3 py-2 pr-10 text-sm bg-white border border-gray-300 rounded-md outline-none ring-1 ring-inset ring-gray-300 focus-ring-1 focus-ring-inset focus-ring-primary focus-border-primary transition duration-150 ease-in-out"
+                            placeholder="请输入搜索内容">
+                        <button type="submit"
+                            class="text-white bg-primary rounded-md aspect-square h-9 w-9 center ml-3">
+                            <i class="bx bx-search text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="form-group-within w-60 focus-within-text-primary flex items-center justify-center">
+                        <input type="search" id="input-default-10"
+                            class="block w-full h-10 px-3 py-2 pr-10 text-sm bg-white border border-gray-300 rounded-r-none outline-none ring-1 ring-inset ring-gray-300 focus-ring-1 focus-ring-inset focus-ring-primary focus-border-primary transition duration-150 ease-in-out"
+                            placeholder="请输入搜索内容">
+                        <button type="submit"
+                            class="text-white bg-primary rounded-l-none aspect-square h-10 w-10 center">
+                            <i class="bx bx-search text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">智能密码</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <div id="demo" class="w-full max-w-2xl mx-auto p-3 rounded-md">
+                        <div class="flex justify-center mb-5">
+                            <nav class="tabs-nav p-2 bg-gray-100 rounded-lg space-x-2 flex">
+                                <span
+                                    class="tabs-item rounded-md text-sm center inline-block cursor-pointer tabs-active">
+                                    <i class="bxr bx-eye align-middle"></i> 预览
+                                </span>
+                                <span class="tabs-item rounded-md text-sm center inline-block cursor-pointer">
+                                    <i class="bxr bx-code align-middle"></i> HTML
+                                </span>
+                                <span class="tabs-item rounded-md text-sm center inline-block cursor-pointer">
+                                    <i class="bxr bx-code align-middle"></i> JS
+                                </span>
+                            </nav>
+                        </div>
+                        <div class="tabs-content relative overflow-hidden">
+                            <div class="tabs-track flex transition-transform duration-500">
+                                <section class="tabs-panel border rounded-md border-surface col-12 w-full shrink-0 p-4 min-h-500">
+                                    <!-- 智能密码输入框组件 -->
+                                    <div class="w-80">
+                                        <div class="form-group w-80 relative focus-within-text-primary" id="login-form">
+                                            <label for="pwd"
+                                                class="text-sm inline-table absolute top-1/2 translate-y-1/2 left-2.5 text-surface-500 center">
+                                                <i class="bx bx-lock"></i>
+                                            </label>
+                                            <input type="password" id="pwd"
+                                                class="block w-full my-1 px-9 py-2 hover-outline-ring hover-outline-1 focus-ring-primary rounded-md text-sm"
+                                                placeholder="请输入密码">
+                                            <button type="button" id="gen-pwd-btn"
+                                                class="absolute top-1/2 right-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center"
+                                                aria-label="生成随机密码">
+                                                <i class='bxr bx-sparkles-alt'></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="tabs-panel border rounded-md border-surface col-12 w-full shrink-0">
+                                    <pre class="border border-strong relative whitespace-pre overflow-x-auto"><code class="code-block hljs language-html" data-language="html" data-show-lines="true">
+<div class="w-80">
+    <div class="form-group w-80 relative focus-within-text-primary" id="login-form">
+        <label for="pwd"
+            class="text-sm inline-table absolute top-1/2 translate-y-1/2 left-2.5 text-surface-500 center">
+            <i class="bx bx-lock"></i>
+        </label>
+        <input type="password" id="pwd"
+            class="block w-full my-1 px-9 py-2 hover-outline-ring hover-outline-1 focus-ring-primary rounded-md text-sm"
+            placeholder="请输入密码">
+        <button type="button" id="gen-pwd-btn"
+            class="absolute top-1/2 right-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center"
+            aria-label="生成随机密码">
+            <i class='bxr bx-sparkles-alt'></i>
+        </button>
+    </div>
+</div></code></pre>
+                                </section>
+                                <section class="tabs-panel border rounded-md border-surface col-12 w-full shrink-0">
+                                    <pre class="border border-strong relative whitespace-pre overflow-x-auto"><code class="code-block hljs language-javascript" data-language="javascript" data-show-lines="true">// 实例化时，showStrength 默认为 false
+new PasswordGenerator({
+    passwordInputId: 'pwd',
+    generateBtnId: 'gen-pwd-btn',
+    injectTarget: {
+        element: '#login-form',
+        position: 'beforeend'
+    }
+});</code></pre>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+    <script src="../js/apps/input.js" type="module"></script>
+</body>
+
+</html>

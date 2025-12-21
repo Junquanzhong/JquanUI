@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>基础</a></li>
+            <li class="active">嵌入字体</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">可变字体</cite>
+                </div>
+                <div class="card-body">
+                    <p class="mb-4">改变字体<code>Ali Agile阿里灵动体</code></p>
+                    <!-- 文本预览区域 -->
+                    <section id="preview-section" class="font-ali-agile text-5xl leading-tight border border-2 border-primary border-dashed p-4">
+                        <p class="mb-4 text-3xl">探索，创造，改变</p>
+                        <p class="text-3xl text-surface">
+                            Explore, Create, Change
+                        </p>
+                    </section>
+
+                    <hr>
+
+                    <!-- 控制面板 -->
+                    <section id="control-panel">
+                        <h2 class="text-2xl font-semibold mb-4">字轴控制</h2>
+
+                        <!-- 衬线 SRIF -->
+                        <div class="mb-6">
+                            <label for="srif" class="flex justify-between text-sm font-medium text-surface mb-2">
+                                <span>衬线</span>
+                                <span class="font-mono bg-gray-200 px-2 py-0.5 rounded" id="srif-value">0</span>
+                            </label>
+                            <input type="range" id="srif" name="srif" min="0" max="1" value="0" step="1" class="w-full">
+                            <div class="flex justify-between text-xs text-surface mt-1">
+                                <span>0 (无衬线)</span>
+                                <span>1 (有衬线)</span>
+                            </div>
+                        </div>
+
+                        <!-- 倾斜度 SLNT -->
+                        <div class="mb-6">
+                            <label for="slnt" class="flex justify-between text-sm font-medium text-surface mb-2">
+                                <span>倾斜度</span>
+                                <span class="font-mono bg-gray-200 px-2 py-0.5 rounded" id="slnt-value">0</span>
+                            </label>
+                            <input type="range" id="slnt" name="slnt" min="-10" max="10" value="0" step="0.1"
+                                class="w-full">
+                            <div class="flex justify-between text-xs text-surface mt-1">
+                                <span>-10 (左倾)</span>
+                                <span>0 (垂直)</span>
+                                <span>10 (右倾)</span>
+                            </div>
+                        </div>
+
+                        <!-- 字宽 WDTH -->
+                        <div class="mb-6">
+                            <label for="wdth" class="flex justify-between text-sm font-medium text-surface mb-2">
+                                <span>字宽</span>
+                                <span class="font-mono bg-gray-200 px-2 py-0.5 rounded" id="wdth-value">75</span>
+                            </label>
+                            <input type="range" id="wdth" name="wdth" min="50" max="125" value="75" step="1"
+                                class="w-full">
+                            <div class="flex justify-between text-xs text-surface mt-1">
+                                <span>50 (极窄)</span>
+                                <span>75 (默认)</span>
+                                <span>100 (正常)</span>
+                                <span>125 (极宽)</span>
+                            </div>
+                        </div>
+
+                        <!-- 字重 WGHT -->
+                        <div class="mb-6">
+                            <label for="wght" class="flex justify-between text-sm font-medium text-surface mb-2">
+                                <span>字重</span>
+                                <span class="font-mono bg-gray-200 px-2 py-0.5 rounded" id="wght-value">100</span>
+                            </label>
+                            <input type="range" id="wght" name="wght" min="100" max="900" value="100" step="1"
+                                class="w-full">
+                            <div class="flex justify-between text-xs text-surface mt-1">
+                                <span>100 (极细)</span>
+                                <span>400 (常规)</span>
+                                <span>700 (粗体)</span>
+                                <span>900 (极粗)</span>
+                            </div>
+                        </div>
+                    </section>
+                    <script>
+                        // 获取所有控制元素
+                        const srifSlider = document.getElementById('srif');
+                        const slntSlider = document.getElementById('slnt');
+                        const wdthSlider = document.getElementById('wdth');
+                        const wghtSlider = document.getElementById('wght');
+
+                        const srifValue = document.getElementById('srif-value');
+                        const slntValue = document.getElementById('slnt-value');
+                        const wdthValue = document.getElementById('wdth-value');
+                        const wghtValue = document.getElementById('wght-value');
+
+                        const previewSection = document.getElementById('preview-section');
+
+                        // 更新字体样式和显示值的函数
+                        function updateFontVariation() {
+                            const srif = srifSlider.value;
+                            const slnt = slntSlider.value;
+                            const wdth = wdthSlider.value;
+                            const wght = wghtSlider.value;
+
+                            // 更新显示值
+                            srifValue.textContent = srif;
+                            slntValue.textContent = slnt;
+                            wdthValue.textContent = wdth;
+                            wghtValue.textContent = wght;
+
+                            // *** 关键修正：使用官方提供的 "SRIF", "slnt", "wdth", "wght" 标签 ***
+                            // 构建完整的 font-variation-settings 字符串
+                            const variationSettings = `'SRIF' ${srif}, 'slnt' ${slnt}, 'wdth' ${wdth}, 'wght' ${wght}`;
+
+                            // 应用到预览区域
+                            previewSection.style.fontVariationSettings = variationSettings;
+                        }
+
+                        // 为每个滑块添加事件监听器
+                        srifSlider.addEventListener('input', updateFontVariation);
+                        slntSlider.addEventListener('input', updateFontVariation);
+                        wdthSlider.addEventListener('input', updateFontVariation);
+                        wghtSlider.addEventListener('input', updateFontVariation);
+
+                        // 初始化
+                        updateFontVariation();
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <!-- 可选字体 -->
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">可选字体</cite>
+                </div>
+                <div class="card-body grid grid-cols-3 gap-4">
+                    <div class="border border-2 border-surface border-dashed p-3 font-misans-vf">
+                        <p class="mb-4"><code>font-misans-vf</code> 小米Sans VF</p>
+                        <p class="mb-4 text-3xl font-misans-vf text-surface">探索，创造，改变</p>
+                        <p class="mb-4 text-3xl font-misans-vf text-surface">0123456789</p>
+                        <p class="text-3xl text-surface font-misans-vf mb-4">
+                            Explore, Create, Change
+                        </p>
+                        <p><code class="bg-secondary-50 text-secondary">wght</code></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 font-mona">
+                        <p class="mb-4"><code>font-mona</code> MonaSans VF</p>
+                        <p class="mb-4 text-3xl font-mona text-surface">探索，创造，改变</p>
+                        <p class="mb-4 text-3xl font-mona text-surface">0123456789</p>
+                        <p class="text-3xl text-surface font-mona mb-4">
+                            Explore, Create, Change
+                        </p>
+                        <p><code class="bg-secondary-50 text-secondary">opsz</code> <code class="bg-secondary-50 text-secondary">wdth</code> <code class="bg-secondary-50 text-secondary">wght</code> <code class="bg-secondary-50 text-secondary">ital</code></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 font-ali-agile">
+                        <p class="mb-4"><code>font-ali-agile</code> 阿里妈妈灵动体 VF</p>
+                        <p class="mb-4 text-3xl font-ali-agile text-surface">探索，创造，改变</p>
+                        <p class="mb-4 text-3xl font-ali-agile text-surface">0123456789</p>
+                        <p class="text-3xl text-surface font-ali-agile mb-4">
+                            Explore, Create, Change
+                        </p>
+                        <p><code class="bg-secondary-50 text-secondary">SRIF</code> <code class="bg-secondary-50 text-secondary">slnt</code> <code class="bg-secondary-50 text-secondary">wdth</code> <code class="bg-secondary-50 text-secondary">wght</code></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">控制器</cite>
+                </div>
+                <div class="card-body space-y-4">
+                    <p>衬线：<code class="bg-secondary-50 text-secondary">font-srif-{ number }(1|0)</code></p>
+                    <p>倾斜度：<code class="bg-secondary-50 text-secondary">font-slnt-{ number }(0|5|7|10|12)</code></p>
+                    <p>字宽：<code class="bg-secondary-50 text-secondary">font-wdth-{ number }(50|75|100|125)</code></p>
+                    <p>圆角：<code class="bg-secondary-50 text-secondary">font-rcrd-{ number }(1|20|50|80|full)</code></p>
+                    <p>真斜体：<code class="bg-secondary-50 text-secondary">font-ital-{ number }(1|0)</code></p>
+                    <p>光学调整：<code class="bg-secondary-50 text-secondary">font-opsz-{ size }(xs|sm|md|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl)</code> 尺寸同字号，opsz 是可变字体中最“智能”的特性之一，它允许字体根据文字的显示尺寸，自动调整其字重、字宽、衬线粗细、字间距等细节，以达到在不同尺寸下最佳的阅读体验。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>ESM</a></li>
+            <li class="active">弹出层</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">弹出层</cite>
+                </div>
+                <div class="card-body">
+                    <div id="demo" class="w-full max-w-2xl mx-auto border border-strong p-3 mt-5 rounded-md">
+                        <div class="flex justify-center mb-3">
+                            <nav class="tabs-nav p-2 bg-gray-100 rounded-lg space-x-2">
+                                <span class="tabs-item rounded-md text-sm center inline-block tabs-active"><i
+                                        class='bxr bx-eye align-middle'></i> 预览</span>
+                                <span class="tabs-item rounded-md text-sm center inline-block"><i
+                                        class='bxr bx-code align-middle'></i> HTML</span>
+                                <span class="tabs-item rounded-md text-sm center inline-block"><i
+                                        class='bxr bx-code align-middle'></i> JS</span>
+                            </nav>
+                        </div>
+                        <div class="tabs-content">
+                            <div class="tabs-track">
+                                <section class="tabs-panel">
+                                    <div class="border border-strong rounded-md p-3 h-full overflow-auto space-y-4">
+                                        <button id="btn-dialog"
+                                            class="bg-blue-500 text-white px-2 py-2 rounded">打开对话框</button>
+                                        <button id="btn-form"
+                                            class="bg-green-500 text-white px-2 py-2 rounded">打开表单</button>
+                                        <button id="btn-single-image"
+                                            class="bg-purple-500 text-white px-2 py-2 rounded">查看单张图片</button>
+                                        <button id="btn-gallery"
+                                            class="bg-indigo-500 text-white px-2 py-2 rounded">打开图片画廊</button>
+                                    </div>
+                                </section>
+                                <section class="tabs-panel overflow-auto">
+                                    <div class="codeblock codeblock-line-numbers border border-strong rounded-md h-full">
+                                        <pre><code class="code-block" data-language="html" data-show-lines="true"><button id="btn-dialog" class="bg-blue-500 text-white px-2 py-2 rounded">打开对话框</button>
+    <button id="btn-form" class="bg-green-500 text-white px-2 py-2 rounded">打开表单</button>
+    <button id="btn-single-image" class="bg-purple-500 text-white px-2 py-2 rounded">查看单张图片</button>
+    <button id="btn-gallery" class="bg-indigo-500 text-white px-2 py-2 rounded">打开图片画廊</button></code></pre>
+                                    </div>
+                                </section>
+                                <section class="tabs-panel overflow-auto">
+                                    <div class="codeblock codeblock-line-numbers border border-strong rounded-md h-full">
+                                        <pre><code class="code-block" data-language="js" data-show-lines="true">import modalManager from '../modules/modal.mjs';
+    // --- 对话框示例 ---
+    document.getElementById('btn-dialog').addEventListener('click', () => {
+        modalManager.open({
+            type: 'dialog',
+            content: (container) => {
+                container.innerHTML = `
+                            <div class="text-center">
+                                <h2 class="text-2xl font-bold mb-4">操作确认</h2>
+                                <p class="mb-6">你确定要执行此操作吗？此操作无法撤销。</p>
+                                <div class="flex justify-center space-x-4">
+                                    <button class="confirm-btn bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">确认</button>
+                                    <button class="cancel-btn bg-gray-300 text-gray-800 px-6 py-2 rounded hover:bg-gray-400">取消</button>
+                                </div>
+                            </div>
+                        `;
+                container.querySelector('.confirm-btn').addEventListener('click', () => {
+                    alert('已确认！');
+                    modalManager.close();
+                });
+                container.querySelector('.cancel-btn').addEventListener('click', () => {
+                    modalManager.close();
+                });
+            },
+            animation: 'zoomIn'
+        });
+    });
+
+    // --- 表单示例 ---
+    document.getElementById('btn-form').addEventListener('click', () => {
+        const formContent = `
+                    <form class="space-y-4">
+                        <h2 class="text-xl font-semibold">用户注册</h2>
+                        <div>
+                            <label for="username" class="block text-sm font-medium text-gray-700">用户名</label>
+                            <input type="text" id="username" name="username" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">邮箱</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">提交</button>
+                    </form>
+                `;
+        modalManager.open({
+            type: 'form',
+            content: formContent,
+            animation: 'slideFromTop',
+            onOpen: (modalEl) => {
+                const form = modalEl.querySelector('form');
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('表单已提交 (模拟)！');
+                    modalManager.close();
+                });
+            }
+        });
+    });
+
+    // --- 单张图片示例 ---
+    document.getElementById('btn-single-image').addEventListener('click', () => {
+        modalManager.open({
+            type: 'image',
+            imageOptions: {
+                src: 'https://picsum.photos/seed/modal1/800/600.jpg'
+            },
+            animation: 'fade'
+        });
+    });
+
+    // --- 图片画廊示例 ---
+    document.getElementById('btn-gallery').addEventListener('click', () => {
+        modalManager.open({
+            type: 'image',
+            animation: 'fade',
+            imageOptions: {
+                src: [
+                    'https://picsum.photos/seed/gallery1/800/600.jpg',
+                    'https://picsum.photos/seed/gallery2/1200/900.jpg',
+                    'https://picsum.photos/seed/gallery3/900/700.jpg'
+                ],
+                //currentSrc: 'https://picsum.photos/seed/gallery2/1200/900.jpg' // 从第二张开始
+            }
+        });
+    });</code></pre>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">参数</cite>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>类型</th>
+                                <th>必需</th>
+                                <th>默认值</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>type</strong></td>
+                                <td>string</td>
+                                <td>必需</td>
+                                <td>'dialog'</td>
+                                <td>模态框类型：'dialog' | 'form' | 'image'</td>
+                            </tr>
+                            <tr>
+                                <td><strong>content</strong></td>
+                                <td>string | HTMLElement | function</td>
+                                <td>必需</td>
+                                <td>-</td>
+                                <td>模态框内容</td>
+                            </tr>
+                            <tr>
+                                <td><strong>showCloseButton</strong></td>
+                                <td>boolean</td>
+                                <td>可选</td>
+                                <td>true</td>
+                                <td>是否显示关闭按钮</td>
+                            </tr>
+                            <tr>
+                                <td><strong>closeOnBackdropClick</strong></td>
+                                <td>boolean</td>
+                                <td>可选</td>
+                                <td>true</td>
+                                <td>点击遮罩是否关闭</td>
+                            </tr>
+                            <tr>
+                                <td><strong>animation</strong></td>
+                                <td>string</td>
+                                <td>可选</td>
+                                <td>'fade'</td>
+                                <td>动画效果：'fade' | 'slideFromTop' | 'zoomIn'</td>
+                            </tr>
+                            <tr>
+                                <td><strong>backdropOpacity</strong></td>
+                                <td>number</td>
+                                <td>可选</td>
+                                <td>0.5</td>
+                                <td>遮罩透明度 0-1</td>
+                            </tr>
+                            <tr>
+                                <td><strong>classes</strong></td>
+                                <td>object</td>
+                                <td>可选</td>
+                                <td>{}</td>
+                                <td>自定义 CSS 类名</td>
+                            </tr>
+                            <tr>
+                                <td><strong>onOpen</strong></td>
+                                <td>function</td>
+                                <td>可选</td>
+                                <td>null</td>
+                                <td>打开回调函数</td>
+                            </tr>
+                            <tr>
+                                <td><strong>onClose</strong></td>
+                                <td>function</td>
+                                <td>可选</td>
+                                <td>null</td>
+                                <td>关闭回调函数</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <cite class="mt-10 mb-3">imageOptions 参数 (仅 type: 'image' 时有效)</cite>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>类型</th>
+                                <th>必需</th>
+                                <th>默认值</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>src</strong></td>
+                                <td>string | array</td>
+                                <td>必需</td>
+                                <td>''</td>
+                                <td>图片地址或图片数组</td>
+                            </tr>
+                            <tr>
+                                <td><strong>currentSrc</strong></td>
+                                <td>string</td>
+                                <td>可选</td>
+                                <td>null</td>
+                                <td>初始显示的图片地址</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <cite class="mt-10 mb-3">ModalManager 方法</cite>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>方法名</th>
+                                <th>参数</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>open(options)</strong></td>
+                                <td>options: Object</td>
+                                <td>打开模态框</td>
+                            </tr>
+                            <tr>
+                                <td><strong>close()</strong></td>
+                                <td>-</td>
+                                <td>关闭模态框</td>
+                            </tr>
+                            <tr>
+                                <td><strong>forceClose()</strong></td>
+                                <td>-</td>
+                                <td>强制立即关闭</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/apps/modal.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

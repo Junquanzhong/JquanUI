@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+            <li class="active">定位</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">定位</cite>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>类</th>
+                                <th>属性</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>static</td>
+                                <td>position: static;</td>
+                                <td>默认值，元素根据文档流定位</td>
+                            </tr>
+                            <tr>
+                                <td>relative</td>
+                                <td>position: relative;</td>
+                                <td>元素根据文档流定位，但是可以通过偏移属性（top、bottom、left、right）相对于其原始位置进行移动</td>
+                            </tr>
+                            <tr>
+                                <td>absolute</td>
+                                <td>position: absolute;</td>
+                                <td>元素根据最近的已定位祖先元素定位（如果没有已定位祖先元素，则相对于文档 body 元素定位）</td>
+                            </tr>
+                            <tr>
+                                <td>fixed</td>
+                                <td>position: fixed;</td>
+                                <td>元素根据浏览器窗口定位，不会随页面滚动而移动</td>
+                            </tr>
+                            <tr>
+                                <td>sticky</td>
+                                <td>position: sticky;</td>
+                                <td>元素根据浏览器窗口定位，但是会在滚动到指定位置时固定在该位置</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <cite class="mt-3 mb-3">方向</cite>
+                    </div>
+                    <div class="card-body h-96 overflow-auto">
+                        <p>left-*、right-*、top-*、bottom-*</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>类</th>
+                                    <th>属性</th>
+                                    <th>描述</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>left-0</td>
+                                    <td>left: 0;</td>
+                                    <td>左侧为0</td>
+                                </tr>
+                                <tr>
+                                    <td>left-full</td>
+                                    <td>left: 100%;</td>
+                                    <td>左侧为100%</td>
+                                </tr>
+                                <tr>
+                                    <td>left-auto</td>
+                                    <td>left: auto;</td>
+                                    <td>左侧为自动</td>
+                                </tr>
+                                <tr>
+                                    <td>left-px</td>
+                                    <td>left:1px</td>
+                                    <td>左侧为1px</td>
+                                </tr>
+                                <tr>
+                                    <td>left-0.5 </td>
+                                    <td>left: .125rem;</td>
+                                    <td>左侧为0.125rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-1</td>
+                                    <td>left: .25rem;</td>
+                                    <td>左侧为0.25rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-1.5</td>
+                                    <td>left: .375rem;</td>
+                                    <td>左侧为0.375rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-2</td>
+                                    <td>left: .5rem</td>
+                                    <td>左侧为0.5rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-2.5</td>
+                                    <td>left: .625rem;</td>
+                                    <td>左侧为0.625rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-3</td>
+                                    <td>left: .75rem;</td>
+                                    <td>左侧为0.75rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-3.5</td>
+                                    <td>left: .875rem;</td>
+                                    <td>左侧为0.875rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-4</td>
+                                    <td>left: 1rem;</td>
+                                    <td>左侧为1rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-5</td>
+                                    <td>left: 1.25rem;</td>
+                                    <td>左侧为1.25rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-6</td>
+                                    <td>left: 1.5rem;</td>
+                                    <td>左侧为1.5rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-7</td>
+                                    <td>left: 1.75rem;</td>
+                                    <td>左侧为1.75rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-8</td>
+                                    <td>left: 2rem;</td>
+                                    <td>左侧为2rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-9</td>
+                                    <td>left: 2.25rem;</td>
+                                    <td>左侧为2.25rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-10</td>
+                                    <td>left: 2.5rem;</td>
+                                    <td>左侧为2.5rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-11</td>
+                                    <td>left: 2.75rem;</td>
+                                    <td>左侧为2.75rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-12</td>
+                                    <td>left: 3rem;</td>
+                                    <td>左侧为3rem</td>
+                                </tr>
+                                <tr>
+                                    <td>left-1/2</td>
+                                    <td>left: 50%;</td>
+                                    <td>左侧为50%</td>
+                                </tr>
+                                <tr>
+                                    <td>inset-0</td>
+                                    <td>
+                                        left:0;
+                                        right:0;
+                                        top:0;
+                                        bottom:0;
+                                    </td>
+                                    <td>上下左右均为0</td>
+                                </tr>
+                                <tr>
+                                    <td>inset-auto</td>
+                                    <td>
+                                        left: auto;
+                                        right: auto;
+                                        top: auto;
+                                        bottom: auto;
+                                    </td>
+                                    <td>上下左右均为自动</td>
+                                </tr>
+                                <tr>
+                                    <td>inset-x-0</td>
+                                    <td>
+                                        left: 0;
+                                        right: 0
+                                    </td>
+                                    <td>x轴均为0</td>
+                                </tr>
+                                <tr>
+                                    <td>inset-y-0</td>
+                                    <td>
+                                        bottom: 0;
+                                        top: 0
+                                    </td>
+                                    <td>y轴均为0</td>
+                                </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

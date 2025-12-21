@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>色彩</a></li>
+            <li class="active">环颜色</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">环颜色</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用<span class="tags radius">ring-*-*(50-900)</span> 类来设置元素的环颜色。</p>
+                    <p class="my-3">红色：<span class="tags radius">ring-red-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-red-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-red-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-red-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-red-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-red-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-red-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-red-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-red-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-red-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-red-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-red-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-red-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-red-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-red-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-red-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-red-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-red-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-red-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-red-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-red-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">橙色：<span class="tags radius">ring-orange-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-orange-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-orange-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-orange-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-orange-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-orange-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-orange-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-orange-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-orange-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-orange-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-orange-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-orange-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-orange-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-orange-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-orange-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-orange-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-orange-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-orange-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-orange-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-orange-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-orange-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">琥珀：<span class="tags radius">ring-amber-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-amber-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-amber-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-amber-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-amber-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-amber-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-amber-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-amber-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-amber-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-amber-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-amber-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-amber-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-amber-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-amber-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-amber-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-amber-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-amber-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-amber-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-amber-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-amber-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-amber-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">黄色：<span class="tags radius">ring-yellow-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-yellow-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-yellow-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-yellow-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-yellow-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-yellow-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-yellow-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-yellow-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-yellow-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-yellow-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-yellow-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-yellow-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-yellow-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-yellow-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-yellow-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-yellow-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-yellow-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-yellow-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-yellow-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-yellow-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-yellow-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">石青：<span class="tags radius">ring-lime-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-lime-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-lime-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-lime-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-lime-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-lime-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-lime-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-lime-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-lime-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-lime-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-lime-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-lime-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-lime-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-lime-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-lime-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-lime-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-lime-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-lime-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-lime-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-lime-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-lime-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">绿色：<span class="tags radius">ring-green-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-green-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-green-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-green-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-green-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-green-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-green-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-green-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-green-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-green-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-green-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-green-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-green-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-green-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-green-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-green-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-green-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-green-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-green-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-green-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-green-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">宝石绿：<span class="tags radius">ring-emerald-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-emerald-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-emerald-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-emerald-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-emerald-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">   
+                            <div class="outline-ring ring-emerald-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-emerald-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-emerald-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-emerald-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-emerald-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-emerald-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-emerald-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-emerald-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-emerald-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-emerald-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-emerald-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-emerald-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-emerald-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-emerald-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-emerald-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-emerald-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">水鸭绿：<span class="tags radius">ring-teal-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-teal-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-teal-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-teal-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-teal-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-teal-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-teal-200">   
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-teal-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-teal-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-teal-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-teal-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-teal-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-teal-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-teal-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-teal-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-teal-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-teal-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-teal-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-teal-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">   
+                            <div class="outline-ring ring-teal-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-teal-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>       
+                    <p class="my-3">青色：<span class="tags radius">ring-cyan-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-cyan-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-cyan-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-cyan-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-cyan-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-cyan-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-cyan-200">   
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-cyan-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-cyan-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-cyan-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-cyan-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-cyan-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-cyan-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-cyan-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-cyan-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-cyan-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-cyan-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-cyan-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-cyan-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-cyan-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-cyan-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">天青：<span class="tags radius">ring-sky-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-sky-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-sky-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-sky-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-sky-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-sky-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-sky-200">   
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-sky-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-sky-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-sky-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-sky-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-sky-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-sky-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-sky-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-sky-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-sky-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-sky-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-sky-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-sky-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-sky-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-sky-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">蓝：<span class="tags radius">ring-blue-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-blue-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-blue-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-blue-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-blue-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-blue-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-blue-200">   
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-blue-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-blue-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-blue-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-blue-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-blue-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-blue-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-blue-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-blue-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-blue-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-blue-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-blue-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-blue-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-blue-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-blue-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">靛蓝：<span class="tags radius">ring-indigo-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-indigo-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-indigo-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-indigo-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-indigo-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-indigo-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-indigo-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-indigo-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-indigo-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-indigo-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-indigo-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-indigo-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-indigo-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-indigo-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-indigo-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-indigo-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-indigo-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-indigo-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-indigo-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-indigo-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-indigo-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">浅紫：<span class="tags radius">ring-violet-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-violet-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-violet-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-violet-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-violet-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-violet-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-violet-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-violet-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-violet-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-violet-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-violet-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-violet-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-violet-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-violet-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-violet-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-violet-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-violet-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-violet-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-violet-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-violet-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-violet-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">深紫：<span class="tags radius">ring-purple-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-purple-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-purple-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-purple-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-purple-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-purple-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-purple-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-purple-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-purple-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-purple-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-purple-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-purple-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-purple-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-purple-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-purple-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-purple-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-purple-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-purple-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-purple-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-purple-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-purple-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">紫红：<span class="tags radius">ring-fuchsia-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-fuchsia-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-fuchsia-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-fuchsia-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-fuchsia-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-fuchsia-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-fuchsia-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-fuchsia-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-fuchsia-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-fuchsia-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-fuchsia-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-fuchsia-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-fuchsia-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-fuchsia-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-fuchsia-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-fuchsia-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-fuchsia-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-fuchsia-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-fuchsia-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-fuchsia-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-fuchsia-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">粉：<span class="tags radius">ring-pink-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-pink-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-pink-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-pink-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-pink-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-pink-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-pink-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-pink-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-pink-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-pink-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-pink-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-pink-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-pink-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">   
+                            <div class="outline-ring ring-pink-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-pink-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-pink-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-pink-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-pink-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-pink-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-pink-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-pink-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">玫红：<span class="tags radius">ring-rose-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-rose-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-rose-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-rose-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-rose-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-rose-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-rose-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-rose-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-rose-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-rose-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-rose-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-rose-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-rose-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-rose-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-rose-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-rose-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-rose-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-rose-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-rose-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-rose-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-rose-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">石板：<span class="tags radius">ring-slate-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-slate-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-slate-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-slate-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-slate-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-slate-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-slate-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-slate-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-slate-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-slate-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-slate-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-slate-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-slate-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-slate-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-slate-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-slate-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-slate-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-slate-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-slate-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-slate-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-slate-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">灰：<span class="tags radius">ring-gray-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-gray-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-gray-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-gray-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-gray-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-gray-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-gray-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-gray-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-gray-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-gray-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-gray-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-gray-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-gray-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-gray-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-gray-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-gray-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-gray-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-gray-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-gray-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-gray-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-gray-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="my-3">锌：<span class="tags radius">ring-zinc-*</span></p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-zinc-50 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-zinc-50">
+                                <p>50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-zinc-100 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-zinc-100">
+                                <p>100</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-zinc-200 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-zinc-200">
+                                <p>200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-zinc-300 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-zinc-300">
+                                <p>300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-zinc-400 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-zinc-400">
+                                <p>400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-zinc-500 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-zinc-500">
+                                <p>500</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-zinc-600 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-zinc-600">
+                                <p>600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-zinc-700 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-zinc-700">
+                                <p>700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-zinc-800 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-zinc-800">
+                                <p>800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-zinc-900 w-20 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-zinc-900">
+                                <p>900</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">语义化</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">ring-*</span> 类来添加轮廓。</p>
+                    <ul class="list-none mt-3 space-x-2">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-primary w-28 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-primary">
+                                <p>ring-primary</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-secondary w-28 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-secondary">
+                                <p>ring-secondary</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-success w-28 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-success">
+                                <p>ring-success</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-warning w-28 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-warning">
+                                <p>ring-warning</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-danger w-28 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-danger">
+                                <p>ring-danger</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-important w-28 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-important">
+                                <p>ring-important</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-special w-28 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-special">
+                                <p>ring-special</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-black w-28 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-black">
+                                <p>ring-black</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center bg-black p-3">
+                            <div class="outline-ring ring-white w-28 h-10 cursor-pointer center" onclick=" setupCopyOnClick();" data-copy="ring-white">
+                                <p class="text-white">ring-white</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">透明度</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">ring-opacity-*</span> 类来添加轮廓。</p>
+                    <ul class="list-none mt-3">
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-0 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                </div>
+                                <p class="leading-10">0</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-5 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                </div>
+                                <p class="leading-10">5</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-10 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">10</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-20 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">20</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-25 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">25</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-30 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">30</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-40 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">40</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-50 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this); "></div>
+                                <p class="leading-10">50</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-60 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">60</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-70 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">70</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-75 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">75</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-80 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">80</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-90 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">90</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-95 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">95</p>
+                            </li>
+                            <li class="inline-block text-center">
+                                <div class="ring-opacity-100 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                                <p class="leading-10">100</p>
+                            </li>
+                        </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">:hover</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">.hover-ring-*-*</span> 在环颜色类前加一个.hover-来设置悬浮时的环颜色</p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center">
+                            <div class="ring-gray-100 outline-ring w-20 h-10 cursor-pointer rounded hover-ring-blue-500" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">hover-ring-blue-500</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">:focus</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">.focus-ring-*-*</span> 在环颜色类前加一个.focus-来设置聚焦时的环颜色</p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center">
+                                <input type="text" placeholder="用户名" class="focus-outline-ring focus-ring-blue-500">
+                                <p class="leading-10">focus-ring-blue-500</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">:focus-visible</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">.focus-visible-*-*</span> 在环颜色类前加一个.focus-visible来设置聚焦时的环颜色</p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center">
+                                <input type="text" placeholder="用户名" class="focus-visible-outline-ring focus-visible-ring-blue-500">
+                                <p class="leading-10">focus-visible-ring-blue-500</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">偏移环颜色</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">.ring-offset-{color}-{50-900}</span> 在环颜色中加一个offset来设置偏移环颜色，其他用法一致</p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center">
+                            <div class="ring-offset-red-500 ring-blue-500 outline-3 outline-offset-2 outline-ring w-20 h-10 cursor-pointer rounded" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">ring-offset-red-500</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+    <script src="../js/Communication.js"></script>
+</body>
+</html>

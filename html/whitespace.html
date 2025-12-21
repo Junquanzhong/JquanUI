@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>排版</a></li>
+            <li class="active">大小写转换</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">大小写转换</cite>
+                </div>
+                <div class="card-body">
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>作用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>white-space-nowrap</td>
+                                <td>强制一行显示，合并空格</td>
+                            </tr>
+                            <tr>
+                                <td>white-space-normal</td>
+                                <td>合并空格，超出容器时自动换行（默认值）</td>
+                            </tr>
+                            <tr>
+                                <td>white-space-pre</td>
+                                <td>如同 pre标签，保留所有空格和换行，不自动换行</td>
+                            </tr>
+                            <tr>
+                                <td>white-space-pre-line</td>
+                                <td>保留换行但合并空格，允许自动换行</td>
+                            </tr>
+                            <tr>
+                                <td>white-space-pre-wrap</td>
+                                <td>保留所有空格和换行，允许自动换行</td>
+                            </tr>
+                            <tr>
+                                <td>white-space-break-spaces</td>
+                                <td>保留空格，并在任意空格处换行（比 pre-wrap 更灵活）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">不保留空格不自动换行</cite>
+                </div>
+                <div class="card-body">
+                    <div class="w-40 bg-gray-200 p-2">
+                        <p class="white-space-nowrap">是谁多事种芭蕉，早也潇潇，晚也潇潇。是君心绪无聊，种了芭蕉，
+                            又怨芭蕉。竟悔当初未种桃，叶也青葱，花也妖娆。如今对镜理云髫，诉也无言，看也心焦。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">保留空格自动换行</cite>
+                </div>
+                <div class="card-body">
+                    <div class="w-40 bg-gray-200 p-2">
+                        <p class="white-space-normal">是谁多事种芭蕉，早也潇潇，晚也潇潇。是君心绪无聊，种了芭蕉，
+                            又怨芭蕉。竟悔当初未种桃，叶也青葱，花也妖娆。如今对镜理云髫，诉也无言，看也心焦。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">文本不换行但保留空格</cite>
+                </div>
+                <div class="card-body">
+                    <div class="w-40 bg-gray-200 p-2">
+                        <p class="white-space-pre">是谁多事种芭蕉，早也潇潇，晚也潇潇。是君心绪无聊，种了芭蕉，
+                            又怨芭蕉。竟悔当初未种桃，叶也青葱，花也妖娆。如今对镜理云髫，诉也无言，看也心焦。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">保留换行，但合并空格</cite>
+                </div>
+                <div class="card-body">
+                    <div class="w-40 bg-gray-200 p-2">
+                        <!-- 文本中有换行符和多个空格 -->
+                        <p class="white-space-pre-line">是谁多事种芭蕉，早也潇潇，晚也潇潇。
+                            是君心绪无聊，种了芭蕉， 又怨芭蕉。
+                            竞悔当初未种桃，叶也青葱，花也妖娆。如今对镜理云髫，诉也无言，看也心焦。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">保留所有换行和空格</cite>
+                </div>
+                <div class="card-body">
+                    <div class="w-40 bg-gray-200 p-2">
+                        <!-- 文本内容和上面完全一样 -->
+                        <p class="white-space-pre-wrap">是谁多事种芭蕉，早也潇潇，晚也潇潇。
+                            是君心绪无聊，种了芭蕉， 又怨芭蕉。
+                            竞悔当初未种桃，叶也青葱，花也妖娆。如今对镜理云髫，诉也无言，看也心焦。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">保留空格并自动换行</cite>
+                </div>
+                <div class="card-body">
+                    <div class="w-40 bg-gray-200 p-2">
+                        <p class="white-space-break-spaces">是谁多事种芭蕉，早也潇潇，晚也潇潇。是君心绪无聊，种了芭蕉，
+                            又怨芭蕉。竟悔当初未种桃，叶也青葱，花也妖娆。如今对镜理云髫，诉也无言，看也心焦。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

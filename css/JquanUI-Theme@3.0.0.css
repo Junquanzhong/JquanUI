@@ -1,0 +1,930 @@
+/*
+JquanUI Theme System (Corrected)
+version: 3.1
+Usage: <body class="theme-blue theme-dark">
+Description: This system works by overriding the base color variables (e.g., --blue-500) that atomic classes depend on.
+It also provides semantic role classes (.bg-primary, .text-primary) that dynamically map to the current theme's colors.
+*/
+
+/* ========================================
+   1. 桥梁类 - 将原子类连接到主题角色
+   ======================================== */
+/* 浅色模式 (默认) */
+::-webkit-scrollbar-track {
+    background: #e5e7eb;
+    /* 更浅的灰色 */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+    /* 中性灰色 */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+    /* 深一点的灰色 */
+}
+
+/* 深色模式 (当 body 有 theme-dark 类时生效) */
+body.theme-dark ::-webkit-scrollbar-track,
+body.theme-dark * ::-webkit-scrollbar-track,
+.theme-dark ::-webkit-scrollbar-track {
+    background: rgba(55, 65, 81, 0.5) !important;
+    /* 半透明深色轨道 */
+}
+
+body.theme-dark ::-webkit-scrollbar-thumb,
+body.theme-dark * ::-webkit-scrollbar-thumb,
+.theme-dark ::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.7) !important;
+    /* 带一点透明度的亮色滑块，更柔和 */
+}
+
+body.theme-dark ::-webkit-scrollbar-thumb:hover,
+body.theme-dark * ::-webkit-scrollbar-thumb:hover,
+.theme-dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(209, 213, 219, 0.8) !important;
+    /* 悬停时更亮、更不透明 */
+}
+.theme-dark .bg-surface-100{
+    background-color: rgb(var(--surface-bg-700));
+}
+body.theme-dark {
+  /* display: flex;
+  flex-direction: column;  */
+  min-height: 100vh; 
+}
+
+/* 组件 */
+.theme-dark cite {
+    background-color: rgb(var(--surface-bg-800));
+    color: rgb(var(--surface-text));
+}
+/* 面包屑分布式 */
+.theme-dark .breadcrumb-filled {
+  background-color: rgb(var(--surface-bg-800));
+}
+/* 表格 */
+.theme-dark table tr {
+  background-color: rgb(var(--surface-bg-800));
+  color: rgb(var(--surface-text));
+}
+.theme-dark table tbody tr:hover,
+.theme-dark table.striped tbody tr:nth-child(odd) {
+  background-color: rgb(var(--surface-bg-700));
+}
+/* 卡片 */
+.theme-dark .card {
+  background-color: rgb(var(--surface-bg-800));
+  border: 1px solid rgb(var(--surface-border));
+}
+.theme-dark .card-header{
+    border-color: rgb(var(--surface-border));
+}
+.theme-dark .border-strong {
+    border-color: rgb(var(--surface-border));
+}
+/* botton */
+button, input, optgroup, select, textarea {
+    background-color: rgb(var(--surface-bg-800));
+    border: 1px solid transparent;
+}
+.btn-primary{
+    background-color: rgb(var(--primary-hue-500));
+    color: rgb(var(--white));
+}
+.btn-primary:hover{
+    background-color: rgb(var(--primary-hue-600));
+}
+/* 选项卡按钮 */
+.theme-dark .tabs-active:hover {
+    background-color: rgb(var(--primary-hue-600));
+}
+.theme-dark .tabs-item:hover {
+    background-color: rgb(var(--surface-bg-800));
+    color: rgb(var(--primary-hue-500));
+}
+
+
+/* --- 背景颜色 --- */
+.bg-primary-100 {
+    background-color: rgb(var(--primary-hue-100));
+}
+
+.bg-primary-200 {
+    background-color: rgb(var(--primary-hue-200));
+}
+
+.bg-primary-300 {
+    background-color: rgb(var(--primary-hue-300));
+}
+
+.bg-primary-400 {
+    background-color: rgb(var(--primary-hue-400));
+}
+
+.bg-primary,
+.bg-theme-primary,
+.bg-primary-500,
+.primary {
+    background-color: rgb(var(--primary-hue-500));
+}
+
+.bg-primary-600 {
+    background-color: rgb(var(--primary-hue-600));
+}
+
+.bg-primary-700 {
+    background-color: rgb(var(--primary-hue-700));
+}
+
+.bg-primary-800 {
+    background-color: rgb(var(--primary-hue-800));
+}
+
+.bg-primary-900 {
+    background-color: rgb(var(--primary-hue-900));
+}
+.bg-accent{
+    background-color: rgb(var(--accent-hue));
+}
+/* 悬浮状态 */
+.hover-bg-primary-100:hover {
+    background-color: rgb(var(--primary-hue-100));
+}
+
+.hover-bg-primary-200:hover {
+    background-color: rgb(var(--primary-hue-200));
+}
+
+.hover-bg-primary-300:hover {
+    background-color: rgb(var(--primary-hue-300));
+}
+
+.hover-bg-primary-400:hover {
+    background-color: rgb(var(--primary-hue-400));
+}
+
+.hover-bg-primary-500:hover,
+.hover-bg-primary:hover,
+.hover-bg-theme-primary:hover {
+    background-color: rgb(var(--primary-hue-500));
+}
+
+.hover-bg-primary-600:hover {
+    background-color: rgb(var(--primary-hue-600));
+}
+
+.hover-bg-primary:hover,
+.hover-bg-theme-primary:hover {
+    background-color: rgb(var(--primary-hue-600));
+}
+
+/* 聚焦状态 */
+.focus-primary-50:focus {
+    background-color: rgb(var(--primary-hue-50));
+}
+
+.focus-primary-100:focus {
+    background-color: rgb(var(--primary-hue-100));
+}
+
+.focus-primary-200:focus {
+    background-color: rgb(var(--primary-hue-200));
+}
+
+.focus-primary-300:focus {
+    background-color: rgb(var(--primary-hue-300));
+}
+
+.focus-primary-400:focus {
+    background-color: rgb(var(--primary-hue-400));
+}
+
+.focus-primary,
+.focus-primary-500:focus {
+    background-color: rgb(var(--primary-hue-500));
+}
+/* 环颜色 */
+.ring-primary,
+.hover-ring-primary:hover,
+.focus-ring-primary:focus {
+    --ring-opacity: 1;
+    --ring-color: rgba(var(--primary-hue-500) / var(--ring-opacity));
+}
+.ring-secondary,
+.hover-ring-secondary:hover {
+    --ring-opacity: 1;
+    --ring-color: rgba(var(--secondary-hue-500) / var(--ring-opacity));
+}
+
+/* 渐变色 */
+.from-primary-500,
+.from-primary {
+    --tw-gradient-from: rgb(var(--primary-hue-500));
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+}
+.to-primary-500,
+.to-primary {
+    --tw-gradient-to: rgb(var(--primary-hue-500));
+}
+.from-secondary-500,
+.from-secondary {
+    --tw-gradient-from: rgb(var(--secondary-hue-500));
+    --tw-gradient-stops: rgb(var(--secondary-hue-500)), rgb(var(--tw-gradient-to));
+}
+.to-secondary-500,
+.to-secondary {
+    --tw-gradient-to: rgb(var(--secondary-hue-500));
+}
+.from-accent{
+    --tw-gradient-from: rgb(var(--accent-hue));
+    --tw-gradient-stops: rgb(var(--accent-hue)), rgb(var(--tw-gradient-to));
+}
+.to-accent{
+    --tw-gradient-to: rgb(var(--accent-hue));
+}
+.via-accent{
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--accent-hue)), var(--tw-gradient-to);
+}
+/* --- 文字颜色 --- */
+.text-primary,
+.text-theme-primary,
+.form-group label:focus-within,
+.focus-within-text-primary:focus,
+.focus-text-primary:focus,
+.form-group:focus-within label,
+.form-group:focus-within label i,
+.form-group:focus-within + label{
+    color: rgb(var(--primary-hue-500)) !important;
+}
+
+.hover-text-primary:hover {
+    color: rgb(var(--primary-hue-600)) !important;
+}
+
+/* --- 边框颜色 --- */
+.border-primary {
+    border-color: rgb(var(--primary-hue-500));
+}
+
+.hover-border-primary-300:hover {
+    border-color: rgb(var(--primary-hue-300));
+}
+.focus-border-primary:focus {
+    border-color: rgb(var(--primary-hue-500));
+}
+.focus-ring-indigo-500:focus {
+    --ring-color: rgb(var(--primary-hue-500));
+}
+/* --- Secondary (副色) --- */
+.bg-secondary,
+.secondary,
+.bg-theme-secondary {
+    background-color: rgb(var(--secondary-hue-500));
+    color: #fff;
+}
+
+/* 通常副色上文字是白色的 */
+.text-secondary,
+.text-theme-secondary {
+    color: rgb(var(--secondary-hue-500));
+}
+
+.border-secondary {
+    border-color: rgb(var(--secondary-hue-500));
+}
+
+/* --- Surface (背景) --- */
+.bg-surface,
+body,
+html {
+    background-color: rgb(var(--surface-bg));
+}
+.bg-surface-50{
+    background-color: rgb(var(--surface-bg-50));
+}
+.bg-surface-100{
+    background-color: rgb(var(--surface-bg-100));
+}
+.bg-surface-700 {
+    background-color: rgb(var(--surface-bg-700));
+}
+
+.text-surface {
+    color: rgb(var(--surface-text));
+}
+.text-surface-300{
+    color: rgb(var(--surface-text-300));
+}
+
+.border-surface {
+    border-color: rgb(var(--surface-border));
+}
+
+/* --- On Surface (背景上的文字) --- */
+.text-on-surface {
+    color: rgb(var(--surface-text));
+}
+.text-surface-500{
+    color: rgb(var(--surface-text-500));
+}
+.text-on-surface-secondary {
+    color: rgb(var(--surface-text-secondary));
+}
+
+
+/* 组件 */
+
+.theme-picker-trigger .color-dot-indicator.active {
+  border-color: rgb(var(--surface-text-secondary));
+}
+.theme-picker-dropdown.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* --- 悬浮菜单 --- */
+.theme-picker-menu {
+  top: calc(100% + 0.5rem);
+  /* 定位在按钮下方，留出间距 */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  /* 确保在最上层 */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.theme-picker-dropdown.open .theme-picker-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* --- 颜色网格 --- */
+.theme-picker-grid {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.theme-picker-grid .color-dot:hover {
+  transform: scale(1.15);
+}
+
+.theme-picker-grid .color-dot.active {
+  border-color: rgb(var(--surface-text));
+  box-shadow: 0 0 0 3px rgb(var(--surface-bg));
+  /* 创建一个“空心圆”效果 */
+}
+
+
+/* ========================================
+   2. 基础 - 定义“角色”变量，并设置默认值
+   ======================================== */
+:root {
+    /* --- 默认色调: 如果不指定，使用蓝色 --- */
+    --primary-hue-50: var(--blue-50);
+    --primary-hue-100: var(--blue-100);
+    --primary-hue-200: var(--blue-200);
+    --primary-hue-300: var(--blue-300);
+    --primary-hue-400: var(--blue-400);
+    --primary-hue-500: var(--blue-500);
+    --primary-hue-600: var(--blue-600);
+    --primary-hue-700: var(--blue-700);
+    --primary-hue-800: var(--blue-800);
+    --primary-hue-900: var(--blue-900);
+
+    /* --- 默认副色: 如果不指定，使用天青色 --- */
+    --secondary-hue-50: var(--violet-50);
+    --secondary-hue-100: var(--violet-100);
+    --secondary-hue-200: var(--violet-200);
+    --secondary-hue-300: var(--violet-300);
+    --secondary-hue-400: var(--violet-400);
+    --secondary-hue-500: var(--violet-500);
+    --secondary-hue-600: var(--violet-600);
+    --secondary-hue-700: var(--violet-700);
+    --secondary-hue-800: var(--violet-800);
+    --secondary-hue-900: var(--violet-900);
+
+    /* 强调色 */
+    --accent-hue: var(--amber-100);
+
+    /* --- 默认亮度: Light --- */
+    --surface-bg: var(--white);
+    --surface-bg-50: var(--gray-50);
+    --surface-bg-100: var(--gray-100);
+    /* 表面背景色 */
+    --surface-text: var(--gray-900);
+    --surface-text-500: var(--gray-500);
+    /* 表面文字色 */
+    --surface-text-secondary: var(--gray-700);
+    /* 次要文字色 */
+    --surface-border: var(--gray-200);
+    /* 边框色 */
+}
+
+/* ========================================
+   3. 亮度覆盖 - Dark 模式
+   ======================================== */
+.theme-dark {
+    /* --- Dark 模式下，表面颜色改变 --- */
+    --surface-bg: var(--gray-900);
+    --surface-bg-800: var(--gray-800);
+    --surface-bg-700: var(--gray-700);
+    --surface-bg-100: var(--gray-100);
+    --surface-bg-50: var(--gray-50);
+    --surface-text: var(--gray-300);
+    --surface-text-secondary: var(--gray-400);
+    --surface-border: var(--gray-700);
+    color: var(--surface-text);
+    /* --- Dark 模式下，主色调的映射可以调整，这里我们保持一致 --- */
+    /* (可选) 在深色背景下，可以使用更亮的主色调来增加对比度，例如:
+  --primary-hue-500: var(--blue-400);
+  */
+}
+
+/* ========================================
+   4. 色调覆盖 - 主题色调
+   ======================================== */
+
+/* --- Red Theme --- */
+.theme-red {
+    --primary-hue-50: var(--red-50);
+    --primary-hue-100: var(--red-100);
+    --primary-hue-200: var(--red-200);
+    --primary-hue-300: var(--red-300);
+    --primary-hue-400: var(--red-400);
+    --primary-hue-500: var(--red-500);
+    --primary-hue-600: var(--red-600);
+    --primary-hue-700: var(--red-700);
+    --primary-hue-800: var(--red-800);
+    --primary-hue-900: var(--red-900);
+
+    /* --- 副色 --- */
+    --secondary-hue-50: var(--rose-50);
+    --secondary-hue-100: var(--rose-100);
+    --secondary-hue-200: var(--rose-200);
+    --secondary-hue-300: var(--rose-300);
+    --secondary-hue-400: var(--rose-400);
+    --secondary-hue-500: var(--rose-500);
+    --secondary-hue-600: var(--rose-600);
+    --secondary-hue-700: var(--rose-700);
+    --secondary-hue-800: var(--rose-800);
+    --secondary-hue-900: var(--rose-900);
+
+    /* --- 强调色 --- */
+    --accent-hue: var(--teal-100);
+}
+
+/* --- Orange Theme --- */
+.theme-orange {
+    --primary-hue-50: var(--orange-50);
+    --primary-hue-100: var(--orange-100);
+    --primary-hue-200: var(--orange-200);
+    --primary-hue-300: var(--orange-300);
+    --primary-hue-400: var(--orange-400);
+    --primary-hue-500: var(--orange-500);
+    --primary-hue-600: var(--orange-600);
+    --primary-hue-700: var(--orange-700);
+    --primary-hue-800: var(--orange-800);
+    --primary-hue-900: var(--orange-900);
+
+    /* --- 副色 --- */
+    --secondary-hue-50: var(--amber-50);
+    --secondary-hue-100: var(--amber-100);
+    --secondary-hue-200: var(--amber-200);
+    --secondary-hue-300: var(--amber-300);
+    --secondary-hue-400: var(--amber-400);
+    --secondary-hue-500: var(--amber-500);
+    --secondary-hue-600: var(--amber-600);
+    --secondary-hue-700: var(--amber-700);
+    --secondary-hue-800: var(--amber-800);
+    --secondary-hue-900: var(--amber-900);
+
+    /* --- 强调色 --- */
+    --accent-hue: var(--slate-100);
+}
+
+/* --- Amber Theme --- */
+.theme-amber {
+    --primary-hue-50: var(--amber-50);
+    --primary-hue-100: var(--amber-100);
+    --primary-hue-200: var(--amber-200);
+    --primary-hue-300: var(--amber-300);
+    --primary-hue-400: var(--amber-400);
+    --primary-hue-500: var(--amber-500);
+    --primary-hue-600: var(--amber-600);
+    --primary-hue-700: var(--amber-700);
+    --primary-hue-800: var(--amber-800);
+    --primary-hue-900: var(--amber-900);
+
+    /* --- 副色 --- */
+    --secondary-hue-50: var(--yellow-50);
+    --secondary-hue-100: var(--yellow-100);
+    --secondary-hue-200: var(--yellow-200);
+    --secondary-hue-300: var(--yellow-300);
+    --secondary-hue-400: var(--yellow-400);
+    --secondary-hue-500: var(--yellow-500);
+    --secondary-hue-600: var(--yellow-600);
+    --secondary-hue-700: var(--yellow-700);
+    --secondary-hue-800: var(--yellow-800);
+    --secondary-hue-900: var(--yellow-900);
+
+    /* --- 强调色 --- */
+    --accent-hue: var(--indigo-100);
+}
+
+/* --- Yellow Theme --- */
+.theme-yellow {
+    --primary-hue-50: var(--yellow-50);
+    --primary-hue-100: var(--yellow-100);
+    --primary-hue-200: var(--yellow-200);
+    --primary-hue-300: var(--yellow-300);
+    --primary-hue-400: var(--yellow-400);
+    --primary-hue-500: var(--yellow-500);
+    --primary-hue-600: var(--yellow-600);
+    --primary-hue-700: var(--yellow-700);
+    --primary-hue-800: var(--yellow-800);
+    --primary-hue-900: var(--yellow-900);
+
+    /* --- 副色 --- */
+    --secondary-hue-50: var(--lime-50);
+    --secondary-hue-100: var(--lime-100);
+    --secondary-hue-200: var(--lime-200);
+    --secondary-hue-300: var(--lime-300);
+    --secondary-hue-400: var(--lime-400);
+    --secondary-hue-500: var(--lime-500);
+    --secondary-hue-600: var(--lime-600);
+    --secondary-hue-700: var(--lime-700);
+    --secondary-hue-800: var(--lime-800);
+    --secondary-hue-900: var(--lime-900);
+
+    /* --- 强调色 --- */
+    --accent-hue: var(--purple-100);
+}
+
+/* --- Lime Theme --- */
+.theme-lime {
+    --primary-hue-50: var(--lime-50);
+    --primary-hue-100: var(--lime-100);
+    --primary-hue-200: var(--lime-200);
+    --primary-hue-300: var(--lime-300);
+    --primary-hue-400: var(--lime-400);
+    --primary-hue-500: var(--lime-500);
+    --primary-hue-600: var(--lime-600);
+    --primary-hue-700: var(--lime-700);
+    --primary-hue-800: var(--lime-800);
+    --primary-hue-900: var(--lime-900);
+
+    /* --- 副色 --- */
+    --secondary-hue-50: var(--green-50);
+    --secondary-hue-100: var(--green-100);
+    --secondary-hue-200: var(--green-200);
+    --secondary-hue-300: var(--green-300);
+    --secondary-hue-400: var(--green-400);
+    --secondary-hue-500: var(--green-500);
+    --secondary-hue-600: var(--green-600);
+    --secondary-hue-700: var(--green-700);
+    --secondary-hue-800: var(--green-800);
+    --secondary-hue-900: var(--green-900);
+
+    /* --- 强调色 --- */
+    --accent-hue: var(--fuchsia-100);
+}
+
+/* --- Green Theme --- */
+.theme-green {
+    --primary-hue-50: var(--green-50);
+    --primary-hue-100: var(--green-100);
+    --primary-hue-200: var(--green-200);
+    --primary-hue-300: var(--green-300);
+    --primary-hue-400: var(--green-400);
+    --primary-hue-500: var(--green-500);
+    --primary-hue-600: var(--green-600);
+    --primary-hue-700: var(--green-700);
+    --primary-hue-800: var(--green-800);
+    --primary-hue-900: var(--green-900);
+
+    /* --- 副色 --- */
+    --secondary-hue-50: var(--emerald-50);
+    --secondary-hue-100: var(--emerald-100);
+    --secondary-hue-200: var(--emerald-200);
+    --secondary-hue-300: var(--emerald-300);
+    --secondary-hue-400: var(--emerald-400);
+    --secondary-hue-500: var(--emerald-500);
+    --secondary-hue-600: var(--emerald-600);
+    --secondary-hue-700: var(--emerald-700);
+    --secondary-hue-800: var(--emerald-800);
+    --secondary-hue-900: var(--emerald-900);
+
+    /* --- 强调色 --- */
+    --accent-hue: var(--red-100);
+}
+
+/* --- Emerald Theme --- */
+.theme-emerald {
+    --primary-hue-50: var(--emerald-50);
+    --primary-hue-100: var(--emerald-100);
+    --primary-hue-200: var(--emerald-200);
+    --primary-hue-300: var(--emerald-300);
+    --primary-hue-400: var(--emerald-400);
+    --primary-hue-500: var(--emerald-500);
+    --primary-hue-600: var(--emerald-600);
+    --primary-hue-700: var(--emerald-700);
+    --primary-hue-800: var(--emerald-800);
+    --primary-hue-900: var(--emerald-900);
+
+    /* --- 副色 --- */
+    --secondary-hue-50: var(--teal-50);
+    --secondary-hue-100: var(--teal-100);
+    --secondary-hue-200: var(--teal-200);
+    --secondary-hue-300: var(--teal-300);
+    --secondary-hue-400: var(--teal-400);
+    --secondary-hue-500: var(--teal-500);
+    --secondary-hue-600: var(--teal-600);
+    --secondary-hue-700: var(--teal-700);
+    --secondary-hue-800: var(--teal-800);
+    --secondary-hue-900: var(--teal-900);
+
+    /* --- 强调色 --- */
+    --accent-hue: var(--rose-100);
+}
+
+/* --- Teal Theme --- */
+.theme-teal {
+    --primary-hue-50: var(--teal-50);
+    --primary-hue-100: var(--teal-100);
+    --primary-hue-200: var(--teal-200);
+    --primary-hue-300: var(--teal-300);
+    --primary-hue-400: var(--teal-400);
+    --primary-hue-500: var(--teal-500);
+    --primary-hue-600: var(--teal-600);
+    --primary-hue-700: var(--teal-700);
+    --primary-hue-800: var(--teal-800);
+    --primary-hue-900: var(--teal-900);
+
+    /* --- 副色 --- */
+    --secondary-hue-50: var(--cyan-50);
+    --secondary-hue-100: var(--cyan-100);
+    --secondary-hue-200: var(--cyan-200);
+    --secondary-hue-300: var(--cyan-300);
+    --secondary-hue-400: var(--cyan-400);
+    --secondary-hue-500: var(--cyan-500);
+    --secondary-hue-600: var(--cyan-600);
+    --secondary-hue-700: var(--cyan-700);
+
+    /* --- 强调色 --- */
+    --accent-hue: var(--orange-100);
+}
+
+/* --- Cyan Theme --- */
+.theme-cyan {
+    --primary-hue-50: var(--cyan-50);
+    --primary-hue-100: var(--cyan-100);
+    --primary-hue-200: var(--cyan-200);
+    --primary-hue-300: var(--cyan-300);
+    --primary-hue-400: var(--cyan-400);
+    --primary-hue-500: var(--cyan-500);
+    --primary-hue-600: var(--cyan-600);
+    --primary-hue-700: var(--cyan-700);
+    --primary-hue-800: var(--cyan-800);
+    --primary-hue-900: var(--cyan-900);
+
+    /* --- 副色 --- */
+    --secondary-hue-50: var(--sky-50);
+    --secondary-hue-100: var(--sky-100);
+    --secondary-hue-200: var(--sky-200);
+    --secondary-hue-300: var(--sky-300);
+    --secondary-hue-400: var(--sky-400);
+    --secondary-hue-500: var(--sky-500);
+    --secondary-hue-600: var(--sky-600);
+    --secondary-hue-700: var(--sky-700);
+    --secondary-hue-800: var(--sky-800);
+    --secondary-hue-900: var(--sky-900);
+
+    /* --- 强调色 --- */
+    --accent-hue: var(--red-200);
+}
+
+/* --- Sky Theme --- */
+.theme-sky {
+    --primary-hue-50: var(--sky-50);
+    --primary-hue-100: var(--sky-100);
+    --primary-hue-200: var(--sky-200);
+    --primary-hue-300: var(--sky-300);
+    --primary-hue-400: var(--sky-400);
+    --primary-hue-500: var(--sky-500);
+    --primary-hue-600: var(--sky-600);
+    --primary-hue-700: var(--sky-700);
+    --primary-hue-800: var(--sky-800);
+    --primary-hue-900: var(--sky-900);
+
+    /* --- 副色 --- */
+    --secondary-hue-50: var(--blue-50);
+    --secondary-hue-100: var(--blue-100);
+    --secondary-hue-200: var(--blue-200);
+    --secondary-hue-300: var(--blue-300);
+    --secondary-hue-400: var(--blue-400);
+    --secondary-hue-500: var(--blue-500);
+    --secondary-hue-600: var(--blue-600);
+    --secondary-hue-700: var(--blue-700);
+    --secondary-hue-800: var(--blue-800);
+    --secondary-hue-900: var(--blue-900);
+
+    /* --- 强调色 --- */
+    --accent-hue: var(--orange-200);
+}
+
+/* --- Blue Theme --- */
+.theme-blue {
+    --primary-hue-50: var(--blue-50);
+    --primary-hue-100: var(--blue-100);
+    --primary-hue-200: var(--blue-200);
+    --primary-hue-300: var(--blue-300);
+    --primary-hue-400: var(--blue-400);
+    --primary-hue-500: var(--blue-500);
+    --primary-hue-600: var(--blue-600);
+    --primary-hue-700: var(--blue-700);
+    --primary-hue-800: var(--blue-800);
+    --primary-hue-900: var(--blue-900);
+    /* 副色 */
+    --secondary-hue-50: var(--violet-50);
+    --secondary-hue-100: var(--violet-100);
+    --secondary-hue-200: var(--violet-200);
+    --secondary-hue-300: var(--violet-300);
+    --secondary-hue-400: var(--violet-400);
+    --secondary-hue-500: var(--violet-500);
+    --secondary-hue-600: var(--violet-600);
+    --secondary-hue-700: var(--violet-700);
+    --secondary-hue-800: var(--violet-800);
+    --secondary-hue-900: var(--violet-900);
+    /* 强调色 */
+    --accent-hue: var(--amber-100)
+}
+
+/* --- Indigo Theme --- */
+.theme-indigo {
+    --primary-hue-50: var(--indigo-50);
+    --primary-hue-100: var(--indigo-100);
+    --primary-hue-200: var(--indigo-200);
+    --primary-hue-300: var(--indigo-300);
+    --primary-hue-400: var(--indigo-400);
+    --primary-hue-500: var(--indigo-500);
+    --primary-hue-600: var(--indigo-600);
+    --primary-hue-700: var(--indigo-700);
+    --primary-hue-800: var(--indigo-800);
+    --primary-hue-900: var(--indigo-900);
+    /* 副色 */
+    --secondary-hue-50: var(--purple-50);
+    --secondary-hue-100: var(--purple-100);
+    --secondary-hue-200: var(--purple-200);
+    --secondary-hue-300: var(--purple-300);
+    --secondary-hue-400: var(--purple-400);
+    --secondary-hue-500: var(--purple-500);
+    --secondary-hue-600: var(--purple-600);
+    --secondary-hue-700: var(--purple-700);
+    --secondary-hue-800: var(--purple-800);
+    --secondary-hue-900: var(--purple-900);
+
+    /* 强调色 */
+    --accent-hue: var(--lime-100);
+}
+
+/* --- Violet Theme --- */
+.theme-violet {
+    --primary-hue-50: var(--violet-50);
+    --primary-hue-100: var(--violet-100);
+    --primary-hue-200: var(--violet-200);
+    --primary-hue-300: var(--violet-300);
+    --primary-hue-400: var(--violet-400);
+    --primary-hue-500: var(--violet-500);
+    --primary-hue-600: var(--violet-600);
+    --primary-hue-700: var(--violet-700);
+    --primary-hue-800: var(--violet-800);
+    --primary-hue-900: var(--violet-900);
+
+    /* 副色 */
+    --secondary-hue-50: var(--purple-50);
+    --secondary-hue-100: var(--purple-100);
+    --secondary-hue-200: var(--purple-200);
+    --secondary-hue-300: var(--purple-300);
+    --secondary-hue-400: var(--purple-400);
+    --secondary-hue-500: var(--purple-500);
+    --secondary-hue-600: var(--purple-600);
+    --secondary-hue-700: var(--purple-700);
+    --secondary-hue-800: var(--purple-800);
+    --secondary-hue-900: var(--purple-900);
+
+    /* 强调色 */
+    --accent-hue: var(--yellow-100);
+}
+
+/* --- Purple Theme --- */
+.theme-purple {
+    --primary-hue-50: var(--purple-50);
+    --primary-hue-100: var(--purple-100);
+    --primary-hue-200: var(--purple-200);
+    --primary-hue-300: var(--purple-300);
+    --primary-hue-400: var(--purple-400);
+    --primary-hue-500: var(--purple-500);
+    --primary-hue-600: var(--purple-600);
+    --primary-hue-700: var(--purple-700);
+    --primary-hue-800: var(--purple-800);
+    --primary-hue-900: var(--purple-900);
+    /* 副色 */
+    --secondary-hue-50: var(--fuchsia-50);
+    --secondary-hue-100: var(--fuchsia-100);
+    --secondary-hue-200: var(--fuchsia-200);
+    --secondary-hue-300: var(--fuchsia-300);
+    --secondary-hue-400: var(--fuchsia-400);
+    --secondary-hue-500: var(--fuchsia-500);
+    --secondary-hue-600: var(--fuchsia-600);
+    --secondary-hue-700: var(--fuchsia-700);
+    --secondary-hue-800: var(--fuchsia-800);
+    --secondary-hue-900: var(--fuchsia-900);
+    /* 强调色 */
+    --accent-hue: var(--green-200);
+}
+
+/* --- Fuchsia Theme --- */
+.theme-fuchsia {
+    --primary-hue-50: var(--fuchsia-50);
+    --primary-hue-100: var(--fuchsia-100);
+    --primary-hue-200: var(--fuchsia-200);
+    --primary-hue-300: var(--fuchsia-300);
+    --primary-hue-400: var(--fuchsia-400);
+    --primary-hue-500: var(--fuchsia-500);
+    --primary-hue-600: var(--fuchsia-600);
+    --primary-hue-700: var(--fuchsia-700);
+    --primary-hue-800: var(--fuchsia-800);
+    --primary-hue-900: var(--fuchsia-900);
+
+    /* 副色 */
+    --secondary-hue-50: var(--pink-50);
+    --secondary-hue-100: var(--pink-100);
+    --secondary-hue-200: var(--pink-200);
+    --secondary-hue-300: var(--pink-300);
+    --secondary-hue-400: var(--pink-400);
+    --secondary-hue-500: var(--pink-500);
+    --secondary-hue-600: var(--pink-600);
+    --secondary-hue-700: var(--pink-700);
+    --secondary-hue-800: var(--pink-800);
+    --secondary-hue-900: var(--pink-900);
+
+    /* 强调色 */
+    --accent-hue: var(--teal-200);
+}
+
+/* --- Pink Theme --- */
+.theme-pink {
+    --primary-hue-50: var(--pink-50);
+    --primary-hue-100: var(--pink-100);
+    --primary-hue-200: var(--pink-200);
+    --primary-hue-300: var(--pink-300);
+    --primary-hue-400: var(--pink-400);
+    --primary-hue-500: var(--pink-500);
+    --primary-hue-600: var(--pink-600);
+    --primary-hue-700: var(--pink-700);
+    --primary-hue-800: var(--pink-800);
+    --primary-hue-900: var(--pink-900);
+    /* 副色 */
+    --secondary-hue-50: var(--rose-50);
+    --secondary-hue-100: var(--rose-100);
+    --secondary-hue-200: var(--rose-200);
+    --secondary-hue-300: var(--rose-300);
+    --secondary-hue-400: var(--rose-400);
+    --secondary-hue-500: var(--rose-500);
+    --secondary-hue-600: var(--rose-600);
+    --secondary-hue-700: var(--rose-700);
+    --secondary-hue-800: var(--rose-800);
+    --secondary-hue-900: var(--rose-900);
+    /* 强调色 */
+    --accent-hue: var(--emerald-200);
+}
+
+/* --- Rose Theme --- */
+.theme-rose {
+    --primary-hue-50: var(--rose-50);
+    --primary-hue-100: var(--rose-100);
+    --primary-hue-200: var(--rose-200);
+    --primary-hue-300: var(--rose-300);
+    --primary-hue-400: var(--rose-400);
+    --primary-hue-500: var(--rose-500);
+    --primary-hue-600: var(--rose-600);
+    --primary-hue-700: var(--rose-700);
+    --primary-hue-800: var(--rose-800);
+    --primary-hue-900: var(--rose-900);
+    /* 副色 */
+    --secondary-hue-50: var(--pink-50);
+    --secondary-hue-100: var(--pink-100);
+    --secondary-hue-200: var(--pink-200);
+    --secondary-hue-300: var(--pink-300);
+    --secondary-hue-400: var(--pink-400);
+    --secondary-hue-500: var(--pink-500);
+    --secondary-hue-600: var(--pink-600);
+    --secondary-hue-700: var(--pink-700);
+    --secondary-hue-800: var(--pink-800);
+    --secondary-hue-900: var(--pink-900);
+    /* 强调色 */
+    --accent-hue: var(--cyan-200);
+}

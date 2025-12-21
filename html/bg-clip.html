@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb bg-surface-50% breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>背景</a></li>
+            <li class="active">背景剪裁</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite>背景剪裁</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-4"><code>bg-clip-{value}</code>背景剪裁：决定壁纸可以铺到多宽。它定义了背景绘制的可见区域边界</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>属性</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>bg-clip-border</td>
+                                <td>background-clip: border-box;</td>
+                                <td>背景剪裁到边框</td>
+                            </tr>
+                            <tr>
+                                <td>bg-clip-content</td>
+                                <td>background-clip: content-box;</td>
+                                <td>背景剪裁到内容</td>
+                            </tr>
+                            <tr>
+                                <td>bg-clip-padding</td>
+                                <td>background-clip: padding-box;</td>
+                                <td>背景剪裁到内边距</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite>bg-clip</cite>
+                </div>
+                <div class="card-body grid gap-4 grid-cols-3">
+                    <div>
+                        <p class="my-4">使用<code>bg-clip-border</code>类，背景图片会剪裁容器的边框。</p>
+                        <div class="bg-clip-border w-full h-60 bg-primary border border-4 border-dashed border-secondary p-4"></div>
+                    </div>
+                    <div>
+                        <p class="my-4">使用<code>bg-clip-content</code>类，背景图片会剪裁容器的内容。</p>
+                        <div class="bg-clip-content w-full h-60 bg-primary border border-4 border-dashed border-secondary p-4"></div>
+                    </div>
+                    <div>
+                        <p class="my-4">使用<code>bg-clip-padding</code>类，背景图片会剪裁容器的内边距。</p>
+                        <div class="bg-clip-padding w-full h-60 bg-primary border border-4 border-dashed border-secondary p-4"></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

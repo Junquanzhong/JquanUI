@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮廓</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>边框</a></li>
+            <li class="active">轮廓</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">基础样式</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-2"> 使用 <span class="tags radius">outline-ring</span> 设定轮廓样式</p>
+                    <ul class="list-none mt-3 space-x-3">
+                        <li class="inline-block text-center">
+                            <div class="outline-ring ring-black w-20 h-10 cursor-pointer center" onclick="copyFirstClass(this);">环轮廓</div>
+                            <p class="leading-10">outline-ring</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-inset ring-black w-20 h-10 cursor-pointer center" onclick="copyFirstClass(this);">内轮廓</div>
+                            <p class="leading-10">outline-inset</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-outset ring-black w-20 h-10 cursor-pointer center" onclick="copyFirstClass(this);">外轮廓</div>
+                            <p class="leading-10">outline-outset</p>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">尺寸</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-2"> 使用 <span class="tags radius">outline-{size}</span> 设定轮廓尺寸</p>
+                    <ul class="list-none mt-3 space-x-3">
+                        <li class="inline-block text-center">
+                            <div class="outline-0 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">0</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-1 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">1</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-2 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">2</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-4 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">4</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-8 outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>   
+                            <p class="leading-10">8</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">样式</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-2"> 使用 <span class="tags radius">outline-{style}</span> 设定轮廓样式</p>
+                    <ul class="list-none mt-3 space-x-3">
+                        <li class="inline-block text-center">
+                            <div class="outline-transparent outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">transparent</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-none outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">none</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-solid outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">solid</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-dashed outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">dashed</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-dotted outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">dotted</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-double outline-ring ring-black w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">double</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">偏移量</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-2"> 使用 <span class="tags radius">outline-offset-{size}（px-24）</span> 设定轮廓偏移量</p>
+                    <ul class="list-none mt-3 space-x-5">
+                        <li class="inline-block text-center">
+                            <div class="outline-offset-0 outline-ring ring-offset-red-500 border border-blue w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">0</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-offset-1 outline-ring ring-offset-red-500 border border-blue w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">1</p>
+                        </li>   
+                        <li class="inline-block text-center">
+                            <div class="outline-offset-2 outline-ring ring-offset-red-500 border border-blue w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">2</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-offset-4 outline-ring ring-offset-red-500 border border-blue w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">4</p>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="outline-offset-8 outline-ring ring-offset-red-500 border border-blue w-20 h-10 cursor-pointer radius" onclick="copyFirstClass(this);"></div>
+                            <p class="leading-10">8</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

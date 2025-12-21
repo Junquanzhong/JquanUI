@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>排版</a></li>
+            <li class="active">换行</li>
+        </ul>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">换行</cite>
+                </div>
+                <div class="card-body">
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>类</th>
+                                <th>属性</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>text-wrap-wrap</td>
+                                <td>text-wrap: wrap;</td>
+                                <td>允许换行，必要时在单词内换行</td>
+                            </tr>
+                            <tr>
+                                <td>text-wrap-nowrap</td>
+                                <td>text-wrap: nowrap;</td>
+                                <td>不换行，必要时在单词内换行</td>
+                            </tr>
+                            <tr>
+                                <td>text-wrap-balance</td>
+                                <td>text-wrap: balance;</td>
+                                <td>在必要时调整行间距，使最后一行更饱满</td>
+                            </tr>
+                            <tr>
+                                <td>text-wrap-pretty</td>
+                                <td>text-wrap: pretty;</td>
+                                <td>在必要时调整行间距，使段落更易读</td>
+                            </tr>
+                            <tr>
+                                <td>break-normal</td>
+                                <td>overflow-wrap: normal;word-break: normal;</td>
+                                <td>正常换行</td>
+                            </tr>
+                            <tr>
+                                <td>break-word</td>
+                                <td>overflow-wrap: break-word;</td>
+                                <td>允许在单词内换行</td>
+                            </tr>
+                            <tr>
+                                <td>break-all</td>
+                                <td>word-break: break-all;</td>
+                                <td>在任意字符之间换行</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="my-3">text-wrap 的效果 (控制整体排版)</cite>
+                </div>
+                <div class="card-body">
+                    <p class="text-gray-600 mb-6"> <code>text-wrap</code> 值下的排版差异，尤其是 <code>balance</code> 如何让最后一行更饱满。</p>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-gray-500 mb-2">wrap (默认)</h3>
+                            <div class="w-48 bg-blue-100 p-3 text-center border-2 border-dashed border-blue-300">
+                                <p class="text-wrap-wrap text-surface">Even the most beautiful flowers wither after blooming.</p>
+                            </div>
+                        </div>
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-gray-500 mb-2">balance (平衡)</h3>
+                            <div class="w-48 bg-blue-100 p-3 text-center border-2 border-dashed border-blue-300">
+                                <p class="text-wrap-balance text-surface">Even the most beautiful flowers wither after blooming.</p>
+                            </div>
+                        </div>
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-gray-500 mb-2">nowrap (不换行)</h3>
+                            <div class="w-48 bg-blue-100 p-3 text-center border-2 border-dashed border-blue-300">
+                                <p class="text-wrap-nowrap">Even the most beautiful flowers wither after blooming.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="my-3">overflow-wrap & word-break 的效果 (处理长单词)</cite>
+                </div>
+                <div class="card-body p-6">
+                    <p class="text-gray-600 mb-6">注意 <code>break-word</code> 和 <code>break-all</code> 的区别。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-gray-500 mb-2">normal (不处理)</h3>
+                            <div class="w-48 bg-red-100 p-3 border-2 border-dashed border-red-300">
+                                <p class="break-normal">Even the most beautiful flowers wither after blooming.</p>
+                            </div>
+                            <p class="text-xs text-red-600 mt-2">单词会溢出容器</p>
+                        </div>
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-gray-500 mb-2">overflow-wrap: break-word</h3>
+                            <div class="w-48 bg-green-100 p-3 border-2 border-dashed border-green-300">
+                                <p class="break-words">Even the most beautiful flowers wither after blooming.</p>
+                            </div>
+                            <p class="text-xs text-green-600 mt-2">仅在必要时断词</p>
+                        </div>
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-gray-500 mb-2">word-break: break-all</h3>
+                            <div class="w-48 bg-yellow-100 p-3 border-2 border-dashed border-yellow-300">
+                                <p class="break-all">Even the most beautiful flowers wither after blooming.</p>
+                            </div>
+                            <p class="text-xs text-yellow-600 mt-2">可任意位置断词</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

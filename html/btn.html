@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>组件</a></li>
+            <li class="active">按钮</li>
+        </ul>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">按钮</cite>
+                </div>
+                <div class="card-body">
+                    <div class="flex flex-wrap gap-2">
+                        <button class="btn">默认按钮</button>
+                        <button class="btn btn-primary" data-copy="btn-primary" onclick="setupCopyOnClick();">主要按钮</button>
+                        <button class="btn btn-secondary" data-copy="btn-secondary" onclick="setupCopyOnClick();">次要按钮</button>
+                        <button class="btn btn-success" data-copy="btn-success" onclick="setupCopyOnClick();">成功按钮</button>        
+                        <button class="btn btn-warning" data-copy="btn-warning" onclick="setupCopyOnClick();">警告按钮</button>
+                        <button class="btn btn-danger" data-copy="btn-danger" onclick="setupCopyOnClick();">危险按钮</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">镂空按钮</cite>
+                </div>
+                <div class="card-body">
+                    <p class="py-3">使用<code>btn-outline</code>类创建镂空按钮。轮廓颜色与边框颜色相同。</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="btn-outline btn btn-primary border-2 text-primary hover-text-white" data-copy="btn-primary btn btn-outline" onclick="setupCopyOnClick();">主要按钮</button>
+                        <button class="btn-outline btn btn-success border-2 text-success hover-text-white" data-copy="btn-success btn btn-outline" onclick="setupCopyOnClick();">成功按钮</button>
+                        <button class="btn-outline btn btn-warning border-2 text-warning hover-text-white" data-copy="btn-warning btn btn-outline" onclick="setupCopyOnClick();">警告按钮</button>
+                        <button class="btn-outline btn btn-danger border-2 text-danger hover-text-white" data-copy="btn-danger btn btn-outline" onclick="setupCopyOnClick();">危险按钮</button>
+                        <button class="btn-outline btn btn-red border-2 text-red hover-text-white" data-copy="btn-red btn btn-outline" onclick="setupCopyOnClick();">红色按钮</button>
+                        <button class="btn-outline btn btn-orange border-2 text-orange hover-text-white" data-copy="btn-orange btn btn-outline" onclick="setupCopyOnClick();">橙色按钮</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">彩色按钮</cite>
+                </div>
+                <div class="card-body">
+                    <div class="flex flex-wrap gap-2">
+                        <button class="btn btn-red" data-copy="btn-red" onclick="setupCopyOnClick();">红色</button>
+                        <button class="btn btn-orange" data-copy="btn-orange" onclick="setupCopyOnClick();">橙色</button>
+                        <button class="btn btn-amber" data-copy="btn-amber" onclick="setupCopyOnClick();">琥珀</button>
+                        <button class="btn btn-yellow" data-copy="btn-yellow" onclick="setupCopyOnClick();">黄色</button>
+                        <button class="btn btn-lime" data-copy="btn-lime" onclick="setupCopyOnClick();">石青</button>
+                        <button class="btn btn-green" data-copy="btn-green" onclick="setupCopyOnClick();">绿色</button>
+                        <button class="btn btn-emerald" data-copy="btn-emerald" onclick="setupCopyOnClick();">宝石绿</button>
+                        <button class="btn btn-teal" data-copy="btn-teal" onclick="setupCopyOnClick();">水鸭绿</button>
+                        <button class="btn btn-cyan" data-copy="btn-cyan" onclick="setupCopyOnClick();">青色</button>
+                        <button class="btn btn-sky" data-copy="btn-sky" onclick="setupCopyOnClick();">天青色</button>
+                        <button class="btn btn-blue" data-copy="btn-blue" onclick="setupCopyOnClick();">蓝色</button>
+                        <button class="btn btn-indigo" data-copy="btn-indigo" onclick="setupCopyOnClick();">靛蓝色</button>
+                        <button class="btn btn-violet" data-copy="btn-violet" onclick="setupCopyOnClick();">紫罗兰</button>
+                        <button class="btn btn-purple" data-copy="btn-purple" onclick="setupCopyOnClick();">紫色</button>
+                        <button class="btn btn-fuchsia" data-copy="btn-fuchsia" onclick="setupCopyOnClick();">紫红色</button>
+                        <button class="btn btn-pink" data-copy="btn-pink" onclick="setupCopyOnClick();">粉色</button>
+                        <button class="btn btn-rose" data-copy="btn-rose" onclick="setupCopyOnClick();">玫瑰红</button>
+                        <button class="btn btn-slate" data-copy="btn-slate" onclick="setupCopyOnClick();">石板灰</button>
+                        <button class="btn btn-gray" data-copy="btn-gray" onclick="setupCopyOnClick();">灰色</button>
+                        <button class="btn btn-zinc" data-copy="btn-zinc" onclick="setupCopyOnClick();">锌灰</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">其他颜色</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-2">添加 <code>bg-{ color }</code> 更改背景颜色</p>
+                    <p class="my-2">具体参照色彩系统</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="btn bg-gradient bg-seasalt text-white btn-hover-white border-0">Gradient</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">图标按钮</cite>
+                </div>
+                <div class="card-body">
+                    <div class="inline-flex gap-3">
+                        <button type="button" class="btn"><i class="bx bx-user align-middle"></i> 个人中心</button>
+                        <button type="button" class="btn btn-primary"><i class="bxr bx-arrow-in-down-square-half align-middle"></i> 下载</button>
+                        <button type="button" class="btn btn-secondary"><i class="bxr bx-loader-lines bx-spin align-middle"></i> 加载中</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">按钮组</cite>
+                </div>
+                <div class="card-body">
+                    <div class="inline-flex">
+                        <button type="button" class="px-4 py-2 text-sm font-medium text-white bg-gray rounded-r-none hover-bg-gray-600">左</button>
+                        <button type="button" class="px-4 py-2 text-sm font-medium text-white rounded-none bg-gray-600 hover-bg-gray-700">中</button>
+                        <button type="button" class="px-4 py-2 text-sm font-medium text-white bg-gray rounded-l-none hover-bg-gray-600">右</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">尺寸</cite>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>样式类</th>
+                                <th>按钮示例</th>
+                                <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="code-inline">btn-xs</code></td>
+                            <td><button class="btn btn-xs">迷你按钮</button></td>
+                            <td>超小尺寸，适用于紧凑空间</td>
+                        </tr>
+                        <tr>
+                            <td><code class="code-inline">btn-sm</code></td>
+                            <td><button class="btn btn-sm">小按钮</button></td>
+                            <td>小尺寸，适用于次要操作</td>
+                        </tr>
+                        <tr>
+                            <td><code class="code-inline">btn</code></td>
+                            <td><button class="btn">默认按钮</button></td>
+                            <td>默认尺寸，适用于主要操作</td>
+                        </tr>
+                        <tr>
+                            <td><code class="code-inline">btn-lg</code></td>
+                            <td><button class="btn btn-lg">大按钮</button></td>
+                            <td>大尺寸，适用于重要操作</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

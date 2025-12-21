@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>排版</a></li>
+            <li class="active">文字装饰</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">文字装饰</cite>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>属性</th>
+                                <th>效果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>underline</td>
+                                <td>text-decoration: underline;</td>
+                                <td>下划线</td>
+                            </tr>
+                            <tr>
+                                <td>overline</td>
+                                <td>text-decoration: overline;</td>
+                                <td>上划线</td>
+                            </tr>
+                            <tr>
+                                <td>line-through</td>
+                                <td>text-decoration: line-through;</td>
+                                <td>删除线</td>
+                            </tr>
+                            <tr>
+                                <td>no-underline</td>
+                                <td>text-decoration: none;</td>
+                                <td>无下划线</td>
+                            </tr>
+                            <tr>
+                                <td>italic</td>
+                                <td>font-style: italic;</td>
+                                <td>斜体</td>
+                            </tr>
+                            <tr>
+                                <td>italic-not</td>
+                                <td>font-style: normal;</td>
+                                <td>非斜体</td>
+                            </tr>
+                            <tr>
+                                <td>anti-alias</td>
+                                <td>font-smoothing: antialiased;</td>
+                                <td>抗锯齿</td>
+                            </tr>
+                            <tr>
+                                <td>subpixel-antialiased</td>
+                                <td>font-smoothing: subpixel-antialiased;</td>
+                                <td>亚像素抗锯齿</td>
+                            </tr>
+                            <tr>
+                                <td>align-super</td>
+                                <td>vertical-align: super;</td>
+                                <td>上标对齐</td>
+                            </tr>
+                            <tr>
+                                <td>align-sub</td>
+                                <td>vertical-align: sub;</td>
+                                <td>下标对齐</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-auto</td>
+                                <td>text-decoration-thickness: auto;</td>
+                                <td>自动装饰</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-inherit</td>
+                                <td>text-decoration: inherit;</td>
+                                <td>继承装饰</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-solid</td>
+                                <td>text-decoration-style: solid;</td>
+                                <td>实线装饰</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-double</td>
+                                <td>text-decoration-style: double;</td>
+                                <td>双实线装饰</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-dotted</td>
+                                <td>text-decoration-style: dotted;</td>
+                                <td>点状装饰</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-dashed</td>
+                                <td>text-decoration-style: dashed;</td>
+                                <td>虚线装饰</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-wavy</td>
+                                <td>text-decoration-style: wavy;</td>
+                                <td>波浪线装饰</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-0</td>
+                                <td>text-decoration-thickness: 0px;</td>
+                                <td>无装饰线</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-1</td>
+                                <td>text-decoration-thickness: 1px;</td>
+                                <td>1像素装饰线</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-2</td>
+                                <td>text-decoration-thickness: 2px;</td>
+                                <td>2像素装饰线</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-4</td>
+                                <td>text-decoration-thickness: 4px;</td>
+                                <td>4像素装饰线</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-8</td>
+                                <td>text-decoration-thickness: 8px;</td>
+                                <td>8像素装饰线</td>
+                            </tr>
+                            <tr>
+                                <td>decoration-from-font</td>
+                                <td>text-decoration-thickness: from-font;</td>
+                                <td>从字体装饰线</td>
+                            </tr>
+                            <tr>
+                                <td>underline-offset-auto</td>
+                                <td>text-underline-offset: auto;</td>
+                                <td>自动下划线偏移</td>
+                            </tr>
+                            <tr>
+                                <td>underline-offset-0</td>
+                                <td>text-underline-offset: 0px;</td>
+                                <td>0像素下划线偏移</td>
+                            </tr>
+                            <tr>
+                                <td>underline-offset-1</td>
+                                <td>text-underline-offset: 1px;</td>
+                                <td>1像素下划线偏移</td>
+                            </tr>
+                            <tr>
+                                <td>underline-offset-2</td>
+                                <td>text-underline-offset: 2px;</td>
+                                <td>2像素下划线偏移</td>
+                            </tr>
+                            <tr>
+                                <td>underline-offset-4</td>
+                                <td>text-underline-offset: 4px;</td>
+                                <td>4像素下划线偏移</td>
+                            </tr>
+                            <tr>
+                                <td>underline-offset-8</td>
+                                <td>text-underline-offset: 8px;</td>
+                                <td>8像素下划线偏移</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">示例</cite>
+                </div>
+                <div class="card-body grid grid-cols-4 gap-4">
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="underline">下划线</span> <code>underline</code></p>
+                        <p>变体：<code>hover</code> <code>focus</code> <code>active</code> <code>visited</code></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="overline">上划线</span> <code>overline</code></p>
+                        <p>变体：<code>hover</code> <code>focus</code> <code>active</code> <code>visited</code></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="line-through">删除线</span> <code>line-through</code></p>
+                        <p>变体：<code>hover</code> <code>focus</code> <code>active</code> <code>visited</code></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="no-underline">无下划线</span> <code>no-underline</code></p>
+                        <p>变体：<code>hover</code> <code>focus</code> <code>active</code> <code>visited</code></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="italic">斜体</span> <code>italic</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="italic-not">非斜体</span> <code>italic-not</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="anti-alias">抗锯齿</span> <code>anti-alias</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="subpixel-antialiased">亚像素抗锯齿</span> <code>subpixel-antialiased</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p>上标对齐<span class="align-super">2</span> <code>align-super</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p>下标对齐<span class="align-sub">2</span> <code>align-sub</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-auto underline">自动装饰</span> <code>decoration-auto</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-inherit">继承装饰</span> <code>decoration-inherit</code></p>
+                        <p>从父元素继承装饰线</p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-solid underline">实线装饰</span> <code>decoration-solid</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-double underline">双实线装饰</span> <code>decoration-double</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-dotted underline">点状装饰</span> <code>decoration-dotted</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-dashed underline">虚线装饰</span> <code>decoration-dashed</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-wavy underline">波浪线装饰</span> <code>decoration-wavy</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="underline decoration-0">无装饰线</span> <code>decoration-0</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-1 underline">1像素装饰线</span> <code>decoration-1</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-2 underline">2像素装饰线</span> <code>decoration-2</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-4 underline">4像素装饰线</span> <code>decoration-4</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="decoration-8 underline">8像素装饰线</span> <code>decoration-8</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="underline decoration-from-font">从字体装饰</span> <code>decoration-from-font</code></p>
+                        <p>由字体文件决定装饰线粗细</p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="underline-offset-auto underline">自动下划线偏移</span> <code>underline-offset-auto</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="underline-offset-0 underline">0像素下划线偏移</span> <code>underline-offset-0</code></p>
+                        <p>下划线紧贴文字</p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="underline-offset-1 underline">1像素下划线偏移</span> <code>underline-offset-1</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="underline-offset-2 underline">2像素下划线偏移</span> <code>underline-offset-2</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="underline-offset-4 underline">4像素下划线偏移</span> <code>underline-offset-4</code></p>
+                        <p></p>
+                    </div>
+                    <div class="border border-2 border-surface border-dashed p-3 space-y-4">
+                        <p><span class="underline-offset-8 underline">8像素下划线偏移</span> <code>underline-offset-8</code></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

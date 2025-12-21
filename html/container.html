@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body class="theme-indigo">
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+            <li class="active">容器</li>
+        </ul>
+        <div class="container py-4">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">container</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用<span>container</span>将元素宽度限制为当前屏幕断点</p>
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>屏幕断点</th>
+                                <th>css属性</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    默认
+                                </td>
+                                <td>
+                                    <span class="tags radius">width: 100%;</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @media (min-width: 640px)
+                                </td>
+                                <td>
+                                    <span class="tags radius">max-width: 540px;</span>
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td>
+                                    @media (min-width: 768px)
+                                </td>
+                                <td>
+                                    <span class="tags radius">max-width: 720px;</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @media (min-width: 1024px)
+                                </td>
+                                <td>
+                                    <span class="tags radius">max-width: 960px;</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @media (min-width: 1280px)
+                                </td>
+                                <td>
+                                    <span class="tags radius">max-width: 1140px;</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @media (min-width: 1536px)
+                                </td>
+                                <td><span class="tags radius">max-width: 1320px;</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-4">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">container-fluid</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用<span class="tags radius">container-fluid</span> 让容器始终填满屏幕</p>
+                    <div class="codeblock codeblock-line-numbers">
+                        <div class="code-toolbar">
+                            <button class="code-toolbar-button radius" onclick="copyToClipboard()">Copy</button>
+                        </div>
+                        <pre>
+    <code class="language-html">
+    <span class="line">&lt;div class="container-fluid"&gt;</span>
+    <span class="line">&lt;div class="container"&gt;&lt;/div&gt;</span>
+    <span class="line">&lt;/div&gt;</span>
+    </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

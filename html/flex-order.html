@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Order</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+            <li class="active">order</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">order</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tage radius">order-*(1-12)</span> 应用order属性设置 Flex 项目的排序顺序，默认值为0。</p>
+                    <ul class="list-none width-full border rounded border-strong flex flex-wrap gap-2 p-5 mt-5 mb-5">
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-12">order-12</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-11">order-11</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-11">order-10</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-9">order-9</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-8">order-8</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-7">order-7</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-6">order-6</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-5">order-5</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-4">order-4</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-3">order-3</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-2">order-2</li>
+                        <li class="w-20 h-10 bg-primary text-white center rounded order-1">order-1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+                <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+                <li class="active">order</li>
+            </ul>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">特殊order</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tage radius">order-first</span> 将 Flex 项目移动到排序顺序的最前面。</p>
+                    <p>使用 <span class="tage radius">order-last</span> 将 Flex 项目移动到排序顺序的最后面。</p>
+                    <p>使用 <span class="tage radius">order-none</span> 移除 Flex 项目的排序顺序，默认值为0。</p>
+                    <ul class="list-none width-full border rounded border-strong flex flex-wrap gap-2 p-5 mt-5 mb-5">
+                        <li class="h-10 bg-primary text-white center rounded order-first flex-initial px-2">order-first</li>
+                        <li class="h-10 bg-primary text-white center rounded order-none flex-initial px-2">order-none</li>
+                        <li class="h-10 bg-primary text-white center rounded order-last flex-initial px-2">order-last</li>
+                    </ul>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

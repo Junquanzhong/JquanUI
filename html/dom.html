@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+    <style>
+        .test-section {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .test-section:hover {
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .test-section h2 {
+            margin-top: 0;
+            color: #2c5282;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .control-panel {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        button {
+            background: linear-gradient(to bottom, #4c6ef5, #3b5bdb);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(59, 91, 219, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(59, 91, 219, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.secondary {
+            background: linear-gradient(to bottom, #868e96, #6c757d);
+        }
+
+        button.secondary:hover {
+            box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+        }
+
+        button.danger {
+            background: linear-gradient(to bottom, #fa5252, #e03131);
+        }
+
+        button.danger:hover {
+            box-shadow: 0 4px 8px rgba(224, 49, 49, 0.3);
+        }
+
+        .test-box {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #74c0fc, #4dabf7);
+            margin: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(77, 171, 247, 0.3);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ffd43b, #fab005) !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 6px 15px rgba(250, 176, 5, 0.4) !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .log {
+            background: rgba(247, 250, 252, 0.95);
+            border-left: 4px solid #4c6ef5;
+            padding: 12px 15px;
+            margin: 10px 0;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 13px;
+            color: #1e293b;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .log.success {
+            border-left-color: #51cf66;
+        }
+
+        .log.error {
+            border-left-color: #ff6b6b;
+        }
+
+        .log.info {
+            border-left-color: #339af0;
+        }
+
+        #testInput {
+            padding: 10px 15px;
+            border: 1px solid #d0d7e1;
+            border-radius: 8px;
+            width: 250px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        #testInput:focus {
+            outline: none;
+            border-color: #4c6ef5;
+            box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.15);
+        }
+
+        .color-demo {
+            width: 60px;
+            height: 60px;
+            display: inline-block;
+            margin: 10px;
+            border-radius: 50%;
+            vertical-align: middle;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .observer-box {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+        }
+
+        .observer-item {
+            height: 80px;
+            background: linear-gradient(to right, #dee2e6, #ced4da);
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.4s ease;
+            opacity: 0.7;
+        }
+
+        .observer-item.visible {
+            background: linear-gradient(to right, #a9e34b, #94d82d);
+            opacity: 1;
+            transform: translateX(10px);
+        }
+
+        .info-panel {
+            background: rgba(227, 242, 253, 0.6);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+
+        .info-panel h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+
+        .info-panel ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .info-panel li {
+            margin: 8px 0;
+        }
+
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid #334155;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container is-drawer-ready">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>ESM</a></li>
+            <li class="active">DOM</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">右侧通用筛选抽屉 (带遮罩和body滚动锁定)</cite>
+                </div>
+
+                <div class="card-body">
+
+                    <h1>🚀 DOM-ES 模块</h1>
+
+                    <div class="info-panel mt-5">
+                        <h3>说明</h3>
+                        <ul>
+                            <li>本模块并非原创，而是基于DOM.js转换而来，原项目地址：<a href="https://github.com/yaohaixiao/dom.js">https://github.com/yaohaixiao/dom.js</a></li>
+                            <li>使用现代浏览器（Chrome 61+, Firefox 60+, Safari 11+）</li>
+                            <li>打开浏览器控制台查看详细日志</li>
+                        </ul>
+                    </div>
+
+                    <div class="control-panel">
+                        <h3>控制面板</h3>
+                        <button id="clearLog">清除日志</button>
+                        <button id="runAllTests">运行所有测试</button>
+                    </div>
+
+                    <!-- 测试1: 元素查询 -->
+                    <div class="test-section">
+                        <h2>1. 元素查询操作</h2>
+                        <div id="queryTest">
+                            <div class="test-box" data-id="1">Box 1</div>
+                            <div class="test-box" data-id="2">Box 2</div>
+                            <div class="test-box" data-id="3">Box 3</div>
+                        </div>
+                        <button id="testQuery">测试查询功能</button>
+                    </div>
+
+                    <!-- 测试2: 类名操作 -->
+                    <div class="test-section">
+                        <h2>2. 类名操作</h2>
+                        <div id="classTest" class="test-box">操作我</div>
+                        <div>
+                            <button id="addClassBtn">添加 highlight 类</button>
+                            <button id="removeClassBtn">移除 highlight 类</button>
+                            <button id="toggleClassBtn">toggle highlight 类</button>
+                            <button id="checkClassBtn">检查类名</button>
+                        </div>
+                    </div>
+
+                    <!-- 测试3: 样式操作 -->
+                    <div class="test-section">
+                        <h2>3. 样式操作</h2>
+                        <div id="styleTest" class="test-box">样式测试</div>
+                        <div>
+                            <button id="setStyleBtn">设置背景色</button>
+                            <button id="getStyleBtn">获取背景色</button>
+                            <button id="setMultipleStylesBtn">设置多个样式</button>
+                        </div>
+                    </div>
+
+                    <!-- 测试4: 内容操作 -->
+                    <div class="test-section">
+                        <h2>4. 内容操作</h2>
+                        <div id="contentTest" class="test-box">原始内容</div>
+                        <div>
+                            <button id="setHtmlBtn">设置 HTML</button>
+                            <button id="getHtmlBtn">获取 HTML</button>
+                            <button id="setTextBtn">设置文本</button>
+                        </div>
+                        <input type="text" id="testInput" placeholder="输入测试文本" value="测试内容">
+                        <button id="testValBtn">测试 val()</button>
+                    </div>
+
+                    <!-- 测试5: DOM 操作 -->
+                    <div class="test-section">
+                        <h2>5. DOM 插入/删除</h2>
+                        <div id="domTest" style="min-height: 100px; border: 2px dashed #ccc; padding: 10px;">
+                            目标容器
+                        </div>
+                        <div>
+                            <button id="appendBtn">追加元素</button>
+                            <button id="prependBtn">前置元素</button>
+                            <button id="afterBtn">后插元素</button>
+                            <button id="removeBtn">删除第一个子元素</button>
+                        </div>
+                    </div>
+
+                    <!-- 测试6: 颜色转换 -->
+                    <div class="test-section">
+                        <h2>6. 颜色转换工具</h2>
+                        <div>
+                            <span class="color-demo" style="background: red;"></span>
+                            <span id="colorResult">原始颜色</span>
+                        </div>
+                        <button id="testColorConversion">测试颜色转换</button>
+                        <button id="testRandomColor">生成随机颜色</button>
+                    </div>
+
+                    <!-- 测试7: 环境检测 -->
+                    <div class="test-section">
+                        <h2>7. 环境检测</h2>
+                        <button id="testEnv">检测浏览器/OS</button>
+                        <div id="envResult"></div>
+                    </div>
+
+                    <!-- 测试8: 交集观察器 -->
+                    <div class="test-section">
+                        <h2>8. Intersection Observer</h2>
+                        <div id="scrollContainer" class="observer-box">
+                            <div class="observer-item">Item 1</div>
+                            <div class="observer-item">Item 2</div>
+                            <div class="observer-item">Item 3</div>
+                            <div class="observer-item">Item 4</div>
+                            <div class="observer-item">Item 5</div>
+                            <div class="observer-item">Item 6</div>
+                        </div>
+                        <button id="observeBtn">开始观察</button>
+                    </div>
+
+                    <!-- 日志输出 -->
+                    <div class="test-section">
+                        <h2>📋 测试日志</h2>
+                        <div id="logContainer"></div>
+                    </div>
+
+
+                    <script type="module">
+                        // 导入 ES 模块
+                        import DOM from '../js/modules/dom.mjs';
+
+                        // 日志输出函数
+                        const log = (message, type = 'info') => {
+                            const logContainer = document.getElementById('logContainer');
+                            const logEntry = document.createElement('div');
+                            logEntry.className = `log ${type}`;
+                            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+                            logContainer.appendChild(logEntry);
+                            logContainer.scrollTop = logContainer.scrollHeight;
+                            console.log(`[${type.toUpperCase()}]`, message);
+                        };
+
+                        // 清除日志
+                        document.getElementById('clearLog').addEventListener('click', () => {
+                            document.getElementById('logContainer').innerHTML = '';
+                            log('日志已清除', 'info');
+                        });
+
+                        // 运行所有测试
+                        document.getElementById('runAllTests').addEventListener('click', () => {
+                            log('=== 开始运行所有测试 ===', 'info');
+                            testQuery();
+                            testClass();
+                            testStyle();
+                            testContent();
+                            testDOM();
+                            testColor();
+                            testEnv();
+                            testObserver();
+                            log('=== 所有测试执行完毕 ===', 'success');
+                        });
+
+                        // 测试1: 元素查询
+                        const testQuery = () => {
+                            document.getElementById('testQuery').addEventListener('click', () => {
+                                const boxes = DOM.findAll('.test-box', document.getElementById('queryTest'));
+                                log(`查询到 ${boxes.length} 个元素`, 'success');
+                                boxes.forEach((box, index) => {
+                                    log(`元素 ${index}: data-id = ${DOM.getAttribute(box, 'data-id')}`, 'info');
+                                });
+                            });
+                        };
+                        testQuery();
+
+                        // 测试2: 类名操作
+                        const testClass = () => {
+                            const element = document.getElementById('classTest');
+
+                            document.getElementById('addClassBtn').addEventListener('click', () => {
+                                DOM.addClass(element, 'highlight');
+                                log('已添加 highlight 类', 'success');
+                            });
+
+                            document.getElementById('removeClassBtn').addEventListener('click', () => {
+                                DOM.removeClass(element, 'highlight');
+                                log('已移除 highlight 类', 'success');
+                            });
+
+                            document.getElementById('toggleClassBtn').addEventListener('click', () => {
+                                DOM.toggleClass(element, 'highlight');
+                                log('已切换 highlight 类', 'success');
+                            });
+
+                            document.getElementById('checkClassBtn').addEventListener('click', () => {
+                                const hasIt = DOM.hasClass(element, 'highlight');
+                                log(`是否有 highlight 类: ${hasIt}`, hasIt ? 'success' : 'info');
+                            });
+                        };
+                        testClass();
+
+                        // 测试3: 样式操作
+                        const testStyle = () => {
+                            const element = document.getElementById('styleTest');
+
+                            document.getElementById('setStyleBtn').addEventListener('click', () => {
+                                DOM.setStyle(element, 'backgroundColor', '#4c6ef5');
+                                DOM.setStyle(element, 'transform', 'rotate(45deg)');
+                                log('已设置背景色和旋转', 'success');
+                            });
+
+                            document.getElementById('getStyleBtn').addEventListener('click', () => {
+                                const bg = DOM.getStyle(element, 'backgroundColor');
+                                const transform = DOM.getStyle(element, 'transform');
+                                log(`当前背景色: ${bg}`, 'info');
+                                log(`当前变换: ${transform}`, 'info');
+                            });
+
+                            document.getElementById('setMultipleStylesBtn').addEventListener('click', () => {
+                                DOM.setStyles(element, {
+                                    borderRadius: '50%',
+                                    width: '120px',
+                                    height: '120px',
+                                    boxShadow: '0 0 20px rgba(76, 110, 245, 0.5)'
+                                });
+                                log('已设置多个样式', 'success');
+                            });
+                        };
+                        testStyle();
+
+                        // 测试4: 内容操作
+                        const testContent = () => {
+                            const element = document.getElementById('contentTest');
+
+                            document.getElementById('setHtmlBtn').addEventListener('click', () => {
+                                DOM.html(element, '<strong>新内容</strong> <em>带HTML</em>');
+                                log('已设置 HTML 内容', 'success');
+                            });
+
+                            document.getElementById('getHtmlBtn').addEventListener('click', () => {
+                                const content = DOM.html(element);
+                                log(`当前 HTML: ${content}`, 'info');
+                            });
+
+                            document.getElementById('setTextBtn').addEventListener('click', () => {
+                                DOM.text(element, '纯文本内容 & 无HTML');
+                                log('已设置纯文本内容', 'success');
+                            });
+
+                            document.getElementById('testValBtn').addEventListener('click', () => {
+                                const input = document.getElementById('testInput');
+                                const value = DOM.val(input);
+                                log(`输入框值: ${value}`, 'info');
+                                DOM.val(input, '新值已设置');
+                                log('已设置新值', 'success');
+                            });
+                        };
+                        testContent();
+
+                        // 测试5: DOM 操作
+                        const testDOM = () => {
+                            const container = document.getElementById('domTest');
+
+                            document.getElementById('appendBtn').addEventListener('click', () => {
+                                const newDiv = DOM.createElement('div');
+                                DOM.html(newDiv, `<span style="color: #2c3e50; font-weight: 500;">追加的元素 ${Date.now()}</span>`);
+                                DOM.addClass(newDiv, 'fade-in');
+                                DOM.append(newDiv, container);
+                                log('已追加元素', 'success');
+                            });
+
+                            document.getElementById('prependBtn').addEventListener('click', () => {
+                                const newDiv = DOM.createElement('div');
+                                DOM.text(newDiv, `前置的元素 ${Date.now()}`);
+                                DOM.prepend(newDiv, container);
+                                DOM.addClass(newDiv, 'fade-in');
+                                log('已前置元素', 'success');
+                            });
+
+                            document.getElementById('afterBtn').addEventListener('click', () => {
+                                const firstChild = DOM.getChildren(container)[0];
+                                if (firstChild) {
+                                    const newDiv = DOM.createElement('div');
+                                    DOM.text(newDiv, '后插的元素');
+                                    DOM.setStyle(newDiv, 'color', '#27ae60');
+                                    DOM.after(newDiv, firstChild);
+                                    DOM.addClass(newDiv, 'fade-in');
+                                    log('已后插元素', 'success');
+                                }
+                            });
+
+                            document.getElementById('removeBtn').addEventListener('click', () => {
+                                const firstChild = DOM.getChildren(container)[0];
+                                if (firstChild) {
+                                    DOM.remove(firstChild);
+                                    log('已删除第一个子元素', 'success');
+                                } else {
+                                    log('没有可删除的子元素', 'error');
+                                }
+                            });
+                        };
+                        testDOM();
+
+                        // 测试6: 颜色转换
+                        const testColor = () => {
+                            document.getElementById('testColorConversion').addEventListener('click', () => {
+                                const colors = ['red', '#ff0000', 'rgb(255, 0, 0)'];
+                                colors.forEach(color => {
+                                    const hex = DOM.toHex(color);
+                                    const rgb = DOM.toRGB(color);
+                                    log(`颜色 ${color} -> HEX: ${hex}, RGB: ${rgb}`, 'info');
+                                });
+                            });
+
+                            document.getElementById('testRandomColor').addEventListener('click', () => {
+                                const randomHex = DOM.randomHexColor();
+                                const color = DOM.toRGB(randomHex);
+                                log(`随机颜色: ${randomHex} -> ${color}`, 'success');
+                                document.getElementById('colorResult').textContent = `颜色: ${randomHex}`;
+                                document.querySelector('.color-demo').style.background = randomHex;
+                            });
+                        };
+                        testColor();
+
+                        // 测试7: 环境检测
+                        const testEnv = () => {
+                            document.getElementById('testEnv').addEventListener('click', () => {
+                                const browser = DOM.browser();
+                                const os = DOM.os();
+                                const isMobile = DOM.isMobile();
+                                const isBrowser = DOM.isBrowser();
+
+                                const result = `
+            <div class="log success">
+                <strong>环境检测结果:</strong><br>
+                浏览器: ${browser.name} ${browser.version}<br>
+                操作系统: ${os.name} ${os.version}<br>
+                是否移动设备: ${isMobile}<br>
+                是否浏览器环境: ${isBrowser}
+            </div>
+            `;
+                                document.getElementById('envResult').innerHTML = result;
+                                log('环境检测完成', 'success');
+                            });
+                        };
+                        testEnv();
+
+                        // 测试8: 交集观察器
+                        const testObserver = () => {
+                            let observer = null;
+
+                            document.getElementById('observeBtn').addEventListener('click', () => {
+                                if (observer) {
+                                    log('已在观察中，先停止观察再重新开始', 'error');
+                                    return;
+                                }
+
+                                log('开始观察元素进入视口...', 'info');
+                                observer = DOM.observeIntersections('#scrollContainer', (element) => {
+                                    element.classList.add('visible');
+                                    log(`元素进入视口: ${element.textContent}`, 'success');
+                                }, {
+                                    selector: '.observer-item',
+                                    intersectionRatio: 0.1
+                                });
+
+                                log('观察者已启动', 'success');
+                            });
+                        };
+                        testObserver();
+
+                        // 初始化日志
+                        log('页面加载完成，等待测试...', 'success');
+                        log('点击各个测试按钮查看功能', 'info');
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">文档</cite>
+                </div>
+
+                <div class="card-body">
+
+                    <table border="1" style="border-collapse: collapse; width: 100%;">
+                        <thead>
+                            <tr style="background-color: #f2f2f2;">
+                                <th style="padding: 8px; text-align: left;">分类</th>
+                                <th style="padding: 8px; text-align: left;">函数名</th>
+                                <th style="padding: 8px; text-align: left;">参数</th>
+                                <th style="padding: 8px; text-align: left;">返回值</th>
+                                <th style="padding: 8px; text-align: left;">描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="7">类型检查</td>
+                                <td style="padding: 8px;">typeCheck</td>
+                                <td style="padding: 8px;">value: any, type: string</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查值的类型是否匹配指定类型</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isFunction</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为函数</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isObject</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为对象</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isElement</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为DOM元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isString</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为字符串</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isArray</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为数组</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isUndefined</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为undefined</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="18">属性操作</td>
+                                <td style="padding: 8px;">hasClass</td>
+                                <td style="padding: 8px;">element: Element, className: string</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查元素是否包含指定类名</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">addClass</td>
+                                <td style="padding: 8px;">element: Element, className: string</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">为元素添加类名</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">replaceClass</td>
+                                <td style="padding: 8px;">element: Element, oldClass: string, newClass: string</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">替换元素的类名</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">removeClass</td>
+                                <td style="padding: 8px;">element: Element, className: string</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">移除元素的类名</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">toggleClass</td>
+                                <td style="padding: 8px;">element: Element, className: string, force: boolean</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">切换元素的类名</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">getAttribute</td>
+                                <td style="padding: 8px;">element: Element, name: string</td>
+                                <td style="padding: 8px;">string | null</td>
+                                <td style="padding: 8px;">获取元素属性值</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">setAttribute</td>
+                                <td style="padding: 8px;">element: Element, name: string, value: string</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">设置元素属性</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">removeAttribute</td>
+                                <td style="padding: 8px;">element: Element, name: string</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">移除元素属性</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">getAttributes</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">object</td>
+                                <td style="padding: 8px;">获取元素所有属性</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">setAttributes</td>
+                                <td style="padding: 8px;">element: Element, attributes: object</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">设置多个元素属性</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">removeAttributes</td>
+                                <td style="padding: 8px;">element: Element, names: string[]</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">移除多个元素属性</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">getValue</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">string | number | boolean</td>
+                                <td style="padding: 8px;">获取表单元素的值</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">setValue</td>
+                                <td style="padding: 8px;">element: Element, value: any</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">设置表单元素的值</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">attrs</td>
+                                <td style="padding: 8px;">element: Element, attributes: object</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">设置元素属性（链式调用）</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">enable</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">启用元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">disable</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">禁用元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">readonly</td>
+                                <td style="padding: 8px;">element: Element, readOnly: boolean</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">设置元素只读状态</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">html</td>
+                                <td style="padding: 8px;">element: Element, content: string</td>
+                                <td style="padding: 8px;">string | Element</td>
+                                <td style="padding: 8px;">获取或设置元素的HTML内容</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="4">颜色操作</td>
+                                <td style="padding: 8px;">getColor</td>
+                                <td style="padding: 8px;">element: Element, property: string</td>
+                                <td style="padding: 8px;">string</td>
+                                <td style="padding: 8px;">获取元素的颜色值</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">randomHexColor</td>
+                                <td style="padding: 8px;">none</td>
+                                <td style="padding: 8px;">string</td>
+                                <td style="padding: 8px;">生成随机十六进制颜色</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">toHex</td>
+                                <td style="padding: 8px;">color: string</td>
+                                <td style="padding: 8px;">string</td>
+                                <td style="padding: 8px;">将颜色转换为十六进制格式</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">toHSL</td>
+                                <td style="padding: 8px;">color: string</td>
+                                <td style="padding: 8px;">string</td>
+                                <td style="padding: 8px;">将颜色转换为HSL格式</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="16">检测函数</td>
+                                <td style="padding: 8px;">isCollection</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为元素集合</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isDOM</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为DOM节点</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isFragment</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为文档片段</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isNode</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为节点</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isOverflowElement</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为溢出元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isShadowRoot</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为Shadow Root</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isTableElement</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为表格元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isText</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为文本节点</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">canPosition</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查元素是否可以定位</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">contains</td>
+                                <td style="padding: 8px;">container: Element, element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查容器是否包含元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">inDocument</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查元素是否在文档中</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isContainingBlock</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为包含块</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isLayoutViewport</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为布局视口</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isMatched</td>
+                                <td style="padding: 8px;">element: Element, selector: string</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查元素是否匹配选择器</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isScaled</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查元素是否被缩放</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isWindow</td>
+                                <td style="padding: 8px;">obj: any</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查是否为窗口对象</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="5">DOM矩形操作</td>
+                                <td style="padding: 8px;">getBoundingClientRect</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">DOMRect</td>
+                                <td style="padding: 8px;">获取元素的边界矩形</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">getDocumentRect</td>
+                                <td style="padding: 8px;">doc: Document</td>
+                                <td style="padding: 8px;">DOMRect</td>
+                                <td style="padding: 8px;">获取文档矩形</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">getViewportRect</td>
+                                <td style="padding: 8px;">win: Window</td>
+                                <td style="padding: 8px;">DOMRect</td>
+                                <td style="padding: 8px;">获取视口矩形</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">inBounding</td>
+                                <td style="padding: 8px;">element: Element, x: number, y: number</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查坐标是否在元素边界内</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">inViewport</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检查元素是否在视口内</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="18">DOM插入操作</td>
+                                <td style="padding: 8px;">insertAfter</td>
+                                <td style="padding: 8px;">element: Element, reference: Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">在参考元素后插入元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">insertBefore</td>
+                                <td style="padding: 8px;">element: Element, reference: Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">在参考元素前插入元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">insertHTMLAfterBegin</td>
+                                <td style="padding: 8px;">element: Element, html: string</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">在元素开始后插入HTML</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">insertHTMLAfterEnd</td>
+                                <td style="padding: 8px;">element: Element, html: string</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">在元素结束后插入HTML</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">insertHTMLBeforeBegin</td>
+                                <td style="padding: 8px;">element: Element, html: string</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">在元素开始前插入HTML</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">insertHTMLBeforeEnd</td>
+                                <td style="padding: 8px;">element: Element, html: string</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">在元素结束前插入HTML</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">append</td>
+                                <td style="padding: 8px;">parent: Element, element: Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">向父元素追加子元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">prepend</td>
+                                <td style="padding: 8px;">parent: Element, element: Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">向父元素前置子元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">after</td>
+                                <td style="padding: 8px;">element: Element, content: string | Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">在元素后插入内容</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">before</td>
+                                <td style="padding: 8px;">element: Element, content: string | Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">在元素前插入内容</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">detach</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">从DOM中分离元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">empty</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">清空元素内容</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">replace</td>
+                                <td style="padding: 8px;">element: Element, newElement: Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">替换元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">replaceAll</td>
+                                <td style="padding: 8px;">elements: Element[], newElement: Element</td>
+                                <td style="padding: 8px;">Element[]</td>
+                                <td style="padding: 8px;">替换所有元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">remove</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">移除元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">unwrap</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">Element[]</td>
+                                <td style="padding: 8px;">移除元素的包装元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">wrap</td>
+                                <td style="padding: 8px;">element: Element, wrapper: string | Element | Function</td>
+                                <td style="padding: 8px;">Element</td>
+                                <td style="padding: 8px;">包装元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">wrapAll</td>
+                                <td style="padding: 8px;">elements: Element[], wrapper: string | Element | Function</td>
+                                <td style="padding: 8px;">Element[]</td>
+                                <td style="padding: 8px;">包装所有元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="7">平台检测</td>
+                                <td style="padding: 8px;">isBrowser</td>
+                                <td style="padding: 8px;">none</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检测是否在浏览器环境中</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isDeno</td>
+                                <td style="padding: 8px;">none</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检测是否在Deno环境中</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isNodeJs</td>
+                                <td style="padding: 8px;">none</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检测是否在Node.js环境中</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isMobile</td>
+                                <td style="padding: 8px;">none</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检测是否为移动设备</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">isWebKit</td>
+                                <td style="padding: 8px;">none</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">检测是否为WebKit内核</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">browser</td>
+                                <td style="padding: 8px;">none</td>
+                                <td style="padding: 8px;">object</td>
+                                <td style="padding: 8px;">获取浏览器信息</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">os</td>
+                                <td style="padding: 8px;">none</td>
+                                <td style="padding: 8px;">object</td>
+                                <td style="padding: 8px;">获取操作系统信息</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="6">资源加载</td>
+                                <td style="padding: 8px;">injectCSS</td>
+                                <td style="padding: 8px;">css: string, id: string</td>
+                                <td style="padding: 8px;">HTMLStyleElement</td>
+                                <td style="padding: 8px;">注入CSS样式</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">loadCSS</td>
+                                <td style="padding: 8px;">url: string, options: object</td>
+                                <td style="padding: 8px;">Promise&lt;HTMLLinkElement&gt;</td>
+                                <td style="padding: 8px;">加载CSS文件</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">loadScript</td>
+                                <td style="padding: 8px;">url: string, options: object</td>
+                                <td style="padding: 8px;">Promise&lt;HTMLScriptElement&gt;</td>
+                                <td style="padding: 8px;">加载JavaScript文件</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">dnsPrefetch</td>
+                                <td style="padding: 8px;">url: string</td>
+                                <td style="padding: 8px;">HTMLLinkElement</td>
+                                <td style="padding: 8px;">DNS预解析</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">prefetch</td>
+                                <td style="padding: 8px;">url: string</td>
+                                <td style="padding: 8px;">HTMLLinkElement</td>
+                                <td style="padding: 8px;">资源预加载</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">preload</td>
+                                <td style="padding: 8px;">url: string, as: string</td>
+                                <td style="padding: 8px;">HTMLLinkElement</td>
+                                <td style="padding: 8px;">资源预获取</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="15">样式操作</td>
+                                <td style="padding: 8px;">getStyle</td>
+                                <td style="padding: 8px;">element: Element, property: string</td>
+                                <td style="padding: 8px;">string</td>
+                                <td style="padding: 8px;">获取元素样式值</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">setStyle</td>
+                                <td style="padding: 8px;">element: Element, property: string, value: string</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">设置元素样式</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">setStyles</td>
+                                <td style="padding: 8px;">element: Element, styles: object</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">设置多个样式</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">getStyles</td>
+                                <td style="padding: 8px;">element: Element, properties: string[]</td>
+                                <td style="padding: 8px;">object</td>
+                                <td style="padding: 8px;">获取多个样式值</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">removeStyle</td>
+                                <td style="padding: 8px;">element: Element, property: string</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">移除单个样式</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">removeStyles</td>
+                                <td style="padding: 8px;">element: Element, properties: string[]</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">移除多个样式</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">hide</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">隐藏元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">show</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">显示元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">toggle</td>
+                                <td style="padding: 8px;">element: Element</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">切换元素显示状态</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">fadeIn</td>
+                                <td style="padding: 8px;">element: Element, duration: number, callback: Function</td>
+                                <td style="padding: 8px;">void</td>
+                                <td style="padding: 8px;">淡入动画</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">fadeOut</td>
+                                <td style="padding: 8px;">element: Element, duration: number, callback: Function</td>
+                                <td style="padding: 8px;">void</td>
+                                <td style="padding: 8px;">淡出动画</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">fadeToggle</td>
+                                <td style="padding: 8px;">element: Element, duration: number, callback: Function</td>
+                                <td style="padding: 8px;">void</td>
+                                <td style="padding: 8px;">切换淡入淡出</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">slideDown</td>
+                                <td style="padding: 8px;">element: Element, duration: number, callback: Function</td>
+                                <td style="padding: 8px;">void</td>
+                                <td style="padding: 8px;">向下滑动显示</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">slideUp</td>
+                                <td style="padding: 8px;">element: Element, duration: number, callback: Function</td>
+                                <td style="padding: 8px;">void</td>
+                                <td style="padding: 8px;">向上滑动隐藏</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">slideToggle</td>
+                                <td style="padding: 8px;">element: Element, duration: number, callback: Function</td>
+                                <td style="padding: 8px;">void</td>
+                                <td style="padding: 8px;">切换滑动状态</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="8">遍历操作</td>
+                                <td style="padding: 8px;">next</td>
+                                <td style="padding: 8px;">element: Element, selector: string</td>
+                                <td style="padding: 8px;">Element | null</td>
+                                <td style="padding: 8px;">获取下一个兄弟元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">nextAll</td>
+                                <td style="padding: 8px;">element: Element, selector: string</td>
+                                <td style="padding: 8px;">Element[]</td>
+                                <td style="padding: 8px;">获取所有后续兄弟元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">nextUntil</td>
+                                <td style="padding: 8px;">element: Element, selector: string, filter: string</td>
+                                <td style="padding: 8px;">Element[]</td>
+                                <td style="padding: 8px;">获取直到选择器的后续兄弟元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">prev</td>
+                                <td style="padding: 8px;">element: Element, selector: string</td>
+                                <td style="padding: 8px;">Element | null</td>
+                                <td style="padding: 8px;">获取上一个兄弟元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">prevAll</td>
+                                <td style="padding: 8px;">element: Element, selector: string</td>
+                                <td style="padding: 8px;">Element[]</td>
+                                <td style="padding: 8px;">获取所有前驱兄弟元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">prevUntil</td>
+                                <td style="padding: 8px;">element: Element, selector: string, filter: string</td>
+                                <td style="padding: 8px;">Element[]</td>
+                                <td style="padding: 8px;">获取直到选择器的前驱兄弟元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">siblings</td>
+                                <td style="padding: 8px;">element: Element, selector: string</td>
+                                <td style="padding: 8px;">Element[]</td>
+                                <td style="padding: 8px;">获取所有兄弟元素</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="3">观察器</td>
+                                <td style="padding: 8px;">observeIntersections</td>
+                                <td style="padding: 8px;">container: Element, callback: Function, options: object</td>
+                                <td style="padding: 8px;">IntersectionObserver | null</td>
+                                <td style="padding: 8px;">观察元素交集变化</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">observeMutations</td>
+                                <td style="padding: 8px;">element: Element, callback: Function, options: object</td>
+                                <td style="padding: 8px;">MutationObserver | null</td>
+                                <td style="padding: 8px;">观察DOM变化</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">observeResize</td>
+                                <td style="padding: 8px;">element: Element, callback: Function, options: object</td>
+                                <td style="padding: 8px;">ResizeObserver | null</td>
+                                <td style="padding: 8px;">观察元素尺寸变化</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="5">事件处理</td>
+                                <td style="padding: 8px;">on</td>
+                                <td style="padding: 8px;">element: Element, event: string, handler: Function, options:
+                                    object</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">绑定事件监听器</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">off</td>
+                                <td style="padding: 8px;">element: Element, event: string, handler: Function, options:
+                                    object</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">移除事件监听器</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">once</td>
+                                <td style="padding: 8px;">element: Element, event: string, handler: Function, options:
+                                    object</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">绑定一次性事件监听器</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">trigger</td>
+                                <td style="padding: 8px;">element: Element, event: string, data: object</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">触发自定义事件</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">delegate</td>
+                                <td style="padding: 8px;">container: Element, selector: string, event: string, handler:
+                                    Function, options: object</td>
+                                <td style="padding: 8px;">boolean</td>
+                                <td style="padding: 8px;">事件委托</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;" rowspan="3">工具函数</td>
+                                <td style="padding: 8px;">debounce</td>
+                                <td style="padding: 8px;">func: Function, wait: number, immediate: boolean</td>
+                                <td style="padding: 8px;">Function</td>
+                                <td style="padding: 8px;">防抖函数</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">throttle</td>
+                                <td style="padding: 8px;">func: Function, limit: number</td>
+                                <td style="padding: 8px;">Function</td>
+                                <td style="padding: 8px;">节流函数</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">memoize</td>
+                                <td style="padding: 8px;">func: Function</td>
+                                <td style="padding: 8px;">Function</td>
+                                <td style="padding: 8px;">记忆化函数</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">导出对象</td>
+                                <td style="padding: 8px;">DOM</td>
+                                <td style="padding: 8px;">none</td>
+                                <td style="padding: 8px;">object</td>
+                                <td style="padding: 8px;">包含所有函数的导出对象</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选项卡 MJS 组件</title>
+    <link rel="stylesheet" href="./styles/tabs.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --text-color: #2c3e50;
+            --text-light: #7f8c8d;
+            --background: #f5f7fa;
+            --white: #ffffff;
+            --border-color: #e0e0e0;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--background) 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        .demo-section {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .option-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        select,
+        input {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            background: var(--white);
+        }
+
+        button {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .tabs-container {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        /* 选项卡样式 */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            overflow-x: auto;
+            scrollbar-width: none;
+            position: relative;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-light);
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab:hover {
+            color: var(--primary-color);
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .tab-indicator {
+            position: absolute;
+            bottom: -1px;
+            height: 3px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            z-index: 1;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .tab-content {
+            padding: 25px 0;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-panel {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-panel h3 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .tab-panel p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .tab-panel ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .tab-panel li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+
+        /* 新增功能样式 */
+        .tab-close {
+            background: none;
+            border: none;
+            color: #95a5a6;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .tab-close:hover {
+            background: var(--danger-color);
+            color: var(--white);
+        }
+
+        .tab-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .add-tab {
+            background: var(--success-color);
+        }
+
+        .add-tab:hover {
+            background: #219653;
+        }
+
+        .remove-tab {
+            background: var(--danger-color);
+        }
+
+        .remove-tab:hover {
+            background: #c0392b;
+        }
+
+        .theme-selector {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .theme-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s;
+        }
+
+        .theme-color:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-color.active {
+            border-color: var(--text-color);
+        }
+
+        .tab-badge {
+            background: var(--danger-color);
+            color: var(--white);
+            border-radius: 10px;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .demo-section {
+                padding: 20px;
+            }
+
+            .options {
+                flex-direction: column;
+            }
+
+            .tab {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tab-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tab {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+
+            .tab-panel {
+                padding: 15px;
+            }
+
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>选项卡 MJS 组件</h1>
+            <p class="subtitle">基于 ES6 模块的响应式选项卡组件</p>
+        </header>
+
+        <section class="demo-section">
+            <h2 class="section-title">组件演示</h2>
+
+            <div class="options">
+                <div class="option-group">
+                    <label for="switchMode">切换模式:</label>
+                    <select id="switchMode">
+                        <option value="click">点击切换</option>
+                        <option value="hover">浮动切换</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label for="defaultTab">默认激活:</label>
+                    <select id="defaultTab">
+                        <option value="0">功能介绍</option>
+                        <option value="1">使用说明</option>
+                        <option value="2">API 文档</option>
+                        <option value="3">响应式设计</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label for="animation">切换动画:</label>
+                    <select id="animation">
+                        <option value="true">启用</option>
+                        <option value="false">禁用</option>
+                    </select>
+                </div>
+
+                <button id="applySettings">应用设置</button>
+            </div>
+
+            <div class="theme-selector">
+                <div class="theme-color active" style="background-color: #3498db;" data-color="#3498db"></div>
+                <div class="theme-color" style="background-color: #e74c3c;" data-color="#e74c3c"></div>
+                <div class="theme-color" style="background-color: #2ecc71;" data-color="#2ecc71"></div>
+                <div class="theme-color" style="background-color: #9b59b6;" data-color="#9b59b6"></div>
+            </div>
+
+            <div class="tabs-container" id="tabsContainer1">
+                <div class="tabs">
+                    <button class="tab active" data-tab="0">
+                        功能介绍
+                        <span class="tab-badge">New</span>
+                    </button>
+                    <button class="tab" data-tab="1">使用说明</button>
+                    <button class="tab" data-tab="2">API 文档</button>
+                    <button class="tab" data-tab="3">响应式设计</button>
+                </div>
+
+                <div class="tab-content active" data-tab="0">
+                    <div class="tab-panel">
+                        <h3>选项卡组件功能</h3>
+                        <p>这是一个基于 ES6 模块的响应式选项卡组件：</p>
+                        <ul>
+                            <li>支持两种切换模式：<span class="highlight">点击切换</span>和<span class="highlight">浮动切换</span></li>
+                            <li>完全响应式设计，适配各种屏幕尺寸</li>
+                            <li>平滑的切换动画效果</li>
+                            <li>可自定义默认激活项</li>
+                            <li>移动端友好的交互体验</li>
+                            <li>基于 ES6 模块，支持按需导入</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tab-content" data-tab="1">
+                    <div class="tab-panel">
+                        <h3>使用说明</h3>
+                        <p>要使用此选项卡组件，您需要：</p>
+                        <ol>
+                            <li>引入组件的 CSS 文件</li>
+                            <li>按需导入 ES6 模块</li>
+                            <li>初始化组件并传递配置参数</li>
+                        </ol>
+
+                        <div class="code-block">
+                            // 按需导入选项卡组件
+                            import Tabs from './modules/tabs.mjs';
+
+                            // 初始化选项卡
+                            const tabs = new Tabs({
+                            container: '#tabsContainer',
+                            switchMode: 'click',
+                            defaultActive: 0,
+                            animation: true,
+                            themeColor: '#3498db'
+                            });
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" data-tab="2">
+                    <div class="tab-panel">
+                        <h3>API 文档</h3>
+                        <p>组件提供以下 API 方法：</p>
+                        <ul>
+                            <li><strong>activateTab(index)</strong> - 激活指定索引的选项卡</li>
+                            <li><strong>addTab(title, content)</strong> - 动态添加选项卡</li>
+                            <li><strong>removeTab(index)</strong> - 移除指定索引的选项卡</li>
+                            <li><strong>setThemeColor(color)</strong> - 设置主题颜色</li>
+                            <li><strong>updateConfig(config)</strong> - 更新组件配置</li>
+                            <li><strong>destroy()</strong> - 销毁组件实例</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tab-content" data-tab="3">
+                    <div class="tab-panel">
+                        <h3>响应式设计</h3>
+                        <p>此选项卡组件采用了完全响应式设计：</p>
+                        <ul>
+                            <li>在桌面端，选项卡水平排列</li>
+                            <li>在平板设备上，布局自动调整</li>
+                            <li>在手机上，选项卡可以水平滚动</li>
+                            <li>触摸设备上优化了交互体验</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-actions">
+                <button class="add-tab" id="addTab1">添加新选项卡</button>
+                <button class="remove-tab" id="removeTab1">移除当前选项卡</button>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2 class="section-title">多实例演示</h2>
+            <div class="tabs-container" id="tabsContainer2">
+                <div class="tabs">
+                    <button class="tab active" data-tab="0">实例一</button>
+                    <button class="tab" data-tab="1">实例二</button>
+                </div>
+
+                <div class="tab-content active" data-tab="0">
+                    <div class="tab-panel">
+                        <h3>多实例支持</h3>
+                        <p>组件支持在同一个页面创建多个独立的选项卡实例。</p>
+                        <p>每个实例都有自己的配置和状态，互不干扰。</p>
+                    </div>
+                </div>
+
+                <div class="tab-content" data-tab="1">
+                    <div class="tab-panel">
+                        <h3>独立配置</h3>
+                        <p>可以为每个实例设置不同的：</p>
+                        <ul>
+                            <li>切换模式</li>
+                            <li>默认激活项</li>
+                            <li>主题颜色</li>
+                            <li>动画效果</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module">
+        // 按需导入选项卡组件
+        import Tabs from '../js/modules/dk-tabs.mjs';
+
+        // 初始化第一个选项卡实例
+        const tabs1 = new Tabs({
+            container: '#tabsContainer1',
+            switchMode: 'click',
+            defaultActive: 0,
+            animation: true,
+            themeColor: '#3498db'
+        });
+
+        // 初始化第二个选项卡实例
+        const tabs2 = new Tabs({
+            container: '#tabsContainer2',
+            switchMode: 'click',
+            defaultActive: 0,
+            animation: true,
+            themeColor: '#e74c3c'
+        });
+
+        // 监听选项卡变化事件
+        tabs1.on('tabChange', (event) => {
+            console.log('选项卡1切换到:', event.detail.index);
+        });
+
+        tabs2.on('tabChange', (event) => {
+            console.log('选项卡2切换到:', event.detail.index);
+        });
+
+        // 应用设置按钮事件
+        document.getElementById('applySettings').addEventListener('click', () => {
+            const switchMode = document.getElementById('switchMode').value;
+            const defaultActive = parseInt(document.getElementById('defaultTab').value);
+            const animation = document.getElementById('animation').value === 'true';
+
+            tabs1.updateConfig({
+                switchMode: switchMode,
+                defaultActive: defaultActive,
+                animation: animation
+            });
+        });
+
+        // 添加选项卡按钮事件
+        document.getElementById('addTab1').addEventListener('click', () => {
+            const tabNumber = tabs1.getTabCount() + 1;
+            tabs1.addTab(
+                `新选项卡 ${tabNumber}`,
+                `<h3>新选项卡 ${tabNumber}</h3><p>这是动态添加的第 ${tabNumber} 个选项卡内容。</p>`
+            );
+        });
+
+        // 移除选项卡按钮事件
+        document.getElementById('removeTab1').addEventListener('click', () => {
+            const activeIndex = tabs1.getActiveTabIndex();
+            tabs1.removeTab(activeIndex);
+        });
+
+        // 主题颜色选择
+        document.querySelectorAll('.theme-color').forEach(color => {
+            color.addEventListener('click', () => {
+                document.querySelectorAll('.theme-color').forEach(c => c.classList.remove('active'));
+                color.classList.add('active');
+                tabs1.setThemeColor(color.dataset.color);
+            });
+        });
+
+        // 导出组件供其他模块使用
+        export { Tabs, tabs1, tabs2 };
+
+    </script>
+</body>
+
+</html>

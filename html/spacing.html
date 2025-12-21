@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+            <li class="active">间距</li>
+        </ul>
+        <div class="container py-3"></div>
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">边距</cite>
+                </div>
+                <div class="card-body ">
+                    <p>通过 <span class="rounded tags">{m/p}-{size}</span>  工具类设置边距</p>
+                    <p>其中，{m/p} 表示外边距（margin）或内边距（padding），{size} 表示间距大小，可选值包括：0-96，百分比，auto</p>
+                    <div class="w-full h-80 overflow-auto">
+                        <table class="JquanUI">
+                            <thead>
+                                <tr>
+                                    <th>工具类</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>m-auto</td>
+                                    <td>设置外边距为自动，元素将水平居中</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-auto</td>
+                                    <td>设置水平外边距为自动，元素将水平居中</td>
+                                </tr>
+                                <tr>
+                                    <td>my-auto</td>
+                                    <td>设置垂直外边距为自动，元素将垂直居中</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-auto</td>
+                                    <td>设置垂直外边距为自动，元素将垂直居中</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-auto</td>
+                                    <td>设置水平外边距为自动，元素将水平居中</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-auto</td>
+                                    <td>设置垂直外边距为自动，元素将垂直居中</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-auto</td>
+                                    <td>设置水平外边距为自动，元素将水平居中</td>
+                                </tr>
+                                <tr>
+                                    <td>m-0</td>
+                                    <td>设置外边距为0</td>
+                                </tr>
+                                <tr>
+                                    <td>m-px</td>
+                                    <td>设置外边距为1px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-0.5</td>
+                                    <td>设置外边距为2px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-1</td>
+                                    <td>设置外边距为4px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-1.5</td>
+                                    <td>设置外边距为6px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-2</td>
+                                    <td>设置外边距为8px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-2.5</td>
+                                    <td>设置外边距为10px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-3</td>
+                                    <td>设置外边距为12px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-3.5</td>
+                                    <td>设置外边距为14px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-4</td>
+                                    <td>设置外边距为16px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-5</td>
+                                    <td>设置外边距为20px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-6</td>
+                                    <td>设置外边距为24px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-7</td>
+                                    <td>设置外边距为28px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-8</td>
+                                    <td>设置外边距为32px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-9</td>
+                                    <td>设置外边距为36px</td>
+                                </tr>
+                                <tr>
+                                    <td>m-10</td>
+                                    <td>设置外边距为40px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-0</td>
+                                    <td>设置水平外边距为0</td>
+                                </tr>
+                                <tr>
+                                    <td>my-0</td>
+                                    <td>设置垂直外边距为0</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-0</td>
+                                    <td>设置垂直外边距为0</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-0</td>
+                                    <td>设置水平外边距为0</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-0</td>
+                                    <td>设置垂直外边距为0</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-0</td>
+                                    <td>设置水平外边距为0</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-px</td>
+                                    <td>设置水平外边距为1px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-px</td>
+                                    <td>设置垂直外边距为1px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-px</td>
+                                    <td>设置垂直外边距为1px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-px</td>
+                                    <td>设置水平外边距为1px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-px</td>
+                                    <td>设置垂直外边距为1px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-px</td>
+                                    <td>设置水平外边距为1px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-0.5</td>
+                                    <td>设置水平外边距为2px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-0.5</td>
+                                    <td>设置垂直外边距为2px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-0.5</td>
+                                    <td>设置垂直外边距为2px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-0.5</td>
+                                    <td>设置水平外边距为2px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-0.5</td>
+                                    <td>设置垂直外边距为2px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-0.5</td>
+                                    <td>设置水平外边距为2px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-1</td>
+                                    <td>设置水平外边距为4px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-1</td>
+                                    <td>设置垂直外边距为4px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-1</td>
+                                    <td>设置垂直外边距为4px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-1</td>
+                                    <td>设置水平外边距为4px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-1</td>
+                                    <td>设置垂直外边距为4px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-1</td>
+                                    <td>设置水平外边距为4px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-1.5</td>
+                                    <td>设置水平外边距为6px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-1.5</td>
+                                    <td>设置垂直外边距为6px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-1.5</td>
+                                    <td>设置垂直外边距为6px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-1.5</td>
+                                    <td>设置水平外边距为6px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-1.5</td>
+                                    <td>设置垂直外边距为6px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-1.5</td>
+                                    <td>设置水平外边距为6px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-2</td>
+                                    <td>设置水平外边距为8px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-2</td>
+                                    <td>设置垂直外边距为8px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-2</td>
+                                    <td>设置垂直外边距为8px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-2</td>
+                                    <td>设置水平外边距为8px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-2</td>
+                                    <td>设置垂直外边距为8px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-2</td>
+                                    <td>设置水平外边距为8px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-2.5</td>
+                                    <td>设置水平外边距为10px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-2.5</td>
+                                    <td>设置垂直外边距为10px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-2.5</td>
+                                    <td>设置垂直外边距为10px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-2.5</td>
+                                    <td>设置水平外边距为10px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-2.5</td>
+                                    <td>设置垂直外边距为10px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-2.5</td>
+                                    <td>设置水平外边距为10px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-3</td>
+                                    <td>设置水平外边距为12px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-3</td>
+                                    <td>设置垂直外边距为12px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-3</td>
+                                    <td>设置垂直外边距为12px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-3</td>
+                                    <td>设置水平外边距为12px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-3</td>
+                                    <td>设置垂直外边距为12px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-3</td>
+                                    <td>设置水平外边距为12px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-3.5</td>
+                                    <td>设置水平外边距为14px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-3.5</td>
+                                    <td>设置垂直外边距为14px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-3.5</td>
+                                    <td>设置垂直外边距为14px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-3.5</td>
+                                    <td>设置水平外边距为14px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-3.5</td>
+                                    <td>设置垂直外边距为14px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-3.5</td>
+                                    <td>设置水平外边距为14px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-4</td>
+                                    <td>设置水平外边距为16px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-4</td>
+                                    <td>设置垂直外边距为16px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-4</td>
+                                    <td>设置垂直外边距为16px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-4</td>
+                                    <td>设置水平外边距为16px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-4</td>
+                                    <td>设置垂直外边距为16px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-4</td>
+                                    <td>设置水平外边距为16px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-5</td>
+                                    <td>设置水平外边距为20px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-5</td>
+                                    <td>设置垂直外边距为20px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-5</td>
+                                    <td>设置垂直外边距为20px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-5</td>
+                                    <td>设置水平外边距为20px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-5</td>
+                                    <td>设置垂直外边距为20px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-5</td>
+                                    <td>设置水平外边距为20px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-6</td>
+                                    <td>设置水平外边距为24px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-6</td>
+                                    <td>设置垂直外边距为24px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-6</td>
+                                    <td>设置垂直外边距为24px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-6</td>
+                                    <td>设置水平外边距为24px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-6</td>
+                                    <td>设置垂直外边距为24px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-6</td>
+                                    <td>设置水平外边距为24px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-7</td>
+                                    <td>设置水平外边距为28px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-7</td>
+                                    <td>设置垂直外边距为28px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-7</td>
+                                    <td>设置垂直外边距为28px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-7</td>
+                                    <td>设置水平外边距为28px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-7</td>
+                                    <td>设置垂直外边距为28px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-7</td>
+                                    <td>设置水平外边距为28px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-8</td>
+                                    <td>设置水平外边距为32px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-8</td>
+                                    <td>设置垂直外边距为32px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-8</td>
+                                    <td>设置垂直外边距为32px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-8</td>
+                                    <td>设置水平外边距为32px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-8</td>
+                                    <td>设置垂直外边距为32px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-8</td>
+                                    <td>设置水平外边距为32px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-9</td>
+                                    <td>设置水平外边距为36px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-9</td>
+                                    <td>设置垂直外边距为36px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-9</td>
+                                    <td>设置垂直外边距为36px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-9</td>
+                                    <td>设置水平外边距为36px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-9</td>
+                                    <td>设置垂直外边距为36px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-9</td>
+                                    <td>设置水平外边距为36px</td>
+                                </tr>
+                                <tr>
+                                    <td>mx-10</td>
+                                    <td>设置水平外边距为40px</td>
+                                </tr>
+                                <tr>
+                                    <td>my-10</td>
+                                    <td>设置垂直外边距为40px</td>
+                                </tr>
+                                <tr>
+                                    <td>mt-10</td>
+                                    <td>设置垂直外边距为40px</td>
+                                </tr>
+                                <tr>
+                                    <td>mr-10</td>
+                                    <td>设置水平外边距为40px</td>
+                                </tr>
+                                <tr>
+                                    <td>mb-10</td>
+                                    <td>设置垂直外边距为40px</td>
+                                </tr>
+                                <tr>
+                                    <td>ml-10</td>
+                                    <td>设置水平外边距为40px</td>
+                                </tr>
+
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">内间距</cite>
+                </div>
+                <div class="card-body">
+                    <p>通过 <span class="rounded tags">p-*</span>  工具类设置内间距，可用的工具类包括：</p>
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>工具类</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>p-auto</td>
+                                <td>设置内间距为自动，元素将水平居中</td>
+                            </tr>
+                            <tr>
+                                <td>px-auto</td>
+                                <td>设置内间距为自动，元素将水平居中</td>
+                            </tr>
+                            <tr><td colspan="2">其他同外间距以此类推</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">子间距</cite>
+                </div>
+                <div class="card-body">
+                    <p>通过 <span class="rounded tags">space-*(x/y)-*(0-10)</span>  工具类设置子元素间距，可用的工具类包括：</p>
+                    <p>X为水平间距，Y为垂直间距，0-10为间距值</p>
+                    <div class="h-60 overflow-auto">
+                        <table class="JquanUI">
+                            <thead>
+                                <tr>
+                                    <th>工具类</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>space-x-0</td>
+                                    <td>margin-left: 0px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-0</td>
+                                    <td>margin-top: 0px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-px</td>
+                                    <td>margin-left: 0px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-px</td>
+                                    <td>margin-top: 0px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-0.5</td>
+                                    <td>margin-left: 2px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-0.5</td>
+                                    <td>margin-top: 2px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-1</td>
+                                    <td>margin-left: 4px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-1</td>
+                                    <td>margin-top: 4px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-1.5</td>
+                                    <td>margin-left: 6px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-1.5</td>
+                                    <td>margin-top: 6px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-2</td>
+                                    <td>margin-left: 8px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-2</td>
+                                    <td>margin-top: 8px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-2.5</td>
+                                    <td>margin-left: 10px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-2.5</td>
+                                    <td>margin-top: 10px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-3</td>
+                                    <td>margin-left: 12px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-3</td>
+                                    <td>margin-top: 12px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-3.5</td>
+                                    <td>margin-left: 14px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-3.5</td>
+                                    <td>margin-top: 14px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-4</td>
+                                    <td>margin-left: 16px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-4</td>
+                                    <td>margin-top: 16px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-5</td>
+                                    <td>margin-left: 20px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-5</td>
+                                    <td>margin-top: 20px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-6</td>
+                                    <td>margin-left: 24px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-6</td>
+                                    <td>margin-top: 24px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-7</td>
+                                    <td>margin-left: 28px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-7</td>
+                                    <td>margin-top: 28px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-8</td>
+                                    <td>margin-left: 32px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-8</td>
+                                    <td>margin-top: 32px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-9</td>
+                                    <td>margin-left: 36px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-9</td>
+                                    <td>margin-top: 36px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-x-10</td>
+                                    <td>margin-left: 40px</td>
+                                </tr>
+                                <tr>
+                                    <td>space-y-10</td>
+                                    <td>margin-top: 40px</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">子间距效果</cite>
+                </div>
+                <div class="card-body">
+                    <p>X轴</p>
+                    <div class="mt-3 mb-3">
+                        <div class="bg-surface space-x-2 p-3 rounded">
+                            <button class="bg-blue w-24 h-8 text-white"></button>
+                            <button class="bg-blue w-24 h-8 text-white"></button>
+                            <button class="bg-blue w-24 h-8 text-white"></button>
+                        </div>
+                    </div>
+                    <p class="mt-3 mb-3">Y轴</p>
+                    <div class="mt-3 mb-3">
+                        <div class="bg-surface space-y-2 p-3 rounded">
+                            <button class="block bg-blue w-24 h-8 text-white"></button>
+                            <button class="block bg-blue w-24 h-8 text-white"></button>
+                            <button class="block bg-blue w-24 h-8 text-white"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

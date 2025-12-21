@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>Grid</a></li>
+            <li class="active">Responsive</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">Grid栅格自动填充：根据容器宽度自动确定列数</cite>
+                </div>
+                <div class="card-body">
+                    <p class="leading-6 my-4">使用<code>auto-grid auto-grid-fill auto-grid-{size}</code>(xs-2xl)</p>
+                    <p class="leading-6 my-4">追加<code>auto-grid-fit</code>让现有列拉伸填充空间</p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block center">
+                            <div class="auto-grid-xs bg-primary text-white w-24 h-10 cursor-pointer radius leading-10 center"
+                                onclick="toggleLayoutClass(event,'grid-body','auto-grid-')">切换xs</div>
+                        </li>
+                        <li class="inline-block center">
+                            <div class="auto-grid-sm bg-primary text-white w-24 h-10 cursor-pointer radius leading-10 center"
+                                onclick="toggleLayoutClass(event,'grid-body','auto-grid-')">切换sm</div>
+                        </li>
+                        <li class="inline-block center">
+                            <div class="auto-grid-md bg-primary text-white w-24 h-10 cursor-pointer radius leading-10 center"
+                                onclick="toggleLayoutClass(event,'grid-body','auto-grid-')">切换md</div>
+                        </li>
+                        <li class="inline-block center">
+                            <div class="auto-grid-lg bg-primary text-white w-24 h-10 cursor-pointer radius leading-10 center"
+                                onclick="toggleLayoutClass(event,'grid-body','auto-grid-')">切换lg</div>
+                        </li>
+                        <li class="inline-block center">
+                            <div class="auto-grid-xl bg-primary text-white w-24 h-10 cursor-pointer radius leading-10 center"
+                                onclick="toggleLayoutClass(event,'grid-body','auto-grid-')">切换xl</div>
+                        </li>
+                        <li class="inline-block center">
+                            <div class="auto-grid-2xl bg-primary text-white w-24 h-10 cursor-pointer radius leading-10 center"
+                                onclick="toggleLayoutClass(event,'grid-body','auto-grid-')">切换2xl</div>
+                        </li>
+                    </ul>
+                    <ul class="list-none mt-3 auto-grid auto-grid-fill auto-grid-xs" id="grid-body">
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+                        <li class="p-1">
+                            <div class="radius w-full bg-surface-200 center h-12 leading-sn" data-line-height="3rem">自动列宽
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script>
+            //切换布局
+            function toggleLayoutClass(event, targetElement, prefix) {
+                // 获取触发事件的当前元素（按钮）
+                const button = event.currentTarget;
+
+                // 获取当前元素的第一个类名
+                const classList = button.classList;
+                if (classList.length === 0) {
+                    console.warn('当前元素没有类名');
+                    return;
+                }
+                const firstClass = classList[0];
+
+                // 获取目标元素（支持传入 ID 或 DOM 元素）
+                const themeBody = typeof targetElement === 'string'
+                    ? document.getElementById(targetElement)
+                    : targetElement;
+
+                if (!themeBody) {
+                    console.warn('未找到目标元素');
+                    return;
+                }
+
+                // 找出所有以 "auto-grid-" 开头的类名
+                const autoGridClasses = Array.from(themeBody.classList).filter(className =>
+                    className.startsWith(prefix)
+                );
+
+                // 如果有找到，则移除最后一个
+                if (autoGridClasses.length > 0) {
+                    const lastAutoGridClass = autoGridClasses[autoGridClasses.length - 1];
+                    themeBody.classList.remove(lastAutoGridClass);
+                }
+
+                // 添加新的主题类名
+                themeBody.classList.add(`${firstClass}`);
+
+                // 显示操作成功的提示
+                showSuccessNotification(button, '布局已切换');
+            }
+        </script>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

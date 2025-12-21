@@ -1,0 +1,793 @@
+/*
+JquanUI Theme System (Comprehensive & Production-Ready)
+version: 3.3
+Usage: <body class="theme-blue theme-dark">
+Description: A comprehensive, plug-in CSS theme system built for maximum reusability.
+It abstracts all core visual properties (colors, spacing, typography, shadows, etc.)
+into CSS variables, allowing for complete theme overhauls with minimal effort.
+
+- Assumes atomic color variables (e.g., --blue-500) and spacing/sizing are defined in a base file.
+- Structure:
+  1. Core Role Variables & System Defaults
+  2. Brightness Overrides (Light/Dark Mode)
+  3. Hue Overrides (Color Themes)
+  4. Semantic Utility Classes (The Bridge) - COMPREHENSIVE
+  5. Component-Specific Overrides (Themed & Dark Mode) - COMPREHENSIVE
+  6. Accessibility & Advanced Theming Utilities
+*/
+
+/* ========================================
+   1. CORE: ROLE VARIABLES & SYSTEM DEFAULTS
+   ======================================== */
+:root {
+    /* --- Color Hue Roles --- */
+    /* Primary, Secondary, Accent are defined in section 3 based on body class. Defaults are Blue/Violet. */
+    --primary-hue-50: var(--blue-50);
+    --primary-hue-100: var(--blue-100);
+    --primary-hue-200: var(--blue-200);
+    --primary-hue-300: var(--blue-300);
+    --primary-hue-400: var(--blue-400);
+    --primary-hue-500: var(--blue-500);
+    --primary-hue-600: var(--blue-600);
+    --primary-hue-700: var(--blue-700);
+    --primary-hue-800: var(--blue-800);
+    --primary-hue-900: var(--blue-900);
+    --secondary-hue-50: var(--violet-50);
+    --secondary-hue-100: var(--violet-100);
+    --secondary-hue-200: var(--violet-200);
+    --secondary-hue-300: var(--violet-300);
+    --secondary-hue-400: var(--violet-400);
+    --secondary-hue-500: var(--violet-500);
+    --secondary-hue-600: var(--violet-600);
+    --secondary-hue-700: var(--violet-700);
+    --secondary-hue-800: var(--violet-800);
+    --secondary-hue-900: var(--violet-900);
+    --accent-hue: var(--amber-100);
+
+    /* --- Semantic Color Roles (for feedback states, etc.) --- */
+    --success-hue-50: var(--green-50);
+    --success-hue-100: var(--green-100);
+    --success-hue-200: var(--green-200);
+    --success-hue-300: var(--green-300);
+    --success-hue-400: var(--green-400);
+    --success-hue-500: var(--green-500);
+    --success-hue-600: var(--green-600);
+    --success-hue-700: var(--green-700);
+    --success-hue-800: var(--green-800);
+    --success-hue-900: var(--green-900);
+    --info-hue-50: var(--sky-50);
+    --info-hue-100: var(--sky-100);
+    --info-hue-200: var(--sky-200);
+    --info-hue-300: var(--sky-300);
+    --info-hue-400: var(--sky-400);
+    --info-hue-500: var(--sky-500);
+    --info-hue-600: var(--sky-600);
+    --info-hue-700: var(--sky-700);
+    --info-hue-800: var(--sky-800);
+    --info-hue-900: var(--sky-900);
+    --warning-hue-50: var(--yellow-50);
+    --warning-hue-100: var(--yellow-100);
+    --warning-hue-200: var(--yellow-200);
+    --warning-hue-300: var(--yellow-300);
+    --warning-hue-400: var(--yellow-400);
+    --warning-hue-500: var(--yellow-500);
+    --warning-hue-600: var(--yellow-600);
+    --warning-hue-700: var(--yellow-700);
+    --warning-hue-800: var(--yellow-800);
+    --warning-hue-900: var(--yellow-900);
+    --danger-hue-50: var(--red-50);
+    --danger-hue-100: var(--red-100);
+    --danger-hue-200: var(--red-200);
+    --danger-hue-300: var(--red-300);
+    --danger-hue-400: var(--red-400);
+    --danger-hue-500: var(--red-500);
+    --danger-hue-600: var(--red-600);
+    --danger-hue-700: var(--red-700);
+    --danger-hue-800: var(--red-800);
+    --danger-hue-900: var(--red-900);
+
+    /* --- Surface & Content Roles --- */
+    --surface-bg: var(--white);
+    --surface-bg-50: var(--gray-50);
+    --surface-bg-100: var(--gray-100);
+    --surface-bg-200: var(--gray-200);
+    --surface-bg-700: var(--gray-700);
+    --surface-bg-800: var(--gray-800);
+    --surface-bg-900: var(--gray-900);
+    --surface-text: var(--gray-900);
+    --surface-text-100: var(--gray-100);
+    --surface-text-200: var(--gray-200);
+    --surface-text-300: var(--gray-300);
+    --surface-text-400: var(--gray-400);
+    --surface-text-500: var(--gray-500);
+    --surface-text-600: var(--gray-600);
+    --surface-text-700: var(--gray-700);
+    --surface-text-secondary: var(--gray-700);
+    --surface-border: var(--gray-200);
+    --surface-border-strong: var(--gray-300);
+
+    /* --- System Theming Extensions --- */
+    --radius-sm: 0.125rem;
+    --radius-base: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-full: 9999px;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+    /* --- Layout & Typography (for future extensibility) --- */
+    --font-sans: ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", "Roboto Mono", monospace;
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --leading-tight: 1.25;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+}
+
+/* ========================================
+   2. BRIGHTNESS OVERRIDES (DARK MODE)
+   ======================================== */
+.theme-dark {
+    color-scheme: dark;
+    /* Tells browser to use native dark scrollbars, form controls etc. */
+    --surface-bg: var(--gray-800);
+    --surface-bg-50: var(--gray-700);
+    /* In dark mode, bg-50 is often the darkest card */
+    --surface-bg-100: var(--gray-800);
+    --surface-bg-200: var(--gray-900);
+    --surface-bg-700: var(--gray-700);
+    --surface-bg-800: var(--gray-800);
+    --surface-bg-900: var(--gray-900);
+    --surface-text: var(--gray-300);
+    --surface-text-100: var(--gray-100);
+    --surface-text-200: var(--gray-200);
+    --surface-text-300: var(--gray-300);
+    --surface-text-400: var(--gray-400);
+    --surface-text-500: var(--gray-500);
+    --surface-text-600: var(--gray-600);
+    --surface-text-700: var(--gray-700);
+    --surface-text-secondary: var(--gray-400);
+    --surface-border: var(--gray-700);
+    --surface-border-strong: var(--gray-300);
+
+    /* Adjust Semantic Colors for Dark Mode */
+    --success-hue-400: var(--green-400);
+    --info-hue-400: var(--sky-400);
+    --warning-hue-400: var(--yellow-400);
+    --danger-hue-400: var(--red-400);
+
+    /* Shadows in Dark Mode */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+
+    min-height: 100vh;
+    color: rgb(var(--surface-text));
+}
+
+/* ========================================
+   3. HUE OVERRIDES (COLOR THEMES)
+   ======================================== */
+/* (All theme color definitions from v3.2 are kept here, omitted for brevity but should be included) */
+/* --- Red Theme --- */
+.theme-red {
+    --primary-hue-500: var(--red-500);
+    --secondary-hue-500: var(--rose-500);
+    --accent-hue: var(--teal-100);
+}
+
+/* --- Orange Theme --- */
+.theme-orange {
+    --primary-hue-500: var(--orange-500);
+    --secondary-hue-500: var(--amber-500);
+    --accent-hue: var(--slate-100);
+}
+
+/* --- Amber Theme --- */
+.theme-amber {
+    --primary-hue-500: var(--amber-500);
+    --secondary-hue-500: var(--yellow-500);
+    --accent-hue: var(--indigo-100);
+}
+
+/* --- Yellow Theme --- */
+.theme-yellow {
+    --primary-hue-500: var(--yellow-500);
+    --secondary-hue-500: var(--lime-500);
+    --accent-hue: var(--purple-100);
+}
+
+/* --- Lime Theme --- */
+.theme-lime {
+    --primary-hue-500: var(--lime-500);
+    --secondary-hue-500: var(--green-500);
+    --accent-hue: var(--fuchsia-100);
+}
+
+/* --- Green Theme --- */
+.theme-green {
+    --primary-hue-500: var(--green-500);
+    --secondary-hue-500: var(--emerald-500);
+    --accent-hue: var(--red-100);
+}
+
+/* --- Emerald Theme --- */
+.theme-emerald {
+    --primary-hue-500: var(--emerald-500);
+    --secondary-hue-500: var(--teal-500);
+    --accent-hue: var(--rose-100);
+}
+
+/* --- Teal Theme --- */
+.theme-teal {
+    --primary-hue-500: var(--teal-500);
+    --secondary-hue-500: var(--cyan-500);
+    --accent-hue: var(--orange-100);
+}
+
+/* --- Cyan Theme --- */
+.theme-cyan {
+    --primary-hue-500: var(--cyan-500);
+    --secondary-hue-500: var(--sky-500);
+    --accent-hue: var(--red-200);
+}
+
+/* --- Sky Theme --- */
+.theme-sky {
+    --primary-hue-500: var(--sky-500);
+    --secondary-hue-500: var(--blue-500);
+    --accent-hue: var(--orange-200);
+}
+
+/* --- Blue Theme --- */
+.theme-blue {
+    --primary-hue-500: var(--blue-500);
+    --secondary-hue-500: var(--violet-500);
+    --accent-hue: var(--amber-100);
+}
+
+/* --- Indigo Theme --- */
+.theme-indigo {
+    --primary-hue-500: var(--indigo-500);
+    --secondary-hue-500: var(--purple-500);
+    --accent-hue: var(--lime-100);
+}
+
+/* --- Violet Theme --- */
+.theme-violet {
+    --primary-hue-500: var(--violet-500);
+    --secondary-hue-500: var(--purple-500);
+    --accent-hue: var(--yellow-100);
+}
+
+/* --- Purple Theme --- */
+.theme-purple {
+    --primary-hue-500: var(--purple-500);
+    --secondary-hue-500: var(--fuchsia-500);
+    --accent-hue: var(--green-200);
+}
+
+/* --- Fuchsia Theme --- */
+.theme-fuchsia {
+    --primary-hue-500: var(--fuchsia-500);
+    --secondary-hue-500: var(--pink-500);
+    --accent-hue: var(--teal-200);
+}
+
+/* --- Pink Theme --- */
+.theme-pink {
+    --primary-hue-500: var(--pink-500);
+    --secondary-hue-500: var(--rose-500);
+    --accent-hue: var(--emerald-200);
+}
+
+/* --- Rose Theme --- */
+.theme-rose {
+    --primary-hue-500: var(--rose-500);
+    --secondary-hue-500: var(--pink-500);
+    --accent-hue: var(--cyan-200);
+}
+
+
+/* ========================================
+   4. SEMANTIC UTILITY CLASSES (THE BRIDGE) - COMPREHENSIVE
+   ======================================== */
+
+/* --- Background Colors --- */
+.bg-surface {
+    --bg-opacity: 1;
+    background-color: rgb(var(--surface-bg) / var(--bg-opacity));
+}
+
+.bg-surface-50 {
+    --bg-opacity: 1;
+    background-color: rgb(var(--surface-bg-50) / var(--bg-opacity));
+}
+
+.bg-surface-100 {
+    --bg-opacity: 1;
+    background-color: rgb(var(--surface-bg-100) / var(--bg-opacity));
+}
+
+.bg-surface-200 {
+    --bg-opacity: 1;
+    background-color: rgb(var(--surface-bg-200) / var(--bg-opacity));
+}
+.btn-outline.btn-primary{
+    background-color: transparent !important;
+}
+.btn-outline.btn-primary:hover{
+    --bg-opacity:1 !important;
+}
+.bg-primary,
+.bg-theme-primary，
+.focus-bg-primary:focus,
+.btn-primary,
+.btn-outline.btn-primary:hover{
+    --bg-opacity:1;
+    background-color: rgb(var(--primary-hue-500) / var(--bg-opacity)) !important;
+}
+.btn-primary,
+.btn-secondary{
+    color: rgb(var(--white));
+}
+.bg-secondary,
+.bg-theme-secondary,
+.focus-bg-secondary:focus,
+.btn-secondary,
+.btn-outline.btn-secondary:hover{
+    --bg-opacity:1;
+    background-color: rgb(var(--secondary-hue-500) / var(--bg-opacity));
+}
+.bg-accent,
+.focus-bg-accent:focus {
+    --bg-opacity:1;
+    background-color: rgb(var(--accent-hue) / var(--bg-opacity));
+}
+.hover-btn-primary:hover,
+.hover-bg-primary:hover,
+.hover-bg-secondary:hover,
+.hover-bg-accent:hover{
+    --bg-opacity:0.8;
+}
+.btn-secondary.btn-outline:hover,
+.btn-primary.btn-outline:hover{
+    --bg-opacity:1;
+}
+/* --- Text Colors --- */
+.text-surface,
+.hover-text-surface:hover,
+.focus-text-surface:focus {
+    color: rgb(var(--surface-text));
+}
+
+.text-surface-secondary {
+    color: rgb(var(--surface-text-secondary));
+}
+
+.text-primary,
+.text-theme-primary,
+.hover-text-primary:hover,
+.focus-text-primary:focus {
+    color: rgb(var(--primary-hue-500));
+}
+
+.text-secondary,
+.text-theme-secondary,
+.hover-text-secondary:hover,
+.focus-text-secondary:focus {
+    color: rgb(var(--secondary-hue-500));
+}
+
+.text-accent,
+.hover-text-accent:hover,
+.focus-text-accent:focus {
+    color: rgb(var(--accent-hue));
+}
+
+/* --- Border Colors --- */
+.border-surface,
+.hover-border-surface:hover,
+.focus-border-surface:focus {
+    border-color: rgb(var(--surface-border));
+}
+
+.border-surface-strong,
+.hover-border-surface-strong:hover,
+.focus-border-surface-strong:focus {
+    border-color: rgb(var(--surface-border-strong));
+}
+
+.border-primary,
+.hover-border-primary:hover,
+.focus-border-primary:focus,
+.btn-primary.btn-outline{
+    border-color: rgb(var(--primary-hue-500));
+}
+
+.border-secondary,
+.hover-border-secondary:hover,
+.focus-border-secondary:focus {
+    border-color: rgb(var(--secondary-hue-500));
+}
+
+.border-accent,
+.hover-border-accent:hover,
+.focus-border-accent:focus {
+    border-color: rgb(var(--accent-hue));
+}
+
+/* --- Ring Colors --- */
+.ring-primary,
+.hover-ring-primary:hover,
+.focus-ring-primary:focus,
+.focus-visible-ring-primary:focus-visible {
+    --ring-color: rgb(var(--primary-hue-500));
+}
+
+.ring-secondary,
+.hover-ring-secondary:hover,
+.focus-ring-secondary:focus,
+.focus-visible-ring-secondary:focus-visible {
+    --ring-color: rgb(var(--secondary-hue-500));
+}
+
+/* ========================================
+   5. COMPONENT-SPECIFIC OVERRIDES (THEMED & DARK MODE) - COMPREHENSIVE
+   ======================================== */
+
+/* --- Global Scrollbar --- */
+::-webkit-scrollbar-track {
+    background: rgb(var(--surface-bg-100));
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(var(--surface-text-400));
+    border-radius: var(--radius-base);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--surface-text-500));
+}
+
+.theme-dark ::-webkit-scrollbar-track {
+    background: rgba(55, 65, 81, 0.5);
+}
+
+.theme-dark ::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.7);
+}
+
+.theme-dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(209, 213, 219, 0.8);
+}
+.theme-picker-trigger .color-dot-indicator.active {
+  border-color: rgb(var(--surface-text-secondary));
+}
+.theme-picker-dropdown.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* --- 悬浮菜单 --- */
+.theme-picker-menu {
+  top: calc(100% + 0.5rem);
+  /* 定位在按钮下方，留出间距 */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  /* 确保在最上层 */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.theme-picker-dropdown.open .theme-picker-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* --- 颜色网格 --- */
+.theme-picker-grid {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.theme-picker-grid .color-dot:hover {
+  transform: scale(1.15);
+}
+
+.theme-picker-grid .color-dot.active {
+  border-color: rgb(var(--surface-text));
+  box-shadow: 0 0 0 3px rgb(var(--surface-bg));
+  /* 创建一个“空心圆”效果 */
+}
+
+
+/* --- Dark Mode Component Adaptations --- */
+.theme-dark {
+
+    /* --- Forms --- */
+    input:not([type="checkbox"]):not([type="radio"]),
+    textarea,
+    select {
+        background-color: rgb(var(--surface-bg));
+        color: rgb(var(--surface-text));
+        border-color: rgb(var(--surface-border));
+        box-shadow: var(--shadow-sm);
+    }
+
+    input:not([type="checkbox"]):not([type="radio"]):focus,
+    textarea:focus,
+    select:focus {
+        border-color: rgb(var(--primary-hue-500));
+        box-shadow: 0 0 0 1px rgb(var(--primary-hue-500));
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: rgb(var(--surface-text-500));
+    }
+
+    .form-group label {
+        color: rgb(var(--surface-text-secondary));
+    }
+
+    /* --- Buttons --- */
+    .btn-base {
+        background-color: rgb(var(--surface-bg-100));
+        color: rgb(var(--surface-text));
+        border-color: rgb(var(--surface-border));
+    }
+
+    .btn-base:hover {
+        background-color: rgb(var(--surface-bg-200));
+        color: rgb(var(--surface-text));
+    }
+
+    .btn-primary {
+        background-color: rgb(var(--primary-hue-500));
+        color: rgb(var(--white));
+    }
+
+    .btn-primary:hover {
+        background-color: rgb(var(--primary-hue-600));
+    }
+
+    .btn-secondary {
+        background-color: rgb(var(--secondary-hue-500));
+        color: rgb(var(--white));
+    }
+
+    .btn-success {
+        background-color: rgb(var(--success-hue-500));
+        color: rgb(var(--white));
+    }
+
+    .btn-danger {
+        background-color: rgb(var(--danger-hue-500));
+        color: rgb(var(--white));
+    }
+
+    .btn-ghost {
+        background-color: transparent;
+        color: rgb(var(--surface-text));
+        border-color: transparent;
+    }
+
+    .btn-ghost:hover {
+        background-color: rgb(var(--surface-bg-200));
+        color: rgb(var(--primary-hue-500));
+    }
+
+    /* --- Cards, Panels, Modals --- */
+    .card,
+    .panel,
+    .modal-content,
+    .dropdown-menu,
+    .popover-content {
+        background-color: rgb(var(--surface-bg));
+        border-color: rgb(var(--surface-border));
+        box-shadow: var(--shadow-lg);
+        color: rgb(var(--surface-text));
+    }
+
+    .panel-header,
+    .modal-header {
+        background-color: rgb(var(--surface-bg-50));
+        border-bottom-color: rgb(var(--surface-border));
+    }
+    .card-header{
+        border-bottom-color: rgb(var(--surface-border));
+    }
+    /* --- Tables --- */
+    .table {
+        border-color: rgb(var(--surface-border));
+    }
+
+    .table th {
+        background-color: rgb(var(--surface-bg-50));
+        color: rgb(var(--surface-text));
+    }
+
+    .table td {
+        background-color: rgb(var(--surface-bg-100));
+        color: rgb(var(--surface-text));
+    }
+
+    .table.striped tbody tr:nth-child(odd) td,
+    table tbody tr:hover,
+     table.striped tbody tr:nth-child(odd){
+        background-color: rgb(var(--surface-bg-700));
+    }
+
+    .table tbody tr:hover td {
+        background-color: rgb(var(--surface-bg-700));
+    }
+
+    /* --- Tabs & Breadcrumbs --- */
+    .tabs-nav {
+        background-color: rgb(var(--surface-bg-700));
+        border-bottom-color: rgb(var(--surface-border));
+    }
+
+    .tabs-item {
+        color: rgb(var(--surface-text-secondary));
+    }
+
+    .tabs-item:hover,
+    .tabs-item.tabs-active:hover {
+        color: rgb(var(--primary-hue-500));
+        background-color: rgb(var(--surface-bg-200));
+    }
+
+    .tabs-item.tabs-active {
+        color: rgb(var(--surface-text));
+        border-bottom-color: rgb(var(--primary-hue-500));
+    }
+
+    .breadcrumb {
+        background-color: transparent;
+    }
+
+    .breadcrumb-item a {
+        color: rgb(var(--surface-text-secondary));
+    }
+
+    .breadcrumb-item a:hover {
+        color: rgb(var(--primary-hue-500));
+    }
+
+    /* --- Alerts, Badges --- */
+    .alert,
+    .badge {
+        border-left-width: 4px;
+        border-style: solid;
+    }
+
+    .alert-success,
+    .badge-success {
+        background-color: rgba(var(--success-hue-100), 0.2);
+        border-color: rgb(var(--success-hue-500));
+        color: rgb(var(--success-hue-700));
+    }
+
+    .alert-info,
+    .badge-info {
+        background-color: rgba(var(--info-hue-100), 0.2);
+        border-color: rgb(var(--info-hue-500));
+        color: rgb(var(--info-hue-700));
+    }
+
+    .alert-warning,
+    .badge-warning {
+        background-color: rgba(var(--warning-hue-100), 0.2);
+        border-color: rgb(var(--warning-hue-500));
+        color: rgb(var(--warning-hue-700));
+    }
+
+    .alert-danger,
+    .badge-danger {
+        background-color: rgba(var(--danger-hue-100), 0.2);
+        border-color: rgb(var(--danger-hue-500));
+        color: rgb(var(--danger-hue-700));
+    }
+
+    /* --- Dropdowns, Popovers, Tooltips --- */
+    .dropdown-item {
+        color: rgb(var(--surface-text));
+    }
+
+    .dropdown-item:hover {
+        background-color: rgb(var(--surface-bg-200));
+        color: rgb(var(--primary-hue-500));
+    }
+
+    .dropdown-divider {
+        border-color: rgb(var(--surface-border));
+    }
+
+    /* --- Pagination --- */
+    .pagination-item {
+        background-color: rgb(var(--surface-bg-100));
+        color: rgb(var(--surface-text));
+        border-color: rgb(var(--surface-border));
+    }
+
+    .pagination-item:hover {
+        background-color: rgb(var(--surface-bg-200));
+        color: rgb(var(--primary-hue-500));
+    }
+
+    .pagination-item.active {
+        background-color: rgb(var(--primary-hue-500));
+        color: rgb(var(--white));
+        border-color: rgb(var(--primary-hue-500));
+    }
+
+    /* --- Blockquote --- */
+    blockquote {
+        border-left-color: rgb(var(--primary-hue-500));
+        color: rgb(var(--surface-text-secondary));
+        background-color: rgb(var(--surface-bg-50));
+    }
+
+    cite {
+        color: rgb(var(--surface-text-500));
+    }
+
+    /* --- Border --- */
+    .border-strong{
+        border-color: rgb(var(--surface-border));
+    }
+}
+
+/* ========================================
+   6. ACCESSIBILITY & ADVANCED THEMING UTILITIES
+   ======================================== */
+
+/* --- High Contrast Mode --- */
+@media (prefers-contrast: high) {
+    :root {
+        --surface-border: var(--surface-text-200);
+        --surface-border-strong: var(--surface-text-700);
+        --primary-hue-600: var(--primary-hue-700);
+        /* Make hover/active states more distinct */
+    }
+
+    .theme-dark {
+        --surface-border: var(--surface-text-700);
+        --surface-border-strong: var(--surface-text-400);
+    }
+}
+
+/* --- Reduce Motion --- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

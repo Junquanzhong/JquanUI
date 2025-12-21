@@ -1,0 +1,106 @@
+/*
+ * =================================================================
+ * 书签导航 V3 - 主题系统
+ * =================================================================
+ * 
+ * 使用 CSS 变量实现主题切换，便于扩展和自定义。
+ * 
+ */
+
+/* --- 默认深色主题 (Dark Mode) --- */
+:root {
+    /* 背景 */
+    --bg-primary: #111827; /* body, main bg */
+    --bg-secondary: #1f2937; /* sidebar, card bg */
+    --bg-tertiary: #374151; /* hover bg, input bg */
+    
+    /* 文本 */
+    --text-primary: #f3f4f6; /* main text */
+    --text-secondary: #d1d5db; /* secondary text */
+    --text-tertiary: #9ca3af; /* muted text, icons */
+    
+    /* 边框和分割线 */
+    --border-color: #374151;
+    --border-color-hover: #3b82f6;
+
+    /* 强调色 */
+    --accent-color: #3b82f6; /* blue-500 */
+    --accent-color-hover: #2563eb; /* blue-600 */
+
+    /* 滚动条 */
+    --scrollbar-track: #1f2937;
+    --scrollbar-thumb: #4b5563;
+    --scrollbar-thumb-hover: #6b7280;
+}
+
+/* --- 浅色主题 (Light Mode) --- */
+[data-theme="light"] {
+    /* 背景 */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #e5e7eb;
+
+    /* 文本 */
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-tertiary: #6b7280;
+
+    /* 边框和分割线 */
+    --border-color: #e5e7eb;
+    --border-color-hover: #3b82f6;
+
+    /* 强调色 (保持不变) */
+    --accent-color: #3b82f6;
+    --accent-color-hover: #2563eb;
+    
+    /* 滚动条 */
+    --scrollbar-track: #f3f4f6;
+    --scrollbar-thumb: #d1d5db;
+    --scrollbar-thumb-hover: #9ca3af;
+}
+
+/* --- 应用 CSS 变量到元素上 --- */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+aside {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.card-bg {
+    background-color: var(--bg-secondary);
+}
+.card-hover-bg:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+
+.border-custom { border-color: var(--border-color); }
+.border-custom-hover:hover { border-color: var(--border-color-hover); }
+
+.bg-accent { background-color: var(--accent-color); }
+.bg-accent-hover:hover { background-color: var(--accent-color-hover); }
+
+.bg-tertiary { background-color: var(--bg-tertiary); }
+.bg-tertiary-hover:hover { background-color: var(--bg-tertiary); }
+
+/* 滚动条 */
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+
+/* 特殊元素的渐变 */
+.bg-gradient-text {
+    background: linear-gradient(to right, var(--accent-color), #a855f7); /* purple-500 */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Tailwind 覆盖 */
+.focus\\:border-blue-500:focus { border-color: var(--accent-color); }

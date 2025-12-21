@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body class="theme-indigo">
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+            <li class="active">色彩</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">主色渐变</cite>
+                </div>
+                <div class="card-body">
+                    <p class="leading-6">预设渐变调色板：提供与 Tailwind 兼容的渐变色系（如 slate、blue、emerald 等）</p>
+                    <p class="leading-6">方向控制：支持线性渐变方向（bg-gradient-to-t / to-r / to-br 等）</p>
+                    <p class="leading-6">颜色强度：每个颜色提供 50-900 的强度等级（如 from-blue-500）</p>
+                    <p class="leading-6">双色渐变：支持自定义颜色和位置（如 bg-gradient-to-r from-blue-500 to-green-500）</p>
+                    <p class="leading-6">三色渐变：支持自定义颜色和位置（如 bg-gradient-to-r from-green-400 via-yellow-200 to-blue-400）</p>
+                    <ul class="list-none auto-grid auto-grid-fill auto-grid-xl mt-3">
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-red-500 to-orange-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-red-500 to-orange-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">red-500→orange-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-rose-400 to-red-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-rose-400 to-red-500" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">rose-400→red-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-pink-500 to-rose-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-pink-500 to-rose-500" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">pink-500→rose-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-amber-200 to-yellow-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-amber-200 to-yellow-400" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">amber-200→yellow-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-amber-200 to-yellow-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-amber-200 to-yellow-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">amber-200→yellow-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-amber-500 to-pink-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-amber-500 to-pink-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">amber-500→pink-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-violet-200 to-pink-200 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-violet-200 to-pink-200" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">violet-200→pink-200</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-200 to-cyan-200 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-200 to-cyan-200" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">blue-200→cyan-200</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-teal-200 to-teal-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-teal-200 to-teal-500" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">teal-200→teal-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-lime-400 to-lime-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-lime-400 to-lime-500" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">lime-400→lime-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-teal-400 to-yellow-200 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-teal-400 to-yellow-200" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">teal-400→yellow-200</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-emerald-400 to-cyan-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-emerald-400 to-cyan-400" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">emerald-400→cyan-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-indigo-400 to-cyan-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-indigo-400 to-cyan-400" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">indigo-400→cyan-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-cyan-500 to-blue-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-cyan-500 to-blue-500" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">cyan-500→blue-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-indigo-500 to-blue-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-indigo-500 to-blue-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">indigo-500→blue-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-600 to-violet-600 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-600 to-violet-600" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">blue-600→violet-600</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-fuchsia-500 to-cyan-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-fuchsia-500 to-cyan-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">fuchsia-500→cyan-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-fuchsia-600 to-pink-600 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-fuchsia-600 to-pink-600" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">fuchsia-600→pink-600</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-fuchsia-600 to-purple-600 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-fuchsia-600 to-purple-600" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">fuchsia-600→purple-600</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-fuchsia-500 to-pink-500 to-indigo-600 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-fuchsia-500 to-pink-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">fuchsia-500→pink-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-violet-500 to-purple-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-violet-500 to-purple-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">violet-500→purple-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-violet-600 to-indigo-600 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-violet-600 to-indigo-600" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">violet-600→indigo-600</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-purple-500 to-purple-900 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-purple-500 to-purple-900" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">purple-500→purple-900</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-800 to-indigo-900 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-800 to-indigo-900" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">blue-800→indigo-900</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-neutral-300 to-stone-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-neutral-300 to-stone-400" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">neutral-300→stone-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-stone-500 to-stone-700 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-stone-500 to-stone-700" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">stone-500→stone-700</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-slate-300 to-slate-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-slate-300 to-slate-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">slate-300→slate-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-emerald-500 to-emerald-900 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-emerald-500 to-emerald-900" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">emerald-500→emerald-900</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-slate-900 to-slate-700 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-slate-900 to-slate-700" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">slate-500→slate-800</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-slate-900 to-slate-700 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-slate-900 to-slate-700" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">slate-900→slate-700</p>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">单色系渐变</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none auto-grid auto-grid-fill auto-grid-xl mt-3">
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-900 to-blue-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-900 to-blue-300" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">blue-900→blue-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-green-800 via-green-600 to-green-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-green-800 via-green-600 to-green-400"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">green-800→green-600→green-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-orange-700 via-orange-500 to-orange-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-orange-700 via-orange-500 to-orange-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">orange-700→orange-500→orange-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-purple-900 via-purple-600 to-purple-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-purple-900 via-purple-600 to-purple-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">purple-900→purple-600→purple-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-red-800 via-red-600 to-red-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-red-800 via-red-600 to-red-400"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">red-800→red-600→red-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-teal-700 via-teal-500 to-teal-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-teal-700 via-teal-500 to-teal-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">teal-700→teal-500→teal-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-pink-700 via-pink-500 to-pink-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-pink-700 via-pink-500 to-pink-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">pink-700→pink-500→pink-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-gray-800 via-gray-600 to-gray-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-gray-800 via-gray-600 to-gray-400"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">gray-800→gray-600→gray-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-indigo-900 via-indigo-600 to-indigo-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-indigo-900 via-indigo-600 to-indigo-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">indigo-900→indigo-600→indigo-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-yellow-400 to-yellow-200 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-yellow-400 to-yellow-200" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">yellow-400→yellow-200</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-cyan-700 via-cyan-500 to-cyan-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-cyan-700 via-cyan-500 to-cyan-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">cyan-700→cyan-500→cyan-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-lime-700 via-lime-500 to-lime-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-lime-700 via-lime-500 to-lime-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">lime-700→lime-500→lime-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-amber-700 via-amber-500 to-amber-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-amber-700 via-amber-500 to-amber-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">amber-700→amber-500→amber-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-emerald-500 to-emerald-900 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-emerald-500 to-emerald-900" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">emerald-500→emerald-900</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-fuchsia-700 via-fuchsia-500 to-fuchsia-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-fuchsia-700 via-fuchsia-500 to-fuchsia-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">fuchsia-700→fuchsia-500→fuchsia-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-rose-700 via-rose-500 to-rose-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-rose-700 via-rose-500 to-rose-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">rose-700→rose-500→rose-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-violet-800 via-violet-600 to-violet-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-violet-800 via-violet-600 to-violet-400"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">violet-800→violet-600→violet-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-sky-700 via-sky-500 to-sky-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-sky-700 via-sky-500 to-sky-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">sky-700→sky-500→sky-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-slate-300 to-slate-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-slate-300 to-slate-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">slate-300→slate-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-stone-700 via-stone-500 to-stone-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-stone-700 via-stone-500 to-stone-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">stone-700→stone-500→stone-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-zinc-700 via-zinc-500 to-zinc-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-zinc-700 via-zinc-500 to-zinc-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">zinc-700→zinc-500→zinc-300</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">双色系渐变</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none auto-grid auto-grid-fill auto-grid-xl mt-3">
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-900 to-purple-900 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-900 to-purple-900" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">blue-900→purple-900</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-orange-500 to-pink-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-orange-500 to-pink-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">orange-500→pink-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-green-700 to-teal-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-green-700 to-teal-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">green-700→teal-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-400 to-cyan-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-400 to-cyan-300" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">blue-400→cyan-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-yellow-200 to-orange-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-yellow-200 to-orange-400" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">yellow-200→orange-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-pink-600 to-purple-600 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-pink-600 to-purple-600" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">pink-600→purple-600</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-green-900 to-emerald-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-green-900 to-emerald-300" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">green-900→emerald-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-red-700 to-orange-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-red-700 to-orange-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">red-700→orange-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-100 to-indigo-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-100 to-indigo-300" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">blue-100→indigo-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-yellow-400 to-orange-600 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-yellow-400 to-orange-600" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">yellow-400→orange-600</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-gray-400 to-blue-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-gray-400 to-blue-500" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">gray-400→blue-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-pink-200 to-red-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-pink-200 to-red-400" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">pink-200→red-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-800 to-teal-600 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-800 to-teal-600" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">blue-800→teal-600</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-yellow-600 to-red-600 to-pink-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-yellow-600 to-red-600" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">yellow-600→red-600</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-purple-300 to-indigo-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-purple-300 to-indigo-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">purple-300→indigo-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-yellow-300 to-lime-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-yellow-300 to-lime-500" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">yellow-300→lime-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-600 to-purple-800 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-600 to-purple-800" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">blue-600→purple-800</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-orange-200 to-pink-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-orange-200 to-pink-300" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">orange-200→pink-300</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-cyan-400 to-blue-600 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-cyan-400 to-blue-600" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">cyan-400→blue-600</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-amber-700 to-green-700 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-amber-700 to-green-700" onclick=" setupCopyOnClick();">
+                            </div>
+                            <p class="mt-3">amber-700→green-700</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-rose-700 to-pink-700 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-rose-700 to-pink-700" onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">rose-700→pink-700 </p>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">三色系渐变</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none auto-grid auto-grid-fill auto-grid-xl mt-3">
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-red-500 via-yellow-300 to-blue-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-red-500 via-yellow-300 to-blue-500"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">red-500→yellow-300→blue-500</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-green-400 via-yellow-200 to-blue-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-green-400 via-yellow-200 to-blue-400"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">green-400→yellow-200→blue-400</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-orange-500 via-pink-400 to-purple-600 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-orange-500 via-pink-400 to-purple-600"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">orange-500→pink-400→purple-600</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-900 via-teal-500 to-cyan-200 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-900 via-teal-500 to-cyan-200"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">blue-900→teal-500→cyan-200</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-yellow-500 via-orange-600 to-red-700 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-yellow-500 via-orange-600 to-red-700"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">yellow-500→orange-600→red-700</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-pink-300 via-yellow-200 to-green-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-pink-300 via-yellow-200 to-green-400"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">pink-300→yellow-200→green-400</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-purple-800 via-pink-500 to-indigo-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-purple-800 via-pink-500 to-indigo-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">purple-800→pink-500→indigo-300</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-500 via-purple-400 to-red-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-500 via-purple-400 to-red-500"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">blue-500→purple-400→red-500</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-600 via-purple-500 to-pink-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-600 via-purple-500 to-pink-400"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">blue-600→purple-500→pink-400</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-amber-600 via-green-500 to-yellow-200 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-amber-600 via-green-500 to-yellow-200"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">amber-600→green-500→yellow-200</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-pink-400 via-yellow-300 to-cyan-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-pink-400 via-yellow-300 to-cyan-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">pink-400→yellow-300→cyan-300</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-900 via-purple-700 to-pink-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-900 via-purple-700 to-pink-500"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">blue-900→purple-700→pink-500</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-yellow-400 via-green-300 to-orange-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-yellow-400 via-green-300 to-orange-500"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">yellow-400→green-300→orange-500</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-purple-400 via-pink-300 to-red-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-purple-400 via-pink-300 to-red-400"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">purple-400→pink-300→red-400</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-600 via-orange-400 to-pink-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-600 via-orange-400 to-pink-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">blue-600→orange-400→pink-300</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-green-800 via-lime-500 to-yellow-300 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-green-800 via-lime-500 to-yellow-300"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">green-800→lime-500→yellow-300</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-orange-300 via-pink-200 to-purple-400 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-orange-300 via-pink-200 to-purple-400"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">orange-300→pink-200→purple-400</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-blue-400 via-teal-300 to-green-200 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-blue-400 via-teal-300 to-green-200"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">blue-400→teal-300→green-200</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-amber-400 via-orange-300 to-yellow-200 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-amber-400 via-orange-300 to-yellow-200"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">amber-400→orange-300→yellow-200</p>
+                        </li>
+
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-gray-400 via-purple-300 to-blue-200 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-gray-400 via-purple-300 to-blue-200"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">gray-400→purple-300→blue-200</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500"
+                                onclick=" setupCopyOnClick();"></div>
+                            <p class="mt-3">rose-500→fuchsia-500→violet-500</p>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">V1.3渐变</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none auto-grid auto-grid-fill auto-grid-xl mt-3">
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-seasalt radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-seasalt" onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">seasalt</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-taurine radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-taurine" onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">taurine</p>
+                        </li>
+                        <!-- Blueberry -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-blueberry radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-blueberry"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">blueberry</p>
+                        </li>
+
+                        <!-- Strawberry -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-strawberry radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-strawberry"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">strawberry</p>
+                        </li>
+
+                        <!-- Cranberry -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-cranberry radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-cranberry"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">cranberry</p>
+                        </li>
+
+                        <!-- Lemon -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-lemon radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-lemon"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">lemon</p>
+                        </li>
+
+                        <!-- Violetblue -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-violetblue radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-violetblue"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">violetblue</p>
+                        </li>
+
+                        <!-- Basalt -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-basalt radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-basalt"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">basalt</p>
+                        </li>
+
+                        <!-- Iceblue -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-iceblue radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-iceblue"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">iceblue</p>
+                        </li>
+
+                        <!-- Straw -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-straw radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-straw"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">straw</p>
+                        </li>
+
+                        <!-- Fireunicorn -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-fireunicorn radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-fireunicorn"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">fireunicorn</p>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">V1.3发光渐变（仅1.3生效，上面新增加的Tailwind渐变不生效）</cite>
+                </div>
+                <div class="card-body">
+                    <p>追加 <span class="tags radius">glowing</span> 实现发光</p>
+                    <ul class="list-none auto-grid auto-grid-fill auto-grid-xl mt-3">
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-seasalt glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-seasalt glowing" onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">seasalt</p>
+                        </li>
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-taurine glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-taurine glowing" onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">taurine</p>
+                        </li>
+                        <!-- Blueberry -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-blueberry glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-blueberry glowing"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">blueberry</p>
+                        </li>
+
+                        <!-- Strawberry -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-strawberry glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-strawberry glowing"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">strawberry</p>
+                        </li>
+
+                        <!-- Cranberry -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-cranberry glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-cranberry glowing"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">cranberry</p>
+                        </li>
+
+                        <!-- Lemon -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-lemon glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-lemon glowing"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">lemon</p>
+                        </li>
+
+                        <!-- Violetblue -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-violetblue glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-violetblue glowing"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">violetblue</p>
+                        </li>
+
+                        <!-- Basalt -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-basalt glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-basalt glowing"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">basalt</p>
+                        </li>
+
+                        <!-- Iceblue -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-iceblue glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-iceblue glowing"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">iceblue</p>
+                        </li>
+
+                        <!-- Straw -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-straw glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-straw glowing"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">straw</p>
+                        </li>
+
+                        <!-- Fireunicorn -->
+                        <li class="p-1 h-40 pb-5 mb-3">
+                            <div class="bg-gradient bg-fireunicorn glowing radius h-full cursor-pointer text-center"
+                                data-copy="bg-gradient bg-fireunicorn glowing"
+                                onclick="setupCopyOnClick();"></div>
+                            <p class="mt-3">fireunicorn</p>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

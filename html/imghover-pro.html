@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>效果</a></li>
+            <li class="active">图片悬停</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">图片条纹遮罩层动画特效</cite>
+                </div>
+                <div class="card-body">
+                    <div id="demo" class="w-full max-w-2xl mx-auto border border-strong p-3 mt-5 rounded-md">
+                        <div class="flex justify-center mb-3">
+                            <nav class="tabs-nav p-2 bg-gray-100 rounded-lg space-x-2">
+                                <span class="tabs-item rounded-md text-sm center inline-block"><i
+                                        class='bxr bx-eye align-middle'></i> 预览</span>
+                                <span class="tabs-item rounded-md text-sm center inline-block"><i
+                                        class='bxr bx-code align-middle'></i> 代码</span>
+                            </nav>
+                        </div>
+                        <div class="tabs-content">
+                            <div class="tabs-track">
+                                <section class="tabs-panel">
+                                    <ul class="list-none auto-grid auto-grid-fill auto-grid-lg">
+                                        <li class="imghover">
+                                            <div
+                                                class="relative overflow-hidden rounded-lg bg-gradient-to-r from-teal-400 to-yellow-200">
+                                                <img src="https://www.jquan.win/upload/20250715/0841b19e993748.webp"
+                                                    class="w-full h-auto ">
+                                                <div class="text-white text-center w-full absolute top-1/2 left-1/2 z-1">
+                                                    <a href="">
+                                                        <h3 class="text-xl font-bold mb-0.5">Williamson</h3>
+                                                    </a>
+                                                    <a href=""><span class="text-md block">Web designer</span></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="imghover">
+                                            <div
+                                                class="relative overflow-hidden rounded-lg bg-gradient-to-r from-orange-200 to-pink-300">
+                                                <img src="https://www.jquan.win/upload/20250709/ffc6b3abbf7121.webp">
+                                                <div class="text-white text-center w-full absolute top-1/2 left-1/2 z-1">
+                                                    <a href="">
+                                                        <h3 class="text-xl font-bold mb-0.5">Miranda Roy</h3>
+                                                    </a>
+                                                    <a href=""><span class="text-md block">Web designer</span></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="imghover">
+                                            <div class="relative overflow-hidden rounded-lg bg-gradient violetblue glowing">
+                                                <img class="img-clip image-clip-5"
+                                                    src="https://www.jquan.win/upload/20250625/f97dccbe3dd807.webp">
+                                                <div class="text-white text-center w-full absolute top-1/2 left-1/2 z-1">
+                                                    <a href="">
+                                                        <h3 class="text-xl font-bold mb-0.5">Steve Thomas</h3>
+                                                    </a>
+                                                    <a href=""><span class="text-md block">Web developer</span></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </section>
+                                <section class="tabs-panel overflow-auto">
+                                    <div class="codeblock codeblock-line-numbers border border-strong rounded-md h-full">
+                                        <pre><code class="code-block" data-language="html" data-show-lines="true">&lt;ul class="list-none auto-grid auto-grid-fill auto-grid-lg"&gt;
+        &lt;li class="imghover"&gt;
+            &lt;div class="relative overflow-hidden rounded-lg bg-gradient-to-r from-teal-400 to-yellow-200"&gt;
+                &lt;img src="https://www.jquan.win/upload/20250715/0841b19e993748.webp" class="w-full h-auto "&gt;
+                &lt;div class="text-white text-center w-full absolute top-1/2 left-1/2 z-1"&gt;
+                    &lt;a href=""&gt;&lt;h3 class="text-xl font-bold mb-0.5"&gt;Williamson&lt;/h3&gt;&lt;/a&gt;
+                    &lt;a href=""&gt;&lt;span class="text-md block"&gt;Web designer&lt;/span&gt;&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class="imghover"&gt;
+            &lt;div class="relative overflow-hidden rounded-lg bg-gradient-to-r from-orange-200 to-pink-300"&gt;
+                &lt;img src="https://www.jquan.win/upload/20250709/ffc6b3abbf7121.webp"&gt;
+                &lt;div class="text-white text-center w-full absolute top-1/2 left-1/2 z-1"&gt;
+                    &lt;a href=""&gt;&lt;h3 class="text-xl font-bold mb-0.5"&gt;Miranda Roy&lt;/h3&gt;&lt;/a&gt;
+                    &lt;a href=""&gt;&lt;span class="text-md block"&gt;Web designer&lt;/span&gt;&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class="imghover"&gt;
+            &lt;div class="relative overflow-hidden rounded-lg bg-gradient violetblue glowing"&gt;
+                &lt;img class="img-clip image-clip-5" src="https://www.jquan.win/upload/20250625/f97dccbe3dd807.webp"&gt;
+                &lt;div class="text-white text-center w-full absolute top-1/2 left-1/2 z-1"&gt;
+                    &lt;a href=""&gt;&lt;h3 class="text-xl font-bold mb-0.5"&gt;Steve Thomas&lt;/h3&gt;&lt;/a&gt;
+                    &lt;a href=""&gt;&lt;span class="text-md block"&gt;Web developer&lt;/span&gt;&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+                                        </code></pre>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">视差3D翻转</cite>
+                </div>
+                <div class="card-body">
+                    <div id="demo-1" class="w-full max-w-2xl mx-auto border border-strong p-3 mt-5 rounded-lg">
+                        <div class="flex justify-center mb-3">
+                            <nav class="tabs-nav p-2 bg-gray-100 rounded-lg space-x-2">
+                                <span class="tabs-item rounded-md text-sm center inline-block"><i
+                                        class='bxr bx-eye align-middle'></i> 预览</span>
+                                <span class="tabs-item rounded-md text-sm center inline-block"><i
+                                        class='bxr bx-code align-middle'></i> 代码</span>
+                            </nav>
+                        </div>
+                        <div class="tabs-content">
+                            <div class="tabs-track">
+                                <section class="tabs-panel">
+                                    <ul class="cards-list list-none p-0 m-0 auto-grid auto-grid-fill auto-grid-md">
+                                        <!-- 卡片1 -->
+                                        <li class="card-item m-4 cursor-pointer relative h-72"
+                                            ontouchstart="this.classList.toggle('hover');">
+                                            <div class="hover-3d-flip w-full h-full">
+                                                <div class="card-front absolute top-0 left-0 w-full h-full rounded-xl text-white text-2xl"
+                                                    style="background-image: url(https://www.jquan.win/upload/20250715/0841b19e993748.webp)">
+                                                    <div
+                                                        class="card-content absolute top-1/2 left-0 w-full p-8 text-sm z-2 text-center">
+                                                        <p class="text-3xl mb-10 text-center relative">Diligord</p>
+                                                        <span class="card-subtitle mt-3">Lorem ipsum</span>
+                                                    </div>
+                                                </div>
+                                                <div class="card-back absolute top-0 left-0 w-full h-full rounded-xl">
+                                                    <div
+                                                        class="card-content absolute top-1/2 left-0 w-full p-8 text-sm z-2">
+                                                        <p class="text-base">Lorem ipsum, dolor sit amet consectetur
+                                                            adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <!-- 卡片2 -->
+                                        <li class="card-item m-4 cursor-pointer relative h-72"
+                                            ontouchstart="this.classList.toggle('hover');">
+                                            <div class="hover-3d-flip w-full h-full">
+                                                <div class="card-front absolute top-0 left-0 w-full h-full rounded-xl text-white text-2xl"
+                                                    style="background-image: url(https://www.jquan.win/upload/20250709/ffc6b3abbf7121.webp)">
+                                                    <div
+                                                        class="card-content absolute top-1/2 left-0 w-full p-8 text-sm z-2 text-center">
+                                                        <p class="text-3xl mb-10 text-center relative">Rocogged</p>
+                                                        <span class="card-subtitle">Lorem ipsum</span>
+                                                    </div>
+                                                </div>
+                                                <div class="card-back absolute top-0 left-0 w-full h-full rounded-xl">
+                                                    <div
+                                                        class="card-content absolute top-1/2 left-0 w-full p-8 text-sm z-2">
+                                                        <p class="text-base">Lorem ipsum, dolor sit amet consectetur
+                                                            adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="card-item m-4 cursor-pointer relative h-72"
+                                            ontouchstart="this.classList.toggle('hover');">
+                                            <div class="hover-3d-flip w-full h-full">
+                                                <div class="card-front absolute top-0 left-0 w-full h-full rounded-xl text-white text-2xl"
+                                                    style="background-image: url(https://www.jquan.win/upload/20250625/f97dccbe3dd807.webp)">
+                                                    <div
+                                                        class="card-content absolute top-1/2 left-0 w-full p-8 text-sm z-2 text-center">
+                                                        <p class="text-3xl mb-10 text-center relative">Rocogged</p>
+                                                        <span class="card-subtitle">Lorem ipsum</span>
+                                                    </div>
+                                                </div>
+                                                <div class="card-back absolute top-0 left-0 w-full h-full rounded-xl">
+                                                    <div
+                                                        class="card-content absolute top-1/2 left-0 w-full p-8 text-sm z-2">
+                                                        <p class="text-base">Lorem ipsum, dolor sit amet consectetur
+                                                            adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </section>
+                                <section class="tabs-panel overflow-auto">
+                                    <div class="codeblock codeblock-line-numbers border border-strong rounded-md h-full">
+                                        <pre><code class="code-block" data-language="html" data-show-lines="true">&lt;ul class="cards-list list-none p-0 m-0 auto-grid auto-grid-fill auto-grid-md"&gt;
+        &lt;li class="card-item m-4 cursor-pointer relative h-72"
+            ontouchstart="this.classList.toggle('hover');"&gt;
+            &lt;div class="hover-3d-flip w-full h-full"&gt;
+                &lt;div class="card-front absolute top-0 left-0 w-full h-full rounded-xl text-white text-2xl"
+                    style="background-image: url(https://www.jq22.com/demo/csshover3dfz202005112340/img/1.png)"&gt;
+                    &lt;div class="card-content absolute top-1/2 left-0 w-full p-8 text-sm z-2 text-center"&gt;
+                        &lt;p class="text-3xl mb-10 text-center relative">Diligord&lt;/p&gt;
+                        &lt;span class="card-subtitle mt-3">Lorem ipsum&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="card-back absolute top-0 left-0 w-full h-full rounded-xl"&gt;
+                    &lt;div class="card-content absolute top-1/2 left-0 w-full p-8 text-sm z-2"&gt;
+                        &lt;p class="text-base">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;</code></pre>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/apps/imghover.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

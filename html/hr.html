@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>排版</a></li>
+            <li class="active">分割线</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">原生分割线</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <code>hr</code></p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">分割线样式</cite>
+                </div>
+                <div class="card-body">
+                    <p>X 轴分隔 (水平线)-divide-x-*(0、1、2、4、8)</p>
+                    <p class="divide-x-0 border-red inline-block">使用 <code>divide-x-0</code></p><br>
+                    <p class="divide-x-1 border-red inline-block">使用 <code>divide-x-1</code></p><br>
+                    <p class="divide-x-2 border-red inline-block">使用 <code>divide-x-2</code></p><br>
+                    <p>Y 轴分隔 (垂直线) -divide-y-*(0、1、2、4、8)</p>
+                    <p class="divide-y-0 border-red inline-block">使用 <code>divide-y-0</code></p><br>
+                    <p class="divide-y-1 border-red inline-block">使用 <code>divide-y-1</code></p><br>
+                    <p class="divide-y-2 border-red inline-block">使用 <code>divide-y-2</code></p><br>
+                    <p>反向分隔 - divide-*(x/y)-reverse-*(0/1/2/4/8)</p>
+                    <p>`divide-x-reverse` 会在每个元素的左边添加边框，而不是默认的右边。这在处理从右到左的布局（RTL）或某些特殊设计时非常有用。注意，它通常配合 `flex-row-reverse` 来实现视觉上的反转。</p>
+                    <br>
+                    <p>divide-solid</p>
+                    <hr class="divide-solid">
+                    <p>divide-dashed</p>
+                    <hr class="divide-dashed">
+                    <p>divide-dotted</p>
+                    <hr class="divide-dotted">
+                    <p>divide-double</p>
+                    <hr class="divide-double">
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">主题分割线</cite>
+                </div>
+                <div class="card-body">
+                    <p class="leading-6">在 <code>body</code> 容器设置主题</p>
+                    <p class="leading-6">使用 <code>hr.hr-theme</code> 自动跟随主题主色</p>
+                    <hr class="theme-hr">
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">渐变分割线</cite>
+                </div>
+                <div class="card-body">
+                    <p class="leading-6">使用 <code>hr.hr-gradient from-*-* to-*-*(同渐变样式类)</code></p>
+                    <hr class="hr-gradient from-teal-400 to-yellow-200">
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">其他样式分割线</cite>
+                </div>
+                <div class="card-body">
+                    <p class="leading-6">使用 <code>hr.dashed</code></p>
+                    <hr class="dashed">
+                    <p class="leading-6">使用 <code>hr.double</code></p>
+                    <hr class="double">
+                    <p class="leading-6">使用 <code>hr.dotted</code></p>
+                    <hr class="dotted">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

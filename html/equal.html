@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+            <li class="active">Equal等分</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">等分</cite>
+                </div>
+                <div class="card-body">
+                    <p class="text-on-surface">通过给容器添加：<span>equal-*(1-12)</span>来实现等分</p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center">
+                            <div class="equal-1 bg-theme-secondary text-black w-28 h-10 cursor-pointer radius leading-10 text-center pl-3" onclick="toggleLayoutClass(event,'equal-body','equal-')">切换equal-1</div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="equal-2 bg-theme-secondary text-black w-28 h-10 cursor-pointer radius leading-10 text-center pl-3" onclick="toggleLayoutClass(event,'equal-body','equal-')">切换equal-2</div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <div class="equal-3 bg-theme-secondary text-black w-28 h-10 cursor-pointer radius leading-10 text-center pl-3" onclick="toggleLayoutClass(event,'equal-body','equal-')">切换equal-3</div>
+                        </li>
+                    </ul>
+                    <ul class="list-none mt-3 equal-1" id="equal-body">
+                        <li>
+                            <div class="p-1">
+                                <div class="radius bg-gray-300 center h-12 leading-sn" data-line-height="3rem">等分</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="p-1">
+                                <div class="radius bg-gray-300 center h-12 leading-sn" data-line-height="3rem">等分</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="p-1">
+                                <div class="radius bg-gray-300 center h-12 leading-sn" data-line-height="3rem">等分</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="p-1">
+                                <div class="radius bg-gray-300 center h-12 leading-sn" data-line-height="3rem">等分</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="p-1">
+                                <div class="radius bg-gray-300 center h-12 leading-sn" data-line-height="3rem">等分</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>排版</a></li>
+            <li class="active">文本对齐</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">文本水平对齐</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <code>text-{ left, center, right, justify }</code> 来控制文本水平对齐</p>
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>对齐方式</th>
+                                <th>效果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>text-left</td>
+                                <td>左对齐</td>
+                                <td>
+                                    <p class="text-left">将文本左对齐</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>text-center</td>
+                                <td>居中对齐</td>
+                                <td>
+                                    <p class="text-center">将文本居中对齐</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>text-right</td>
+                                <td>右对齐</td>
+                                <td>
+                                    <p class="text-right">将文本右对齐</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>.text-justify</td>
+                                <td>两端对齐</td>
+                                <td>
+                                    <p class="text-justify">将文本两端对齐</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>text-indent</td>
+                                <td>缩进</td>
+                                <td>
+                                    <p class="text-indent">将文本缩进</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">文本垂直对齐</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <code>align-{ baseline, top, middle, bottom }</code> 来控制文本垂直对齐</p>
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>对齐方式</th>
+                                <th>效果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>align-baseline</td>
+                                <td>基线对齐</td>
+                                <td>
+                                    <p class="text-xl">我是主要内容<span class="align-baseline text-sm">将文本基线对齐</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>align-top</td>
+                                <td>顶部对齐</td>
+                                <td>
+                                    <p class="text-xl">我是主要内容<span class="align-top text-sm">将文本顶部对齐</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>align-middle</td>
+                                <td>中部对齐</td>
+                                <td>
+                                    <p class="text-xl">我是主要内容<span class="align-middle text-sm">将文本中部对齐</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>align-bottom</td>
+                                <td>底部对齐</td>
+                                <td>
+                                    <p class="text-xl">我是主要内容<span class="align-bottom text-sm">将文本底部对齐</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>align-sub</td>
+                                <td>下标对齐</td>
+                                <td>
+                                    <p class="text-xl">我是主要内容<span class="align-sub text-sm">将文本下标对齐</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>align-super</td>
+                                <td>上标对齐</td>
+                                <td>
+                                    <p class="text-xl">我是主要内容<span class="align-super text-sm">将文本上标对齐</span></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">尾部对齐</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <code>.text-align-last-{auto, center, justify, left, right, start, end}</code> 来控制文本尾部对齐</p>
+                    <table class="JquanUI">
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>对齐方式</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>text-align-last-auto</td>
+                                <td>自动对齐</td>
+                            </tr>
+                            <tr>
+                                <td>text-align-last-left</td>
+                                <td>左对齐</td>
+                            </tr>
+                            <tr>
+                                <td>text-align-last-center</td>
+                                <td>居中对齐</td>
+                            </tr>
+                            <tr>
+                                <td>text-align-last-right</td>
+                                <td>右对齐</td>
+                            </tr>
+                            <tr>
+                                <td>text-align-last-justify</td>
+                                <td>两端对齐</td>
+                            </tr>
+                            <tr>
+                                <td>text-align-last-start</td>
+                                <td>开始对齐</td>
+                            </tr>
+                            <tr>
+                                <td>text-align-last-end</td>
+                                <td>结束对齐</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="my-3">核心场景：与 text-align: justify 配合使用</cite>
+                </div>
+                <div class="card-body p-6">
+                    <p class="text-surface mb-6">当文本设置为两端对齐 ( <code>justify</code> ) 时，默认情况下最后一行通常是左对齐的。<code>text-align-last</code> 类允许我们改变这一点。</p>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <!-- Default Behavior -->
+                        <div>
+                            <h3 class="font-semibold text-lg text-surface mb-3">默认:text-align-last: auto</h3>
+                            <div class="border border-2 border-dashed border-surface p-4 rounded w-80">
+                                <p class="text-justify text-justify-inter-character text-align-last-auto">
+                                    孤独是你长久的朋友，爱只会偶尔来敲门。我们应当与孤独同生，弹琴、看书、买菜，对日子诚恳。一生有太多的遗憾与失去，我们要好好打扫悔恨，种新的花，忘记旧的人，掌好夜深的每一盏灯，爱来时窃窃听闻。
+                                </p>
+                            </div>
+                            <p class="text-sm text-surface mt-2">🛑 结果：<code>auto</code> 值使得最后一行遵循默认的对齐方式（对于 <code>justify</code> 来说，通常是
+                                `left`），看起来不对称。</p>
+                        </div>
+
+                        <!-- Centered Last Line -->
+                        <div>
+                            <h3 class="font-semibold text-lg text-surface mb-3">居中对齐最后一行:text-align-last-center</h3>
+                            <div class="border border-2 border-dashed border-surface p-4 rounded w-80">
+                                <p class="text-justify text-justify-inter-character text-align-last-center">
+                                    孤独是你长久的朋友，爱只会偶尔来敲门。我们应当与孤独同生，弹琴、看书、买菜，对日子诚恳。一生有太多的遗憾与失去，我们要好好打扫悔恨，种新的花，忘记旧的人，掌好夜深的每一盏灯，爱来时窃窃听闻。
+                                </p>
+                            </div>
+                            <p class="text-sm text-surface mt-2">✅ 结果：<code>center</code> 值让最后一行居中，实现了更均衡、更美观的排版效果，常用于诗词或引用。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scenario 2: Comparing All Values -->
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="my-3">所有值的完整对比</cite>
+                </div>
+                <div class="card-body p-6">
+                    <p class="text-surface mb-6">对比 <code>text-align-last-{ auto, center, justify, left, right, start, end }</code> 所有7个值的视觉效果。</p>
+
+                    <div class="grid grid-cols-4 gap-6">
+                        <!-- auto -->
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-surface mb-2">1. <code>auto</code> (默认)
+                            </h3>
+                            <div class="border border-2 border-dashed border-surface p-3">
+                                <p class="text-justify text-justify-inter-character text-align-last-auto">
+                                    孤独是你长久的朋友，爱只会偶尔来敲门。我们应当与孤独同生，弹琴、看书、买菜，对日子诚恳。一生有太多的遗憾与失去，我们要好好打扫悔恨，种新的花，忘记旧的人，掌好夜深的每一盏灯，爱来时窃窃听闻。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- left -->
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-surface mb-2">2. <code>left</code></h3>
+                            <div class="border border-2 border-dashed border-surface p-3">
+                                <p class="text-justify text-justify-inter-character text-align-last-left">
+                                    孤独是你长久的朋友，爱只会偶尔来敲门。我们应当与孤独同生，弹琴、看书、买菜，对日子诚恳。一生有太多的遗憾与失去，我们要好好打扫悔恨，种新的花，忘记旧的人，掌好夜深的每一盏灯，爱来时窃窃听闻。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- center -->
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-surface mb-2">3. <code>center</code></h3>
+                            <div class="border border-2 border-dashed border-surface p-3">
+                                <p class="text-justify text-justify-inter-character text-align-last-center">
+                                    孤独是你长久的朋友，爱只会偶尔来敲门。我们应当与孤独同生，弹琴、看书、买菜，对日子诚恳。一生有太多的遗憾与失去，我们要好好打扫悔恨，种新的花，忘记旧的人，掌好夜深的每一盏灯，爱来时窃窃听闻。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- right -->
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-surface mb-2">4. <code>right</code></h3>
+                            <div class="border border-2 border-dashed border-surface p-3">
+                                <p class="text-justify text-justify-inter-character text-align-last-right">
+                                    孤独是你长久的朋友，爱只会偶尔来敲门。我们应当与孤独同生，弹琴、看书、买菜，对日子诚恳。一生有太多的遗憾与失去，我们要好好打扫悔恨，种新的花，忘记旧的人，掌好夜深的每一盏灯，爱来时窃窃听闻。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- justify -->
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-surface mb-2">5. <code>justify</code></h3>
+                            <div class="border border-2 border-dashed border-surface p-3">
+                                <p class="text-justify text-justify-inter-character text-align-last-justify">
+                                    孤独是你长久的朋友，爱只会偶尔来敲门。我们应当与孤独同生，弹琴、看书、买菜，对日子诚恳。一生有太多的遗憾与失去，我们要好好打扫悔恨，种新的花，忘记旧的人，掌好夜深的每一盏灯，爱来时窃窃听闻。
+                                </p>
+                            </div>
+                            <p class="text-xs text-surface mt-1 leading-6">⚠️ 注意：只有当最后一行内容足够长，能被拉伸时，<code>justify</code>
+                                效果才明显。短句可能看不出区别。</p>
+                        </div>
+
+                        <!-- start -->
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-surface mb-2">6. <code>start</code></h3>
+                            <div class="border border-2 border-dashed border-surface p-3">
+                                <p class="text-justify text-justify-inter-character text-align-last-start">
+                                    孤独是你长久的朋友，爱只会偶尔来敲门。我们应当与孤独同生，弹琴、看书、买菜，对日子诚恳。一生有太多的遗憾与失去，我们要好好打扫悔恨，种新的花，忘记旧的人，掌好夜深的每一盏灯，爱来时窃窃听闻。
+                                </p>
+                            </div>
+                            <p class="text-xs text-surface mt-1 leading-6">ℹ️ 在从左到右的文本中，<code>start</code> 等同于 <code>left</code>。在从右到左的文本中，它等同于 <code>right</code>。</p>
+                        </div>
+
+                        <!-- end -->
+                        <div class="bg-surface-50 p-4 rounded-lg border border-surface">
+                            <h3 class="font-semibold text-sm text-surface mb-2">7. <code>end</code></h3>
+                            <div class="border border-2 border-dashed border-surface p-3">
+                                <p class="text-justify text-justify-inter-character text-align-last-end">
+                                    孤独是你长久的朋友，爱只会偶尔来敲门。我们应当与孤独同生，弹琴、看书、买菜，对日子诚恳。一生有太多的遗憾与失去，我们要好好打扫悔恨，种新的花，忘记旧的人，掌好夜深的每一盏灯，爱来时窃窃听闻。
+                                </p>
+                            </div>
+                            <p class="text-xs text-surface mt-1 leading-6">ℹ️ 在从左到右的文本中，<code>end</code> 等同于 <code>right</code>。在从右到左的文本中，它等同于 <code>left</code>。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scenario 3: Directional Awareness -->
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="my-3">方向感知性：<code>start</code> vs <code>end</code></cite>
+                </div>
+                <div class="card-body p-6">
+                    <p class="text-surface mb-6"><code>start</code> 和 <code>end</code>
+                        是逻辑属性，它们的对齐方向取决于文本的书写方向（<code>direction</code>），这对于国际化（i18n）非常重要。</p>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <!-- LTR -->
+                        <div>
+                            <h3 class="font-semibold text-lg text-surface mb-3">从左到右 (LTR, <span class="tags size-md">dir="ltr"</span>)</h3>
+                            <div class="border border-2 border-dashed border-surface p-4 rounded" dir="ltr">
+                                <p class="text-justify text-justify-inter-character text-align-last-start">
+                                    In LTR text, <code>start</code> means left.
+                                </p>
+                            </div>
+                            <div class="border border-2 border-dashed border-surface p-4 rounded mt-3" dir="ltr">
+                                <p class="text-justify text-justify-inter-character text-align-last-end">
+                                    In LTR text, <code>end</code> means right.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- RTL -->
+                        <div>
+                            <h3 class="font-semibold text-lg text-surface mb-3">从右到左 (RTL, <span class="tags size-md">dir="rtl"</span>)</h3>
+                            <div class="border border-2 border-dashed border-surface p-4 rounded" dir="rtl">
+                                <p class="text-justify text-justify-inter-character text-align-last-start">
+                                    In RTL text, <code>start</code> means right.
+                                </p>
+                            </div>
+                            <div class="border border-2 border-dashed border-surface p-4 rounded mt-3" dir="rtl">
+                                <p class="text-justify text-justify-inter-character text-align-last-end">
+                                    In RTL text, <code>end</code> means left.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

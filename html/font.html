@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>基础</a></li>
+            <li class="active">嵌入字体</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">嵌入</cite>
+                </div>
+                <div class="card-body">
+                    <p>内嵌了小米开源免费商用字体：MiSans，更多选择可以参考<code>fonts</code>文件夹使用。</p>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">全局调用</cite>
+                </div>
+
+                <div class="card-body">
+                    <p>在<code>:root</code>全局变量中的<code>--foot:"MiSans Light";</code>变量中修改全局
+                    </p>
+                    <div id="demo" class="w-full max-w-2xl mx-auto p-3 mt-5 rounded-md">
+                        <div class="flex justify-center mb-3">
+                            <nav class="tabs-nav p-2 bg-surface-100 rounded-lg space-x-2 flex">
+                                <span
+                                    class="tabs-item rounded-md text-sm center inline-block cursor-pointer tabs-active"><i
+                                        class='bxr bx-eye align-middle'></i> 预览</span>
+                                <span class="tabs-item rounded-md text-sm center inline-block cursor-pointer"><i
+                                        class='bxr bx-code align-middle'></i> 代码</span>
+                            </nav>
+                        </div>
+                        <div class="tabs-content relative">
+                            <div class="tabs-track flex">
+                                <section class="tabs-panel border rounded-md border-surface">
+                                    <div class="rounded-md p-3 h-full">
+                                        <p>默认字体</p>
+                                    </div>
+                                </section>
+                                <section class="tabs-panel border rounded-md border-surface">
+                                    <div class="codeblock codeblock-line-numbers rounded-md h-full">
+                                        <pre><code class="code-block" data-language="css" data-show-lines="true">root :{
+    --foot:"MiSans Light";
+}</code></pre>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">局部调用</cite>
+                </div>
+
+                <div class="card-body">
+                    <p>局部通过<code>font-family</code>变更</p>
+                    <div id="demo1" class="w-full max-w-2xl mx-auto p-3 mt-5 rounded-md">
+                        <div class="flex justify-center mb-3">
+                            <nav class="tabs-nav p-2 bg-surface-100 rounded-lg space-x-2 flex">
+                                <span
+                                    class="tabs-item rounded-md text-sm center inline-block cursor-pointer tabs-active"><i
+                                        class='bxr bx-eye align-middle'></i> 预览</span>
+                                <span class="tabs-item rounded-md text-sm center inline-block cursor-pointer"><i
+                                        class='bxr bx-code align-middle'></i> 代码</span>
+                            </nav>
+                        </div>
+                        <div class="tabs-content relative">
+                            <div class="tabs-track flex">
+                                <section class="tabs-panel border rounded-md border-surface">
+                                    <div class="rounded-md p-3 h-full">
+                                        <p class="font-misans-vf">标题字体</p>
+                                    </div>
+                                </section>
+                                <section class="tabs-panel border rounded-md border-surface">
+                                    <div class="codeblock codeblock-line-numbers rounded-md h-full">
+                                        <pre><code class="code-block" data-language="html" data-show-lines="true"><p class="font-misans-vf">标题字体</p></code></pre>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/font.js" type="module"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

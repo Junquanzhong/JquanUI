@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>排版</a></li>
+            <li class="active">连字符与悬挂标点</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">连字符</cite>
+                </div>
+                <div class="card-body grid grid-cols-3 gap-3">
+                    <div class="border border-gray-300 rounded p-4">
+                        <code>hyphens-none</code>
+                        <p class="hyphenation-text hyphens-none narrow-column mt-3">
+                            这是一个段落，用于展示 "hyphens-none" 的效果。长单词 <span class="long-word font-bold"></span>
+                            不会被自动断开，如果容器宽度不够，它会溢出或导致整个单词移到下一行。
+                        </p>
+                    </div>
+
+                    <div class="border border-gray-300 rounded p-4">
+                        <code>hyphens-manual</code>
+                        <p class="hyphenation-text hyphens-manual narrow-column mt-3">
+                            这是 "hyphens-manual" 的示例。它只会在有软连字符 (&shy;)
+                            的地方断字，比如：一个&shy;非常&shy;非常&shy;长的&shy;单词。如果没有软连字符，行为与 "none" 类似。长单词 <span
+                                class="long-word font-bold"></span> 不会被断开。
+                        </p>
+                    </div>
+
+                    <div class="border border-gray-300 rounded p-4">
+                        <code>hyphens-auto</code>
+                        <p lang="en" class="hyphenation-text hyphens-auto narrow-column mt-3">
+                            This is an example of "hyphens-auto". The browser will automatically insert hyphens where
+                            appropriate to justify the text. A very long word like <strong>extraordinary</strong> will
+                            be broken if necessary.
+                        </p>
+                        <p class="mt-4 text-sm text-gray-500 mt-3">注意：`hyphens-auto`
+                            对英文效果最佳。对中文，主要作用于中英文混合的长单词。上面是英文示例，效果更明显。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

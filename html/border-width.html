@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons list-none">
+            <li><a href="/"><i class="bx bx-home"></i>边框</a></li>
+            <li class="active">边框宽度</li>
+        </ul>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">边框圆角</cite>
+                </div>
+                <div class="card-body">
+                    <h5>所有边</h5>
+                    <p>使用 <span class="tags rounded">.border-width-*</span> 来设置边框宽度</p>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-0" onclick=" setupCopyOnClick();" data-copy="border-0">
+                            border-0
+                        </li>
+                        <li class="w-32 h-10 border border-strong cursor-pointer text-center leading-10 text-sm" onclick=" setupCopyOnClick();" data-copy="border">
+                            border
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-2" onclick=" setupCopyOnClick();" data-copy="border-2">
+                            border-2
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-4" onclick=" setupCopyOnClick();" data-copy="border-4">
+                            border-4
+                        </li>
+                    </ul>
+                    <h5>上边框</h5>
+                    <p>使用 <span class="tags rounded">.border-t-*</span> 来设置上边框宽度</p>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-t-0" onclick=" setupCopyOnClick();" data-copy="border-t-0">
+                            border-t-0
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-t" onclick=" setupCopyOnClick();" data-copy="border-t">
+                            border-t
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-t-2" onclick=" setupCopyOnClick();" data-copy="border-t-2">
+                            border-t-2
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-t-4" onclick=" setupCopyOnClick();" data-copy="border-t-4">
+                            border-t-4
+                        </li>
+                    </ul>
+                    <h5>左边框</h5>
+                    <p>使用 <span class="tags rounded">.border-l-*</span> 来设置左边框宽度</p>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-l-0" onclick=" setupCopyOnClick();" data-copy="border-l-0">
+                            border-l-0
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-l" onclick=" setupCopyOnClick();" data-copy="border-l">
+                            border-l
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-l-2" onclick=" setupCopyOnClick();" data-copy="border-l-2">
+                            border-l-2
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-l-4" onclick=" setupCopyOnClick();" data-copy="border-l-4">
+                            border-l-4
+                        </li>
+                        </ul>
+                        <h5>右边框</h5>
+                    <p>使用 <span class="tags rounded">.border-r-*</span> 来设置右边框宽度</p>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-r-0" onclick=" setupCopyOnClick();" data-copy="border-r-0">
+                            border-r-0
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-r" onclick=" setupCopyOnClick();" data-copy="border-r">
+                            border-r
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-r-2" onclick=" setupCopyOnClick();" data-copy="border-r-2">
+                            border-r-2
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-r-4" onclick=" setupCopyOnClick();" data-copy="border-r-4">
+                            border-r-4
+                        </li>
+                    </ul>
+                    <h5>下边框</h5>
+                    <p>使用 <span class="tags rounded">.border-b-*</span> 来设置下边框宽度</p>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-b-0" onclick=" setupCopyOnClick();" data-copy="border-b-0">
+                            border-b-0
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-b" onclick=" setupCopyOnClick();" data-copy="border-b">
+                            border-b
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-b-2" onclick=" setupCopyOnClick();" data-copy="border-b-2">
+                            border-b-2
+                        </li>
+                        <li class="w-32 h-10 border-strong cursor-pointer text-center leading-10 text-sm border-b-4" onclick=" setupCopyOnClick();" data-copy="border-b-4">
+                            border-b-4
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

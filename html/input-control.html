@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/JquanUIex@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>组件</a></li>
+            <li class="active">表单控件</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">单选</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <p class="mb-2">单选框 <code>type="radio"</code></p>
+                    <div class="form-check">
+                        <input type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label for="flexRadioDefault1">
+                            Default radio
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label for="flexRadioDefault2">
+                            Second default radio
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                        <label for="flexRadioDefault3">
+                            Third default radio
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                        <label for="flexRadioDefault4">
+                            Fourth default radio
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">复选框</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <p class="mb-2">复选框 <code>type="checkbox"</code></p>
+                    <div class="form-check">
+                        <input type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault1">
+                        <label for="flexCheckboxDefault1">
+                            Default checkbox
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault2">
+                        <label for="flexCheckboxDefault2">
+                            Second default checkbox
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault3">
+                        <label for="flexCheckboxDefault3">
+                            Third default checkbox
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault4">
+                        <label for="flexCheckboxDefault4">
+                            Fourth default checkbox
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">下拉选择框</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <p class="mb-2">select下拉选择框 <code>type="select"</code></p>
+                    <div class="custom-select-wrapper w-64">
+                        <select id="your-select-id" name="your-select-name">
+                            <option value="" disabled selected>请选择一个选项</option>
+                            <option value="1">选项一</option>
+                            <option value="2">选项二</option>
+                            <option value="3">选项三</option>
+                            <option value="4">选项四</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">装饰下拉选择框</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <div class="custom-select-component w-64">
+                        <!-- 这是“框”部分，用于显示当前选中的值 -->
+                        <div class="select-trigger">
+                            <span class="select-placeholder">请选择一个选项</span>
+                            <span class="select-arrow">▾</span>
+                        </div>
+
+                        <!-- 这是隐藏的下拉列表 -->
+                        <ul class="select-options">
+                            <li class="select-option" data-value="1">选项一</li>
+                            <li class="select-option" data-value="2">选项二</li>
+                            <li class="select-option" data-value="3">选项三</li>
+                            <li class="select-option" data-value="4">选项四</li>
+                        </ul>
+
+                        <!-- 这个隐藏的 input 用于表单提交 -->
+                        <input type="hidden" name="your-select-name" value="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">多选下拉框</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <p class="mb-2">通过参数 <code>data-max-tags={number}</code> 限制选择数量</p>
+                    <p class="mb-2">通过参数 <code>data-validation-message={string}</code> 自定义验证消息</p>
+                    <p class="mb-2">通过参数 <code>data-placeholder={string}</code> 自定义占位符</p>
+                    <!-- 这是新的自定义多选下拉菜单结构 -->
+                    <div class="custom-multi-select-component w-64" data-placeholder="请选择您喜欢的水果..." data-max-tags="2"
+                        data-validation-message="最多只能选择2个哦！">
+                        <!-- 这个隐藏的 input 用于表单提交，值为逗号分隔的 value -->
+                        <input type="hidden" name="fruits" value="">
+                        <!-- 这是“框”部分，用户点击这里打开选项 -->
+                        <div class="multi-select-trigger">
+                            <!-- 占位符文字，当没有选项时显示 -->
+                            <span class="multi-select-placeholder">请选择选项...</span>
+                            <!-- 容器，用于动态添加已选中的标签 -->
+                            <ul class="selected-tags-list"></ul>
+                            <!-- 下拉箭头 -->
+                            <span class="select-arrow">▾</span>
+                        </div>
+                        <!-- 这是隐藏的下拉选项列表 -->
+                        <ul class="multi-select-options">
+                            <li class="multi-select-option" data-value="apple">🍎 苹果</li>
+                            <li class="multi-select-option" data-value="banana">🍌 香蕉</li>
+                            <li class="multi-select-option" data-value="orange">🍊 橙子</li>
+                            <li class="multi-select-option" data-value="grape">🍇 葡萄</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">TagInput组件</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <div class="form-taginput w-64">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">技能标签 (无限制)</label>
+                        <div class="tag-input-component">
+                            <ul class="tag-list"></ul>
+                            <input type="text" class="tag-input-field">
+                            <input type="hidden" name="skills" value="">
+                        </div>
+                    </div>
+                    <p class="mb-2">限制数量：使用 <code>data-max-tags={number}</code> 属性配置</p>
+                    <div class="form-taginput w-64">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">兴趣爱好 (最多2个, 自定义占位符)</label>
+                        <div class="tag-input-component" data-placeholder="输入后按回车添加..." data-max-tags="2">
+                            <ul class="tag-list"></ul>
+                            <input type="text" class="tag-input-field">
+                            <input type="hidden" name="hobbies" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">AutoComplete 组件</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <p class="mb-2">通过参数 <code>data-local-data={array}</code> 配置本地数据源</p>
+                    <div class="form-autocomplete w-64">
+                        <label for="country" class="block text-sm font-medium text-gray-700 mb-2">国家 (本地数据源)</label>
+                        <div id="country" class="autocomplete-component"
+                            data-local-data='[{"id": "cn", "name": "中国"}, {"id": "us", "name": "美国"}, {"id": "jp", "name": "日本"}, {"id": "kr", "name": "韩国"}, {"id": "uk", "name": "英国"}, {"id": "fr", "name": "法国"}]'>
+                            <input type="text" class="autocomplete-input" placeholder="输入国家名称...">
+                            <ul class="autocomplete-suggestions"></ul>
+                            <input type="hidden" name="country_code" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">文件上传器 (FileUploader)</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <p>支持拖放、多文件、图片预览和客户端验证。</p>
+
+                    <!-- 文件上传器组件 -->
+                    <div class="file-uploader-component" id="my-uploader" data-action="/api/upload" data-multiple="true"
+                        data-max-files="5" data-max-size="2MB" data-accept="image/*,.pdf,.doc,.docx">
+
+                        <div class="upload-area">
+                            <i class='bx bx-cloud-upload' style="font-size: 3rem; color: rgb(var(--gray-400));"></i>
+                            <p class="upload-message">拖放文件到此处，或 <button type="button"
+                                    class="upload-trigger-btn">点击选择文件</button></p>
+                            <p class="upload-hint">（最多 5 个文件，单文件最大 2MB）</p>
+                        </div>
+
+                        <!-- 隐藏的文件输入框 -->
+                        <input type="file" class="file-input" hidden data-multiple
+                            data-accept="image/*,.pdf,.doc,.docx">
+
+                        <!-- 文件列表容器 -->
+                        <ul class="file-list"></ul>
+
+                        <!-- 用于表单提交的隐藏字段 -->
+                        <input type="hidden" name="uploaded_files" value="">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">日期与时间选择器</cite>
+                </div>
+                <div class="card-body space-y-3">
+
+                    <p>基础日期选择器</p>
+                    <div class="date-picker-component" id="date-picker-1" data-mode="date">
+                        <input type="date" class="date-picker-input" placeholder="选择日期...">
+                    </div>
+
+                    <p>日期时间选择器 (使用滚动轮)</p>
+                    <div class="date-picker-component" id="date-picker-2" data-mode="datetime"
+                        data-format="YYYY-MM-DD HH:mm">
+                        <input type="datetime-local" class="date-picker-input" placeholder="选择日期和时间...">
+                    </div>
+
+                    <p>仅时间选择器 (24小时制)</p>
+                    <div class="date-picker-component" id="date-picker-3" data-mode="time" data-format="HH:mm">
+                        <input type="time" class="date-picker-input" placeholder="选择时间...">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">评分器 (Rater)</cite>
+                </div>
+                <div class="card-body space-y-3">
+                    <p>基础评分器</p>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-2">整体评价</label>
+                        <div class="rater-component">
+                            <input type="hidden" name="overall_rating" value="0">
+                        </div>
+                    </div>
+
+                    <!-- 支持半星的10分制评分器 -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-2">服务细节评分 (支持半星)</label>
+                        <div class="rater-component" data-max="10" data-allow-half="true">
+                            <input type="hidden" name="service_detail_rating" value="2.5">
+                        </div>
+                    </div>
+
+                    <!-- 只读的评分器，用于展示 -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-2">平均分 (只读)</label>
+                        <div class="rater-component" data-readonly="true" data-max="5">
+                            <input type="hidden" name="average_score" value="3.7">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+    <script type="module">
+        // 1. 从模块文件中导入我们设计的“一键初始化”函数
+        import { initializeFormControls } from '../js/modules/form-controls.mjs';
+
+        // 2. 等待页面的所有DOM元素加载完毕后，执行这个函数
+        // 这一步非常关键，确保脚本在元素存在之后运行
+        document.addEventListener('DOMContentLoaded', () => {
+            // 这一行代码会自动初始化页面上所有的 CustomSelect, CustomMultiSelect, 和 TagInput
+            initializeFormControls();
+            console.log('所有自定义表单控件已成功初始化！');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+    <style>
+        /* 为网格添加行分隔线效果 */
+        #grid-body {
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0,
+                transparent calc(100% / var(--rows) - 1px),
+                #ff0000 calc(100% / var(--rows) - 1px),
+                #ff0000 calc(100% / var(--rows)),
+                transparent calc(100% / var(--rows))
+            );
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>Grid</a></li>
+            <li class="active">Rows</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">Grid Rows</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-4">通过<code>grid-rows-{ number }</code> (1-6-none) 设置Grid的行数</p>
+                    <!-- 按钮控制组 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h2 class="text-lg font-semibold text-gray-700 mb-4">控制面板</h2>
+                        <div class="flex flex-wrap gap-3" id="grid-body-button">
+                            <button class="btn btn-primary ">1</button>
+                            <button class="btn btn-primary">2</button>
+                            <button class="btn btn-primary">3</button>
+                            <button class="btn btn-primary">4</button>
+                            <button class="btn btn-primary">5</button>
+                            <button class="btn btn-primary">6</button>
+                            <button class="btn btn-primary">none</button>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-3">
+                            💡 点击按钮切换网格行数，灰色分隔线显示当前行数分布
+                        </p>
+                    </div>
+
+                    <!-- 网格容器 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-lg font-semibold text-gray-700 mb-4">网格区域</h2>
+                        <div class="mb-4">
+                            <div class="text-sm text-gray-600">
+                                当前行数：<span id="current-rows" class="font-semibold text-blue-600">6</span> 行
+                            </div>
+                        </div>
+
+                        <!-- 网格 -->
+                        <ul class="list-none gap-4 grid grid-rows-6" id="grid-body" style="--rows: 6;">
+                            <!-- 网格项将通过JavaScript动态生成 -->
+                        </ul>
+                    </div>
+                </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const grid = document.getElementById('grid-body');
+                        const buttonsWrap = document.getElementById('grid-body-button');
+                        const currentRowsSpan = document.getElementById('current-rows');
+
+                        // 生成示例网格内容
+                        function generateGridContent(count = 18) {
+                            grid.innerHTML = '';
+                            for (let i = 1; i <= count; i++) {
+                                const gridItem = document.createElement('li');
+                                gridItem.className = 'grid-item bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200';
+                                gridItem.innerHTML = `
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-blue-800">${i}</div>
+                            <div class="text-sm text-blue-600 mt-1">Item ${i}</div>
+                        </div>
+                    `;
+                                grid.appendChild(gridItem);
+                            }
+                        }
+
+                        // 移除所有行数相关的类
+                        function removeRowClasses() {
+                            grid.classList.remove(
+                                'grid-rows-none',
+                                'grid-rows-1',
+                                'grid-rows-2',
+                                'grid-rows-3',
+                                'grid-rows-4',
+                                'grid-rows-5',
+                                'grid-rows-6',
+                                'grid-rows-none'
+                            );
+                        }
+
+                        // 移除按钮激活状态
+                        function removeActiveButtons() {
+                            buttonsWrap.querySelectorAll('.btn').forEach(btn => {
+                                btn.classList.remove('active');
+                            });
+                        }
+
+                        // 设置网格行数
+                        function setGridRows(rowsValue) {
+                            // 移除旧的行数类
+                            removeRowClasses();
+
+                            // 移除渐变背景的任意值类
+                            grid.classList.forEach(cls => {
+                                if (cls.startsWith('[') && cls.includes('grid-template-rows')) {
+                                    grid.classList.remove(cls);
+                                }
+                            });
+
+                            if (rowsValue === 'none') {
+                                // 重置为默认6行
+                                grid.classList.add('grid-rows-6');
+                                grid.style.setProperty('--rows', 6);
+                                currentRowsSpan.textContent = '6';
+                            } else {
+                                const n = parseInt(rowsValue, 10);
+                                grid.classList.add(`grid-rows-${n}`);
+                                grid.style.setProperty('--rows', n);
+                                currentRowsSpan.textContent = n;
+                            }
+                        }
+
+                        // 按钮点击事件
+                        buttonsWrap.addEventListener('click', function (e) {
+                            const btn = e.target.closest('button');
+                            if (!btn) return;
+
+                            // 移除其他按钮的激活状态
+                            removeActiveButtons();
+
+                            // 添加当前按钮激活状态
+                            btn.classList.add('active');
+
+                            const val = String(btn.textContent).trim();
+                            setGridRows(val);
+                        });
+
+                        // 初始化
+                        generateGridContent(18);
+
+                        // 默认激活第6个按钮（none前面的那个）
+                        const defaultBtn = buttonsWrap.querySelector('button:nth-child(6)');
+                        if (defaultBtn) {
+                            defaultBtn.classList.add('active');
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

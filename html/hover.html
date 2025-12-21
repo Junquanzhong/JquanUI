@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>交互</a></li>
+            <li class="active">悬停</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">按钮悬停</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none flex gap-3 flex-wrap bgimg-leftslash">
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-grow cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-grow">
+                            grow
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-shrink cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-shrink">
+                            shrink
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-pulse cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-pulse">
+                            pulse
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-pulse-grow cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-pulse-grow">
+                            pulse Grow
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-pulse-shrink cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-pulse-shrink">
+                            pulse Shrink
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-push cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-push">
+                            push
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-pop cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-pop">
+                            pop
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-bounce-in cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bounce-in">
+                            bounce in
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-bounce-out cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bounce-out">
+                            bounce out
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-rotate cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-rotate">
+                            rotate
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-grow-rotate cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-grow-rotate">
+                            grow rotate
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-float cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-float">
+                            float
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-sink cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-sink">
+                            sink
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-bob cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bob">
+                            bob
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-hang cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-hang">
+                            hang
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-skew cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-skew">
+                            skew
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-skew-forward cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-skew-forward">
+                            skew forward
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-skew-backward cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-skew-backward">
+                            skew backward
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-wobble-horizontal cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-wobble-horizontal">
+                            wobble horizontal
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-wobble-vertical cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-wobble-vertical">
+                            wobble vertical
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-wobble-to-bottom-right cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-wobble-to-bottom-right">
+                            wobble to bottom right
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-wobble-to-top-right cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-wobble-to-top-right">
+                            wobble to top right
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-wobble-top cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-wobble-top">
+                            wobble top
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-wobble-bottom cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-wobble-bottom">
+                            wobble bottom
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-wobble-skew cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-wobble-skew">
+                            wobble skew
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-buzz cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-buzz">
+                            buzz
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-buzz-out cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-buzz-out">
+                            buzz out
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-forward cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-forward">
+                            forward
+                        </li>
+                        <li class="h-10 px-3 bg-primary text-white center rounded hvr-backward cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-backward">
+                            backward
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">背景过渡</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none flex gap-3 flex-wrap bgimg-leftslash">
+                        <li class="h-10 px-3 border border-strong center rounded hvr-fade cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-fade">
+                            Fade
+                        </li><li class="h-10 px-3 border border-strong center rounded hvr-back-pulse cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-back-pulse">
+                            Back Pulse
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-sweep-to-right cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-sweep-to-right">
+                            Sweep To Right
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-sweep-to-left cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-sweep-to-left">
+                            Sweep To Left
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-sweep-to-bottom cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-sweep-to-bottom">
+                            Sweep To Bottom
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-sweep-to-top cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-sweep-to-top">
+                            Sweep To Top
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-bounce-to-right cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bounce-to-right">
+                            Bounce To Right
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-bounce-to-left cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bounce-to-left">
+                            Bounce To Left
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-bounce-to-bottom cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bounce-to-bottom">
+                            Bounce To Bottom
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-bounce-to-top cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bounce-to-top">
+                            Bounce To Top
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-radial-out cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-radial-out">
+                            Radial Out
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-radial-in cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-radial-in">
+                            Radial In
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-rectangle-in cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-rectangle-in">
+                            Rectangle In
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-rectangle-out cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-rectangle-out">
+                            Rectangle Out
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-shutter-in-horizontal cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-shutter-in-horizontal">
+                            Shutter In Horizontal
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-shutter-out-horizontal cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-shutter-out-horizontal">
+                            Shutter Out Horizontal
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-shutter-in-vertical cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-shutter-in-vertical">
+                            Shutter In Vertical
+                        </li>
+                        <li class="h-10 px-3 border border-strong center rounded hvr-shutter-out-vertical cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-shutter-out-vertical">
+                            Shutter Out Vertical
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">图标动画</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none flex gap-3 flex-wrap bgimg-leftslash">
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-back cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-back">
+                            <i class='bxr bx-arrow-left-stroke hvr-icon'></i>  Icon Back
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-forward cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-forward">
+                            Icon Forward <i class='bxr bx-arrow-right-stroke hvr-icon'></i> 
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-down cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-down">
+                            <i class='bxr bx-arrow-down-stroke hvr-icon'></i>  Icon Down
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-up cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-up">
+                            <i class='bxr bx-arrow-up-stroke hvr-icon'></i>  Icon Up
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-spin cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-spin">
+                            <i class='bxr bx-refresh-ccw-dot hvr-icon'></i>  Icon Spin
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-drop cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-drop">
+                            <i class='bxr  bx-flame hvr-icon'></i> Icon Drop
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-fade cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-fade">
+                            <i class='bxr  bx-scan-face hvr-icon'></i>  Icon Fade
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-float-away cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-float-away">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Float Away
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-sink-away cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-sink-away">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Sink Away
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-grow cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-grow">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Grow
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-shrink cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-shrink">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Shrink
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-pulse cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-pulse">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Pulse
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-pulse-grow cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-pulse-grow">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Pulse Grow
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-pulse-shrink cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-pulse-shrink">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Pulse Shrink
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-push cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-push">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Push
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-pop cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-pop">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Pop
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-bounce cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-bounce">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Bounce
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-rotate cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-rotate">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Rotate
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-grow-rotate cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-grow-rotate">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Grow Rotate
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-float cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-float">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Float
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-sink cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-sink">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Sink
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-bob cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-bob">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Bob
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-hang cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-hang">
+                            <i class='bxr  bx-scan-face hvr-icon'></i> Icon Hang
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-wobble-horizontal cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-wobble-horizontal">
+                            Icon Wobble Horizontal <i class='bxr  bx-scan-face hvr-icon'></i> 
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-wobble-vertical cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-wobble-vertical">
+                            Icon Wobble Vertical <i class='bxr  bx-scan-face hvr-icon'></i> 
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-buzz cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-buzz">
+                            Icon Buzz <i class='bxr  bx-scan-face hvr-icon'></i> 
+                        </li>
+                        <li class="py-2 px-3 bg-primary text-white center rounded hvr-icon-buzz-out cursor-pointer inline-block" onclick=" setupCopyOnClick();" data-copy="hvr-icon-buzz-out">
+                            Icon Buzz Out <i class='bxr  bx-scan-face hvr-icon'></i> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">边框动画</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none flex gap-3 flex-wrap bgimg-leftslash">
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-border-fade cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-border-fade">
+                            Border Fade
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-hollow cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-hollow">
+                            Hollow
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-trim cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-trim">
+                            Trim
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-ripple-out cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-ripple-out">
+                            Ripple Out
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-ripple-in cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-ripple-in">
+                            Ripple In
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-outline-out cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-outline-out">
+                            Outline Out
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-outline-in cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-outline-in">
+                            Outline In
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-round-corners cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-round-corners">
+                            Round Corners
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-underline-from-left cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-underline-from-left">
+                            Underline From Left
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-underline-from-center cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-underline-from-center">
+                            Underline From Center
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-underline-from-right cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-underline-from-right">
+                            Underline From Right
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-reveal cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-reveal">
+                            Reveal
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-underline-reveal cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-underline-reveal">
+                            Underline Reveal
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-overline-reveal cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-overline-reveal">
+                            Overline Reveal
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-overline-from-left cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-overline-from-left">
+                            Overline From Left
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-overline-from-center cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-overline-from-center">
+                            Overline From Center
+                        </li>
+                        <li class="py-2 px-3 bg-gray-100 text-black center rounded hvr-overline-from-right cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-overline-from-right">
+                            Overline From Right
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">阴影动画</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none flex gap-3 flex-wrap bgimg-leftslash">
+                        <li class="py-2 px-3 bg-blue text-white center rounded hvr-shadow cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-shadow">
+                            Shadow
+                        </li>
+                        <li class="py-2 px-3 bg-blue text-white center rounded hvr-grow-shadow cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-grow-shadow">
+                            Grow Shadow
+                        </li>
+                        <li class="py-2 px-3 bg-blue text-white center rounded hvr-float-shadow cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-float-shadow">
+                            Float Shadow
+                        </li>
+                        <li class="py-2 px-3 bg-blue text-white center rounded hvr-glow cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-glow">
+                            Glow
+                        </li>
+                        <li class="py-2 px-3 bg-blue text-white center rounded hvr-shadow-radial cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-shadow-radial">
+                            Shadow Radial
+                        </li>
+                        <li class="py-2 px-3 bg-blue text-white center rounded hvr-box-shadow-outset cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-box-shadow-outset">
+                            Box Shadow Outset
+                        </li>
+                        <li class="py-2 px-3 bg-blue text-white center rounded hvr-box-shadow-inset cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-box-shadow-inset">
+                            Box Shadow Inset
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">气泡动画</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none flex gap-3 flex-wrap bgimg-leftslash">
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-bubble-top cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bubble-top">
+                            Bubble Top
+                        </li>
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-bubble-right cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bubble-right">
+                            Bubble Right
+                        </li>
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-bubble-bottom cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bubble-bottom">
+                            Bubble Bottom
+                        </li>
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-bubble-left cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bubble-left">
+                            Bubble Left
+                        </li>
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-bubble-float-top cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bubble-float-top">
+                            Bubble Float Top
+                        </li>
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-bubble-float-right cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bubble-float-right">
+                            Bubble Float Right
+                        </li>
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-bubble-float-bottom cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bubble-float-bottom">
+                            Bubble Float Bottom
+                        </li>
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-bubble-float-left cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-bubble-float-left">
+                            Bubble Float Left
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">卷角动画</cite>
+                </div>
+                <div class="card-body">
+                    <ul class="list-none flex gap-3 flex-wrap bgimg-leftslash">
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-curl-top-left cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-curl-top-left">
+                            Curl Top Left
+                        </li>
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-curl-top-right cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-curl-top-right">
+                            Curl Top Right
+                        </li>
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-curl-bottom-right cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-curl-bottom-right">
+                            Curl Bottom Right
+                        </li>
+                        <li class="py-2 px-3 bg-gray-200 text-black center rounded hvr-curl-bottom-left cursor-pointer" onclick=" setupCopyOnClick();" data-copy="hvr-curl-bottom-left">
+                            Curl Bottom Left
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

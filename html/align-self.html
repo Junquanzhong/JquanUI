@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Align Content</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>布局</a></li>
+            <li class="active">align-self</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">self-center</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tage radius">self-center</span> 交叉轴居中对齐。仅该元素自身在交叉轴上居中对齐。</p>
+                    <div class="width-full h-60 border rounded border-strong p-3 mt-5 mb-5">
+                        <ul class="list-none width-full h-full flex items-center gap-2">
+                            <li class="w-20 h-10 bg-primary text-white text-center rounded self-center"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">self-auto</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tage radius">self-auto</span> 默认值。遵循容器的 align-items 设置，不搞特殊。</p>
+                    <div class="width-full h-60 border rounded border-strong p-3 mt-5 mb-5">
+                        <ul class="list-none width-full h-full items-center flex gap-2">
+                            <li class="w-20 h-10 bg-primary text-white text-center rounded self-auto"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">self-start</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tage radius">self-start</span> 交叉轴起始对齐。仅该元素自身对齐到交叉轴的起始线。</p>
+                    <div class="width-full h-60 border rounded border-strong p-3 mt-5 mb-5">
+                        <ul class="list-none width-full h-full items-center flex gap-2">
+                            <li class="w-20 h-10 bg-primary text-white text-center rounded self-start"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">self-end</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tage radius">self-end</span> 交叉轴末尾对齐。仅该元素自身对齐到交叉轴的末尾线。</p>
+                    <div class="width-full h-80 border rounded border-strong p-3 mt-5 mb-5">
+                        <ul class="list-none width-full h-full items-center flex gap-2">
+                            <li class="w-20 h-10 bg-primary text-white text-center rounded self-end"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">self-stretch</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tage radius">self-stretch</span> 拉伸填满。仅该元素自身被拉伸以填满容器的交叉轴空间。</p>
+                    <div class="width-full h-60 border rounded border-strong p-3 mt-5 mb-5">
+                        <ul class="list-none width-full h-full items-center flex gap-2">
+                            <li class="w-20 bg-primary text-white text-center rounded self-stretch"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">self-baseline</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tage radius">self-baseline</span> 基线对齐。仅该元素自身以其文本基线为准进行对齐。</p>
+                    <div class="width-full h-60 border rounded border-strong p-3 mt-5 mb-5">
+                        <ul class="list-none width-full h-full items-center flex gap-2">
+                            <li class="w-20 bg-primary text-white text-center rounded self-baseline"
+                                style="min-height: 20px;"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                            <li class="w-20 h-20 bg-primary text-white text-center rounded"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../js/Communication.js"></script>
+        <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

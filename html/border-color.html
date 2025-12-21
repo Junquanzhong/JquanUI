@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons list-none">
+            <li><a href="/"><i class="bx bx-home"></i>边框</a></li>
+            <li class="active">边框颜色</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">边框颜色</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">.border-*</span> 来设置边框颜色</p>
+                    <br>
+                    <h5 class="mb-3">默认颜色</h5>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 radius border border-light cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-light">
+                            border-light
+                        </li>
+                        <li class="w-32 h-10 radius border border-strong cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-strong">
+                            border-strong
+                        </li>
+                    </ul>
+                    <h5 class="mb-3">语义化</h5>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 radius border border-primary cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-primary">
+                            border-primary
+                        </li>
+                        <li class="w-32 h-10 radius border border-secondary cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-secondary">
+                            border-secondary
+                        </li>
+                        <li class="w-32 h-10 radius border border-success cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-success">
+                            border-success
+                        </li>
+                        <li class="w-32 h-10 radius border border-warning cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-warning">
+                            border-warning
+                        </li>
+                        <li class="w-32 h-10 radius border border-danger cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-danger">
+                            border-danger
+                        </li>
+                        <li class="w-32 h-10 radius border border-important cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-important">
+                            border-important
+                        </li>
+                        <li class="w-32 h-10 radius border border-special cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-special">
+                            border-special
+                        </li>
+                    </ul>
+                    <h5 class="mb-3">按主色</h5>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 radius border border-red cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-red">
+                            border-red
+                        </li>
+                        <li class="w-32 h-10 radius border border-orange cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-orange">
+                            border-orange
+                        </li>
+                        <li class="w-32 h-10 radius border border-amber cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-amber">
+                            border-amber
+                        </li>
+                        <li class="w-32 h-10 radius border border-yellow cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-yellow">
+                            border-yellow
+                        </li>
+                        <li class="w-32 h-10 radius border border-lime cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-lime">
+                            border-lime
+                        </li>
+                        <li class="w-32 h-10 radius border border-green cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-green">
+                            border-green
+                        </li>
+                        <li class="w-32 h-10 radius border border-emerald cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-emerald">
+                            border-emerald
+                        </li>
+                        <li class="w-32 h-10 radius border border-teal cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-teal">
+                            border-teal
+                        </li>
+                        <li class="w-32 h-10 radius border border-cyan cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-cyan">
+                            border-cyan
+                        </li>
+                        <li class="w-32 h-10 radius border border-sky cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-sky">
+                            border-sky
+                        </li>
+                        <li class="w-32 h-10 radius border border-blue cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-blue">
+                            border-blue
+                        </li>
+                        <li class="w-32 h-10 radius border border-indigo cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-indigo">
+                            border-indigo
+                        </li>
+                        <li class="w-32 h-10 radius border border-violet cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-violet">
+                            border-violet
+                        </li>
+                        <li class="w-32 h-10 radius border border-purple cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-purple">
+                            border-purple
+                        </li>
+                        <li class="w-32 h-10 radius border border-fuchsia cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-fuchsia">
+                            border-fuchsia
+                        </li>
+                        <li class="w-32 h-10 radius border border-pink cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-pink">
+                            border-pink
+                        </li>
+                        <li class="w-32 h-10 radius border border-rose cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-rose">
+                            border-rose
+                        </li>
+                        <li class="w-32 h-10 radius border border-slate cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-slate">
+                            border-slate
+                        </li>
+                        <li class="w-32 h-10 radius border border-gray cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray">
+                            border-gray
+                        </li>
+                        <li class="w-32 h-10 radius border border-zinc cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-zinc">
+                            border-zinc
+                        </li>
+                    </ul>
+                    <h5 class="mb-3">灰色</h5>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 radius border border-gray-50 cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray-50">
+                            border-gray-50
+                        </li>
+                        <li class="w-32 h-10 radius border border-gray-100 cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray-100">
+                            border-gray-100
+                        </li>
+                        <li class="w-32 h-10 radius border border-gray-200 cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray-200">
+                            border-gray-200
+                        </li>
+                        <li class="w-32 h-10 radius border border-gray-300 cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray-300">
+                            border-gray-300
+                        </li>
+                        <li class="w-32 h-10 radius border border-gray-400 cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray-400">
+                            border-gray-400
+                        </li>
+                        <li class="w-32 h-10 radius border border-gray-500 cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray-500">
+                            border-gray-500
+                        </li>
+                        <li class="w-32 h-10 radius border border-gray-600 cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray-600">
+                            border-gray-600
+                        </li>
+                        <li class="w-32 h-10 radius border border-gray-700 cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray-700">
+                            border-gray-700
+                        </li>
+                        <li class="w-32 h-10 radius border border-gray-800 cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray-800">
+                            border-gray-800
+                        </li>
+                        <li class="w-32 h-10 radius border border-gray-900 cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-gray-900">
+                            border-gray-900
+                        </li>
+                    </ul>
+                    <h5 class="mb-3">其他颜色</h5>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 radius border border-white cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-white">
+                            border-white
+                        </li>
+                        <li class="w-32 h-10 radius border border-black cursor-pointer text-center leading-10 text-sm"
+                            onclick=" setupCopyOnClick();" data-copy="border-black">
+                            border-black
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">渐变色</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">.border-gradient-*-*</span> 用法跟渐变色背景一样，不同的是把bg改为border</p>
+                    <br>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="h-10 cursor-pointer text-center leading-10 text-sm">
+                            <button class="btn bg-surface text-surface border-gradient-to-r from-teal-400 to-yellow-200"
+                                onclick=" setupCopyOnClick();"
+                                data-copy="border-gradient-to-r from-teal-400 to-yellow-200">from-teal-400-to-yellow-200</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">:hover</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">.hover-border-*-*</span> 在背景色类前加一个.hover-来设置悬浮时的边框色</p>
+                    <br>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="h-10 cursor-pointer text-center leading-10 text-sm">
+                            <button class="btn bg-surface text-surface hover-border-red hover-text-red" onclick=" setupCopyOnClick();"
+                                data-copy="hover-border-red">hover-border-red</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">:focus</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">.focus-border-*-*</span> 在边框颜色类前加一个.focus-来设置获取焦点时的边框色</p>
+                    <br>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="h-10 radius cursor-pointer text-center leading-10 text-sm">
+                            <input type="text" placeholder="用户名" class="focus-bg-red-100 focus-border-red border border-light">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

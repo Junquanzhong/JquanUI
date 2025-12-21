@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container is-drawer-ready">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>ESM</a></li>
+            <li class="active">侧边抽屉</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">右侧通用筛选抽屉 (带遮罩和body滚动锁定)</cite>
+                </div>
+
+                <div class="card-body">
+                    <!-- 1. 触发按钮 -->
+                    <button data-drawer-target="filter-drawer" class="btn bg-primary text-white">
+                        <i class="bx bx-filter-alt"></i>
+                        打开筛选器
+                    </button>
+
+                    <!-- 2. 抽屉容器 -->
+                    <div id="filter-drawer" class="p-4">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-semibold">高级筛选</h2>
+                            <!-- 关闭按钮 -->
+                            <button data-drawer-close class="btn bg-light border-0">
+                                <i class="bx bx-x"></i>
+                            </button>
+                        </div>
+
+                        <!-- 3. 抽屉内容 -->
+                        <div class="space-y-6">
+                            <div>
+                                <label for="category" class="block text-sm font-medium mb-2">产品类别</label>
+                                <select id="category" class="w-full p-2 border rounded-md">
+                                    <option>全部类别</option>
+                                    <option>电子产品</option>
+                                    <option>家居生活</option>
+                                    <option>服饰鞋包</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="brand" class="block text-sm font-medium mb-2">品牌</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>品牌 A</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>品牌 B</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="price" class="block text-sm font-medium mb-2">价格范围</label>
+                                <input type="range" id="price" class="w-full">
+                                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                    <span>¥0</span>
+                                    <span>¥5000+</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. 底部操作按钮 -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-white">
+                            <button class="btn bg-secondary w-full mb-2">重置</button>
+                            <button class="btn bg-primary text-white w-full">应用筛选 (12)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">左侧移动端导航抽屉 (无遮罩)</cite>
+                </div>
+
+                <div class="card-body">
+                    <!-- 1. 触发按钮 (通常放在页面左上角) -->
+                    <button data-drawer-target="nav-drawer" data-drawer-position="left" data-drawer-disable-mask="true"
+                        class="btn bg-gray text-white">
+                        <i class="bx bx-menu"></i>
+                    </button>
+
+                    <!-- 2. 抽屉容器 -->
+                    <div id="nav-drawer">
+                        <div class="flex flex-col h-full">
+                            <nav class="flex-grow p-4 w-full">
+                                <div class="p-4 border-b flex justify-between items-center">
+                                    <h2 class="text-xl font-bold">导航菜单</h2>
+                                    <button data-drawer-close class="btn bg-light border-0">
+                                        <i class="bx bx-x"></i>
+                                    </button>
+                                </div>
+                                <ul class="space-y-2 list-none">
+                                    <li><a href="#" class="block p-3 rounded-md hover:bg-gray-100"><i
+                                                class="bx bx-home mr-2"></i>首页</a></li>
+                                    <li><a href="#" class="block p-3 rounded-md hover:bg-gray-100"><i
+                                                class="bx bx-package mr-2"></i>产品</a></li>
+                                    <li><a href="#" class="block p-3 rounded-md hover:bg-gray-100"><i
+                                                class="bx bx-info-circle mr-2"></i>关于我们</a></li>
+                                    <li><a href="#" class="block p-3 rounded-md hover:bg-gray-100"><i
+                                                class="bx bx-envelope mr-2"></i>联系方式</a></li>
+                                    <li><a href="#" class="block p-3 rounded-md text-red"><i
+                                                class="bxr bx-arrow-out-up-square-half mr-2"></i>退出登录</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">右侧信息参考面板 (不锁定body滚动)</cite>
+                </div>
+
+                <div class="card-body">
+                    <!-- 1. 触发按钮 -->
+                    <button data-drawer-target="info-drawer" data-drawer-body-lock="false"
+                        class="btn bg-success text-white">
+                        <i class="bx bx-help-circle"></i>
+                        查看帮助信息
+                    </button>
+
+                    <!-- 2. 抽屉容器 -->
+                    <div id="info-drawer" class="p-4">
+                        <h2 class="text-xl font-bold mb-4">快捷键指南</h2>
+                        <button data-drawer-close class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                            &times;
+                        </button>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                <span><kbd class="px-2 py-1 bg-gray-200 rounded">Ctrl</kbd> + <kbd
+                                        class="px-2 py-1 bg-gray-200 rounded">S</kbd></span>
+                                <span>保存当前文档</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                <span><kbd class="px-2 py-1 bg-gray-200 rounded">Ctrl</kbd> + <kbd
+                                        class="px-2 py-1 bg-gray-200 rounded">Z</kbd></span>
+                                <span>撤销上一步操作</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                <span><kbd class="px-2 py-1 bg-gray-200 rounded">Ctrl</kbd> + <kbd
+                                        class="px-2 py-1 bg-gray-200 rounded">F</kbd></span>
+                                <span>打开查找框</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-6">
+                            打开此面板后，您依然可以滚动主页面内容进行查阅。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">不同宽度的抽屉</cite>
+                </div>
+
+                <div class="card-body">
+                    <!-- 触发一个小抽屉 -->
+                    <button data-drawer-target="small-drawer" class="btn">小尺寸抽屉 (w-64)</button>
+
+                    <!-- 触发一个大抽屉 -->
+                    <button data-drawer-target="large-drawer" class="btn">大尺寸抽屉 (w-96)</button>
+
+
+                    <!-- 小抽屉容器 -->
+                    <div id="small-drawer" class="w-64 p-4">
+                        <h3 class="font-bold">小抽屉</h3>
+                        <p class="text-sm mt-2">我比较窄，适合放少量工具或通知。</p>
+                        <button data-drawer-close class="btn bg-secondary text-xs mt-4">关闭</button>
+                    </div>
+
+                    <!-- 大抽屉容器 -->
+                    <div id="large-drawer" class="w-96 p-4">
+                        <h3 class="font-bold">大抽屉</h3>
+                        <p class="mt-2">我更宽，可以容纳更复杂的表单或更丰富的内容，比如一篇小短文、一个代码编辑器或者一个复杂的配置界面。</p>
+                        <button data-drawer-close class="btn bg-secondary mt-4">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">无边框、沉浸式抽屉</cite>
+                </div>
+
+                <div class="card-body">
+                    <!-- 触发按钮 -->
+                    <button data-drawer-target="immersive-drawer" class="btn bg-green text-white">打开沉浸式抽屉</button>
+
+                    <!-- 抽屉容器 -->
+                    <div id="immersive-drawer" class="bg-transparent shadow-none">
+                        <div class="p-6 h-full bg-gradient-to-br from-indigo-50 via-white to-purple-50 rounded-l-3xl">
+                            <h2 class="text-2xl font-bold text-purple-800">欢迎</h2>
+                            <p class="mt-2 text-gray-700">
+                                这是一个无边框、有背景色的沉浸式抽屉。它打破了常规的矩形设计，带来更轻盈的视觉体验。
+                            </p>
+                            <button data-drawer-close class="btn bg-green text-white mt-6">知道了</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">使用参数</cite>
+                </div>
+
+            <div class="card-body">
+                <h2>抽屉组件 API 参数参考</h2>
+                <p>所有参数均通过设置在触发按钮 <code>&lt;button&gt;</code> 上的 <code>data-*</code>
+                    属性来配置。抽屉容器本身（<code>&lt;div&gt;</code>）无需设置任何特殊属性，只需一个与 <code>data-drawer-target</code> 匹配的
+                    <code>id</code>。</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>参数</th>
+                            <th>可选值</th>
+                            <th>默认值</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td>
+                                <code>data-drawer-target</code></td>
+                            <td><em>string (ID)</em></td>
+                            <td>必填</td>
+                            <td>指定该按钮要控制的抽屉容器的 <code>id</code>。这是建立连接的唯一必需参数。</td>
+                        </tr>
+                        <tr >
+                            <td>
+                                <code>data-drawer-position</code></td>
+                            <td><code>"left"</code>, <code>"right"</code></td>
+                            <td><code>"right"</code></td>
+                            <td>定义抽屉从屏幕的哪一侧滑入。</td>
+                        </tr>
+                        <tr >
+                            <td>
+                                <code>data-drawer-disable-mask</code></td>
+                            <td >(无值)</td>
+                            <td >未设置</td>
+                            <td >布尔属性。只要存在此属性，遮罩层就会被禁用。用户无法通过点击背景来关闭抽屉，只能通过关闭按钮或按 ESC
+                                键。</td>
+                        </tr>
+                        <tr >
+                            <td>
+                                <code>data-drawer-body-lock</code></td>
+                            <td ><code>"true"</code>, <code>"false"</code></td>
+                            <td ><code>"true"</code></td>
+                            <td >控制在抽屉打开时是否锁定主页面的滚动。设置为 <code>"false"</code>
+                                时，用户仍可与背景页面交互并滚动。</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code>data-drawer-close</code></td>
+                            <td >(无值)</td>
+                            <td >N/A</td>
+                            <td >
+                                布尔属性。此属性用于放在抽屉<strong>内部</strong>的关闭按钮上。点击带有此属性的元素会关闭当前打开的抽屉。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <hr class="my-6">
+
+                <h3>关闭抽屉的方式</h3>
+                <p>无论配置如何，用户始终可以通过以下方式关闭抽屉：</p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>点击抽屉内部任何一个带有 <code>data-drawer-close</code> 属性的元素。</li>
+                    <li>在抽屉获得焦点时按下 <kbd>ESC</kbd> 键。</li>
+                    <li>点击背景遮罩层（除非通过 <code>data-drawer-disable-mask</code> 禁用了此功能）。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/apps/drawer.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

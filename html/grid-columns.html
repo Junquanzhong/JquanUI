@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>Grid</a></li>
+            <li class="active">Columns</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">Grid Columns</cite>
+                </div>
+                <div class="card-body">
+                    <p class="my-4">通过<code>grid-cols-{ number }</code> (1-12-none) 设置Grid的列数</p>
+                    <div class="flex flex-wrap gap-4" id="grid-body-button">
+                        <button class="btn btn-primary text-white">1</button>
+                        <button class="btn btn-primary text-white">2</button>
+                        <button class="btn btn-primary text-white">3</button>
+                        <button class="btn btn-primary text-white">4</button>
+                        <button class="btn btn-primary text-white">5</button>
+                        <button class="btn btn-primary text-white">6</button>
+                        <button class="btn btn-primary text-white">7</button>
+                        <button class="btn btn-primary text-white">8</button>
+                        <button class="btn btn-primary text-white">9</button>
+                        <button class="btn btn-primary text-white">10</button>
+                        <button class="btn btn-primary text-white">11</button>
+                        <button class="btn btn-primary text-white">12</button>
+                        <button class="btn btn-primary text-white">none</button>
+                    </div>
+                    <ul class="list-none mt-3 gap-4 grid grid-cols-6" id="grid-body">
+                        <li class="grid-item bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                        <li class="bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg border border-blue-300 shadow-sm items-center justify-center transition-all duration-200"></li>
+                    </ul>
+                </div>
+                <script type="module">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const grid = document.getElementById('grid-body');
+                        const buttonsWrap = document.getElementById('grid-body-button');
+
+                        function setGridRows(rowsValue) {
+                            // 移除旧的 grid-rows-xxx 样式
+                            grid.classList.remove(
+                                'grid-cols-none',
+                                'grid-cols-1',
+                                'grid-cols-2',
+                                'grid-cols-3',
+                                'grid-cols-4',
+                                'grid-cols-5',
+                                'grid-cols-6',
+                                'grid-cols-7',
+                                'grid-cols-8',
+                                'grid-cols-9',
+                                'grid-cols-10',
+                                'grid-cols-11',
+                                'grid-cols-12',
+                                'grid-cols-none'
+                            );
+
+                            if (!rowsValue || rowsValue === 'none') {
+                                // 不设置具体行数
+                                return;
+                            }
+
+                            const n = parseInt(rowsValue, 10);
+                            if (!Number.isNaN(n)) {
+                                grid.classList.add('grid-cols-' + n);
+                            }
+                        }
+
+                        // 事件委托：点击任意按钮后切换 #grid-body 的行数类
+                        buttonsWrap.addEventListener('click', function (e) {
+                            const btn = e.target.closest('button');
+                            if (!btn) return;
+                            setGridRows(String(btn.textContent).trim());
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

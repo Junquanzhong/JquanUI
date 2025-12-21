@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons list-none">
+            <li><a href="/"><i class="bx bx-home"></i>边框</a></li>
+            <li class="active">边框圆角</li>
+        </ul>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">边框圆角</cite>
+                </div>
+                <div class="card-body">
+                    <h5>默认圆角</h5>
+                    <p>使用 <span class="tags rounded">.radius-*</span> 来设置边框圆角</p>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-none" onclick=" setupCopyOnClick();" data-copy="rounded-none">
+                            rounded-none
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-sm" onclick=" setupCopyOnClick();" data-copy="rounded-sm">
+                            rounded-sm
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded" onclick=" setupCopyOnClick();" data-copy="rounded">
+                            rounded
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-md" onclick=" setupCopyOnClick();" data-copy="rounded-md">
+                            rounded-md
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-lg" onclick=" setupCopyOnClick();" data-copy="rounded-lg">
+                            rounded-lg
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-xl" onclick=" setupCopyOnClick();" data-copy="rounded-xl">
+                            rounded-xl
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-2xl" onclick=" setupCopyOnClick();" data-copy="rounded-2xl">
+                            rounded-2xl
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-3xl" onclick=" setupCopyOnClick();" data-copy="rounded-3xl">
+                            rounded-3xl
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-full" onclick=" setupCopyOnClick();" data-copy="rounded-full">
+                            rounded-full
+                        </li>
+                    </ul>
+                    <h5>禁用圆角</h5>
+                    <p>使用 <span class="tags rounded">.rounded-*-none</span> 来禁用某个方向的圆角</p>
+                    <ul class="list-none mt-3 gap-3 inline-flex flex-wrap mb-5">
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-lg rounded-t-none" onclick=" setupCopyOnClick();" data-copy="rounded-t-none">
+                            rounded-t-none
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-lg rounded-r-none" onclick=" setupCopyOnClick();" data-copy="rounded-r-none">
+                            rounded-r-none
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-lg rounded-b-none" onclick=" setupCopyOnClick();" data-copy="rounded-b-none">
+                            rounded-b-none
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-lg rounded-l-none" onclick=" setupCopyOnClick();" data-copy="rounded-l-none">
+                            rounded-l-none
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-lg rounded-br-none" onclick=" setupCopyOnClick();" data-copy="rounded-br-none">
+                            rounded-br-none
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-lg rounded-bl-none" onclick=" setupCopyOnClick();" data-copy="rounded-bl-none">
+                            rounded-bl-none
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-lg rounded-tr-none" onclick=" setupCopyOnClick();" data-copy="rounded-tr-none">
+                            rounded-tr-none
+                        </li>
+                        <li class="w-32 h-10 rounded border border-strong cursor-pointer text-center leading-10 text-sm rounded-lg rounded-tl-none" onclick=" setupCopyOnClick();" data-copy="rounded-tl-none">
+                            rounded-tl-none
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

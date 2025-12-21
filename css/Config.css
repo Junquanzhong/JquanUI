@@ -1,0 +1,162 @@
+:root {
+  /* 初始化 */
+  /* 字体 */
+  --foot:"MiSans";
+    /* 圓角 */
+    --radius-s: 4px;
+    --radius-m: 6px;
+    --radius-l: 8px;
+    --radius-xl: 100px;
+    /* 按鈕大小 */
+    --btn-mini-height: 24px;
+    --btn-default-height: 34px;
+    --btn-large-height: 40px;
+
+    /* 按鈕內距 */
+    --btn-mini-padding: 0 8px;
+    --btn-default-padding: 0 17px;
+    --btn-large-padding: 0 20px;
+
+    /* 按鈕字体大小 */
+    --btn-mini-font-size: 12px;
+    --btn-default-font-size: 13px;
+    --btn-large-font-size: 14px;
+
+    /* 转换设定 */
+    --btn-transition: all 0.3s ease;
+
+    /* 不可用状态颜色 */
+    --btn-disabled-bg: #F3F3F3;
+    --btn-disabled-color: #999;
+    --btn-disabled-hover-color: #d3d3d3;
+
+    /* 徽章 */
+    /* 徽标大小变量 */
+    --badge-font-size: 10px;
+    --badge-padding: 3px 6px;
+    --badge-min-width: 18px;
+    --badge-height: 18px;
+
+    /* 徽标位置变量 */
+    --badge-offset-x: -8px;
+    --badge-offset-y: -8px;
+
+    /* 徽标颜色 */
+    --badge-bg-default: #e6e6e6;
+    --badge-text-default: var(--dark-color);
+
+    /* 表单 */
+    /* 表单组件变量 */
+    --input-border-radius: 3px;
+    --input-padding: 8px 12px;
+    --input-transition: all 0.3s ease-in-out;
+    --input-font-size: 14px;
+    --input-line-height: 1.5;
+    --input-placeholder-color: #aaa;
+  --input-disabled-bg: #f5f5f5;
+  --input-disabled-color: #999;
+  --input-focus-shadow: 0 0 0 3px rgba(var(--main-color-rgb), 0.25);
+  
+  /* 复选框/单选按钮变量 */
+  --control-size: 18px;
+  --control-margin: 0.4em;
+  --control-indicator-size: 10px;
+
+  /* 图片 */
+  /* 图片组件变量 */
+  --img-border-radius: 4px;
+  --img-border-color: #ddd;
+  --img-padding: 4px;
+  --img-transition: all 0.2s ease-in-out;
+  --img-bg: #fff;
+  --img-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --img-hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  
+  /* 头像大小 */
+  --avatar-xs: 24px;
+  --avatar-sm: 32px;
+  --avatar-md: 48px;
+  --avatar-lg: 64px;
+  --avatar-xl: 96px;
+  
+  /* 图片叠加变量 */
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+  --overlay-text: #fff;
+
+  /* 面包屑 */
+  --breadcrumb-padding-y: 8px;
+  --breadcrumb-padding-x: 15px;
+  --breadcrumb-bg: var(--contrasting-color);
+  --breadcrumb-border-radius: 6px;
+  --breadcrumb-margin-bottom: 1rem;
+  --breadcrumb-font-size: 0.875rem;
+  --breadcrumb-active-color: var(--main-color);
+  --breadcrumb-divider: "/";
+  --breadcrumb-divider-color: #6c757d;
+  --breadcrumb-item-padding: 0.5rem;
+  --breadcrumb-link-color: #495057;
+  --breadcrumb-link-hover-color: var(--main-color);
+  --breadcrumb-link-hover-decoration: underline;
+  --breadcrumb-border-color: rgba(0, 0, 0, 0.1);
+
+  /* 代码 */
+  /* 代码块主题变量 */
+  --code-bg: #1e1e1e;
+  --code-text: #d4d4d4;
+  --code-font: "Menlo", "Monaco", "Consolas", "Courier New", monospace;
+  --code-font-size: 15px;
+  --code-line-height: 1;
+  --code-border-radius: 8px;
+  --code-padding: 10px;
+  --code-margin: 24px 0;
+  
+  /* Syntax 亮色 - 暗色主题 */
+  --code-keyword: #569cd6;    /* keywords like function, const, let */
+  --code-function: #dcdcaa;   /* function names */
+  --code-number: #b5cea8;     /* numbers */
+  --code-string: #ce9178;     /* strings */
+  --code-comment: #6a9955;    /* comments */
+  --code-class: #4ec9b0;      /* class names */
+  --code-operator: #d4d4d4;   /* operators like +, =, > */
+  --code-punctuation: #d4d4d4; /* punctuation like (), {}, [] */
+  --code-variable: #9cdcfe;   /* variable names */
+  --code-property: #9cdcfe;   /* object properties */
+  --code-important: #f44747;  /* important elements */
+  
+  /* 行码 */
+  --code-line-number-width: 2.5em;
+  --code-line-number-color: rgba(255, 255, 255, 0.4);
+  --code-line-number-bg: rgba(0, 0, 0, 0.2);
+  
+  /* 工具栏 */
+  --code-toolbar-bg: rgba(0, 0, 0, 0.5);
+  --code-toolbar-text: #d4d4d4;
+  --code-toolbar-icon: #9cdcfe;
+  --code-toolbar-button-hover: rgba(255, 255, 255, 0.1);
+  
+  /* 高亮 */
+  --code-highlight-bg: rgba(255, 255, 0, 0.05);
+  --code-highlight-border: #ffa500;
+  
+  /* 亮色主题覆盖 */
+  --code-bg-light: #f5f5f5;
+  --code-text-light: #333;
+  --code-line-number-bg-light: rgba(0, 0, 0, 0.05);
+  --code-line-number-color-light: rgba(0, 0, 0, 0.5);
+  --code-toolbar-bg-light: rgba(0, 0, 0, 0.1);
+  --code-toolbar-text-light: #333;
+  --code-highlight-bg-light: rgba(255, 235, 59, 0.2);
+  
+  /* 语法高亮颜色 - 轻色主题 */
+  --code-keyword-light: #0000ff;
+  --code-function-light: #795e26;
+  --code-number-light: #098658;
+  --code-string-light: #a31515;
+  --code-comment-light: #008000;
+  --code-class-light: #267f99;
+  --code-operator-light: #333;
+  --code-punctuation-light: #333;
+  --code-variable-light: #001080;
+  --code-property-light: #001080;
+  --code-important-light: #ff0000;
+}

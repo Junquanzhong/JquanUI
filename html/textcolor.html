@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>色彩</a></li>
+            <li class="active">文本颜色</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">语义化</cite>
+                </div>
+                <div class="card-body">
+                    <p>
+                        在标签，如 <span class="tags radius">p</span>
+                        中添加类名,如：
+                        <span class="tags radius">text-*</span>
+                    </p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center ">
+                            <p class="text-primary">primary</p>
+                            <div class="text-primary w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-primary">text-primary</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center ">
+                            <p class="text-secondary">secondary</p>
+                            <div class="text-secondary w-30 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-secondary">text-secondary</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-green">success</p>
+                            <div class="text-success w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-success">text-success</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-amber">warning</p>
+                            <div class="text-warning w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-warning">text-warning</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-pink">important</p>
+                            <div class="text-important w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-important">text-important</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-red">danger</p>
+                            <div class="text-danger w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-danger">text-danger</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-purple">special</p>
+                            <div class="text-special w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-special">text-special</p>
+                            </div>
+                        </li> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">主色系</cite>
+                </div>
+                <div class="card-body">
+                    <p>
+                        在标签，如 <span class="tags radius">p</span>
+                        中添加类名,如：
+                        <span class="tags radius">text-*</span>
+                    </p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center">
+                            <p class="text-red">红色</p>
+                            <div class="text-bule w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-red">text-red</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-orange">橙色</p>
+                            <div class="text-green w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-orange">text-orange</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-amber">琥珀</p>
+                            <div class="text-amber w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-amber">text-amber</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-yellow">黄色</p>
+                            <div class="text-yellow w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-yellow">text-yellow</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-lime">石青</p>
+                            <div class="text-lime w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-lime">text-lime</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-green">绿色</p>
+                            <div class="text-green w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-green">text-green</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-emerald">宝石绿</p>
+                            <div class="text-emerald w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-emerald">text-emerald</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-teal">水鸭绿</p>
+                            <div class="text-teal w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-teal">text-teal</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-cyan">青色</p>
+                            <div class="text-cyan w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-cyan">text-cyan</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-sky">天青色</p>
+                            <div class="text-sky w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-sky">text-sky</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-blue">蓝色</p>
+                            <div class="text-blue w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-blue">text-blue</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-indigo">靛青</p>
+                            <div class="text-indigo w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-indigo">text-indigo</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-violet">紫罗兰</p>
+                            <div class="text-violet w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-violet">text-violet</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-purple">紫色</p>
+                            <div class="text-purple w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-purple">text-purple</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-fuchsia">紫红</p>
+                            <div class="text-fuchsia w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-fuchsia">text-fuchsia</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-pink">粉色</p>
+                            <div class="text-pink w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-pink">text-pink</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-rose">玫瑰红</p>
+                            <div class="text-rose w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-rose">text-rose</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-slate">石板灰</p>
+                            <div class="text-slate w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-slate">text-slate</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray">灰色</p>
+                            <div class="text-gray w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">text-gray</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-zinc">锌灰</p>
+                            <div class="text-zinc w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-zinc">text-zinc</p>
+                            </div>
+                        </li>
+                    </ul> 
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">灰色系</cite>
+                </div>
+                <div class="card-body">
+                    <p>
+                        在标签，如 <span class="tags radius">p</span>
+                        中添加类名,如：
+                        <span class="tags radius">text-gray-*</span>
+                    </p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center">
+                            <p class="text-gray-50">灰色</p>
+                            <div class="text-gray-50 w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">50</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray-100">灰色</p>
+                            <div class="text-gray-100 w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">100</p>
+                            </div>  
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray-200">灰色</p>
+                            <div class="text-gray-200 w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">200</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray-300">灰色</p>
+                            <div class="text-gray-300 w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">300</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray-400">灰色</p>
+                            <div class="text-gray-400 w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">400</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray-500">灰色</p>
+                            <div class="text-gray-500 w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">500</p>
+                            </div>  
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray-600">灰色</p>
+                            <div class="text-gray-600 w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">600</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray-700">灰色</p>
+                            <div class="text-gray-700 w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">700</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray-800">灰色</p>
+                            <div class="text-gray-800 w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">800</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray-900">灰色</p>
+                            <div class="text-gray-900 w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">900</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">排版</cite>
+                </div>
+                <div class="card-body">
+                    <p>
+                        在标签，如 <span class="tags radius">p</span>
+                        中添加类名,如：
+                        <span class="tags radius">text-*</span>
+                    </p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center">
+                            <p class="text-gray">灰色</p>
+                            <div class="text-gray w-24 h-10 cursor-pointer radius mb-5" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-gray">text-gray</p>
+                            </div>
+                            
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-black">黑色</p>
+                            <div class="text-black w-24 h-10 cursor-pointer radius" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-black">text-black</p>
+                            </div>
+                        </li>
+                        <li class="inline-block text-center">
+                            <p class="text-gray">白色</p>
+                            <div class="text-white w-24 h-10 cursor-pointer radius bg-gray-300" onclick="copyFirstClass(this);">
+                                <p class="leading-10 text-white">text-white</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">渐变色</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">.text-gradient</span> 在加上渐变色背景就可以把渐变色应用在字体上</p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center">
+                            <p class="text-gradient cursor-pointer bg-gradient-to-r from-teal-400 to-yellow-200">渐变色文字</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">:hover</cite>
+                </div>
+                <div class="card-body">
+                    <p>使用 <span class="tags radius">.hover-text-*-*</span> 在文本色类前加一个.hover-来设置悬浮时的字体色</p>
+                    <ul class="list-none mt-3">
+                        <li class="inline-block text-center">
+                            <p class="text-gray cursor-pointer hover-text-red">灰色hover红色</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Communication.js"></script>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>

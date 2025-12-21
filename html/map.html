@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>地图</a></li>
+            <li class="active">地图</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">地图</cite>
+                </div>
+                <div class="card-body">
+                    <!-- 地图将渲染在这个 div 中 -->
+                    <div id="map-container" class="w-full aspect-video rounded-lg shadow-lg overflow-hidden mb-4"></div>
+                </div>
+                <script type="module">
+                    import Map from '../js/modules/map.mjs';
+                    Map.configure({
+                        key: 'Jn1kjKMWhayuh8IE56qNGz9cY0PmJMoi', // 必填！
+                    });
+                    // 创建地图
+                    const mapInstance = new Map({
+                        container: 'map-container', // DOM 元素 ID
+                        center: [120.46, 31.56],
+                        zoom: 14,
+                        source: 'baidu', // or 'gaode'
+                        //language: 'en', // ← 语言无效不用配置
+                        markers: [{
+                            position: [120.46, 31.56],
+                            title: '无锡凯涵科技有限公司',
+                            content: '无锡市新吴区江苏省无锡市新吴区新锦路108号新区叙丰工业园7号楼',
+                            autoOpen: true // 是否自动打开信息窗口
+                        }]
+                    });
+                    mapInstance.init().then(controller => {
+                        console.log('地图加载成功');
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">地图参数配置</cite>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>参数</th>
+                                <th>类型</th>
+                                <th>必填</th>
+                                <th>默认值</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>key</td>
+                                <td>string</td>
+                                <td>是</td>
+                                <td>—</td>
+                                <td>百度地图开发者密钥（AK），用于认证 API 调用权限。</td>
+                            </tr>
+                            <tr>
+                                <td>container</td>
+                                <td>string | HTMLElement</td>
+                                <td>是</td>
+                                <td>—</td>
+                                <td>地图容器元素，可传入 DOM 元素或其 ID 字符串。</td>
+                            </tr>
+                            <tr>
+                                <td>center</td>
+                                <td>[number, number]</td>
+                                <td>否</td>
+                                <td>[116.404, 39.915]</td>
+                                <td>地图初始中心点，格式为 [lng, lat]（经度, 纬度）。</td>
+                            </tr>
+                            <tr>
+                                <td>zoom</td>
+                                <td>number</td>
+                                <td>否</td>
+                                <td>12</td>
+                                <td>地图初始缩放级别，取值范围通常为 3-19。</td>
+                            </tr>
+                            <tr>
+                                <td>source</td>
+                                <td>string</td>
+                                <td>否</td>
+                                <td>"baidu"</td>
+                                <td>地图图源类型，当前固定为 "baidu" 表示使用百度地图。</td>
+                            </tr>
+                            <tr>
+                                <td>language</td>
+                                <td>string</td>
+                                <td>否</td>
+                                <td>"zh-CN"</td>
+                                <td>地图界面语言，如 "zh-CN"（简体中文）、"en"（英文）等。</td>
+                            </tr>
+                            <tr>
+                                <td>markers.position</td>
+                                <td>[number, number]</td>
+                                <td>是（若使用 markers）</td>
+                                <td>—</td>
+                                <td>单个标注点的经纬度坐标，格式为 [lng, lat]。</td>
+                            </tr>
+                            <tr>
+                                <td>position.title</td>
+                                <td>string</td>
+                                <td>否</td>
+                                <td>—</td>
+                                <td>该标注点信息窗口的标题文本。
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>position.content</td>
+                                <td>string</td>
+                                <td>否</td>
+                                <td>—</td>
+                                <td>该标注点信息窗口的内容文本，支持简单 HTML。</td>
+                            </tr>
+                            <tr>
+                                <td>position.autoOpen</td>
+                                <td>boolean</td>
+                                <td>否</td>
+                                <td>false</td>
+                                <td>是否在地图初始化后自动打开此标注点的信息窗口。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <pre class="border border-strong"><code class="code-block" data-language="javascript" data-show-lines="true">import Map from '../js/modules/map.mjs';
+Map.configure({
+    key: 'Jn1kjKMWhayuh8IE56qNGz9cY0PmJMoi', 
+    
+});
+// 创建地图
+const mapInstance = new Map({
+    container: 'map-container', // DOM 元素 ID
+    center: [121.550265,29.873427],
+    zoom: 16,
+    source: 'baidu', // or 'gaode'
+    language: 'en', // ← 这里可单独指定 语言无效，无需配置
+    markers: [{ 
+        position: [121.550265,29.873427], 
+        title: '月湖公园', 
+        content: '宁波市海曙区浙江省宁波市海曙区大书院巷与偃月街交叉路口往东约100米' ,
+        autoOpen: true // 是否自动打开信息窗口
+    }]
+});
+mapInstance.init().then(controller => {
+    console.log('地图加载成功');
+    // controller.setCenter(...);
+});</code></pre>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script type="module">
+            import { initCodeHighlighter } from '../js/modules/code-block.mjs';
+
+            // 调用初始化函数
+            // 这里可以覆盖默认配置
+            initCodeHighlighter({
+                copyButtonText: 'Copy',
+                copiedButtonText: 'Copied!',
+                copiedTextDuration: 3000, // 3秒
+                showLinesByDefault: false // 不显示行号
+                // showLinesByDefault 保持 true，因为我们大部分都需要
+            });
+        </script>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

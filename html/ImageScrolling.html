@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>ESM</a></li>
+            <li class="active">图片滚动</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">图片滚动</cite>
+                </div>
+                <div class="card-body">
+                    <div id="infiniteScrollContainer">
+                        <ul class="scroll-content">
+                            <li class="scroll-item">
+                                <img src="https://picsum.photos/id/1/300/200" alt="示例图片">
+                                <h3>项目1</h3>
+                                <p>这是描述内容1</p>
+                            </li>
+                            <li class="scroll-item">
+                                <img src="https://picsum.photos/id/2/300/200" alt="示例图片">
+                                <h3>项目2</h3>
+                                <p>这是描述内容2</p>
+                            </li>
+                            <li class="scroll-item">
+                                <img src="https://picsum.photos/id/3/300/200" alt="示例图片">
+                                <h3>项目3</h3>
+                                <p>这是描述内容3</p>
+                            </li>
+                            <li class="scroll-item">
+                                <img src="https://picsum.photos/id/4/300/200" alt="示例图片">
+                                <h3>项目4</h3>
+                                <p>这是描述内容4</p>
+                            </li>
+                            <li class="scroll-item">
+                                <img src="https://picsum.photos/id/5/300/200" alt="示例图片">
+                                <h3>项目5</h3>
+                                <p>这是描述内容5</p>
+                            </li>
+                            <li class="scroll-item">
+                                <img src="https://picsum.photos/id/6/300/200" alt="示例图片">
+                                <h3>项目6</h3>
+                                <p>这是描述内容6</p>
+                            </li>
+                            <li class="scroll-item">
+                                <img src="https://picsum.photos/id/6/300/200" alt="示例图片">
+                                <h3>项目6</h3>
+                                <p>这是描述内容6</p>
+                            </li>
+                            <li class="scroll-item">
+                                <img src="https://picsum.photos/id/6/300/200" alt="示例图片">
+                                <h3>项目6</h3>
+                                <p>这是描述内容6</p>
+                            </li>
+                            <li class="scroll-item">
+                                <img src="https://picsum.photos/id/6/300/200" alt="示例图片">
+                                <h3>项目6</h3>
+                                <p>这是描述内容6</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <script type="module">
+                        //导入组件
+                        import InfiniteScroll from '../js/modules/infiniteScroll.mjs';
+                        window.addEventListener('DOMContentLoaded', () => {
+                            // 初始化无限滚动组件
+                            const infiniteScroll = new InfiniteScroll({
+                                container: '#infiniteScrollContainer',
+                                autoScroll: true,
+                                speed: 1,
+                                visibleItems: 3.5,
+                                gap: 16,
+                                pauseOnHover: true
+                            });
+                            console.log('无限滚动已初始化');
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">参数</cite>
+                </div>
+                <div class="card-body">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>类型</th>
+                                <th>默认值</th>
+                                <th>说明</th>
+                                <th>用法示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>container</td>
+                                <td>string | HTMLElement</td>
+                                <td>无（必填）</td>
+                                <td>滚动组件的容器元素或CSS选择器。容器内必须包含一个ul或带有class="scroll-content"的元素作为滚动内容。</td>
+                                <td><code>container: '#infiniteScrollContainer'</code><br>或<br><code>container: document.querySelector('#infiniteScrollContainer')</code>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>autoScroll</td>
+                                <td>boolean</td>
+                                <td>true</td>
+                                <td>是否启用自动滚动功能。如果设置为false，则只能通过拖动滚动。</td>
+                                <td><code>autoScroll: true</code></td>
+                            </tr>
+                            <tr>
+                                <td>speed</td>
+                                <td>number</td>
+                                <td>1</td>
+                                <td>自动滚动的速度，范围为1-10。值越大，滚动越快。</td>
+                                <td><code>speed: 3</code></td>
+                            </tr>
+                            <tr>
+                                <td>visibleItems</td>
+                                <td>number</td>
+                                <td>3.5</td>
+                                <td>可视区域显示的项目数量，可以是小数，如3.5表示显示3个完整项目和一个半项目。</td>
+                                <td><code>visibleItems: 3.5</code></td>
+                            </tr>
+                            <tr>
+                                <td>direction</td>
+                                <td>string</td>
+                                <td>'horizontal'</td>
+                                <td>滚动方向，可选值：'horizontal'（水平）或'vertical'（垂直）。</td>
+                                <td><code>direction: 'horizontal'</code></td>
+                            </tr>
+                            <tr>
+                                <td>gap</td>
+                                <td>number</td>
+                                <td>16</td>
+                                <td>项目之间的间距，单位为像素(px)。</td>
+                                <td><code>gap: 20</code></td>
+                            </tr>
+                            <tr>
+                                <td>pauseOnHover</td>
+                                <td>boolean</td>
+                                <td>true</td>
+                                <td>鼠标悬停或触摸时是否暂停自动滚动。</td>
+                                <td><code>pauseOnHover: true</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">公共方法</cite>
+                </div>
+                <div class="card-body">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>方法名</th>
+                                <th>参数</th>
+                                <th>返回值</th>
+                                <th>说明</th>
+                                <th>用法示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>toggleAutoScroll</td>
+                                <td>enable: boolean</td>
+                                <td>void</td>
+                                <td>启用或禁用自动滚动功能</td>
+                                <td><code>infiniteScroll.toggleAutoScroll(true);</code></td>
+                            </tr>
+                            <tr>
+                                <td>setSpeed</td>
+                                <td>speed: number</td>
+                                <td>void</td>
+                                <td>设置自动滚动的速度（1-10）</td>
+                                <td><code>infiniteScroll.setSpeed(5);</code></td>
+                            </tr>
+                            <tr>
+                                <td>setVisibleItems</td>
+                                <td>count: number</td>
+                                <td>void</td>
+                                <td>设置可视区域显示的项目数量</td>
+                                <td><code>infiniteScroll.setVisibleItems(2.5);</code></td>
+                            </tr>
+                            <tr>
+                                <td>pauseAutoScroll</td>
+                                <td>无</td>
+                                <td>void</td>
+                                <td>暂停自动滚动</td>
+                                <td><code>infiniteScroll.pauseAutoScroll();</code></td>
+                            </tr>
+                            <tr>
+                                <td>resumeAutoScroll</td>
+                                <td>无</td>
+                                <td>void</td>
+                                <td>恢复自动滚动</td>
+                                <td><code>infiniteScroll.resumeAutoScroll();</code></td>
+                            </tr>
+                            <tr>
+                                <td>destroy</td>
+                                <td>无</td>
+                                <td>void</td>
+                                <td>销毁组件，移除所有事件监听器</td>
+                                <td><code>infiniteScroll.destroy();</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>

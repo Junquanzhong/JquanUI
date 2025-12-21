@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/Config.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body class="theme-indigo">
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>ESM</a></li>
+            <li class="active">复制器</li>
+        </ul>
+        <div class="container py-3">    
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">复制器</cite>
+                </div>
+                <div class="card-body">
+                    <div >
+                        <p class="my-3 cursor-pointer bg-gray-200 px-4 py-2 rounded-lg table" >复制我自己的值</p>
+                        <p class="my-3 cursor-pointer bg-gray-200 px-4 py-2 rounded-lg table" data-copy="这是data-copy的值">复制我的属性data-copy的值</p>
+                        <p class="my-3 table" id="copy-target">我会被按钮指定复制</p>
+                        <button class="btn bg-primary rounded-lg text-white px-4 py-2 table">复制指定id的值</button>
+                        <p class="my-3 cursor-pointer bg-gray-200 px-4 py-2 rounded-lg table p" >点我复制常量</p>
+                        <p class="my-3 cursor-pointer bg-gray-200 px-4 py-2 rounded-lg table b">点我随机从数组取1个</p>
+                    </div>
+                    <script type="module">
+                        import { copyText, copyElement } from '../js/modules/copy.mjs';
+                        document.querySelector('p').addEventListener('click', function() {
+                            copyText(this.textContent);
+                        });
+                        document.querySelector('p[data-copy]').addEventListener('click', function() {
+                            copyText(this.dataset.copy);
+                        });
+                        document.querySelector('button').addEventListener('click', function() {
+                            copyElement(document.getElementById('copy-target'));
+                        });
+                        document.querySelector('.p').addEventListener('click', function() {
+                            const tocopy= "wx_123456"
+                            copyText(tocopy);
+                        });
+                        document.querySelector('.b').addEventListener('click', function() {
+                            const WECHAT_LIST = ['wx_clean_a', 'wx_clean_b', 'wx_clean_c'];
+                            const randomWechat = WECHAT_LIST[Math.floor(Math.random() * WECHAT_LIST.length)];
+                            copyText(randomWechat);
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+</html>
