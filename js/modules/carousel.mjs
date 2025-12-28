@@ -1,590 +1,539 @@
-// carousel.mjs
-//本组件逻辑部分由claude-4.7-sonnet生成，后由GLM-4.6优化,UI部分由JquanUIex@3.0.css提供
-// 修复版本：3.0.2 - 修复指示器点击问题和索引计算
+/*
+* carousel.mjs
+* 生产级滑块轮播组件 - 优化版
+* @author Gemini-3-Pro
+* @version 3.0.0
+* @license MIT
+*/
+// Carousel.mjs - 生产级最终版 (v3.1)
 export default class Carousel {
   constructor(options) {
-    // 默认配置
     this.config = {
       container: '.carousel',
-      direction: 'horizontal',
-      rtl: false,
-      autoplay: true,
-      interval: 3000,
-      speed: 500,
-      indicators: true,
-      arrows: true,
-      pauseOnHover: true,
-      infinite: true,
-      visibleCount: 1,
-      slidesPerScroll: 1,
-      gap: 'gap-0',
-      onChange: null,
+      direction: 'horizontal', // 'horizontal' | 'vertical'
+      autoplay: true,          // 是否自动播放
+      interval: 3000,          // 自动播放间隔 ms
+      speed: 400, // 切换动画时长(ms)
+      indicators: true,        // 是否显示指示器
+      arrows: true,            // 是否显示左右切换箭头
+      pauseOnHover: true,      // 是否在悬停时暂停自动播放
+      infinite: true,          // 是否启用无限循环
+      visibleCount: 1,         // 可见滑块数量
+      slidesPerScroll: 1, // 每次切换几个
+      gap: 0, // 间距，支持数字或 'gap-4'
+      dragThreshold: 50, // 拖拽切换阈值
+      easing: 'cubic-bezier(0.25, 1, 0.5, 1)', // 动画 easing 函数
+      onChange: null, // 回调: (index, element) => {}
       ...options
     };
 
+    // 内部状态
+    this.state = {
+      currentIndex: 0,
+      isDragging: false,
+      isAnimating: false,
+      autoPlayTimer: null,
+      containerWidth: 0,
+      slideWidth: 0,
+      totalMoveSize: 0,
+    };
+
+    // 触摸物理状态
+    this.touch = {
+      startX: 0,
+      startY: 0,
+      currentX: 0,
+      currentY: 0,
+      diff: 0,
+      directionLocked: false // 方向锁：防止并在轮播时误触发页面滚动
+    };
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => this.initialize());
+      document.addEventListener('DOMContentLoaded', () => this.init());
     } else {
-      this.initialize();
+      this.init();
     }
   }
 
-  initialize() {
-    console.log('初始化轮播图...');
-    
-    this.currentIndex = 0;
-    this.isPlaying = false;
-    this.isAnimating = false;
-    this.autoplayTimer = null;
-    this.touchStartX = 0;
-    this.touchStartY = 0;
-    this.touchMoveX = 0;
-    this.touchMoveY = 0;
-    this.isTouching = false;
-
+  init() {
     this.container = typeof this.config.container === 'string' 
       ? document.querySelector(this.config.container) 
       : this.config.container;
 
     if (!this.container) {
-      console.error('轮播图容器不存在:', this.config.container);
+      console.error('Carousel Error: Container not found');
       return;
     }
 
-    this.originalHTML = this.container.innerHTML;
-    this.items = this.container.querySelectorAll('.carousel-item');
-    this.slideCount = this.items.length;
+    // 1. 解析配置
+    this.gapSize = this._parseGap(this.config.gap);
 
-    if (this.slideCount === 0) {
-      console.error('未找到轮播项');
-      return;
+    // 2. 构建 DOM 结构 (核心：适配你的 HTML/CSS)
+    this._setupStructure();
+
+    // 3. 计算尺寸
+    this._updateDimensions();
+
+    // 4. 绑定事件 (触摸、Resize、Hover)
+    this._bindEvents();
+
+    // 5. 初始化位置 (处理无限循环的初始偏移)
+    if (this.config.infinite) {
+      this.state.currentIndex = this.config.visibleCount;
+      this._updateTrackPosition(false);
     }
 
-    if (this.config.visibleCount < 1) {
-      this.config.visibleCount = 1;
-    }
-    if (this.config.visibleCount > this.slideCount) {
-      this.config.visibleCount = this.slideCount;
-    }
-
-    this.parseGapValue();
-    this.maxIndex = Math.max(0, this.slideCount - this.config.visibleCount);
-
-    this.init();
-    this.bindEvents();
-
-    if (this.config.autoplay) {
-      this.play();
-    }
-
-    console.log('轮播图初始化完成');
+    // 6. 启动
+    if (this.config.autoplay) this.play();
+    
+    // 标记初始化完成
+    this.container.classList.add('carousel-ready');
   }
 
-  parseGapValue() {
-    if (typeof this.config.gap === 'string' && this.config.gap.startsWith('gap-')) {
-      const gapValue = this.config.gap.replace('gap-', '');
-      if (!isNaN(gapValue)) {
-        this.gapPixels = parseFloat(gapValue);
-      } else {
-        const tailwindGapMap = {
-          '0': 0, 'px': 1, '0.5': 2, '1': 4, '1.5': 6, '2': 8, '2.5': 10,
-          '3': 12, '3.5': 14, '4': 16, '5': 20, '6': 24, '7': 28, '8': 32,
-          '9': 36, '10': 40, '11': 44, '12': 48, '14': 56, '16': 64,
-          '20': 80, '24': 96, '28': 112, '32': 128, '36': 144, '40': 160,
-          '44': 176, '48': 192, '52': 208, '56': 224, '60': 240, '64': 256,
-          '72': 288, '80': 320, '96': 384
-        };
-        this.gapPixels = tailwindGapMap[gapValue] || 0;
-      }
-    } else if (typeof this.config.gap === 'number') {
-      this.gapPixels = this.config.gap;
-    } else {
-      this.gapPixels = 0;
-    }
-  }
-
-  init() {
-    console.log('初始化轮播图结构...');
+  /**
+   * 核心逻辑：结构重组
+   * 将 .carousel-item 的内容提取到 .carousel-slide 中
+   * 并处理无限循环所需的克隆
+   */
+  _setupStructure() {
+    // 保存原始 HTML 以便 destroy() 恢复
+    this.originalHtml = this.container.innerHTML;
     
-    this.container.classList.add('relative', 'overflow-hidden');
-    
-    if (!this.container.style.height && !this.container.offsetHeight) {
-      const firstImg = this.items[0].querySelector('img');
-      if (firstImg && firstImg.complete) {
-        this.container.style.height = `${firstImg.offsetHeight}px`;
-      } else if (firstImg) {
-        firstImg.onload = () => {
-          this.container.style.height = `${firstImg.offsetHeight}px`;
-        };
-      }
-    }
+    // 获取原始数据项
+    const rawItems = Array.from(this.container.querySelectorAll('.carousel-item'));
+    this.realSlideCount = rawItems.length;
 
-    this.track = document.createElement('div');
-    this.track.classList.add('carousel-track', 'relative', 'w-full', 'h-full', 'flex');
-    this.track.style.transition = `transform ${this.config.speed}ms ease-in-out`;
-    
-    if (this.config.direction === 'horizontal') {
-      this.track.classList.add('flex-row', 'flex-nowrap');
-    } else {
-      this.track.classList.add('flex-col', 'flex-nowrap');
-    }
+    if (this.realSlideCount === 0) return;
 
-    this.slides = [];
-    const totalGapWidth = this.gapPixels * (this.config.visibleCount - 1);
-    const slideWidth = (100 - (totalGapWidth / this.container.offsetWidth * 100)) / this.config.visibleCount;
-    this.slideWidthPercent = slideWidth;
-    
-    Array.from(this.items).forEach((item, index) => {
-      const slide = document.createElement('div');
-      slide.classList.add('carousel-slide', 'relative');
-      slide.setAttribute('data-index', index);
-      
-      slide.style.flex = `0 0 ${slideWidth}%`;
-      slide.style.width = `${slideWidth}%`;
-      slide.style.minWidth = `${slideWidth}%`;
-      
-      const shouldHaveGap = this.gapPixels > 0 && (index % this.config.visibleCount !== 0);
-      
-      if (shouldHaveGap && this.config.direction === 'horizontal') {
-        slide.style.marginLeft = `${this.gapPixels}px`;
-      } else if (shouldHaveGap && this.config.direction === 'vertical') {
-        slide.style.marginTop = `${this.gapPixels}px`;
-      }
-      
-      while (item.firstChild) {
-        slide.appendChild(item.firstChild);
-      }
-      
-      this.track.appendChild(slide);
-      this.slides.push(slide);
-    });
-
+    // 清空容器，应用基础样式
     this.container.innerHTML = '';
-    this.container.appendChild(this.track);
+    // group 用于 hover 检测
+    this.container.classList.add('group'); 
 
-    if (this.config.indicators) {
-      this.createIndicators();
+    // 创建轨道
+    this.track = document.createElement('div');
+    this.track.className = 'carousel-track';
+    // 强制内联样式确保布局正确
+    this.track.classList.add('flex','w-full','h-full','relative');
+    this.track.style.willChange = 'transform';
+  
+
+    if (this.config.direction === 'vertical') {
+      this.track.style.flexDirection = 'column';
     }
 
-    if (this.config.arrows) {
-      this.createArrows();
-    }
+    // 准备要渲染的节点列表（包含克隆项）
+    let itemsProcess = [...rawItems];
 
-    if (this.config.infinite && this.slideCount > this.config.visibleCount) {
-      for (let i = 0; i < this.config.visibleCount; i++) {
-        const slideClone = this.slides[i].cloneNode(true);
-        slideClone.classList.add('carousel-clone');
-        slideClone.setAttribute('aria-hidden', 'true');
-        
-        const cloneIndex = i;
-        const shouldHaveGap = this.gapPixels > 0 && (cloneIndex % this.config.visibleCount !== 0);
-        
-        if (shouldHaveGap && this.config.direction === 'horizontal') {
-          slideClone.style.marginLeft = `${this.gapPixels}px`;
-        } else if (shouldHaveGap && this.config.direction === 'vertical') {
-          slideClone.style.marginTop = `${this.gapPixels}px`;
-        }
-        
-        this.track.appendChild(slideClone);
-      }
+    if (this.config.infinite && this.realSlideCount > this.config.visibleCount) {
+      // 头部克隆 (取原来的最后几项)
+      const clonesStart = rawItems.slice(-this.config.visibleCount).map(el => this._cloneNode(el));
+      // 尾部克隆 (取原来的前几项)
+      const clonesEnd = rawItems.slice(0, this.config.visibleCount).map(el => this._cloneNode(el));
       
-      for (let i = this.slideCount - this.config.visibleCount; i < this.slideCount; i++) {
-        const slideClone = this.slides[i].cloneNode(true);
-        slideClone.classList.add('carousel-clone');
-        slideClone.setAttribute('aria-hidden', 'true');
-        
-        const cloneIndex = i;
-        const shouldHaveGap = this.gapPixels > 0 && (cloneIndex % this.config.visibleCount !== 0);
-        
-        if (shouldHaveGap && this.config.direction === 'horizontal') {
-          slideClone.style.marginLeft = `${this.gapPixels}px`;
-        } else if (shouldHaveGap && this.config.direction === 'vertical') {
-          slideClone.style.marginTop = `${this.gapPixels}px`;
-        }
-        
-        this.track.insertBefore(slideClone, this.track.firstChild);
-      }
-
-      this.currentIndex = this.config.visibleCount;
+      itemsProcess = [...clonesStart, ...rawItems, ...clonesEnd];
     }
 
-    this.goToSlide(this.currentIndex, false);
-    
-    console.log('轮播图结构初始化完成');
-  }
-
-  createIndicators() {
-    this.indicators = document.createElement('div');
-    this.indicators.classList.add('carousel-indicators', 'absolute', 'bottom-4', 'left-1/2', 'transform', '-translate-x-1/2', 'flex', 'gap-2', 'z-10');
-
-    const indicatorCount = Math.max(1, Math.ceil(this.slideCount / this.config.slidesPerScroll));
-    
-    for (let i = 0; i < indicatorCount; i++) {
-      const indicator = document.createElement('button');
-      indicator.classList.add('carousel-indicator', 'w-2.5', 'h-2.5', 'rounded-full', 'bg-white/50', 'border-none', 'p-0', 'cursor-pointer', 'transition-colors');
-      indicator.setAttribute('data-index', i);
-      indicator.setAttribute('aria-label', `幻灯片组 ${i + 1}`);
-
-      // 关键修复：简化指示器点击逻辑
-      indicator.addEventListener('click', () => {
-        if (!this.isAnimating) {
-          let targetIndex;
-          if (this.config.infinite) {
-            // 无限循环模式：直接计算目标索引
-            targetIndex = i * this.config.slidesPerScroll;
-            // 关键修复：在无限循环模式下，需要调整索引以匹配克隆结构
-            if (this.config.infinite && this.slideCount > this.config.visibleCount) {
-              targetIndex += this.config.visibleCount;
-            }
-          } else {
-            // 非无限循环模式：确保不超出边界
-            targetIndex = Math.min(i * this.config.slidesPerScroll, this.maxIndex);
-          }
-          
-          console.log(`指示器点击: 指示器 ${i}, 目标索引: ${targetIndex}`);
-          this.goToSlide(targetIndex);
-        }
-      });
-
-      this.indicators.appendChild(indicator);
-    }
-
-    this.container.appendChild(this.indicators);
-    this.updateIndicators();
-  }
-
-  createArrows() {
-    const prevArrow = document.createElement('button');
-    prevArrow.classList.add('carousel-arrow', 'carousel-arrow-prev', 'absolute', 'top-1/2', '-translate-y-1/2', 'left-2.5', 'bg-black/30', 'text-white', 'border-none', 'rounded-full', 'w-10', 'h-10', 'text-lg', 'cursor-pointer', 'z-10', 'flex', 'justify-center', 'items-center', 'transition-colors');
-    prevArrow.setAttribute('aria-label', '上一个');
-    prevArrow.innerHTML = '&#10094;';
-
-    const nextArrow = document.createElement('button');
-    nextArrow.classList.add('carousel-arrow', 'carousel-arrow-next', 'absolute', 'top-1/2', '-translate-y-1/2', 'right-2.5', 'bg-black/30', 'text-white', 'border-none', 'rounded-full', 'w-10', 'h-10', 'text-lg', 'cursor-pointer', 'z-10', 'flex', 'justify-center', 'items-center', 'transition-colors');
-    nextArrow.setAttribute('aria-label', '下一个');
-    nextArrow.innerHTML = '&#10095;';
-
-    prevArrow.addEventListener('mouseenter', () => {
-      prevArrow.classList.remove('bg-black/30');
-      prevArrow.classList.add('bg-black/50');
-    });
-    prevArrow.addEventListener('mouseleave', () => {
-      prevArrow.classList.remove('bg-black/50');
-      prevArrow.classList.add('bg-black/30');
-    });
-
-    nextArrow.addEventListener('mouseenter', () => {
-      nextArrow.classList.remove('bg-black/30');
-      nextArrow.classList.add('bg-black/50');
-    });
-    nextArrow.addEventListener('mouseleave', () => {
-      nextArrow.classList.remove('bg-black/50');
-      nextArrow.classList.add('bg-black/30');
-    });
-
-    prevArrow.addEventListener('click', () => this.prev());
-    nextArrow.addEventListener('click', () => this.next());
-
-    this.container.appendChild(prevArrow);
-    this.container.appendChild(nextArrow);
-
-    this.prevArrow = prevArrow;
-    this.nextArrow = nextArrow;
-  }
-
-  bindEvents() {
-    if (this.config.pauseOnHover) {
-      this.container.addEventListener('mouseenter', () => this.pause());
-      this.container.addEventListener('mouseleave', () => {
-        if (this.config.autoplay) {
-          this.play();
-        }
-      });
-    }
-
-    this.container.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
-    this.container.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
-    this.container.addEventListener('touchend', () => this.handleTouchEnd());
-
-    this.track.addEventListener('transitionend', () => {
-      this.isAnimating = false;
+    // 渲染 Slide
+    itemsProcess.forEach((sourceItem) => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
       
-      if (this.config.infinite && this.slideCount > this.config.visibleCount) {
-        if (this.currentIndex < this.config.visibleCount) {
-          this.track.style.transition = 'none';
-          this.currentIndex = this.slideCount;
-          this.updateTrackPosition();
-          void this.track.offsetWidth;
-          this.track.style.transition = `transform ${this.config.speed}ms ease-in-out`;
-        } else if (this.currentIndex > this.slideCount) {
-          this.track.style.transition = 'none';
-          this.currentIndex = this.config.visibleCount;
-          this.updateTrackPosition();
-          void this.track.offsetWidth;
-          this.track.style.transition = `transform ${this.config.speed}ms ease-in-out`;
-        }
+      // 样式关键点：
+      // 1. relative: 为了让 absolute 的 caption 能够定位
+      // 2. height: 100% : 继承容器高度 (由你的 CSS @media 控制)
+      // 3. flex-shrink-0: 防止被挤压
+      slide.classList.add('relative','h-full','flex-shrink-0','overflow-hidden');
+      
+      // 如果是克隆项，标记 aria-hidden
+      if (sourceItem.hasAttribute('aria-hidden')) {
+        slide.setAttribute('aria-hidden', 'true');
+        slide.classList.add('is-clone');
       }
 
-      this.updateIndicators();
-
-      if (typeof this.config.onChange === 'function') {
-        const realIndex = this.getRealIndex();
-        this.config.onChange(realIndex, this.slides[realIndex]);
-      }
-    });
-
-    window.addEventListener('resize', this.debounce(() => {
-      this.updateTrackPosition();
-    }, 250));
-  }
-
-  getRealIndex() {
-    if (!this.config.infinite) {
-      return this.currentIndex;
-    }
-    
-    if (this.currentIndex < this.config.visibleCount) {
-      return this.slideCount - (this.config.visibleCount - this.currentIndex);
-    } else if (this.currentIndex > this.slideCount) {
-      return this.currentIndex - this.slideCount;
-    } else {
-      return this.currentIndex - this.config.visibleCount;
-    }
-  }
-
-  updateIndicators() {
-    if (!this.config.indicators) return;
-
-    const realIndex = this.getRealIndex();
-    const currentIndicatorIndex = Math.floor(realIndex / this.config.slidesPerScroll);
-
-    Array.from(this.indicators.children).forEach((indicator, i) => {
-      if (i === currentIndicatorIndex) {
-        indicator.classList.remove('bg-white/50');
-        indicator.classList.add('bg-white');
-        indicator.setAttribute('aria-current', 'true');
+      // 【内容转移】: 提取原 .carousel-item 里的所有内容 (img, caption)
+      // 使用 cloneNode(true) 避免移动原始节点导致引用丢失，
+      // 如果是 rawItems 本身，则需要移动子元素
+      if (sourceItem.classList.contains('is-clone-source')) {
+         // 这是一个我们手动标记的克隆源，直接 append 内容
+         while (sourceItem.firstChild) slide.appendChild(sourceItem.firstChild);
       } else {
-        indicator.classList.remove('bg-white');
-        indicator.classList.add('bg-white/50');
-        indicator.removeAttribute('aria-current');
+         // 这是一个原始 DOM 节点，我们需要移动它的子元素
+         // 注意：如果是 itemsProcess 里的原生节点，需要小心处理
+         // 为了简单稳健，我们直接把 sourceItem 的 innerHTML 拿过来
+         slide.innerHTML = sourceItem.innerHTML;
+      }
+
+      this.track.appendChild(slide);
+    });
+
+    this.container.appendChild(this.track);
+    this.slides = Array.from(this.track.children);
+
+    // 添加 UI 组件
+    if (this.config.indicators) this._createIndicators();
+    if (this.config.arrows) this._createArrows();
+  }
+
+  // 辅助克隆函数
+  _cloneNode(el) {
+    const clone = el.cloneNode(true);
+    clone.classList.add('is-clone-source'); // 标记这是克隆源
+    clone.setAttribute('aria-hidden', 'true');
+    return clone;
+  }
+
+  _parseGap(gap) {
+    if (typeof gap === 'number') return gap;
+    if (typeof gap === 'string' && gap.startsWith('gap-')) {
+      const val = gap.replace('gap-', '');
+      return parseFloat(val) * 4 || 0; // 假设 1 unit = 4px (Tailwind 标准)
+    }
+    return 0;
+  }
+
+  /**
+   * 尺寸计算
+   * 依赖容器的 CSS 宽度/高度
+   */
+  _updateDimensions() {
+    const rect = this.container.getBoundingClientRect();
+    this.state.containerWidth = rect.width;
+    this.state.containerHeight = rect.height;
+
+    const isHorizontal = this.config.direction === 'horizontal';
+    const trackSize = isHorizontal ? this.state.containerWidth : this.state.containerHeight;
+    
+    // 计算单个 Slide 宽度
+    const totalGapSpace = this.gapSize * (this.config.visibleCount - 1);
+    const itemSize = (trackSize - totalGapSpace) / this.config.visibleCount;
+    
+    this.state.slideWidth = itemSize;
+    this.state.totalMoveSize = itemSize + this.gapSize; // 移动步长
+
+    // 应用尺寸到 Slide
+    this.slides.forEach(slide => {
+      if (isHorizontal) {
+        slide.style.width = `${itemSize}px`;
+        slide.style.marginRight = `${this.gapSize}px`;
+      } else {
+        slide.style.height = `${itemSize}px`;
+        slide.style.marginBottom = `${this.gapSize}px`;
+        slide.classList.add('w-full');
       }
     });
+
+    // 重新校准位置 (无动画)
+    this._updateTrackPosition(false);
   }
 
-  updateTrackPosition() {
-    let transformValue;
+  _updateTrackPosition(animate = true, overrideOffset = null) {
+    const isHorizontal = this.config.direction === 'horizontal';
     
-    if (this.config.direction === 'horizontal') {
-      let totalOffset = 0;
-      for (let i = 0; i < this.currentIndex; i++) {
-        totalOffset += this.slideWidthPercent;
-        if (i % this.config.visibleCount !== 0) {
-          totalOffset += (this.gapPixels / this.container.offsetWidth * 100);
-        }
-      }
-      transformValue = `translateX(-${totalOffset}%)`;
+    // 计算基础偏移
+    let offset = -(this.state.currentIndex * this.state.totalMoveSize);
+
+    // 叠加拖拽偏移
+    if (overrideOffset !== null) {
+      offset += overrideOffset;
+    }
+
+    const translate = isHorizontal 
+      ? `translate3d(${offset}px, 0, 0)` 
+      : `translate3d(0, ${offset}px, 0)`;
+
+    if (animate) {
+      this.track.style.transition = `transform ${this.config.speed}ms ${this.config.easing}`;
+      this.state.isAnimating = true;
     } else {
-      let totalOffset = 0;
-      for (let i = 0; i < this.currentIndex; i++) {
-        totalOffset += this.slideWidthPercent;
-        if (i % this.config.visibleCount !== 0) {
-          totalOffset += (this.gapPixels / this.container.offsetHeight * 100);
-        }
-      }
-      transformValue = `translateY(-${totalOffset}%)`;
-    }
-    
-    this.track.style.transform = transformValue;
-  }
-
-  goToSlide(index, animate = true) {
-    if (this.isAnimating) return;
-    
-    if (!this.config.infinite) {
-      if (index < 0) index = 0;
-      if (index > this.maxIndex) index = this.maxIndex;
-    }
-
-    this.currentIndex = index;
-    
-    if (!animate) {
       this.track.style.transition = 'none';
-      this.updateTrackPosition();
-      void this.track.offsetWidth;
-      this.track.style.transition = `transform ${this.config.speed}ms ease-in-out`;
-      this.updateIndicators();
-    } else {
-      this.isAnimating = true;
-      this.track.style.transition = `transform ${this.config.speed}ms ease-in-out`;
-      this.updateTrackPosition();
+      this.state.isAnimating = false;
     }
+
+    this.track.style.transform = translate;
+  }
+
+  // --- 交互逻辑 ---
+
+  goTo(index, animate = true) {
+    if (index === this.state.currentIndex) return;
+    
+    this.state.currentIndex = index;
+    this._updateTrackPosition(animate);
+    this._updateIndicators();
+    this._updateArrowsState();
   }
 
   next() {
-    if (this.isAnimating) return;
+    const step = this.config.slidesPerScroll;
     
-    const nextIndex = this.currentIndex + this.config.slidesPerScroll;
-    
-    if (!this.config.infinite) {
-      if (this.currentIndex >= this.maxIndex) {
-        this.goToSlide(0);
-      } else {
-        this.goToSlide(Math.min(nextIndex, this.maxIndex));
-      }
+    if (this.config.infinite) {
+      this.goTo(this.state.currentIndex + step);
     } else {
-      this.goToSlide(nextIndex);
+      const max = this.slides.length - this.config.visibleCount;
+      const nextIdx = Math.min(this.state.currentIndex + step, max);
+      if (this.state.currentIndex < nextIdx) this.goTo(nextIdx);
     }
   }
 
-    prev() {
-    if (this.isAnimating) return;
+  prev() {
+    const step = this.config.slidesPerScroll;
     
-    const prevIndex = this.currentIndex - this.config.slidesPerScroll;
-    
-    if (!this.config.infinite) {
-      if (this.currentIndex <= 0) {
-        this.goToSlide(this.maxIndex);
-      } else {
-        this.goToSlide(Math.max(prevIndex, 0));
-      }
+    if (this.config.infinite) {
+      this.goTo(this.state.currentIndex - step);
     } else {
-      this.goToSlide(prevIndex);
+      const prevIdx = Math.max(this.state.currentIndex - step, 0);
+      if (this.state.currentIndex > prevIdx) this.goTo(prevIdx);
     }
+  }
+
+  // --- 事件处理 ---
+
+  _bindEvents() {
+    // 1. 无缝循环重置
+    this.track.addEventListener('transitionend', () => {
+        if (!this.state.isAnimating) return;
+        this.state.isAnimating = false;
+        
+        if (this.config.infinite) {
+            const visible = this.config.visibleCount;
+            const realCount = this.realSlideCount;
+            
+            // 越过右边界 -> 跳回开头
+            if (this.state.currentIndex >= realCount + visible) {
+                const diff = this.state.currentIndex - (realCount + visible);
+                this.state.currentIndex = visible + diff;
+                this._updateTrackPosition(false);
+            } 
+            // 越过左边界 -> 跳回末尾
+            else if (this.state.currentIndex < visible) {
+                const diff = visible - this.state.currentIndex;
+                this.state.currentIndex = realCount + visible - diff;
+                this._updateTrackPosition(false);
+            }
+        }
+
+        if (this.config.onChange) {
+            this.config.onChange(this.getRealIndex());
+        }
+    });
+
+    // 2. 响应式尺寸
+    this.resizeObserver = new ResizeObserver(entries => {
+        window.requestAnimationFrame(() => {
+            if (!entries[0].contentRect.width) return;
+            this._updateDimensions();
+        });
+    });
+    this.resizeObserver.observe(this.container);
+
+    // 3. 触摸/拖拽
+    this.track.addEventListener('touchstart', e => this._onDragStart(e), { passive: true });
+    this.track.addEventListener('mousedown', e => this._onDragStart(e));
+
+    this.track.addEventListener('touchmove', e => this._onDragMove(e), { passive: false });
+    document.addEventListener('mousemove', e => this._onDragMove(e));
+
+    this.track.addEventListener('touchend', e => this._onDragEnd(e));
+    document.addEventListener('mouseup', e => this._onDragEnd(e));
+
+    // 4. 悬停暂停
+    if (this.config.pauseOnHover) {
+        this.container.addEventListener('mouseenter', () => this.pause());
+        this.container.addEventListener('mouseleave', () => this.play());
+    }
+  }
+
+  // --- 拖拽核心逻辑 (带方向锁) ---
+
+  _onDragStart(e) {
+    if (this.state.isAnimating) return; // 动画中不响应
+    
+    this.state.isDragging = true;
+    this.touch.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+    this.touch.startY = e.type.includes('mouse') ? e.pageY : e.touches[0].clientY;
+    this.touch.directionLocked = false;
+    this.touch.diff = 0;
+
+    this.pause();
+    this.track.style.transition = 'none'; // 拖拽时由手指完全控制，移除 CSS 动画
+  }
+
+  _onDragMove(e) {
+    if (!this.state.isDragging) return;
+
+    const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+    const y = e.type.includes('mouse') ? e.pageY : e.touches[0].clientY;
+    
+    const diffX = x - this.touch.startX;
+    const diffY = y - this.touch.startY;
+    const isHorizontal = this.config.direction === 'horizontal';
+
+    // 方向锁逻辑
+    if (!this.touch.directionLocked) {
+        // 如果是水平轮播，且垂直移动更多 -> 判定为滚动页面 -> 放弃轮播控制
+        if (isHorizontal && Math.abs(diffY) > Math.abs(diffX)) {
+            this.state.isDragging = false;
+            return;
+        }
+        // 垂直轮播同理
+        if (!isHorizontal && Math.abs(diffX) > Math.abs(diffY)) {
+            this.state.isDragging = false;
+            return;
+        }
+        this.touch.directionLocked = true;
+    }
+
+    // 阻止默认行为 (防止页面跟随滚动)
+    if (e.cancelable) e.preventDefault();
+
+    this.touch.diff = isHorizontal ? diffX : diffY;
+
+    // 边缘阻力
+    if (!this.config.infinite) {
+        const isFirst = this.state.currentIndex === 0;
+        const isLast = this.state.currentIndex === (this.slides.length - this.config.visibleCount);
+        if ((isFirst && this.touch.diff > 0) || (isLast && this.touch.diff < 0)) {
+            this.touch.diff *= 0.3;
+        }
+    }
+
+    this._updateTrackPosition(false, this.touch.diff);
+  }
+
+  _onDragEnd() {
+    if (!this.state.isDragging) return;
+    this.state.isDragging = false;
+
+    if (this.config.autoplay && !this.config.pauseOnHover) this.play();
+
+    // 判断拖拽距离是否足够触发切换
+    if (Math.abs(this.touch.diff) > this.config.dragThreshold) {
+        if (this.touch.diff < 0) this.next();
+        else this.prev();
+    } else {
+        // 距离不够，回弹
+        this.goTo(this.state.currentIndex);
+    }
+  }
+
+  // --- UI 组件 ---
+
+  getRealIndex() {
+    if (!this.config.infinite) return this.state.currentIndex;
+    let idx = this.state.currentIndex - this.config.visibleCount;
+    if (idx < 0) idx = this.realSlideCount + idx;
+    return idx % this.realSlideCount;
+  }
+
+  _createIndicators() {
+    // 移除旧的（如果存在）
+    const old = this.container.querySelector('.carousel-indicators');
+    if (old) old.remove();
+
+    const wrap = document.createElement('div');
+    // 使用你的 CSS 类名
+    wrap.className = 'carousel-indicators absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20';
+    
+    const count = Math.ceil(this.realSlideCount / this.config.slidesPerScroll);
+
+    for (let i = 0; i < count; i++) {
+        const btn = document.createElement('button');
+        // 结合你的 CSS 和基础样式
+        btn.className = 'carousel-indicator w-2.5 h-2.5 rounded-full bg-white/50 transition-all duration-300 mx-1 p-0 border-none cursor-pointer';
+        btn.ariaLabel = `Slide ${i + 1}`;
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            let target = i * this.config.slidesPerScroll;
+            if (this.config.infinite) target += this.config.visibleCount;
+            this.goTo(target);
+        });
+        wrap.appendChild(btn);
+    }
+
+    this.container.appendChild(wrap);
+    this.indicators = Array.from(wrap.children);
+    this._updateIndicators();
+  }
+
+  _updateIndicators() {
+    if (!this.indicators) return;
+    const realIdx = this.getRealIndex();
+    const activeIdx = Math.floor(realIdx / this.config.slidesPerScroll);
+
+    this.indicators.forEach((dot, i) => {
+        if (i === activeIdx) {
+            dot.classList.remove('bg-white/50');
+            dot.classList.add('bg-white', 'w-6'); // 激活变宽
+        } else {
+            dot.classList.add('bg-white/50');
+            dot.classList.remove('bg-white', 'w-6');
+        }
+    });
+  }
+
+  _createArrows() {
+    // 移除旧的
+    const oldPrev = this.container.querySelector('.carousel-arrow-prev');
+    const oldNext = this.container.querySelector('.carousel-arrow-next');
+    if (oldPrev) oldPrev.remove();
+    if (oldNext) oldNext.remove();
+
+    const makeBtn = (dir) => {
+        const btn = document.createElement('button');
+        // 使用你的 CSS 类名 carousel-arrow
+        btn.className = `carousel-arrow carousel-arrow-${dir} absolute top-1/2 transform -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/30 text-white cursor-pointer border-none transition-colors ${dir === 'prev' ? 'left-2' : 'right-2'}`;
+        btn.innerHTML = dir === 'prev' ? '&#10094;' : '&#10095;';
+        return btn;
+    };
+
+    this.prevBtn = makeBtn('prev');
+    this.nextBtn = makeBtn('next');
+
+    this.prevBtn.addEventListener('click', (e) => { e.stopPropagation(); this.prev(); });
+    this.nextBtn.addEventListener('click', (e) => { e.stopPropagation(); this.next(); });
+
+    this.container.appendChild(this.prevBtn);
+    this.container.appendChild(this.nextBtn);
+    this._updateArrowsState();
+  }
+
+  _updateArrowsState() {
+    if (!this.prevBtn || !this.nextBtn) return;
+    if (this.config.infinite) {
+        this.prevBtn.style.opacity = '1';
+        this.prevBtn.style.pointerEvents = 'auto';
+        this.nextBtn.style.opacity = '1';
+        this.nextBtn.style.pointerEvents = 'auto';
+        return;
+    }
+    // 非循环模式的处理
+    const isFirst = this.state.currentIndex === 0;
+    const isLast = this.state.currentIndex >= (this.slides.length - this.config.visibleCount);
+
+    this.prevBtn.style.opacity = isFirst ? '0.3' : '1';
+    this.prevBtn.style.pointerEvents = isFirst ? 'none' : 'auto';
+    
+    this.nextBtn.style.opacity = isLast ? '0.3' : '1';
+    this.nextBtn.style.pointerEvents = isLast ? 'none' : 'auto';
   }
 
   play() {
-    if (this.isPlaying) return;
-    
-    this.isPlaying = true;
-    this.autoplayTimer = setInterval(() => {
-      this.next();
-    }, this.config.interval);
+    if (this.state.autoPlayTimer) return;
+    this.state.autoPlayTimer = setInterval(() => this.next(), this.config.interval);
   }
 
   pause() {
-    if (!this.isPlaying) return;
-    
-    this.isPlaying = false;
-    clearInterval(this.autoplayTimer);
-    this.autoplayTimer = null;
-  }
-
-  handleTouchStart(e) {
-    this.touchStartX = e.touches[0].clientX;
-    this.touchStartY = e.touches[0].clientY;
-    this.isTouching = true;
-    
-    if (this.isPlaying) {
-      this.pause();
-      this.wasPlaying = true;
+    if (this.state.autoPlayTimer) {
+      clearInterval(this.state.autoPlayTimer);
+      this.state.autoPlayTimer = null;
     }
-  }
-
-  handleTouchMove(e) {
-    if (!this.isTouching) return;
-    
-    e.preventDefault();
-    
-    this.touchMoveX = e.touches[0].clientX;
-    this.touchMoveY = e.touches[0].clientY;
-    
-    const diffX = this.touchStartX - this.touchMoveX;
-    const diffY = this.touchStartY - this.touchMoveY;
-    
-    let currentOffset = 0;
-    for (let i = 0; i < this.currentIndex; i++) {
-      currentOffset += this.slideWidthPercent;
-      if (i % this.config.visibleCount !== 0) {
-        currentOffset += (this.gapPixels / this.container.offsetWidth * 100);
-      }
-    }
-    
-    if (this.config.direction === 'horizontal' && Math.abs(diffX) > Math.abs(diffY)) {
-      const moveX = diffX / this.container.offsetWidth * 100;
-      const translateX = -(currentOffset + moveX);
-      this.track.style.transition = 'none';
-      this.track.style.transform = `translateX(${translateX}%)`;
-    } else if (this.config.direction === 'vertical' && Math.abs(diffY) > Math.abs(diffX)) {
-      const moveY = diffY / this.container.offsetHeight * 100;
-      const translateY = -(currentOffset + moveY);
-      this.track.style.transition = 'none';
-      this.track.style.transform = `translateY(${translateY}%)`;
-    }
-  }
-
-  handleTouchEnd() {
-    if (!this.isTouching) return;
-    
-    this.isTouching = false;
-    
-    const diffX = this.touchStartX - this.touchMoveX;
-    const diffY = this.touchStartY - this.touchMoveY;
-    
-    this.track.style.transition = `transform ${this.config.speed}ms ease-in-out`;
-    
-    const threshold = 50;
-    
-    if (this.config.direction === 'horizontal') {
-      if (Math.abs(diffX) > threshold) {
-        if (diffX > 0) {
-          this.next();
-        } else {
-          this.prev();
-        }
-      } else {
-        this.goToSlide(this.currentIndex);
-      }
-    } else if (this.config.direction === 'vertical') {
-      if (Math.abs(diffY) > threshold) {
-        if (diffY > 0) {
-          this.next();
-        } else {
-          this.prev();
-        }
-      } else {
-        this.goToSlide(this.currentIndex);
-      }
-    }
-    
-    if (this.wasPlaying) {
-      this.play();
-      this.wasPlaying = false;
-    }
-  }
-
-  debounce(fn, delay) {
-    let timer = null;
-    return function() {
-      const context = this;
-      const args = arguments;
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        fn.apply(context, args);
-      }, delay);
-    };
   }
 
   destroy() {
     this.pause();
-    
-    this.container.removeEventListener('mouseenter', this.pause);
-    this.container.removeEventListener('mouseleave', this.play);
-    this.container.removeEventListener('touchstart', this.handleTouchStart);
-    this.container.removeEventListener('touchmove', this.handleTouchMove);
-    this.container.removeEventListener('touchend', this.handleTouchEnd);
-    
-    if (this.originalHTML) {
-      this.container.innerHTML = this.originalHTML;
-    } else {
-      this.container.innerHTML = '';
-    }
-    
-    this.track = null;
-    this.slides = null;
-    this.indicators = null;
-    this.prevArrow = null;
-    this.nextArrow = null;
+    this.resizeObserver.disconnect();
+    this.container.innerHTML = this.originalHtml;
+    this.container.classList.remove('carousel-ready', 'group');
   }
 }
-
-

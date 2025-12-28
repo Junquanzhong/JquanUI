@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>使用</title>
     <link rel="stylesheet" href="../css/JquanUI@3.0.css">
-    <link rel="stylesheet" href="../css/Config.css">
+    
     <link rel="stylesheet" href="../css/app.css">
     <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
 </head>
@@ -106,32 +106,30 @@
         </div>
         <div class="container py-3">
             <div class="card">
+                <div class="card-decoration deco-morninglight"></div>
                 <div class="card-header">
                     <cite class="mt-3 mb-3">通过属性自定义</cite>
                 </div>
                 <div class="card-body">
-                    <p>通过类名 <code>.text-sn</code> 和属性 <code>data-font-size="26px"</code> 来满足特殊场景自定义</p>
+                    <p>导入 <code>Jit-engine.mjs</code> 后，通过类名 <code>fs-[ size ]</code> 来满足特殊场景自定义</p>
                     <div id="demo" class="w-full max-w-2xl mx-auto p-3 mt-5 rounded-md">
                         <div class="flex justify-center mb-3">
                             <nav class="tabs-nav p-2 bg-surface-100 rounded-lg space-x-2">
-                                <span class="tabs-item rounded-md text-sm center inline-block tabs-active"><i
-                                        class='bxr bx-eye align-middle'></i> 预览</span>
-                                <span class="tabs-item rounded-md text-sm center inline-block"><i
-                                        class='bxr bx-code align-middle'></i> 代码</span>
+                                <button class="tabs-item rounded-md text-sm center inline-block tabs-active" data-tab-target="#panel-1"><i
+                                        class='bxr bx-eye align-middle'></i> 预览</button>
+                                <button class="tabs-item rounded-md text-sm center inline-block" data-tab-target="#panel-2"><i
+                                        class='bxr bx-code align-middle'></i> 代码</button>
                             </nav>
                         </div>
                         <div class="tabs-content">
                             <div class="tabs-track">
-                                <section class="tabs-panel">
+                                <section class="tabs-panel" id="panel-1">
                                     <div class="border border-strong rounded-md p-3 h-full overflow-auto">
-                                        <p class="text-sn" data-font-size="26px">默认字体</p>
+                                        <p class="fs-[26px]">默认字体</p>
                                     </div>
                                 </section>
-                                <section class="tabs-panel overflow-auto">
-                                    <div
-                                        class="codeblock codeblock-line-numbers border border-strong rounded-md h-full">
-                                        <pre><code class="code-block" data-language="css" data-show-lines="true"><p class="text-sn" data-font-size="26px">默认字体</p></code></pre>
-                                    </div>
+                                <section class="tabs-panel overflow-auto" id="panel-2">
+                                    <pre><code class="code-block" data-language="css" data-show-lines="true"><p class="fs-[26px]">默认字体</p></code></pre>
                                 </section>
                             </div>
                         </div>

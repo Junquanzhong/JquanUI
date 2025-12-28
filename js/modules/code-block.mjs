@@ -1,204 +1,242 @@
-// code-highlighter.mjs (新增高度限制优化版)
+/**
+ * code-block.mjs - CAN Ultimate Production Edition v3.1 (Dynamic + Custom CSS)
+ * 
+ * 特性：
+ * 1. 动态按需加载语言包 (性能极大优化)
+ * 2. 智能缩进清洗 (Smart Dedent)
+ * 3. 您的定制化 Tailwind 样式
+ * 4. 交互优化 (固定悬浮按钮、Grid对齐、语言水印)
+ */
 
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
-import { copyText } from './copy.mjs'; // 请根据你的实际路径调整
 
-// 引入你需要的语言包
-import javascript from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/languages/javascript.min.js';
-import python from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/languages/python.min.js';
-import xml from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/languages/xml.min.js';
-import css from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/languages/css.min.js';
-import vbscript from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/languages/vbscript.min.js';
+// --- 配置常量 ---
+const CDN_BASE = 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/languages';
 
-// 注册语言
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('js', javascript);
-hljs.registerLanguage('mjs', javascript);
-hljs.registerLanguage('python', python);
-hljs.registerLanguage('html', xml);
-hljs.registerLanguage('xml', xml);
-hljs.registerLanguage('css', css);
-hljs.registerLanguage('vba', vbscript);
-
-/**
- * 【核心功能】利用 Shadow DOM 安全地转义代码中的文本内容
- * 此函数会保留代码语法符号（如 {}, []），但转义具有HTML特殊含义的字符（如 <, >, &）。
- * @param {string} rawHtml - 从 codeElement.innerHTML 获取的原始HTML字符串
- * @returns {string} - 安全的、已转义的HTML字符串，准备好交给 highlight.js
- */
-function getSafeCodeFromHtml(rawHtml) {
-    const host = document.createElement('div');
-    const shadowRoot = host.attachShadow({ mode: 'closed' });
-    shadowRoot.innerHTML = rawHtml;
-
-    const escapeTextNodes = (node) => {
-        
-        node.childNodes.forEach(escapeTextNodes);
-
-    };
-
-    shadowRoot.childNodes.forEach(escapeTextNodes);
-    return shadowRoot.innerHTML;
-}
+// 语言别名映射 (用于动态加载时的文件名匹配)
+const LANGUAGE_ALIASES = {
+    'js': 'javascript',
+    'jsx': 'javascript',
+    'ts': 'typescript',
+    'tsx': 'typescript',
+    'py': 'python',
+    'sh': 'bash',
+    'zsh': 'bash',
+    'html': 'xml',
+    'vue': 'xml',
+    'yml': 'yaml'
+};
 
 /**
  * 默认配置
  */
 const DEFAULT_CONFIG = {
-    codeBlockSelector: 'pre code.code-block',
-    showLinesByDefault: true,
-    copyButtonText: '复制',
-    copiedButtonText: '已复制!',
-    copiedTextDuration: 2000,
+    selector: 'pre code', // 选择器，默认所有 pre 下的 code 元素
+    showLineNumbers: true,  // 是否默认显示行号
+    maxLines: 20,  // 最大显示行数，超过部分会被截断
+    
+    // 容器样式 (User Custom)
+    containerClass: 'relative group rounded-lg text-gray-300 overflow-hidden my-4 font-mono text-sm border border-surface',
+    
+    // 滚动区域样式
+    scrollWrapperClass: 'overflow-auto max-h-[500px] scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent',
+    
+    copyIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`,
+    checkIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
+    
+    langLabel: true,  // 是否显示语言标签
+    tabSize: 4
 };
 
 /**
- * 使用 Grid 布局创建完美的行号对齐
- * @param {HTMLElement} codeElement - 高亮后的 <code> 元素
+ * HTML 实体解码
  */
-function applyLineNumbersWithGrid(codeElement) {
-    const originalText = codeElement.dataset.originalText;
-    const lines = originalText.split('\n');
-    
-    const lineCount = lines[lines.length - 1] === '' ? lines.length - 1 : lines.length;
-
-    if (lineCount <= 0 && originalText.trim() === '') {
-        return;
-    }
-
-    const gridWrapper = document.createElement('div');
-    gridWrapper.classList.add('grid', 'grid-sidebar' ,'sidebar-w-12');
-
-    const lineNumbersContainer = document.createElement('div');
-    lineNumbersContainer.setAttribute('aria-hidden', 'true');
-    lineNumbersContainer.classList.add('text-right','pr-2', 'border-solid', 'border-gray-300', 'border-r', 'text-gray-400','pl-3', 'select-none');
-
-    for (let i = 1; i <= lineCount; i++) {
-        const lineSpan = document.createElement('span');
-        lineSpan.textContent = i;
-        lineSpan.classList.add('block','text-center','w-auto','text-sm','leading-6');
-        lineNumbersContainer.appendChild(lineSpan);
-    }
-
-    const codeContentContainer = document.createElement('div');
-    const highlightedLines = codeElement.innerHTML.split('\n');
-    const linesHtml = highlightedLines.map(line => `<span class="code-line pl-5 inline-block">${line || '<br>'}</span>`).join('\n');
-    codeContentContainer.innerHTML = linesHtml;
-
-    lineNumbersContainer.classList.add('text-sm','leading-6');
-    codeContentContainer.classList.add('text-sm','leading-6');
-
-    gridWrapper.appendChild(lineNumbersContainer);
-    gridWrapper.appendChild(codeContentContainer);
-
-    codeElement.innerHTML = '';
-    codeElement.appendChild(gridWrapper);
+function decodeHTML(html) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = html;
+    return txt.value;
 }
 
 /**
- * 渲染代码块
- * @param {HTMLElement} codeElement - <code> DOM 元素
- * @param {object} config - 配置对象
+ * 智能去缩进与格式化
  */
-function renderCodeBlock(codeElement, globalConfig) {
-    const preElement = codeElement.closest('pre');
-    if (!preElement) {
-        console.warn('CAN: 代码块没有被 <pre> 标签包裹，已跳过处理:', codeElement);
-        return;
-    }
-
-    const rawCodeHtml = codeElement.innerHTML.trim();
-    const tempEl = document.createElement('div');
-    tempEl.innerHTML = rawCodeHtml;
-    const originalCode = tempEl.textContent;
-
-    if (!originalCode) {
-        console.warn('CAN: 代码块内容为空，已跳过处理。', codeElement);
-        return;
-    }
-
-    // 【新增优化点】提前计算行数，用于后续判断
-    const lines = originalCode.split('\n');
-    const lineCount = lines[lines.length - 1] === '' ? lines.length - 1 : lines.length;
+function normalizeIndent(text, tabSize = 4) {
+    if (!text) return text;
+    const lines = text.replace(/\r\n/g, '\n').split('\n');
     
-    const safeCodeForHighlighting = getSafeCodeFromHtml(rawCodeHtml);
+    while (lines.length > 0 && lines[0].trim() === '') lines.shift();
+    while (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
 
-    let language = codeElement.dataset.language || 'plaintext';
-    if (!hljs.getLanguage(language)) {
-        console.warn(`CAN: 未知语言 "${language}", 已回退到 "plaintext".`);
-        language = 'plaintext';
-    }
+    if (lines.length === 0) return '';
 
-    const showLines = codeElement.dataset.showLines === 'true' || (!('showLines' in codeElement.dataset) && globalConfig.showLinesByDefault);
-
-    codeElement.dataset.originalText = originalCode;
-
-    const result = hljs.highlight(safeCodeForHighlighting, { language, ignoreIllegals: true });
-    
-    codeElement.innerHTML = result.value;
-    codeElement.classList.add('hljs', `language-${language}`);
-
-    if (showLines) {
-        applyLineNumbersWithGrid(codeElement);
-    }
-    
-    preElement.classList.add('relative', 'whitespace-pre','overflow-x-auto');
-
-    // 【新增逻辑】如果行数超过16行，则向上查找 .tabs-panel 并添加 class
-    if (lineCount > 16) {
-        // 从 codeElement 开始向上查找最近的 .tabs-panel 祖先元素
-        const tabsPanel = codeElement.closest('.tabs-panel');
-        if (tabsPanel) {
-            tabsPanel.classList.add('tabs-panel-max-height', 'overflow-auto');
-            console.log(`CAN: 代码块行数 (${lineCount}) 超过16行，已在 .tabs-panel 上添加最大高度限制。`);
-        } else {
-            console.warn('CAN: 代码块超过16行，但未找到父级 .tabs-panel 元素来应用高度限制。');
-        }
-    }
-
-
-    preElement.dataset.codeContent = originalCode;
-
-    const copyButton = document.createElement('button');
-    copyButton.innerHTML = `<i class='bxr bx-copy text-gray hover-text-green-500'></i>`;
-    copyButton.className = 'absolute top-2 right-2 bg-gray-200 text-white text-xs p-3 rounded flex';
-    
-    copyButton.addEventListener('click', async () => {
-        const codeToCopy = preElement.dataset.codeContent;
-        try {
-            await copyText(codeToCopy);
-            const originalHTML = copyButton.innerHTML;
-            copyButton.innerHTML = `<i class='bxr bx-check text-green-500'></i>`;
-            
-            setTimeout(() => {
-                copyButton.innerHTML = originalHTML;
-            }, globalConfig.copiedTextDuration);
-
-        } catch (err) {
-            console.error('复制失败:', err);
+    let minIndent = Infinity;
+    lines.forEach(line => {
+        if (line.trim().length > 0) {
+            const match = line.match(/^ */);
+            const indentLen = match ? match[0].length : 0;
+            if (indentLen < minIndent) minIndent = indentLen;
         }
     });
+    if (minIndent === Infinity) minIndent = 0;
 
-    preElement.appendChild(copyButton);
+    const spaces = ' '.repeat(tabSize);
+    return lines.map(line => {
+        let content = line.length >= minIndent ? line.substring(minIndent) : line;
+        return content.replace(/\t/g, spaces);
+    }).join('\n');
 }
 
 /**
- * 初始化所有代码高亮块
- * @param {object} userConfig - 用户自定义配置
+ * 复制到剪贴板
+ */
+async function copyToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+    } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            console.error('CAN: Legacy Copy Failed', err);
+        }
+        textArea.remove();
+    }
+}
+
+/**
+ * 动态加载语言包
+ */
+async function loadLanguage(lang) {
+    let targetLang = lang.toLowerCase();
+    if (LANGUAGE_ALIASES[targetLang]) {
+        targetLang = LANGUAGE_ALIASES[targetLang];
+    }
+
+    if (hljs.getLanguage(targetLang)) return targetLang;
+
+    try {
+        const module = await import(`${CDN_BASE}/${targetLang}.min.js`);
+        hljs.registerLanguage(targetLang, module.default);
+        return targetLang;
+    } catch (error) {
+        // console.warn(`CAN: Failed to load '${targetLang}', fallback to plaintext.`);
+        return 'plaintext';
+    }
+}
+
+/**
+ * 处理单个代码块 (异步)
+ */
+async function processBlock(codeEl, config) {
+    // 1. 预处理
+    let rawHtml = codeEl.innerHTML;
+    let rawText = decodeHTML(rawHtml);
+    let formattedCode = normalizeIndent(rawText, config.tabSize);
+
+    if (!formattedCode) return;
+
+    // 2. 识别语言
+    let lang = 'plaintext';
+    const classList = Array.from(codeEl.classList);
+    const langClass = classList.find(c => c.startsWith('language-') || c.startsWith('lang-'));
+    if (langClass) {
+        lang = langClass.replace(/^(language-|lang-)/, '');
+    } else if (codeEl.dataset.language) {
+        lang = codeEl.dataset.language;
+    }
+
+    // 3. 动态加载语言
+    const loadedLang = await loadLanguage(lang);
+
+    // 4. 高亮
+    const highlightResult = hljs.highlight(formattedCode, { language: loadedLang, ignoreIllegals: true });
+    
+    // 5. DOM 重构
+    const preEl = codeEl.closest('pre');
+    if (!preEl) return;
+
+    preEl.innerHTML = '';
+    preEl.className = config.containerClass;
+
+    // A. 语言水印 (User Custom: bottom-3 right-6 text-gray)
+    if (config.langLabel) {
+        const langBadge = document.createElement('div');
+        langBadge.className = 'absolute bottom-3 right-3 text-sm font-bold text-gray pointer-events-none select-none uppercase tracking-widest z-10';
+        langBadge.innerText = loadedLang; // 显示实际加载的语言名
+        preEl.appendChild(langBadge);
+    }
+
+    // B. 复制按钮 (User Custom: bg-white hover-bg-primary right-6)
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'absolute top-3 right-3 p-1.5 rounded-md bg-white hover-bg-primary text-gray-400 hover-text-white transition-all z-20 focus-outline-none backdrop-blur-sm';
+    copyBtn.innerHTML = config.copyIcon;
+    copyBtn.title = "复制代码";
+    copyBtn.addEventListener('click', async () => {
+        try {
+            await copyToClipboard(formattedCode);
+            copyBtn.innerHTML = config.checkIcon;
+            copyBtn.classList.add('text-green-400');
+            setTimeout(() => {
+                copyBtn.innerHTML = config.copyIcon;
+                copyBtn.classList.remove('text-green-400');
+            }, 2000);
+        } catch (e) { console.error(e); }
+    });
+    preEl.appendChild(copyBtn);
+
+    // C. 滚动视口
+    const scrollWrapper = document.createElement('div');
+    scrollWrapper.className = config.scrollWrapperClass;
+    
+    // D. Grid 布局
+    const gridLayout = document.createElement('div');
+    gridLayout.className = 'grid grid-cols-[auto_1fr] gap-0 min-w-full';
+
+    const lines = formattedCode.split('\n');
+    const lineCount = lines.length;
+
+    // E. 行号列 (User Custom: text-gray-600 border-gray)
+    if (config.showLineNumbers) {
+        const lineNumCol = document.createElement('div');
+        lineNumCol.className = 'flex flex-col text-right select-none text-gray-600 border-r border-gray py-3 pr-3 pl-3 text-xs leading-6';
+        let nums = '';
+        for (let i = 1; i <= lineCount; i++) {
+            nums += `<span class="h-6 block">${i}</span>`;
+        }
+        lineNumCol.innerHTML = nums;
+        gridLayout.appendChild(lineNumCol);
+    }
+
+    // F. 代码列 (User Custom: text-gray-300 text-gray)
+    const codeContentCol = document.createElement('div');
+    codeContentCol.className = 'py-3 px-4 whitespace-pre font-mono text-sm leading-6 text-gray-300 text-gray';
+    if (!config.showLineNumbers) codeContentCol.classList.add('pl-4');
+    
+    codeContentCol.innerHTML = highlightResult.value;
+    
+    gridLayout.appendChild(codeContentCol);
+    scrollWrapper.appendChild(gridLayout);
+    preEl.appendChild(scrollWrapper);
+}
+
+/**
+ * 初始化入口
  */
 export function initCodeHighlighter(userConfig = {}) {
     const config = { ...DEFAULT_CONFIG, ...userConfig };
-    const codeBlocks = document.querySelectorAll(config.codeBlockSelector);
+    const codeBlocks = document.querySelectorAll(`${config.selector}:not(.hljs-done)`);
+    
+    if (codeBlocks.length === 0) return;
 
-    if (codeBlocks.length === 0) {
-        console.warn('CAN: 未找到任何代码块。请检查选择器是否正确。');
-        return;
-    }
-
-    codeBlocks.forEach(block => {
-        if (block) {
-            renderCodeBlock(block, config);
-        }
+    codeBlocks.forEach(async (block) => {
+        block.classList.add('hljs-done'); // 先标记防止重复
+        await processBlock(block, config);
     });
 }
 

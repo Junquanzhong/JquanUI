@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 主题演示 - 在线学院</title>
+    <link rel="stylesheet" href="css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="css/JquanUI-Theme@3.0.css">
+    <style>
+        /* === 全局与布局 === */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* 使用主题变量定义整个页面的背景和文字颜色 */
+            background-color: rgb(var(--surface-bg));
+            color: rgb(var(--surface-text));
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* === 顶部导航栏 === */
+        .navbar {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgb(var(--surface-border));
+            background-color: rgb(var(--surface-bg));
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgb(var(--surface-border));
+        }
+
+        .theme-icon-btn {
+            background: none;
+            border: 1px solid rgb(var(--surface-border));
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            color: rgb(var(--surface-text-secondary));
+            transition: all 0.2s;
+        }
+
+        .theme-icon-btn:hover {
+            border-color: rgb(var(--primary-hue-500));
+            color: rgb(var(--primary-hue-500));
+        }
+
+        .theme-icon-btn.active {
+            background-color: rgb(var(--primary-hue-500));
+            color: #fff;
+            border-color: rgb(var(--primary-hue-500));
+        }
+
+        /* --- 触发按钮 --- */
+        .theme-picker-trigger {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid rgb(var(--surface-border));
+            border-radius: 0.375rem;
+            background-color: rgb(var(--surface-bg));
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .theme-picker-trigger:hover {
+            border-color: rgb(var(--primary-hue-500));
+        }
+
+        .theme-picker-trigger .color-dot-indicator {
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            /* 默认为蓝色，JS会覆盖 */
+            background-color: rgb(var(--blue-500));
+        }
+
+        .theme-picker-trigger .color-dot-indicator.active {
+            border-color: rgb(var(--surface-text-secondary));
+        }
+
+        .theme-picker-trigger .dropdown-arrow {
+            color: rgb(var(--surface-text-secondary));
+            transition: transform 0.2s ease;
+        }
+
+        .theme-picker-dropdown.open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+
+        /* --- 悬浮菜单 --- */
+        .theme-picker-menu {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            /* 定位在按钮下方，留出间距 */
+            right: 0;
+            background-color: rgb(var(--surface-bg));
+            border: 1px solid rgb(var(--surface-border));
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            z-index: 1000;
+            /* 确保在最上层 */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+        }
+
+        .theme-picker-dropdown.open .theme-picker-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* --- 颜色网格 --- */
+        .theme-picker-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            /* 5列网格 */
+            gap: 0.5rem;
+        }
+
+        .theme-picker-grid .color-dot {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .theme-picker-grid .color-dot:hover {
+            transform: scale(1.15);
+        }
+
+        .theme-picker-grid .color-dot.active {
+            border-color: rgb(var(--surface-text));
+            box-shadow: 0 0 0 3px rgb(var(--surface-bg));
+            /* 创建一个“空心圆”效果 */
+        }
+
+        /* === 通用按钮样式 === */
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            border-color: rgb(var(--primary-hue-300));
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== 顶部导航栏 ===== -->
+    <header class="navbar">
+        <div class="container navbar-conten flex items-center justify-between">
+            <a href="#" class="logo text-primary font-bold text-2xl">智学院</a>
+            <ul class="nav-menu flex items-center gap-6 list-none p-0 m-0">
+                <li class="font-medium"><a href="#" class="text-on-surface-secondary hover-text-primary active">首页</a>
+                </li>
+                <li class="font-medium"><a href="#" class="text-on-surface-secondary hover-text-primary">探索课程</a></li>
+                <li class="font-medium"><a href="#" class="text-on-surface-secondary hover-text-primary">学习路径</a></li>
+                <li class="font-medium"><a href="#" class="text-on-surface-secondary hover-text-primary">关于我们</a></li>
+            </ul>
+            <div class="nav-actions">
+                <!-- 主题切换器 -->
+                <!-- ===== 主题切换器 (最终版 - 下拉菜单) ===== -->
+                <div class="theme-switcher flex items-center gap-4">
+                    <!-- 明暗模式切换按钮 -->
+                    <button class="theme-icon-btn luminance-btn active" data-luminance="light" title="亮色模式">☀️</button>
+                    <button class="theme-icon-btn luminance-btn" data-luminance="dark" title="暗色模式">🌙</button>
+
+                    <!-- 色调选择器 (下拉菜单) -->
+                    <div class="theme-picker-dropdown relative">
+                        <!-- 触发按钮，显示当前选中的颜色 -->
+                        <button class="theme-picker-trigger" id="themePickerTrigger">
+                            <span class="color-dot-indicator active"></span>
+                            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                                <path d="M6 9L1.5 4.5h9L6 9z" />
+                            </svg>
+                        </button>
+
+                        <!-- 悬浮下拉菜单 -->
+                        <div class="theme-picker-menu" id="themePickerMenu">
+                            <div class="theme-picker-grid" id="colorPalette">
+                                <!-- 颜色点将由 JS 生成 -->
+                                <button class="color-dot" title="slate" data-theme="theme-slate"
+                                    style="background-color: rgb(var(--slate-500));"></button><button class="color-dot"
+                                    title="gray" data-theme="theme-gray"
+                                    style="background-color: rgb(var(--gray-500));"></button><button class="color-dot"
+                                    title="zinc" data-theme="theme-zinc"
+                                    style="background-color: rgb(var(--zinc-500));"></button><button class="color-dot"
+                                    title="red" data-theme="theme-red"
+                                    style="background-color: rgb(var(--red-500));"></button><button class="color-dot"
+                                    title="orange" data-theme="theme-orange"
+                                    style="background-color: rgb(var(--orange-500));"></button><button class="color-dot"
+                                    title="amber" data-theme="theme-amber"
+                                    style="background-color: rgb(var(--amber-500));"></button><button class="color-dot"
+                                    title="yellow" data-theme="theme-yellow"
+                                    style="background-color: rgb(var(--yellow-500));"></button><button class="color-dot"
+                                    title="lime" data-theme="theme-lime"
+                                    style="background-color: rgb(var(--lime-500));"></button><button class="color-dot"
+                                    title="green" data-theme="theme-green"
+                                    style="background-color: rgb(var(--green-500));"></button><button class="color-dot"
+                                    title="emerald" data-theme="theme-emerald"
+                                    style="background-color: rgb(var(--emerald-500));"></button><button
+                                    class="color-dot" title="teal" data-theme="theme-teal"
+                                    style="background-color: rgb(var(--teal-500));"></button><button class="color-dot"
+                                    title="cyan" data-theme="theme-cyan"
+                                    style="background-color: rgb(var(--cyan-500));"></button><button class="color-dot"
+                                    title="sky" data-theme="theme-sky"
+                                    style="background-color: rgb(var(--sky-500));"></button><button
+                                    class="color-dot active" title="blue" data-theme="theme-blue"
+                                    style="background-color: rgb(var(--blue-500));"></button><button class="color-dot"
+                                    title="indigo" data-theme="theme-indigo"
+                                    style="background-color: rgb(var(--indigo-500));"></button><button class="color-dot"
+                                    title="violet" data-theme="theme-violet"
+                                    style="background-color: rgb(var(--violet-500));"></button><button class="color-dot"
+                                    title="purple" data-theme="theme-purple"
+                                    style="background-color: rgb(var(--purple-500));"></button><button class="color-dot"
+                                    title="fuchsia" data-theme="theme-fuchsia"
+                                    style="background-color: rgb(var(--fuchsia-500));"></button><button
+                                    class="color-dot" title="pink" data-theme="theme-pink"
+                                    style="background-color: rgb(var(--pink-500));"></button><button class="color-dot"
+                                    title="rose" data-theme="theme-rose"
+                                    style="background-color: rgb(var(--rose-500));"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img src="https://picsum.photos/seed/avatar-user/40/40" alt="User Avatar" class="user-avatar">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== 英雄区域 ===== -->
+        <section class="py-16 text-center">
+            <div class="container">
+                <h1 class="font-bold text-5xl inline-block text-on-surface-primary mb-6 text-gradient bg-gradient-to-r from-primary via-accent to-secondary">
+                    学习新技能，开启无限可能</h1>
+                <p class="text-on-surface-secondary text-xl mb-8">超过 10,000+ 精品课程，助你成为行业专家</p>
+                <div class="mx-2">
+                    <a href="#" class="btn py-3 px-6 bg-primary text-white hover-bg-primary-700">立即开始学习</a>
+                    <a href="#"
+                        class="btn py-3 px-6 btn-outline bg-transparent text-primary border-primary border-2 hover-bg-primary hover-text-white">浏览所有课程</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 课程分类 ===== -->
+        <section class="py-12">
+            <div class="container">
+                <h2 class="text-center mb-8 text-3xl">热门分类</h2>
+                <ul class="flex items-center justify-center gap-6 list-none p-0">
+                    <li
+                        class="bg-secondary text-white hover-scale-105 text-sm cursor-pointer transition-transform py-2 px-6 rounded-full hover-bg-primary">
+                        开发</li>
+                    <li
+                        class="bg-secondary text-white hover-scale-105 text-sm cursor-pointer transition-transform py-2 px-6 rounded-full hover-bg-primary">
+                        设计</li>
+                    <li
+                        class="bg-secondary text-white hover-scale-105 text-sm cursor-pointer transition-transform py-2 px-6 rounded-full hover-bg-primary">
+                        市场营销</li>
+                    <li
+                        class="bg-secondary text-white hover-scale-105 text-sm cursor-pointer transition-transform py-2 px-6 rounded-full hover-bg-primary">
+                        商业</li>
+                    <li
+                        class="bg-secondary text-white hover-scale-105 text-sm cursor-pointer transition-transform py-2 px-6 rounded-full hover-bg-primary">
+                        个人发展</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== 热门课程 ===== -->
+        <section class="py-12">
+            <div class="container">
+                <h2 class="text-center mb-8 text-3xl">推荐课程</h2>
+                <div class="auto-grid auto-grid-fill auto-grid-lg gap-6" id="courseGrid">
+                    <!-- 课程卡片将由 JS 生成 -->
+                    <div
+                        class="course-card bg-surface border border-surface rounded-xl overflow-hidden cursor-pointer transition-all duration-300">
+                        <img src="https://picsum.photos/seed/vue3/400/200" alt="Vue 3 完整指南"
+                            class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2">Vue 3 完整指南</h3>
+                            <p class="text-on-surface-secondary text-sm mb-4">讲师: 李老师</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-theme-primary font-bold text-xl">¥299</span>
+                                <span class="text-warning text-sm">⭐ 4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="course-card bg-surface border border-surface rounded-xl overflow-hidden cursor-pointer transition-all duration-300">
+                        <img src="https://picsum.photos/seed/uiux/400/200" alt="UI/UX 设计原理"
+                            class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2">UI/UX 设计原理</h3>
+                            <p class="text-on-surface-secondary text-sm mb-4">讲师: 王设计师</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-theme-primary font-bold text-xl">¥199</span>
+                                <span class="text-warning text-sm">⭐ 4.8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="course-card bg-surface border border-surface rounded-xl overflow-hidden cursor-pointer transition-all duration-300">
+                        <img src="https://picsum.photos/seed/python/400/200" alt="Python 数据分析"
+                            class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2">Python 数据分析</h3>
+                            <p class="text-on-surface-secondary text-sm mb-4">讲师: 张博士</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-theme-primary font-bold text-xl">¥399</span>
+                                <span class="text-warning text-sm">⭐ 5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="course-card bg-surface border border-surface rounded-xl overflow-hidden cursor-pointer transition-all duration-300">
+                        <img src="https://picsum.photos/seed/react/400/200" alt="React 高级进阶"
+                            class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2">React 高级进阶</h3>
+                            <p class="text-on-surface-secondary text-sm mb-4">讲师: 赵工程师</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-theme-primary font-bold text-xl">¥349</span>
+                                <span class="text-warning text-sm">⭐ 4.7</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="course-card bg-surface border border-surface rounded-xl overflow-hidden cursor-pointer transition-all duration-300">
+                        <img src="https://picsum.photos/seed/marketing/400/200" alt="数字营销策略"
+                            class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2">数字营销策略</h3>
+                            <p class="text-on-surface-secondary text-sm mb-4">讲师: 陈经理</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-theme-primary font-bold text-xl">¥259</span>
+                                <span class="text-warning text-sm">⭐ 4.6</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="course-card bg-surface border border-surface rounded-xl overflow-hidden cursor-pointer transition-all duration-300">
+                        <img src="https://picsum.photos/seed/product/400/200" alt="产品管理实战"
+                            class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2">产品管理实战</h3>
+                            <p class="text-on-surface-secondary text-sm mb-4">讲师: 刘产品</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-theme-primary font-bold text-xl">¥449</span>
+                                <span class="text-warning text-sm">⭐ 4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="course-card bg-surface border border-surface rounded-xl overflow-hidden cursor-pointer transition-all duration-300">
+                        <img src="https://picsum.photos/seed/figma/400/200" alt="Figma 协同设计"
+                            class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2">Figma 协同设计</h3>
+                            <p class="text-on-surface-secondary text-sm mb-4">讲师: 周设计师</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-theme-primary font-bold text-xl">¥189</span>
+                                <span class="text-warning text-sm">⭐ 4.8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="course-card bg-surface border border-surface rounded-xl overflow-hidden cursor-pointer transition-all duration-300">
+                        <img src="https://picsum.photos/seed/golang/400/200" alt="Go 语言微服务"
+                            class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2">Go 语言微服务</h3>
+                            <p class="text-on-surface-secondary text-sm mb-4">讲师: 吴架构师</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-theme-primary font-bold text-xl">¥459</span>
+                                <span class="text-warning text-sm">⭐ 4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== 页脚 ===== -->
+    <footer class="footer text-center p-8 mt-10 bg-surface border-t border-surface">
+        <div class="container text-on-surface-secondary">
+            <p>&copy; 2024 智学院. All rights reserved. | 由 JquanUI 强力驱动</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initTheme } from './js/modules/theme.mjs'
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 3. 调用 initTheme 函数并传入配置选项
+            const themeManager = initTheme({
+                // 指向包含主题切换按钮的容器选择器
+                el: '#colorPalette',
+
+                // 设置一个你希望在用户首次访问时看到的默认主题
+                defaultTheme: 'theme-slate',
+
+                // (可选) 指向明暗切换按钮的选择器，默认是 '[data-luminance]'
+                // darkModeToggleSelector: '[data-luminance]' 
+            });
+
+            // --- (可选) 你可以在这里利用返回的 themeManager 对象进行更多操作 ---
+
+            // 监听主题变化并打印到控制台
+            if (themeManager) {
+                // 你可以创建一个自定义事件来监听变化，或者在按钮点击时调用
+                // 这里仅作演示，展示如何使用API
+                console.log('主题系统已初始化。');
+                console.log('当前主题:', themeManager.getCurrentTheme());
+                console.log('当前明暗模式:', themeManager.getCurrentLuminance());
+            }
+        });
+        const themePickerTrigger = document.getElementById('themePickerTrigger');
+        const colorDotIndicator = themePickerTrigger.querySelector('.color-dot-indicator');
+        const themePickerDropdown = themePickerTrigger.parentElement;
+        // ===== 2. 下拉菜单交互 =====
+        themePickerTrigger.addEventListener('click', () => {
+            themePickerDropdown.classList.toggle('open');
+        });
+
+        // 点击页面其他地方关闭下拉菜单
+        document.addEventListener('click', (e) => {
+            if (!themePickerDropdown.contains(e.target)) {
+                themePickerDropdown.classList.remove('open');
+            }
+        });
+
+    </script>
+    <!-- <script src="./js/apps/theme.js"></script> -->
+</body>
+
+</html>

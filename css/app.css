@@ -125,26 +125,6 @@ html, body, .admin-layout ,.sidebar,.header,.main-content,iframe{
   margin-right: 10px;
 }
 
-/* Cards */
-.card {
-  background-color: rgb(var(--surface-bg));
-  border: 1px solid rgb(var(--surface-border));
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  /* margin-bottom: 20px; */
-  color: rgb(var(--surface-text));
-}
-
-.card-header {
-  padding: 15px 20px;
-  border-bottom: 1px solid #eee;
-  font-weight: 600;
-}
-
-.card-body {
-  padding: 20px;
-}
-
 /* Component display */
 .component-grid {
   display: grid;

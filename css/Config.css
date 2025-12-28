@@ -1,8 +1,576 @@
+/*插件导入*/
+/* 组件 */
+@import url("JquanUIex@3.0.css");
+/* 主题 */
+@import url("JquanUI-Theme@3.0.css");
+/* 基础图标 */
+@import url("../lib/boxicons-3.0/fonts/basic/boxicons.min.css");
+/*Logo图标*/
+@import url("../lib/boxicons-3.0/fonts/brands/boxicons-brands.min.css");
+/*图标动效*/
+@import url("../lib/boxicons-3.0/fonts/animations.min.css");
+/*图标上色*/
+@import url("../lib/boxicons-3.0/fonts/transformations.min.css");
+/*悬浮效果*/
+@import url("../lib/hover-2.3.2/hover.css");
+
 :root {
-  /* 初始化 */
-  /* 字体 */
-  --foot:"MiSans";
-    /* 圓角 */
+  --font: "微软雅黑";
+  /* 尺寸 */
+  --spacing-0: 0px;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-2-5: 0.625rem;
+  --spacing-3: 0.75rem;
+  --spacing-3-5: 0.875rem;
+  --spacing-4: 1rem;
+  --spacing-4-5: 1.125rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-7-5:1.875rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+  --spacing-14: 3.5rem;
+  --spacing-14-5:3.75rem;
+  --spacing-16: 4rem;
+  --spacing-18: 4.5rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-28: 7rem;
+  --spacing-32: 8rem;
+  --spacing-36: 9rem;
+  --spacing-40: 10rem;
+  --spacing-44: 11rem;
+  --spacing-48: 12rem;
+  --spacing-52: 13rem;
+  --spacing-56: 14rem;
+  --spacing-60: 15rem;
+  --spacing-64: 16rem;
+  --spacing-72: 18rem;
+  --spacing-80: 20rem;
+  --spacing-96: 24rem;
+  --spacing-px: 1px;
+  --spacing-0\.5: 0.125rem;
+  --spacing-1\.5: 0.375rem;
+  --spacing-2\.5: 0.625rem;
+  --spacing-3\.5: 0.875rem;
+  --spacing-auto: auto;
+  --spacing-1\/2: 50%;
+  --spacing-1\/3: 33.333333%;
+  --spacing-2\/3: 66.666667%;
+  --spacing-1\/4: 25%;
+  --spacing-2\/4: 50%;
+  --spacing-3\/4: 75%;
+  --spacing-1\/5: 20%;
+  --spacing-2\/5: 40%;
+  --spacing-3\/5: 60%;
+  --spacing-4\/5: 80%;
+  --spacing-1\/6: 16.666667%;
+  --spacing-2\/6: 33.333333%;
+  --spacing-3\/6: 50%;
+  --spacing-4\/6: 66.666667%;
+  --spacing-5\/6: 83.333333%;
+  --spacing-full: 100%;
+  --spacing-screen: 100vw;
+  --spacing-min: min-content;
+  --spacing-max: max-content;
+  --spacing-fit: fit-content;
+  /*颜色*/
+  /*红*/
+  --red-50: 254 242 242;
+  --red-100: 254 226 226;
+  --red-200: 254 202 202;
+  --red-300: 252 165 165;
+  --red-400: 248 113 113;
+  --red-500: 239 68 68;
+  --red-600: 220 38 38;
+  --red-700: 185 28 28;
+  --red-800: 153 27 27;
+  --red-900: 127 29 29;
+  /*橙*/
+  --orange-50: 255 247 237;
+  --orange-100: 255 237 213;
+  --orange-200: 254 215 170;
+  --orange-300: 253 186 116;
+  --orange-400: 251 146 60;
+  --orange-500: 249 115 22;
+  --orange-600: 234 88 12;
+  --orange-700: 194 65 12;
+  --orange-800: 154 52 18;
+  --orange-900: 124 45 18;
+  /*琥珀*/
+  --amber-50: 255 251 235;
+  --amber-100: 254 243 199;
+  --amber-200: 253 230 138;
+  --amber-300: 252 211 77;
+  --amber-400: 251 191 36;
+  --amber-500: 245 158 11;
+  --amber-600: 217 119 6;
+  --amber-700: 180 83 9;
+  --amber-800: 146 64 14;
+  --amber-900: 120 53 15;
+  /*黄*/
+  --yellow-50: 254 252 232;
+  --yellow-100: 254 249 195;
+  --yellow-200: 254 240 138;
+  --yellow-300: 253 224 71;
+  --yellow-400: 250 204 21;
+  --yellow-500: 234 179 8;
+  --yellow-600: 202 138 4;
+  --yellow-700: 161 98 7;
+  --yellow-800: 133 77 14;
+  --yellow-900: 113 63 18;
+  /*石青*/
+  --lime-50: 247 254 231;
+  --lime-100: 236 252 203;
+  --lime-200: 225 249 157;
+  --lime-300: 217 242 100;
+  --lime-400: 163 230 53;
+  --lime-500: 132 204 22;
+  --lime-600: 101 163 13;
+  --lime-700: 77 124 15;
+  --lime-800: 63 98 18;
+  --lime-900: 54 83 20;
+  /*绿*/
+  --green-50: 240 253 244;
+  --green-100: 220 252 231;
+  --green-200: 187 247 208;
+  --green-300: 134 239 172;
+  --green-400: 74 222 128;
+  --green-500: 34 197 94;
+  --green-600: 22 163 74;
+  --green-700: 21 128 61;
+  --green-800: 22 101 52;
+  --green-900: 20 83 45;
+  /*绿宝石*/
+  --emerald-50: 236 253 245;
+  --emerald-100: 209 250 229;
+  --emerald-200: 167 243 208;
+  --emerald-300: 110 231 183;
+  --emerald-400: 52 211 153;
+  --emerald-500: 16 185 129;
+  --emerald-600: 5 150 105;
+  --emerald-700: 4 120 87;
+  --emerald-800: 6 95 70;
+  --emerald-900: 6 78 59;
+  /*水鸭*/
+  --teal-50: 240 253 250;
+  --teal-100: 204 251 241;
+  --teal-200: 153 246 228;
+  --teal-300: 94 234 212;
+  --teal-400: 45 212 191;
+  --teal-500: 20 184 166;
+  --teal-600: 13 148 136;
+  --teal-700: 15 118 110;
+  --teal-800: 17 94 89;
+  --teal-900: 19 78 74;
+  /*青*/
+  --cyan-50: 236 254 255;
+  --cyan-100: 207 250 254;
+  --cyan-200: 165 243 252;
+  --cyan-300: 103 232 249;
+  --cyan-400: 34 211 238;
+  --cyan-500: 6 182 212;
+  --cyan-600: 8 145 178;
+  --cyan-700: 14 116 144;
+  --cyan-800: 21 94 117;
+  --cyan-900: 22 78 99;
+  /*天青*/
+  --sky-50: 240 249 255;
+  --sky-100: 224 242 254;
+  --sky-200: 186 230 253;
+  --sky-300: 125 211 252;
+  --sky-400: 56 189 248;
+  --sky-500: 14 165 233;
+  --sky-600: 2 132 199;
+  --sky-700: 3 105 161;
+  --sky-800: 7 89 133;
+  --sky-900: 12 74 110;
+  /*蓝*/
+  --blue-50: 239 246 255;
+  --blue-100: 219 234 254;
+  --blue-200: 191 219 254;
+  --blue-300: 147 197 253;
+  --blue-400: 96 165 250;
+  --blue-500: 59 130 246;
+  --blue-600: 37 99 235;
+  --blue-700: 29 78 216;
+  --blue-800: 30 64 175;
+  --blue-900: 30 58 138;
+  /*靛蓝*/
+  --indigo-50: 238 242 255;
+  --indigo-100: 224 231 255;
+  --indigo-200: 199 210 254;
+  --indigo-300: 165 180 252;
+  --indigo-400: 129 140 248;
+  --indigo-500: 99 102 241;
+  --indigo-600: 79 70 229;
+  --indigo-700: 67 56 202;
+  --indigo-800: 55 48 163;
+  --indigo-900: 49 46 129;
+  /*浅紫*/
+  --violet-50: 245 243 255;
+  --violet-100: 237 233 254;
+  --violet-200: 221 214 254;
+  --violet-300: 196 181 253;
+  --violet-400: 167 139 250;
+  --violet-500: 139 92 246;
+  --violet-600: 124 58 237;
+  --violet-700: 109 40 217;
+  --violet-800: 91 33 182;
+  --violet-900: 76 29 149;
+  /*紫色*/
+  --purple-50: 250 245 255;
+  --purple-100: 243 232 255;
+  --purple-200: 233 213 255;
+  --purple-300: 216 180 254;
+  --purple-400: 192 132 252;
+  --purple-500: 168 85 247;
+  --purple-600: 147 51 234;
+  --purple-700: 126 34 206;
+  --purple-800: 107 33 168;
+  --purple-900: 88 28 135;
+  /*紫红*/
+  --fuchsia-50: 253 244 255;
+  --fuchsia-100: 250 232 255;
+  --fuchsia-200: 245 208 254;
+  --fuchsia-300: 240 171 252;
+  --fuchsia-400: 232 121 249;
+  --fuchsia-500: 217 70 239;
+  --fuchsia-600: 192 38 211;
+  --fuchsia-700: 162 28 175;
+  --fuchsia-800: 134 25 143;
+  --fuchsia-900: 112 26 117;
+  /*粉*/
+  --pink-50: 253 242 248;
+  --pink-100: 252 231 243;
+  --pink-200: 251 207 232;
+  --pink-300: 249 168 212;
+  --pink-400: 244 114 182;
+  --pink-500: 236 72 153;
+  --pink-600: 219 39 119;
+  --pink-700: 190 24 93;
+  --pink-800: 157 23 77;
+  --pink-900: 131 24 67;
+  /*玫红*/
+  --rose-50: 255 241 242;
+  --rose-100: 255 228 230;
+  --rose-200: 254 205 211;
+  --rose-300: 253 164 175;
+  --rose-400: 251 113 133;
+  --rose-500: 244 63 94;
+  --rose-600: 225 29 72;
+  --rose-700: 190 18 60;
+  --rose-800: 159 18 57;
+  --rose-900: 136 19 55;
+  /*石板*/
+  --slate-50: 248 250 252;
+  --slate-100: 241 245 249;
+  --slate-200: 226 232 240;
+  --slate-300: 203 213 225;
+  --slate-400: 148 163 184;
+  --slate-500: 100 116 139;
+  --slate-600: 71 85 105;
+  --slate-700: 51 65 85;
+  --slate-800: 30 41 59;
+  --slate-900: 15 23 42;
+  /*灰*/
+  --gray-50: 249 250 251;
+  --gray-100: 243 244 246;
+  --gray-200: 229 231 235;
+  --gray-300: 209 213 219;
+  --gray-400: 156 163 175;
+  --gray-500: 107 114 128;
+  --gray-600: 75 85 99;
+  --gray-700: 55 65 81;
+  --gray-800: 31 41 55;
+  --gray-900: 17 24 39;
+  /*锌*/
+  --zinc-50: 250 250 250;
+  --zinc-100: 244 244 245;
+  --zinc-200: 228 228 231;
+  --zinc-300: 212 212 216;
+  --zinc-400: 161 161 170;
+  --zinc-500: 113 113 122;
+  --zinc-600: 82 82 91;
+  --zinc-700: 63 63 70;
+  --zinc-800: 39 39 42;
+  --zinc-900: 24 24 27;
+  /*黑*/
+  --black: 0 0 0;
+  /*白*/
+  --white: 255 255 255;
+/* 拓展中式色 */
+  /* 金盏花黄（Placer Gold）*/
+  --placergold-50: 254 252 232;
+  --placergold-100: 254 249 195;
+  --placergold-200: 254 240 138;
+  --placergold-300: 253 224 71;
+  --placergold-400: 250 204 21;
+  --placergold-500: 234 179 8;
+  --placergold-600: 202 138 4;
+  --placergold-700: 161 98 7;
+  --placergold-800: 133 77 14;
+  --placergold-900: 113 63 18;
+  /* 珊瑚橙 */
+  --coralorange-50: 255 248 242;
+  --coralorange-100: 255 235 220;
+  --coralorange-200: 255 213 189;
+  --coralorange-300: 255 182 147;
+  --coralorange-400: 255 145 99;
+  --coralorange-500: 255 127 80;
+  --coralorange-600: 230 102 58;
+  --coralorange-700: 191 77 42;
+  --coralorange-800: 153 59 32;
+  --coralorange-900: 122 47 26;
+/* 樱桃粉 */
+--cherrypink-50: 255 247 249;
+--cherrypink-100: 255 232 237;
+--cherrypink-200: 255 207 214;
+--cherrypink-300: 255 171 186;
+--cherrypink-400: 255 128 152;
+--cherrypink-500: 255 107 129;
+--cherrypink-600: 230 82 105;
+--cherrypink-700: 191 61 82;
+--cherrypink-800: 153 47 65;
+--cherrypink-900: 122 37 52;
+ /* 金菊黄 */
+ --goldenmarigold-50: 255 251 235;
+--goldenmarigold-100: 255 243 199;
+--goldenmarigold-200: 255 230 138;
+--goldenmarigold-300: 255 211 77;
+--goldenmarigold-400: 255 191 36;
+--goldenmarigold-500: 255 165 2;
+--goldenmarigold-600: 230 138 0;
+--goldenmarigold-700: 191 103 0;
+--goldenmarigold-800: 153 77 0;
+--goldenmarigold-900: 122 61 0;
+/* 番茄红 */
+--tomatored-50: 255 245 242;
+--tomatored-100: 255 228 222;
+--tomatored-200: 255 202 191;
+--tomatored-300: 255 165 147;
+--tomatored-400: 255 120 99;
+--tomatored-500: 255 99 72;
+--tomatored-600: 230 74 50;
+--tomatored-700: 191 55 37;
+--tomatored-800: 153 42 29;
+--tomatored-900: 122 34 23;
+/* 西瓜红 */
+--watermelonred-50: 255 244 245;
+--watermelonred-100: 255 227 229;
+--watermelonred-200: 255 199 203;
+--watermelonred-300: 255 160 169;
+--watermelonred-400: 255 113 128;
+--watermelonred-500: 255 71 87;
+--watermelonred-600: 230 50 67;
+--watermelonred-700: 191 37 52;
+--watermelonred-800: 153 29 41;
+--watermelonred-900: 122 23 33;
+ /* 薄荷青 */
+ --mintgreen-50: 240 254 247;
+--mintgreen-100: 220 252 236;
+--mintgreen-200: 187 247 215;
+--mintgreen-300: 134 239 185;
+--mintgreen-400: 74 222 148;
+--mintgreen-500: 123 237 159;
+--mintgreen-600: 34 197 110;
+--mintgreen-700: 21 155 85;
+--mintgreen-800: 17 122 67;
+--mintgreen-900: 14 98 54;
+/* 天霁蓝 */
+--skyazure-50: 240 248 255;
+--skyazure-100: 224 240 254;
+--skyazure-200: 186 222 253;
+--skyazure-300: 125 193 252;
+--skyazure-400: 56 159 248;
+--skyazure-500: 112 161 255; 
+--skyazure-600: 14 133 233;
+--skyazure-700: 3 105 199;
+--skyazure-800: 7 89 166;
+--skyazure-900: 12 74 138;
+/* 翡翠绿 */
+--jadegreen-50: 237 253 243;
+--jadegreen-100: 216 250 231;
+--jadegreen-200: 175 244 208;
+--jadegreen-300: 114 234 172;
+--jadegreen-400: 46 213 128;
+--jadegreen-500: 46 213 115;
+--jadegreen-600: 22 163 94;
+--jadegreen-700: 18 128 74;
+--jadegreen-800: 17 101 59;
+--jadegreen-900: 15 83 48;
+/* 道奇蓝 */
+--dodgerblue-50: 239 246 255;
+--dodgerblue-100: 219 234 254;
+--dodgerblue-200: 191 219 254;
+--dodgerblue-300: 147 197 253;
+--dodgerblue-400: 96 165 250;
+--dodgerblue-500: 30 144 255;
+--dodgerblue-600: 25 110 235;
+--dodgerblue-700: 21 88 216;
+--dodgerblue-800: 22 69 175;
+--dodgerblue-900: 22 57 138;
+/* 皇家蓝 */
+--royalblue-50: 239 241 254;
+--royalblue-100: 224 228 253;
+--royalblue-200: 199 206 251;
+--royalblue-300: 165 178 249;
+--royalblue-400: 129 146 247;
+--royalblue-500: 55 66 250;
+--royalblue-600: 49 46 229;
+--royalblue-700: 43 38 202;
+--royalblue-800: 37 33 163;
+--royalblue-900: 33 30 129;
+/* 宁静灰蓝 */
+--peace-50: 248 250 252;
+--peace-100: 241 245 249;
+--peace-200: 226 232 240;
+--peace-300: 203 213 225;
+--peace-400: 168 184 200;
+--peace-500: 164 176 190;
+--peace-600: 115 128 145;
+--peace-700: 82 94 110;
+--peace-800: 58 67 80;
+--peace-900: 42 49 58;
+/* 石墨灰 */
+--graphite-50: 249 250 251;
+--graphite-100: 243 244 246;
+--graphite-200: 229 231 235;
+--graphite-300: 209 213 219;
+--graphite-400: 156 163 175;
+--graphite-500: 87 96 111;
+--graphite-600: 75 85 99;
+--graphite-700: 55 65 81;
+--graphite-800: 39 48 60;
+--graphite-900: 28 35 44;
+/* 银灰 */
+--silvergray-50: 249 250 251;
+--silvergray-100: 243 244 246;
+--silvergray-200: 229 231 235;
+--silvergray-300: 209 213 219;
+--silvergray-400: 156 163 175;
+--silvergray-500: 116 125 140;
+--silvergray-600: 88 97 112;
+--silvergray-700: 64 72 85;
+--silvergray-800: 45 51 60;
+--silvergray-900: 32 37 44;
+/* 午夜蓝 */
+--midnight-50: 248 250 252;
+--midnight-100: 241 245 249;
+--midnight-200: 226 232 240;
+--midnight-300: 203 213 225;
+--midnight-400: 148 163 184;
+--midnight-500: 47 53 66;
+--midnight-600: 30 36 48;
+--midnight-700: 20 24 32;
+--midnight-800: 14 17 23;
+--midnight-900: 9 11 16;
+/* 雾灰白 */
+--mistwhite-50: 255 255 255;
+--mistwhite-100: 250 251 252;
+--mistwhite-200: 245 246 248;
+--mistwhite-300: 235 238 242;
+--mistwhite-400: 220 225 232;
+--mistwhite-500: 223 228 234;
+--mistwhite-600: 190 197 207;
+--mistwhite-700: 153 161 173;
+--mistwhite-800: 122 129 139;
+--mistwhite-900: 98 103 111;
+/* 雪青白 */
+--snowwhite-50: 255 255 255;
+--snowwhite-100: 252 253 254;
+--snowwhite-200: 249 250 252;
+--snowwhite-300: 243 244 247;
+--snowwhite-400: 232 234 239;
+--snowwhite-500: 241 242 246;
+--snowwhite-600: 209 211 217;
+--snowwhite-700: 173 176 184;
+--snowwhite-800: 139 142 149;
+--snowwhite-900: 111 114 120;
+/* 云灰 */
+--cloudgray-50: 255 255 255;
+--cloudgray-100: 250 251 252;
+--cloudgray-200: 245 246 248;
+--cloudgray-300: 235 238 242;
+--cloudgray-400: 220 225 232;
+--cloudgray-500: 206 214 224;
+--cloudgray-600: 173 184 197;
+--cloudgray-700: 139 150 167;
+--cloudgray-800: 111 120 134;
+--cloudgray-900: 89 96 107;
+
+  /* 在根节点定义所有断点对应的容器宽度，一目了然 */
+  --container-padding: 1rem;
+  /* 统一管理内边距 */
+  --container-sm: 608px;
+  /* 640px - 32px 边距 */
+  --container-md: 736px;
+  /* 768px - 32px 边距 */
+  --container-lg: 992px;
+  /* 1024px - 32px 边距 */
+  --container-xl: 1216px;
+  /* 1280px - 64px 边距 */
+  --container-xxl: 1472px;
+  /* 1536px - 64px 边距 */
+  --container-xxxl: 1856px;
+  /* 1920px - 64px 边距 */
+  --container-xxxxl: 2496px;
+  /* 2560px - 64px 边距 */
+  /* 从 0 到 sm (640px) */
+  --container-sm-clamp: clamp(1rem, 95vw, var(--container-sm));
+  /* 从 sm (640px) 到 md (768px) */
+  --container-md-clamp: clamp(var(--container-sm), 92.5vw, var(--container-md));
+  /* 从 md (768px) 到 lg (1024px) */
+  --container-lg-clamp: clamp(var(--container-md), 90vw, var(--container-lg));
+  /* 从 lg (1024px) 到 xl (1280px) */
+  --container-xl-clamp: clamp(var(--container-lg), 85vw, var(--container-xl));
+  /* 从 xl (1280px) 到 xxl (1536px) */
+  --container-xxl-clamp: clamp(var(--container-xl),
+      82.5vw,
+      var(--container-xxl));
+  /* 从 xxl (1536px) 到 xxxl (1920px) */
+  --container-xxxl-clamp: clamp(var(--container-xxl),
+      80vw,
+      var(--container-xxxl));
+  /* 从 xxxl (1920px) 到 xxxxl (2560px) */
+  --container-xxxxl-clamp: clamp(var(--container-xxxl),
+      75vw,
+      var(--container-xxxxl));
+
+  /* 对于超大屏幕，固定一个最大值即可，或者继续用 clamp */
+  --container-xxxxl-final: var(--container-xxxxl);
+  /*边框宽度*/
+  --border-width-0: 0px;
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+  --border-width-8: 8px;
+
+
+  /* 面包屑 */
+  --breadcrumb-padding-y: 8px;
+  --breadcrumb-padding-x: 15px;
+  --breadcrumb-bg: var(--contrasting-color);
+  --breadcrumb-border-radius: 6px;
+  --breadcrumb-margin-bottom: 1rem;
+  --breadcrumb-font-size: 0.875rem;
+  --breadcrumb-active-color: var(--main-color);
+  --breadcrumb-divider: "/";
+  --breadcrumb-divider-color: #6c757d;
+  --breadcrumb-item-padding: 0.5rem;
+  --breadcrumb-link-color: #495057;
+  --breadcrumb-link-hover-color: var(--main-color);
+  --breadcrumb-link-hover-decoration: underline;
+  --breadcrumb-border-color: rgba(0, 0, 0, 0.1);
+
+  /* 圓角 */
     --radius-s: 4px;
     --radius-m: 6px;
     --radius-l: 8px;
@@ -82,23 +650,6 @@
   /* 图片叠加变量 */
   --overlay-bg: rgba(0, 0, 0, 0.5);
   --overlay-text: #fff;
-
-  /* 面包屑 */
-  --breadcrumb-padding-y: 8px;
-  --breadcrumb-padding-x: 15px;
-  --breadcrumb-bg: var(--contrasting-color);
-  --breadcrumb-border-radius: 6px;
-  --breadcrumb-margin-bottom: 1rem;
-  --breadcrumb-font-size: 0.875rem;
-  --breadcrumb-active-color: var(--main-color);
-  --breadcrumb-divider: "/";
-  --breadcrumb-divider-color: #6c757d;
-  --breadcrumb-item-padding: 0.5rem;
-  --breadcrumb-link-color: #495057;
-  --breadcrumb-link-hover-color: var(--main-color);
-  --breadcrumb-link-hover-decoration: underline;
-  --breadcrumb-border-color: rgba(0, 0, 0, 0.1);
-
   /* 代码 */
   /* 代码块主题变量 */
   --code-bg: #1e1e1e;

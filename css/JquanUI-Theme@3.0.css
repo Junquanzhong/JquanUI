@@ -377,13 +377,24 @@ into CSS variables, allowing for complete theme overhauls with minimal effort.
 }
 .primary,
 .bg-primary,
-.bg-theme-primary，
+.bg-theme-primary,
+.hover-bg-primary:hover,
 .focus-bg-primary:focus,
 .btn-primary,
 .btn-outline.btn-primary:hover{
     --bg-opacity:1;
     background-color: rgba(var(--primary-hue-500) / var(--bg-opacity)) !important;
 }
+.from-primary{
+    --gradient-from: rgb(var(--primary-hue-500));
+    --gradient-to: rgb(241 245 249 / 0);
+    --gradient-stops: var(--gradient-from), var(--gradient-to);
+}
+.to-secondary{
+    --gradient-to: rgb(var(--secondary-hue-500));
+}
+
+
 .btn-primary,
 .btn-secondary{
     color: rgb(var(--white));

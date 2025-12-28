@@ -7,7 +7,7 @@
     <title>JquanUI 概述</title>
     <link rel="stylesheet" href="../css/JquanUI@3.0.css">
     <link rel="stylesheet" href="../css/JquanUIex@3.0.css">
-    <link rel="stylesheet" href="../css/Config.css">
+
     <link rel="stylesheet" href="../css/app.css">
     <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
 </head>
@@ -24,86 +24,124 @@
                     <cite class="mt-3 mb-3">选项卡</cite>
                 </div>
                 <div class="card-body">
-                    <div id="demo" class="w-full max-w-2xl mx-auto p-3 rounded-md">
-                        <div class="flex justify-center mb-5">
-                            <nav class="tabs-nav p-2 bg-gray-100 rounded-lg space-x-2 flex">
-                                <span class="tabs-item rounded-md text-sm center inline-block cursor-pointer tabs-active">
-                                    <i class='bxr bx-eye align-middle'></i> 预览
-                                </span>
-                                <span class="tabs-item rounded-md text-sm center inline-block cursor-pointer">
-                                    <i class='bxr bx-code align-middle'></i> HTML
-                                </span>
-                                <span class="tabs-item rounded-md text-sm center inline-block cursor-pointer">
-                                    <i class='bxr bx-code align-middle'></i> JS
-                                </span>
+                    <div class="max-w-4xl mx-auto mb-10">
+                        <h1 class="text-3xl font-bold mb-8 text-center text-gradient bg-gradient-aquafrost">JquanUI 选项卡组件</h1>
+                        <p class="mb-3 text-center text-gray-400">这是一个轻量、快捷、按需加载的选项卡组件。</p>
+                    </div>
+                    <div id="demo" class="tabs-container">
+                        <div class="flex justify-center mb-3">
+                            <nav class="tabs-nav p-2 bg-gray-100 rounded-lg space-x-2" role="tablist">
+                                <button class="tabs-item tabs-item rounded-md text-sm center inline-block cursor-pointer px-2 border-0" data-tab-target="#panel-1"><i class='bxr bx-eye align-middle'></i>
+                                    预览</button>
+                                <button class="tabs-item tabs-item rounded-md text-sm center inline-block cursor-pointer px-2 border-0" data-tab-target="#panel-2"><i
+                                        class='bxr bx-code align-middle'></i> HTML</button>
+                                <button class="tabs-item tabs-item rounded-md text-sm center inline-block cursor-pointer px-2 border-0" data-tab-target="#panel-3"><i
+                                        class='bxr bx-code align-middle'></i> JS</button>
                             </nav>
                         </div>
-                        <div class="tabs-content relative">
-                            <div class="tabs-track flex">
-                                <section class="tabs-panel border rounded-md border-surface">
-                                    <div class="p-5">
-                                        <p>尝试切换</p>
-                                    </div>
-                                </section>
-                                <section class="tabs-panel border rounded-md border-surface">
-                                    <div class="codeblock codeblock-line-numbers rounded-md h-full">
-                                        <pre><code class="code-block" data-language="html" data-show-lines="true"><div id="demo">
-        <nav class="tabs-nav">
-            <span class="tabs-item tabs-active">预览</span>
-            <span class="tabs-item">HTML</span>
-            <span class="tabs-item">JS</span>
-        </nav>
-        <div class="tabs-content relative">
-            <div class="tabs-track flex">
-                <section class="tabs-panel">
-                    <p>预览1</p>
-                </section>
-                <section class="tabs-panel">
-                    <p>HTML</p>
-                </section>
-                <section class="tabs-panel">
-                    <p>javascript</p>
-                </section>
-            </div>
-        </div>
-    </div></code></pre>
-                                    </div>
-                                </section>
-                                <section class="tabs-panel border rounded-md border-surface">
-                                    <div class="codeblock codeblock-line-numbers rounded-md h-full">
-                                        <pre><code class="code-block" data-language="js" data-show-lines="true">import { Tabs } from '../js/modules/tabs.mjs'
-    new Tabs('#demo', {
-        trigger: 'click',
-        swipeable: true,
-        animation: 'slide',
-        duration: 500,
-        itemCLS: 'tabs-item',
-        activeCLS: 'tabs-active',
-        navCLS: 'tabs-nav',
-        contentCLS: 'tabs-content',
-        trackCLS: 'tabs-track',
-        panelCLS: 'tabs-panel'
-    })</code></pre>
-                                    </div>
-                                </section>
-                            </div>
+                        <div class="tabs-content">
+
+                            <section id="panel-1" class="tabs-panel border rounded-md border-surface">
+                                <div class="p-5">
+                                    <p>尝试切换</p>
+                                </div>
+                            </section>
+                            <section id="panel-2" class="tabs-panel rounded-md">
+                                <div class="codeblock codeblock-line-numbers rounded-md h-full">
+                                    <pre>
+                                        <code class="code-block" data-language="html" data-show-lines="true">
+                                            <div id="my-tabs" class="tabs-container">
+                                                <nav class="tabs-nav" role="tablist">
+                                                    <button class="tabs-item" data-tab-target="#panel-4">预览</button>
+                                                    <button class="tabs-item" data-tab-target="#panel-5">HTML</button>
+                                                    <button class="tabs-item" data-tab-target="#panel-6">JS</button>
+                                                </nav>
+                                            
+                                                <div class="tabs-content">
+                                                    <!-- 面板ID与上面data-tab-target对应 -->
+                                                    <section id="panel-4" class="tabs-panel">
+                                                        <div class="p-4">
+                                                            <h3>预览内容</h3>
+                                                            <p>这里是高度不确定的内容...</p>
+                                                        </div>
+                                                    </section>
+                                                    <section id="panel-5" class="tabs-panel">
+                                                        <div class="p-4">
+                                                            <p>HTML 代码...</p>
+                                                            <p>更多内容...</p>
+                                                            <p>更多内容...</p>
+                                                        </div>
+                                                    </section>
+                                                    <section id="panel-6" class="tabs-panel">
+                                                        <div class="p-4">
+                                                            <p>JS 代码...</p>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </code>
+                                    </pre>
+                                </div>
+                            </section>
+                            <section id="panel-3" class="tabs-panel rounded-md">
+                                <div class="codeblock codeblock-line-numbers rounded-md h-full">
+                                    <pre class="container">
+                                        <code class="code-block" data-language="js" data-show-lines="true">
+                                            //普通文档切换（无花哨动画，最稳）
+                                            import { Tabs } from './tabs.mjs';
+                                            const myTabs = new Tabs('#myTabs', {
+                                                // 基础
+                                                mode: 'slide',          // 模式: slide, fade, static
+                                                defaultIndex: 0,        // 默认第几个
+                                                duration: 300,          // 动画时间
+                                                
+                                                // 高级
+                                                autoHeight: true,       // 开启高度自适应 (推荐)
+                                                hashSync: true,         // URL 变为 #tab-id，刷新后保持状态
+                                                keyboard: true,         // 支持键盘左右键切换
+                                                
+                                                // 移动端
+                                                swipeable: true,        // 开启触屏滑动
+                                                swipeThreshold: 50,     // 滑动多少像素切换
+                                                velocityThreshold: 0.3, // 快速轻扫的灵敏度
+                                                
+                                                // 自动播放 (轮播模式)
+                                                autoplay: false,        
+                                                interval: 3000,
+                                                pauseOnHover: true,
+                                                
+                                                // 回调
+                                                onChange: (index, panel) => {
+                                                    console.log('Switched to:', index);
+                                                    // 这里可以做懒加载，比如:
+                                                    // const img = panel.querySelector('img[data-src]');
+                                                    // if(img) img.src = img.dataset.src;
+                                                }
+                                            });
+                                            // 手动控制
+                                            // myTabs.next();
+                                            // myTabs.activate(2);
+                                            // myTabs.destroy(); 
+                                        </code>
+                                    </pre>
+                                </div>
+                            </section>
+
                         </div>
                     </div>
                     <script type="module">
                         import { Tabs } from '../js/modules/tabs.mjs';
                         import { initCodeHighlighter } from '../JS/modules/code-block.mjs';
+                        import { init } from '../js/modules/jit-engine.mjs';
+                        // 初始化 JIT 引擎
+                        init({});
+                        // 初始化 Tabs 组件
                         new Tabs('#demo', {
-                            trigger: 'click',
-                            swipeable: true,
-                            animation: 'slide',
-                            duration: 500,
-                            itemCLS: 'tabs-item',
-                            activeCLS: 'tabs-active',
-                            navCLS: 'tabs-nav',
-                            contentCLS: 'tabs-content',
-                            trackCLS: 'tabs-track',
-                            panelCLS: 'tabs-panel'
-                        })
+                            mode: 'fade',
+                            duration: 400,
+                            autoHeight: true, // 此时高度由内容自然撑开
+                        });
+                        // 初始化代码高亮
                         initCodeHighlighter({
                             copyButtonText: 'Copy',
                             copiedButtonText: 'Copied!',
@@ -144,28 +182,21 @@
                                 <td>boolean</td>
                                 <td>true</td>
                                 <td>true │ false</td>
-                                <td>移动端是否允许左右滑动切换</td>
+                                <td>（移动端）是否允许左右滑动切换</td>
                             </tr>
                             <tr>
                                 <td><code>swipeable</code></td>
                                 <td>boolean</td>
                                 <td>true</td>
                                 <td>true │ false</td>
-                                <td>移动端是否开启“左右滑动切换”手势</td>
-                            </tr>
-                            <tr>
-                                <td><code>lazy</code></td>
-                                <td>boolean</td>
-                                <td>false</td>
-                                <td>true │ false</td>
-                                <td>true 时仅在首次切换到某面板才执行加载（可自定义 loadPanel 逻辑）</td>
+                                <td>（移动端）是否开启“左右滑动切换”手势</td>
                             </tr>
                             <tr>
                                 <td><code>animation</code></td>
                                 <td>string</td>
-                                <td>'slide-fade'</td>
-                                <td>'slide' │ 'fade' │ 'slide-fade' │ 'none'</td>
-                                <td>面板切换动画效果，共 4 种可选</td>
+                                <td>'static'</td>
+                                <td>'slide' │ 'fade' │ 'static'</td>
+                                <td>面板切换动画效果，共 3 种可选</td>
                             </tr>
                             <tr>
                                 <td><code>duration</code></td>
@@ -175,60 +206,53 @@
                                 <td>动画持续时长，0 等价于无动画</td>
                             </tr>
                             <tr>
-                                <td><code>threshold</code></td>
+                                <td><code>swipeThreshold</code></td>
                                 <td>number</td>
-                                <td>50</td>
+                                <td>40</td>
                                 <td>20 ~ 100（单位 px）</td>
-                                <td>左右滑动切换的“最小滑动距离”阈值，低于此值视为误触</td>
+                                <td>（移动端）左右滑动切换的“最小滑动距离”阈值，低于此值视为误触</td>
                             </tr>
                             <tr>
-                                <td><code>bound</code></td>
+                                <td><code>velocityThreshold</code></td>
+                                <td>number</td>
+                                <td>0.3</td>
+                                <td>0 ~ 1（单位 px/ms）</td>
+                                <td>（移动端）滑动速度阈值，低于此值视为静态点击</td>
+                            </tr>
+                            <tr>
+                                <td><code>hashSync</code></td>
+                                <td>boolean</td>
+                                <td>false</td>
+                                <td>true │ false</td>
+                                <td>（高级功能）是否开启 URL 哈希同步</td>
+                            </tr>
+                            <tr>
+                                <td><code>keyboard</code></td>
                                 <td>boolean</td>
                                 <td>true</td>
                                 <td>true │ false</td>
-                                <td>true 到头/尾后循环切换；false 到边界后停止</td>
+                                <td>（高级功能）是否开启键盘导航</td>
                             </tr>
                             <tr>
-                                <td><code>itemCLS</code></td>
-                                <td>string</td>
-                                <td>'tabs-item'</td>
-                                <td>自定义 CSS 类名</td>
-                                <td>单个标题按钮的 class（用来绑定点击事件）</td>
+                                <td><code>autoplay</code></td>
+                                <td>boolean</td>
+                                <td>false</td>
+                                <td>true │ false</td>
+                                <td>（高级功能）是否开启自动播放</td>
                             </tr>
                             <tr>
-                                <td><code>activeCLS</code></td>
-                                <td>string</td>
-                                <td>'tabs-active'</td>
-                                <td>自定义 CSS 类名</td>
-                                <td>当前激活标题按钮的高亮 class</td>
+                                <td><code>interval</code></td>
+                                <td>number</td>
+                                <td>3000</td>
+                                <td>≥ 0（单位 ms）</td>
+                                <td>（高级功能）自动播放间隔，0 等价于无自动播放</td>
                             </tr>
                             <tr>
-                                <td><code>navCLS</code></td>
-                                <td>string</td>
-                                <td>'tabs-nav'</td>
-                                <td>自定义 CSS 类名</td>
-                                <td>标题栏容器 class</td>
-                            </tr>
-                            <tr>
-                                <td><code>contentCLS</code></td>
-                                <td>string</td>
-                                <td>'tabs-content'</td>
-                                <td>自定义 CSS 类名</td>
-                                <td>面板外包裹层 class（用于 overflow:hidden）</td>
-                            </tr>
-                            <tr>
-                                <td><code>trackCLS</code></td>
-                                <td>string</td>
-                                <td>'tabs-track'</td>
-                                <td>自定义 CSS 类名</td>
-                                <td>面板轨道 flex 容器，滑动动画时 translateX 作用对象</td>
-                            </tr>
-                            <tr>
-                                <td><code>panelCLS</code></td>
-                                <td>string</td>
-                                <td>'tabs-panel'</td>
-                                <td>自定义 CSS 类名</td>
-                                <td>单个面板区块 class</td>
+                                <td><code>pauseOnHover</code></td>
+                                <td>boolean</td>
+                                <td>true</td>
+                                <td>true │ false</td>
+                                <td>（高级功能）是否在悬停时暂停自动播放</td>
                             </tr>
                         </tbody>
                     </table>

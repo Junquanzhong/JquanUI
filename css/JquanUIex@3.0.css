@@ -1,205 +1,3 @@
-:root{
-  /* 拓展中式色 */
-  /* 金盏花黄（Placer Gold）*/
-  --placergold-50: 254 252 232;
-  --placergold-100: 254 249 195;
-  --placergold-200: 254 240 138;
-  --placergold-300: 253 224 71;
-  --placergold-400: 250 204 21;
-  --placergold-500: 234 179 8;
-  --placergold-600: 202 138 4;
-  --placergold-700: 161 98 7;
-  --placergold-800: 133 77 14;
-  --placergold-900: 113 63 18;
-  /* 珊瑚橙 */
-  --coralorange-50: 255 248 242;
-  --coralorange-100: 255 235 220;
-  --coralorange-200: 255 213 189;
-  --coralorange-300: 255 182 147;
-  --coralorange-400: 255 145 99;
-  --coralorange-500: 255 127 80;
-  --coralorange-600: 230 102 58;
-  --coralorange-700: 191 77 42;
-  --coralorange-800: 153 59 32;
-  --coralorange-900: 122 47 26;
-/* 樱桃粉 */
---cherrypink-50: 255 247 249;
---cherrypink-100: 255 232 237;
---cherrypink-200: 255 207 214;
---cherrypink-300: 255 171 186;
---cherrypink-400: 255 128 152;
---cherrypink-500: 255 107 129;
---cherrypink-600: 230 82 105;
---cherrypink-700: 191 61 82;
---cherrypink-800: 153 47 65;
---cherrypink-900: 122 37 52;
- /* 金菊黄 */
- --goldenmarigold-50: 255 251 235;
---goldenmarigold-100: 255 243 199;
---goldenmarigold-200: 255 230 138;
---goldenmarigold-300: 255 211 77;
---goldenmarigold-400: 255 191 36;
---goldenmarigold-500: 255 165 2;
---goldenmarigold-600: 230 138 0;
---goldenmarigold-700: 191 103 0;
---goldenmarigold-800: 153 77 0;
---goldenmarigold-900: 122 61 0;
-/* 番茄红 */
---tomatored-50: 255 245 242;
---tomatored-100: 255 228 222;
---tomatored-200: 255 202 191;
---tomatored-300: 255 165 147;
---tomatored-400: 255 120 99;
---tomatored-500: 255 99 72;
---tomatored-600: 230 74 50;
---tomatored-700: 191 55 37;
---tomatored-800: 153 42 29;
---tomatored-900: 122 34 23;
-/* 西瓜红 */
---watermelonred-50: 255 244 245;
---watermelonred-100: 255 227 229;
---watermelonred-200: 255 199 203;
---watermelonred-300: 255 160 169;
---watermelonred-400: 255 113 128;
---watermelonred-500: 255 71 87;
---watermelonred-600: 230 50 67;
---watermelonred-700: 191 37 52;
---watermelonred-800: 153 29 41;
---watermelonred-900: 122 23 33;
- /* 薄荷青 */
- --mintgreen-50: 240 254 247;
---mintgreen-100: 220 252 236;
---mintgreen-200: 187 247 215;
---mintgreen-300: 134 239 185;
---mintgreen-400: 74 222 148;
---mintgreen-500: 123 237 159;
---mintgreen-600: 34 197 110;
---mintgreen-700: 21 155 85;
---mintgreen-800: 17 122 67;
---mintgreen-900: 14 98 54;
-/* 天霁蓝 */
---skyazure-50: 240 248 255;
---skyazure-100: 224 240 254;
---skyazure-200: 186 222 253;
---skyazure-300: 125 193 252;
---skyazure-400: 56 159 248;
---skyazure-500: 112 161 255; 
---skyazure-600: 14 133 233;
---skyazure-700: 3 105 199;
---skyazure-800: 7 89 166;
---skyazure-900: 12 74 138;
-/* 翡翠绿 */
---jadegreen-50: 237 253 243;
---jadegreen-100: 216 250 231;
---jadegreen-200: 175 244 208;
---jadegreen-300: 114 234 172;
---jadegreen-400: 46 213 128;
---jadegreen-500: 46 213 115;
---jadegreen-600: 22 163 94;
---jadegreen-700: 18 128 74;
---jadegreen-800: 17 101 59;
---jadegreen-900: 15 83 48;
-/* 道奇蓝 */
---dodgerblue-50: 239 246 255;
---dodgerblue-100: 219 234 254;
---dodgerblue-200: 191 219 254;
---dodgerblue-300: 147 197 253;
---dodgerblue-400: 96 165 250;
---dodgerblue-500: 30 144 255;
---dodgerblue-600: 25 110 235;
---dodgerblue-700: 21 88 216;
---dodgerblue-800: 22 69 175;
---dodgerblue-900: 22 57 138;
-/* 皇家蓝 */
---royalblue-50: 239 241 254;
---royalblue-100: 224 228 253;
---royalblue-200: 199 206 251;
---royalblue-300: 165 178 249;
---royalblue-400: 129 146 247;
---royalblue-500: 55 66 250;
---royalblue-600: 49 46 229;
---royalblue-700: 43 38 202;
---royalblue-800: 37 33 163;
---royalblue-900: 33 30 129;
-/* 宁静灰蓝 */
---peace-50: 248 250 252;
---peace-100: 241 245 249;
---peace-200: 226 232 240;
---peace-300: 203 213 225;
---peace-400: 168 184 200;
---peace-500: 164 176 190;
---peace-600: 115 128 145;
---peace-700: 82 94 110;
---peace-800: 58 67 80;
---peace-900: 42 49 58;
-/* 石墨灰 */
---graphite-50: 249 250 251;
---graphite-100: 243 244 246;
---graphite-200: 229 231 235;
---graphite-300: 209 213 219;
---graphite-400: 156 163 175;
---graphite-500: 87 96 111;
---graphite-600: 75 85 99;
---graphite-700: 55 65 81;
---graphite-800: 39 48 60;
---graphite-900: 28 35 44;
-/* 银灰 */
---silvergray-50: 249 250 251;
---silvergray-100: 243 244 246;
---silvergray-200: 229 231 235;
---silvergray-300: 209 213 219;
---silvergray-400: 156 163 175;
---silvergray-500: 116 125 140;
---silvergray-600: 88 97 112;
---silvergray-700: 64 72 85;
---silvergray-800: 45 51 60;
---silvergray-900: 32 37 44;
-/* 午夜蓝 */
---midnight-50: 248 250 252;
---midnight-100: 241 245 249;
---midnight-200: 226 232 240;
---midnight-300: 203 213 225;
---midnight-400: 148 163 184;
---midnight-500: 47 53 66;
---midnight-600: 30 36 48;
---midnight-700: 20 24 32;
---midnight-800: 14 17 23;
---midnight-900: 9 11 16;
-/* 雾灰白 */
---mistwhite-50: 255 255 255;
---mistwhite-100: 250 251 252;
---mistwhite-200: 245 246 248;
---mistwhite-300: 235 238 242;
---mistwhite-400: 220 225 232;
---mistwhite-500: 223 228 234;
---mistwhite-600: 190 197 207;
---mistwhite-700: 153 161 173;
---mistwhite-800: 122 129 139;
---mistwhite-900: 98 103 111;
-/* 雪青白 */
---snowwhite-50: 255 255 255;
---snowwhite-100: 252 253 254;
---snowwhite-200: 249 250 252;
---snowwhite-300: 243 244 247;
---snowwhite-400: 232 234 239;
---snowwhite-500: 241 242 246;
---snowwhite-600: 209 211 217;
---snowwhite-700: 173 176 184;
---snowwhite-800: 139 142 149;
---snowwhite-900: 111 114 120;
-/* 云灰 */
---cloudgray-50: 255 255 255;
---cloudgray-100: 250 251 252;
---cloudgray-200: 245 246 248;
---cloudgray-300: 235 238 242;
---cloudgray-400: 220 225 232;
---cloudgray-500: 206 214 224;
---cloudgray-600: 173 184 197;
---cloudgray-700: 139 150 167;
---cloudgray-800: 111 120 134;
---cloudgray-900: 89 96 107;
-}
-
 /* 导航 */
 
 
@@ -879,9 +677,6 @@ table.striped tbody tr:nth-child(odd) {
 .carousel {
   position: relative;
   width: 100%;
-  /*height: 400px;*/
-  /* 可根据需要调整 */
-  margin-bottom: 20px;
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -889,7 +684,10 @@ table.striped tbody tr:nth-child(odd) {
 
 .carousel-slide img {
   width: 100%;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 保持比例填充 */
+  display: block;    /* 消除图片底部留白 */
 }
 
 /* 轮播内容文本样式 */
@@ -901,16 +699,6 @@ table.striped tbody tr:nth-child(odd) {
   padding: 20px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
   color: white;
-}
-
-.carousel-caption h3 {
-  margin: 0 0 8px 0;
-  font-size: 1.5rem;
-}
-
-.carousel-caption p {
-  margin: 0;
-  font-size: 1rem;
 }
 
 /* 指示器和箭头的样式增强 */
@@ -981,10 +769,8 @@ table.striped tbody tr:nth-child(odd) {
 .scroll-item {
   width: calc((100% - 48px) / 3.5);
   flex: 0 0 auto;
-  margin-right: 16px;
   background-color: #f0f0f0;
   border-radius: 8px;
-  padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
@@ -1009,56 +795,140 @@ table.striped tbody tr:nth-child(odd) {
 
 /* 选项卡 */
 
+/* ================== 容器与基础 ================== */
+.tabs-container {
+    --tab-duration: 300ms;
+    --tab-gap: 20px; /* 内容间距 */
+    --tab-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    width: 100%;
+    /* 避免边框导致宽度计算误差 */
+    box-sizing: border-box; 
+    /* 阻止移动端侧滑手势干扰 */
+    touch-action: pan-y;
+    contain: layout paint; 
+}
+/* 强制内部所有元素使用 border-box，防止 padding 撑开宽度导致左移 */
+.tabs-container * {
+    box-sizing: border-box;
+}
+/* ================== 导航栏 ================== */
 .tabs-nav {
-  overflow-x: auto
+    display: flex;
+    overflow-x: auto;
+    /* 关键：防止 flex 子项被压缩 */
+    flex-wrap: nowrap;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    /* 移动端惯性滚动 */
+    -webkit-overflow-scrolling: touch; 
+}
+.tabs-nav::-webkit-scrollbar {
+    display: none;
 }
 
 .tabs-item {
-  padding: 0.3rem .6rem;
-  white-space: nowrap;
+    white-space: nowrap;
+    transition: all 0.2s;
+    user-select: none;
+    color: rgb(var(--surface-text));
+    outline: none;
+    flex-shrink: 0; /* 防止导航项被压缩 */
 }
 
-.tabs-active {
-  color: rgb(var(--white));
-  background-color: rgb(var(--primary-hue-500));
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+.tabs-item:focus-visible {
+    background-color: rgb(var(--bg-surface));
+    color: rgb(var(--primary-hue-500));
 }
 
 .tabs-item:hover {
-  background-color: rgb(var(--white));
-  color: rgb(var(--primary-hue-500));
+    background-color: rgb(var(--surface-bg));
+    color: rgb(var(--primary-hue-500));
 }
 
-.tabs-track {
-  transition: transform 0.3s ease;
+.tabs-item.is-active {
+    background-color: rgba(var(--primary-hue-500)/ 1);
+    color: #fff;
 }
 
+/* ================== 内容区 ================== */
+.tabs-content {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* 【修复】移除固定高度和 transition，让内容自然流动 */
+    /* height 由 JS 控制或设为 auto */
+    overflow: visible; /* 改为 visible，除非是 slide 模式 */
+}
+/* 面板通用 */
 .tabs-panel {
-  width: 100%;
-  flex-shrink: 0;
+    width: 100%;
+    /* 修复：防止面板内第一个元素的 margin-top 顶出容器 */
+    margin-top: 0; 
+    /* 确保面板是块级 */
+    display: flow-root; 
+}
+.tabs-panel-max-height{
+    max-height: 500px;
+}
+/* 如果你的内容第一行是 h1/p 等有 margin 的元素，这行代码能救命 */
+.tabs-panel > *:first-child {
+    margin-top: 0;
+}
+/* ================== 模式：Static (静态切换) ================== */
+.tabs-mode-static .tabs-panel {
+    display: none;
+}
+.tabs-mode-static .tabs-panel.is-active {
+    display: block;
+    animation: tabFadeIn 0.2s ease forwards; /* 即使是静态也给一点点过渡更自然 */
 }
 
-.tabs-panel-max-height {
-  max-height: 400px;
+/* ================== 模式：Fade (淡入) ================== */
+.tabs-mode-fade .tabs-panel {
+    display: none;
+    opacity: 0;
+}
+.tabs-mode-fade .tabs-panel.is-active {
+    display: block;
+    animation: tabFadeIn var(--tab-duration, 300ms) ease forwards;
 }
 
-/* 为轨道设置过渡效果 */
-.tabs-track-animating {
-  transition: transform 300ms ease, height 300ms ease;
-  /* 300ms 替换为你的 duration 变量 */
+@keyframes tabFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(5px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
 
-/* 锁定轨道高度，防止动画时坍塌 */
-.tabs-track-fixed-height {
-  height: var(--fixed-height);
-  /* 这个变量由JS动态设置 */
+/* ================== 模式：Slide (滑动) ================== */
+.tabs-mode-slide .tabs-track {
+    display: flex;
+    width: 100%;
+    /* 开启硬件加速 */
+    transform: translate3d(0, 0, 0); 
+    transition: transform var(--tab-duration, 300ms) var(--tab-ease, ease);
+    align-items: flex-start;
+    /* 【修复】确保 track 不会被压缩 */
+    flex-shrink: 0;
 }
 
-/* 面板的基本过渡效果 */
-.tabs-panel {
-  transition: opacity 300ms ease;
-  /* 300ms 替换为你的 duration 变量 */
+.tabs-mode-slide .tabs-panel {
+    flex-shrink: 0;
+    width: 100%;
+    min-width: 100%;
+    /* 关键修复：防止 Flex 子项在 overflow: auto 时高度坍缩 */
 }
+/* 只有 slide 模式需要 overflow hidden */
+.tabs-mode-slide .tabs-content {
+    overflow: hidden;
+}
+
 
 
 /* 代码块 */
@@ -1078,21 +948,26 @@ pre {
   background-color: rgb(var(--surface-bg));
   /* border: solid 1px rgb(var(--gray-300)); */
   /* 匹配 github-dark */
-  margin: 1rem 0;
   /* 添加一些垂直间距 */
 }
-.code, code{
-  background-color:rgba(var(--primary-hue-500)/0.1);
-  color: rgb(var(--primary-hue-500));
-  padding: 0.2em 0.4em;
-  margin: 0 0.2em;
-  font-size: 14px;
-  border-radius: 3px;
-  font-family: mononoki, Consolas, "Liberation Mono", Menlo, Courier, monospace, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
-  word-break: break-word;
-  background-size: 20px 20px;
-  white-space: pre-wrap;
+.code,
+code{
+  background-color: rgba(var(--primary-hue-500) / 0.1);
+  margin: 0 0.2rem;
+  padding: 0.1rem 0.2rem;
 }
+.code,
+code,
+pre code{
+  padding: 5px 8px;
+  font-size: 14px;
+  font-family: "Monoton";
+  word-break: break-word;
+  white-space: pre-wrap;
+  border-radius: 4px;
+  color: rgb(var(--primary-hue-500));
+}
+
 /* 移除 highlight.js 默认在 <code> 上的样式，我们用 JS 控制 */
 .hljs {
   padding: 0 !important;
@@ -1298,6 +1173,44 @@ pre {
 }
 
 /* 卡片前后两面 */
+/* Cards */
+.card {
+    background-color: transparent; /* 背景交给 decoration */
+    border: 1px solid rgba(229, 231, 235, 1);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: visible; /* 允许子元素溢出 */
+    isolation: isolate;
+    transition: transform 0.2s;
+}
+
+pre:before,
+textarea:before {
+  background-color: rgba(var(--primary-hue-500) / 0.6);
+  border-radius: 50%;
+  content: "";
+  filter: blur(60px);
+  opacity: 0.15;
+  position: absolute;
+  top: -8em;
+  right: -10em;
+  width: 25em;
+  height: 25em;
+  z-index: 0;
+  transition: background-color 0.3;
+}
+
+.card-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 20px;
+}
+
 .card-front,
 .card-back {
   background-size: cover;
@@ -1334,6 +1247,273 @@ pre {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 10px;
+}
+
+/* 背景装饰器 */
+.card-decoration {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    z-index: -1;
+    background-color: rgb(var(--surface-bg));
+    pointer-events: none;
+}
+/* 晨光 */
+.deco-morninglight:before {
+  background-color: rgba(var(--primary-hue-500) / 0.6);
+  content: "";
+  filter: blur(60px);
+  opacity: 0.15;
+  top: -8em;
+  right: -10em;
+  width: 25em;
+  height: 25em;
+  z-index: 0;
+  transition: background-color 0.3;
+  position: absolute;
+}
+/* 极光 */
+.deco-aurora:before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(var(--primary-hue-500) / 0.2) 0%, transparent 70%);
+    transform: scale(2);
+    filter: blur(40px);
+}
+.deco-aurora:after {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    left: -30%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(var(--secondary-hue-500) / 0.15) 0%, transparent 70%);
+    filter: blur(50px);
+}
+/* --- 科技网格 (Tech Grid) --- */
+/* 淡雅的方格背景，适合数据展示 */
+.deco-grid {
+    background-image: 
+        linear-gradient(rgba(var(--primary-hue-500) / 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--primary-hue-500) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+/* 添加一个顶部渐变遮罩，让网格只在上方显示 */
+.deco-grid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgb(var(--surface-bg)) 80%);
+}
+ /* --- 动态呼吸球 (Breathing Orb) --- */
+/* 一个会缓慢缩放的圆球 */
+@keyframes breath {
+    0%, 100% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.2); opacity: 0.2; }
+}
+.deco-orb::before {
+    content: "";
+    position: absolute;
+    right: -5%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgb(var(--secondary-hue-500)) 10%, transparent 90%);
+    filter: blur(30px);
+    animation: breath 8s infinite ease-in-out;
+}
+ /* --- 玻璃质感条纹 (Glass Stripes) --- */
+/* 现代磨砂感条纹 */
+.deco-stripes {
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 10px,
+        rgba(var(--primary-hue-500) / 0.1) 10px,
+        rgba(var(--primary-hue-500) / 0.1) 20px
+    );
+}
+.deco-stripes::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, rgb(var(--primary-hue-500)), rgb(var(--secondary-hue-500)));
+}
+/* --- 赛博微光 (Cyber Glow) --- */
+/* 底部发光，适合深色模式或强调卡片 */
+.deco-cyber {
+    background: rgb(var(--surface-bg));
+}
+.deco-cyber::before {
+    content: "";
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60px;
+    background: rgb(var(--accent-hue));
+    filter: blur(40px);
+    opacity: 0.2;
+    border-radius: 50%;
+}
+.deco-cyber::after {
+    /* 顶部细微高光 */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(var(--accent-hue) / 0.5), transparent);
+}
+/* 落日余晖 (Sunset) */
+.deco-sunset::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(var(--secondary-hue-500) / 0.1), transparent);
+    filter: blur(20px);
+}
+/* 顶部聚光灯 (Spotlight) */
+.deco-spotlight::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 100px;
+    background: radial-gradient(ellipse at center, rgba(var(--primary-hue-500) / 0.25), transparent 70%);
+    filter: blur(25px);
+}
+/* 迷雾 (Fog) */
+.deco-fog::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at bottom left, rgba(var(--secondary-hue-500) / 0.1), transparent 60%),
+                radial-gradient(circle at top right, rgba(var(--primary-hue-500) / 0.1), transparent 60%);
+    filter: blur(30px);
+}
+/* 棱镜 (Prism) - 彩虹色光晕 */
+.deco-prism {
+    background: linear-gradient(135deg, 
+        rgba(255, 0, 0, 0.05), 
+        rgba(255, 165, 0, 0.05), 
+        rgba(0, 128, 0, 0.05), 
+        rgba(0, 0, 255, 0.05));
+}
+/* 蚀 (Eclipse) - 暗色模式下的反向发光 */
+.deco-eclipse::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    right: -20%;
+    width: 60%;
+    height: 60%;
+    background: rgb(var(--surface-bg)); /* 同背景色 */
+    border-radius: 50%;
+    box-shadow: -10px 10px 60px rgba(var(--primary-hue-500) / 0.3);
+}
+/* 扫描线 (Scanline) - 动态 */
+@keyframes scan-move {
+    0% { transform: translateY(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(500%); opacity: 0; }
+}
+.deco-scanline {
+    overflow: hidden; /* 必须裁切 */
+}
+.deco-scanline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px; /* 扫描条高度 */
+    background: linear-gradient(to bottom, transparent, rgba(var(--primary-hue-500) / 0.1), transparent);
+    animation: scan-move 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+/* 矩阵雨 (Digital Rain) - 静态模拟 */
+.deco-matrix {
+    background-image: linear-gradient(0deg, transparent 24%, rgba(var(--primary-hue-500)/ .05) 25%, rgba(var(--primary-hue-500)/ .05) 26%, transparent 27%, transparent 74%, rgba(var(--primary-hue-500)/ .05) 75%, rgba(var(--primary-hue-500)/ .05) 76%, transparent 77%), 
+                      linear-gradient(90deg, transparent 24%, rgba(var(--primary-hue-500)/ .05) 25%, rgba(var(--primary-hue-500)/ .05) 26%, transparent 27%, transparent 74%, rgba(var(--primary-hue-500)/ .05) 75%, rgba(var(--primary-hue-500)/ .05) 76%, transparent 77%);
+    background-size: 30px 30px;
+}
+/* 故障风 (Glitch Static) */
+.deco-glitch::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 2px,
+        rgba(var(--accent-hue) / 0.1) 3px,
+        transparent 4px
+    );
+    z-index: 0;
+}
+/* 荧光边框 (Neon Inset) */
+.deco-neon-inset::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 15px rgba(var(--primary-hue-500) / 0.1);
+}
+/* 波点 (Polka Dots) */
+.deco-polka {
+    background-image: radial-gradient(rgba(var(--primary-hue-500) / 0.2) 1.2px, transparent 1.2px);
+    background-size: 16px 16px;
+}
+/* 噪点渐变 (Noise Gradient) - 纯CSS模拟 */
+.deco-noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(rgba(var(--primary-hue-500)/0.1) 20%, transparent 20%);
+    background-size: 4px 4px;
+    opacity: 0.7;
+}
+/* 底部波浪 (Wave) */
+.deco-wave::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: radial-gradient(circle at 50% 0, transparent 10px, rgba(var(--primary-hue-500)/0.05) 11px);
+    background-size: 40px 40px;
+    background-repeat: repeat-x;
+}
+/* 树叶阴影 (Leaf Shadow) */
+.deco-leaf-shadow {
+    background: linear-gradient(115deg, transparent 75%, rgba(0,0,0,0.03) 75%),
+                linear-gradient(115deg, transparent 65%, rgba(0,0,0,0.02) 65%);
+}
+/* 环形山 (Crater) */
+.deco-crater::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, transparent 30%, rgba(var(--primary-hue-500)/0.03) 31%, transparent 50%, rgba(var(--primary-hue-500)/0.03) 51%);
 }
 
 /* 悬停动画 */
@@ -2083,7 +2263,7 @@ input[type="range"]::-webkit-slider-thumb {
 /* --- 下拉选项列表 --- */
 .multi-select-options,
 .select-options {
-  position: absolute;
+  position: relative;
   top: calc(100% + 0.5rem);
   left: 0;
   right: 0;
@@ -2305,7 +2485,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .autocomplete-suggestions {
-  position: absolute;
+  position: relative;
   z-index: 50;
   top: 100%;
   /* 定位在输入框正下方 */
@@ -3263,6 +3443,7 @@ input[type="year"]::-webkit-datetime-edit-text {
   --bg-opacity: 1;
   background-color: rgba(var(--silvergray-400) / var(--bg-opacity));
 }
+.silvergray,
 .bg-silvergray-500,
 .bg-silvergray,
 .btn-silvergray,
@@ -3893,7 +4074,457 @@ input[type="year"]::-webkit-datetime-edit-text {
   background-position: var(--bg-position);
 }
 
+/* 动态背景 - VortexFade */
+.bg-vortexfade {
+  position: relative; /* 建立定位上下文 */
+  overflow: hidden;   /* 防止子元素溢出 */
+}
 
+.bg-vortexfade .drive,
+.bg-vortexfade .shadows {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none; /* 可选：防止遮挡交互 */
+}
+
+.bg-vortexfade .drive li,
+.bg-vortexfade .shadows li {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;      /* 改为 100% 宽高（相对于容器） */
+  height: 100%;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: reverse;
+}
+
+/* .drive 的样式 */
+.bg-vortexfade .drive li {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1% 3% rgba(0, 0, 0, 0.5) inset; /* 注意：这里也改用 % */
+  animation-name: vortexfade-drive;
+}
+
+/* .shadows 的样式 */
+.bg-vortexfade .shadows li {
+  background: #000;
+  animation-name: vortexfade-shadows;
+}
+
+/* 动画延迟（保持不变，但加前缀） */
+.bg-vortexfade .drive li:nth-child(1),
+.bg-vortexfade .shadows li:nth-child(1) { animation-delay: 0s; }
+.bg-vortexfade .drive li:nth-child(2),
+.bg-vortexfade .shadows li:nth-child(2) { animation-delay: -1s; }
+.bg-vortexfade .drive li:nth-child(3),
+.bg-vortexfade .shadows li:nth-child(3) { animation-delay: -2s; }
+.bg-vortexfade .drive li:nth-child(4),
+.bg-vortexfade .shadows li:nth-child(4) { animation-delay: -3s; }
+.bg-vortexfade .drive li:nth-child(5),
+.bg-vortexfade .shadows li:nth-child(5) { animation-delay: -4s; }
+.bg-vortexfade .drive li:nth-child(6),
+.bg-vortexfade .shadows li:nth-child(6) { animation-delay: -5s; }
+.bg-vortexfade .drive li:nth-child(7),
+.bg-vortexfade .shadows li:nth-child(7) { animation-delay: -6s; }
+.bg-vortexfade .drive li:nth-child(8),
+.bg-vortexfade .shadows li:nth-child(8) { animation-delay: -7s; }
+.bg-vortexfade .drive li:nth-child(9),
+.bg-vortexfade .shadows li:nth-child(9) { animation-delay: -8s; }
+.bg-vortexfade .drive li:nth-child(10),
+.bg-vortexfade .shadows li:nth-child(10) { animation-delay: -9s; }
+
+/* 关键帧（无需改动，因为 transform 是相对自身的） */
+@keyframes vortexfade-drive {
+  0% {
+    transform: translate(-50%, -50%) scale(1.05) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0) rotate(-45deg);
+  }
+}
+
+@keyframes vortexfade-shadows {
+  0% {
+    transform: translate(-50%, -50%) scale(1.05) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0) rotate(-45deg);
+    opacity: 0.25;
+  }
+}
+.bg-clouds {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* 注意：不要设置 background-color，否则 mix-blend-mode 无效 */
+}
+/* SVG 填满容器 */
+.bg-clouds svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+/* 文字样式 */
+.bg-clouds .clouds-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font: 100px/1.0 "Libre Franklin", sans-serif;
+  font-weight: 900;
+  color: #ffffff66; /* 等价于 #fff6 */
+  letter-spacing: -5px;
+  mix-blend-mode: overlay;
+  text-shadow: 0 0 5px white;
+  z-index: 1;
+  pointer-events: none; /* 避免遮挡交互 */
+}
+
+/* 抽象旋流动画背景 */
+.bg-abstract-spin {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.bg-abstract-spin svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+/* 动画定义 */
+@keyframes abstract-spin-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.bg-abstract-spin .out-top {
+  animation: abstract-spin-rotate 20s linear infinite;
+  transform-origin: 13px 25px;
+}
+.bg-abstract-spin .in-top {
+  animation: abstract-spin-rotate 10s linear infinite;
+  transform-origin: 13px 25px;
+}
+.bg-abstract-spin .out-bottom {
+  animation: abstract-spin-rotate 25s linear infinite;
+  transform-origin: 84px 93px;
+}
+.bg-abstract-spin .in-bottom {
+  animation: abstract-spin-rotate 15s linear infinite;
+  transform-origin: 84px 93px;
+}
+/* 字体（全局加载一次即可） */
+@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap");
+
+/* 主容器 */
+.bg-balloon-celebration {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(white, #e0d1d1);
+  box-shadow: inset 0 5% 30% 5% #d6c2c2;
+  font-family: "Share Tech Mono", monospace;
+  color: white;
+  font-size: 2rem;
+}
+
+/* 背景光晕（用 % 替代 vh） */
+.bg-balloon-celebration::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #ffffff 40%, #e0d1d1);
+  transform-origin: 50% 100%;
+  transform: scaleY(1.5) scaleX(1);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* 中央文字 */
+.bg-balloon-celebration .center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 0.9;
+  z-index: 3;
+}
+
+.bg-balloon-celebration h1 {
+  font-size: 10rem;
+  margin: 0;
+  padding: 0;
+  color: #ff6666;
+}
+
+.bg-balloon-celebration h2 {
+  font-size: 8rem;
+  margin: 0;
+  padding: 0;
+  color: #ff6666;
+}
+
+.bg-balloon-celebration h1,
+.bg-balloon-celebration h2 {
+  text-shadow: 0 4rem 2rem rgba(140, 115, 115, 0.2);
+}
+
+/* 气球通用样式 */
+.bg-balloon-celebration .balloon {
+  position: absolute;
+  bottom: 0; /* 起始在容器底部 */
+  left: 50%;
+  width: 5rem;
+  height: 5rem;
+  background: #faf9f9;
+  border-radius: 10rem 10rem 4rem 10rem;
+  transform: rotate(45deg);
+  box-shadow: inset -0.5rem -0.5rem 5rem -0.5rem #c99c9c, 3rem 3rem 1.5rem rgba(153, 102, 102, 0.2);
+  opacity: 0.95;
+}
+
+/* 气球尾巴 */
+.bg-balloon-celebration .balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -0.05rem;
+  right: -0.05rem;
+  border: 0.5rem solid transparent;
+  border-right-color: #dbbdbd;
+  border-radius: 1rem;
+  transform: rotate(45deg);
+}
+
+/* ———————— 动画定义（容器化） ———————— */
+
+@keyframes float-back-1 {
+  to {
+    transform: rotate(50deg) translateY(-100%) translateX(-100%);
+  }
+}
+@keyframes float-back-2 {
+  to {
+    transform: rotate(45deg) translateY(-100%) translateX(-100%);
+  }
+}
+@keyframes float-back-3 {
+  to {
+    transform: rotate(35deg) translateY(-100%) translateX(-100%);
+  }
+}
+
+@keyframes float-front-1 {
+  to {
+    transform: scale(1.3) rotate(50deg) translateY(-120%) translateX(-120%);
+  }
+}
+@keyframes float-front-2 {
+  to {
+    transform: scale(1.3) rotate(45deg) translateY(-120%) translateX(-100%);
+  }
+}
+@keyframes float-front-3 {
+  to {
+    transform: scale(1.3) rotate(35deg) translateY(-100%) translateX(-120%);
+  }
+}
+
+/* 后层气球 */
+.bg-balloon-celebration .holder.back {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.bg-balloon-celebration .holder.back .balloon {
+  /* 初始位置由 left 控制，bottom 已设为 0 */
+  transform-origin: center;
+}
+
+.bg-balloon-celebration .holder.back .balloon:nth-child(1) {
+  left: 50%;
+  animation: float-back-2 9.5s infinite cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation-delay: 0s;
+}
+.bg-balloon-celebration .holder.back .balloon:nth-child(2) {
+  left: 20%;
+  animation: float-back-1 10s infinite cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation-delay: 3.2s;
+}
+.bg-balloon-celebration .holder.back .balloon:nth-child(3) {
+  left: 90%;
+  animation: float-back-3 10.5s infinite cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation-delay: 7.7s;
+}
+.bg-balloon-celebration .holder.back .balloon:nth-child(4) {
+  left: 70%;
+  animation: float-back-1 9s infinite cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation-delay: 1.3s;
+}
+.bg-balloon-celebration .holder.back .balloon:nth-child(5) {
+  left: 35%;
+  animation: float-back-2 10.2s infinite cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation-delay: 5.6s;
+}
+
+/* 前层气球（更大、阴影更强） */
+.bg-balloon-celebration .holder.front {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}
+
+.bg-balloon-celebration .holder.front .balloon {
+  box-shadow: inset -0.5rem -0.5rem 5rem -0.5rem #c99c9c, 8rem 8rem 4rem rgba(153, 102, 102, 0.2);
+}
+
+.bg-balloon-celebration .holder.front .balloon:nth-child(1) {
+  left: 80%;
+  animation: float-front-1 10s infinite cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation-delay: 2.8s;
+}
+.bg-balloon-celebration .holder.front .balloon:nth-child(2) {
+  left: 35%;
+  animation: float-front-1 10s infinite cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation-delay: 1.4s;
+}
+.bg-balloon-celebration .holder.front .balloon:nth-child(3) {
+  left: 7%;
+  animation: float-front-3 10s infinite cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation-delay: 7.7s;
+}
+.bg-balloon-celebration .holder.front .balloon:nth-child(4) {
+  left: 46%;
+  animation: float-front-2 10s infinite cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation-delay: 6.3s;
+}
+.bg-balloon-celebration .holder.front .balloon:nth-child(5) {
+  left: 75%;
+  animation: float-front-1 10s infinite cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation-delay: 8.9s;
+}
+
+/* 包裹容器：提供居中和尺寸上下文 */
+.bg-caterpillar {
+  --caterpillar-color: #FABEAB;
+  /* 毛毛虫基础尺寸 */
+  --caterpillar-size: 50px;
+  --caterpillar-height: 80px;
+  --caterpillar-border: 20px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: #F4E7CA; /* 可选：背景色移到 wrapper */
+}
+
+/* 毛毛虫主体 */
+.bg-caterpillar .caterpillar-animated {
+  position: relative; /* 关键：相对于 wrapper */
+  animation: move 4s ease-in-out infinite;
+  filter: 
+    drop-shadow(120px 0 0 var(--caterpillar-color))
+    drop-shadow(240px 0 0 var(--caterpillar-color))
+    drop-shadow(480px 0 0 var(--caterpillar-color))
+    drop-shadow(960px 0 0 var(--caterpillar-color))
+    drop-shadow(-1920px 0 0 var(--caterpillar-color))
+    drop-shadow(60px 80px 0 var(--caterpillar-color))
+    drop-shadow(0 160px 0 var(--caterpillar-color))
+    drop-shadow(0 320px 0 var(--caterpillar-color))
+    drop-shadow(0 640px 0 var(--caterpillar-color))
+    drop-shadow(0 -1280px 0 var(--caterpillar-color));
+}
+
+/* 触角（左） */
+.bg-caterpillar .caterpillar-animated::before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 20px);
+  left: 20px;
+  width: 10px;
+  height: 0;
+  border: 10px solid var(--caterpillar-color);
+  border-radius: 999px;
+  transform: translateX(-100%);
+  animation: bg-caterpillar-reach 1s ease-in-out infinite alternate;
+}
+
+/* 触角（右） */
+.bg-caterpillar .caterpillar-animated::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 20px);
+  right: 20px;
+  width: 10px;
+  height: 0;
+  border: 10px solid var(--caterpillar-color);
+  border-radius: 999px;
+  transform: translateX(100%);
+  animation: bg-caterpillar-reach 1s ease-in-out infinite alternate;
+}
+
+/* 身体中心 */
+.bg-caterpillar .caterpillar-animated .center {
+  width: var(--caterpillar-size);
+  height: var(--caterpillar-height);
+  border: var(--caterpillar-border) solid var(--caterpillar-color);
+  border-radius: 999px;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(50% - 10px),
+    0 calc(50% - 10px)
+  );
+  animation: bg-caterpillar-spring 1s ease-in-out infinite alternate;
+}
+
+/* ———————— 动画定义 ———————— */
+
+@keyframes bg-caterpillar-spring {
+  0%, 10% {
+    width: 45px;
+    height: 110px;
+  }
+  90%, 100% {
+    width: 60px;
+    height: 80px;
+  }
+}
+
+@keyframes bg-caterpillar-reach {
+  0% { width: 10px; }
+  100% { width: 20px; }
+}
+
+@keyframes bg-caterpillar-move {
+  0%, 2% { transform: translateX(0); }
+  23%, 27% { transform: translateX(30px); }
+  48%, 52% { transform: translateX(60px); }
+  73%, 77% { transform: translateX(90px); }
+  98%, 100% { transform: translateX(120px); }
+}
 
 
 

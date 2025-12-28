@@ -1,38 +1,431 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JquanUI 概述</title>
+  <title>Config.css | JquanUI 3.0 - 下一代 UI 框架</title>
   <link rel="stylesheet" href="../css/JquanUI@3.0.css">
-    <link rel="stylesheet" href="../css/Config.css">
-    <link rel="stylesheet" href="../css/app.css">
-    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
-</head>
-<body>
-  <div class="container">
-    <ul class="breadcrumb bg-surface-50% breadcrumb-arrow breadcrumb-with-icons">
-        <li><a href="/"><i class="bx bx-home"></i>基础</a></li>
-        <li class="active">概述</li>
-    </ul>
-    <div class="container py-3">
-      <div class="card">
-        <div class="card-header">
-          JquanUI 概述
-        </div>
+  <link rel="stylesheet" href="../css/app.css">
+  <style>
+    /* 动画 */
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
 
-        <div class="card-body">
-          <p>JquanUI 是一个简洁、易用的 CSS 框架，旨在帮助开发者快速构建美观的网页界面。它提供了丰富的组件和样式，使用户能够轻松创建现代化的 Web 应用。</p>
-          <p>这是一个普通的不能再普通的CSS UI，没有什么技术含量，甚至可以说是大杂烩，把多个CSS UI的部分组件加上本人平时的一些积累打包成的，目的是减少排版工作量，增加效率。</p>
-          <p>当前版本：3.0</p>
-          <p>JquanUI 3.0基于1.3版本，经过长期代码维护，2025年使用Claude 3.7模型进行优化重构</p>
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgb(var(--surface-border)) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+  </style>
+</head>
+
+<body class="theme-indigo">
+
+  <!-- 悬浮主题控制器 -->
+  <div class="fixed right-5 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-3 p-3 rounded-xl glass-panel shadow-2xl transition-all duration-300 translate-x-[calc(100%-10px)] hover-translate-x-0 group">
+    <div class="text-xs font-bold text-center mb-1 text-surface uppercase tracking-wider">Themes</div>
+
+    <!-- Dark Mode Toggle -->
+    <button onclick="toggleDarkMode()"
+      class="w-10 h-10 rounded-full bg-surface border border-surface-border flex items-center justify-center hover-scale-110 transition-transform"
+      title="切换暗黑模式">
+      <i class='bx bxs-moon text-xl'></i>
+    </button>
+
+    <div class="w-full h-px bg-surface-border my-1"></div>
+
+    <!-- Color Toggles -->
+    <button onclick="setTheme('theme-skyazure')"
+      class="w-10 h-10 rounded-full bg-skyazure border-2 border-white ring-2 ring-skyazure hover-scale-110 transition-transform"
+      title="天霁蓝"></button>
+    <button onclick="setTheme('theme-jadegreen')"
+      class="w-10 h-10 rounded-full bg-jadegreen border-2 border-white ring-2 ring-jadegreen hover-scale-110 transition-transform"
+      title="翡翠绿"></button>
+    <button onclick="setTheme('theme-tomatored')"
+      class="w-10 h-10 rounded-full bg-tomatored border-2 border-white ring-2 ring-tomato hover-scale-110 transition-transform"
+      title="番茄红"></button>
+    <button onclick="setTheme('theme-placergold')"
+      class="w-10 h-10 rounded-full bg-placergold border-2 border-white ring-2 ring-placergold hover-scale-110 transition-transform"
+      title="金盏花黄"></button>
+    <button onclick="setTheme('theme-cherrypink')"
+      class="w-10 h-10 rounded-full bg-cherrypink border-2 border-white ring-2 ring-cherrypink hover-scale-110 transition-transform"
+      title="樱桃粉"></button>
+  </div>
+
+  <!-- Hero 区域 -->
+  <header class="relative p-20 pb-32 overflow-hidden container">
+    <div class="absolute inset-0 z-0 bg-grid-pattern opacity-30"></div>
+    <!-- 装饰性背景光晕 -->
+    <div
+      class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-primary to-transparent opacity-10 blur-3xl rounded-full translate-x-1/3 -translate-y-1/4 animate-float">
+    </div>
+    <div
+      class="absolute bottom-0 left-0 w-1/3 h-2/3 bg-gradient-to-tr from-secondary to-transparent opacity-10 blur-3xl rounded-full -translate-x-1/4 translate-y-1/4">
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 px-6 px-8 text-center">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-primary mb-8 animate-bounce"
+        style="animation-duration: 3s;">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+        <span class="text-sm font-medium text-primary">JquanUI 3.0 全新发布</span>
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+        为现代 Web 构建的<br>
+        <span class="text-gradient bg-gradient-to-r from-primary to-secondary">极致 UI 框架</span>
+      </h1>
+
+      <p class="mt-4 text-xl text-surface opacity-80 max-w-2xl mx-auto mb-10 leading-relaxed">
+        JquanUI 3.0 是一个基于 CSS 变量的原子化框架。融合了 <span class="text-primary font-bold">Tailwind 的灵活性</span> 与 <span
+          class="text-primary font-bold">Bootstrap 的易用性</span>，内置绝美中式传统色与深度暗黑模式支持。
+      </p>
+
+      <div class="flex items-center justify-center gap-4">
+        <button class="btn btn-primary btn-lg group">
+          立即下载 JquanUI 3.0
+          <i class='bx bx-right-arrow-alt ml-2 hover:translate-x-1 transition-transform'></i>
+        </button>
+        <button class="btn btn-primary btn-outline btn-lg text-primary hover-text-white">
+          <span id="install-text">npm install jquan-ui(待支持)</span>
+          <i class='bx bx-copy ml-2'></i>
+        </button>
+      </div>
+
+      <!-- 预览展示区 -->
+      <div class="mt-16 mx-auto max-w-5xl transform hover:scale-[1.01] transition-transform duration-500">
+        <div class="glass-panel rounded-xl shadow-2xl overflow-hidden border border-surface-border">
+          <div class="bg-surface-bg-100 px-4 py-3 border-b border-surface-border flex gap-2">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+          </div>
+          <div class="px-8 flex items-center gap-4 text-left">
+            <!-- 左侧：代码 -->
+            <div class="code-block basis-2/3">
+              <pre>
+                  <code class="code-block" data-language="html">
+                      <button class="btn btn-primary">Primary Action</button>
+                      <button class="btn btn-primary text-primary hover-text-white btn-outline rounded-full">Rounded Outline</button>
+                      <div class="flex gap-2">
+                          <span class="tags size-lg bg-red-100 text-red-600">Error</span>
+                          <span class="tags size-lg bg-green-100 text-green-600">Success</span>
+                          <span class="tags size-lg bg-blue-100 text-blue-600">Info</span>
+                      </div>
+                  </code>
+              </pre>
+            </div>
+            <!-- 右侧：实时渲染 -->
+            <div
+              class="basis-1/3 flex flex-col items-center justify-center gap-4 py-4 bg-surface rounded-lg border border-surface border-dashed">
+              <button class="btn btn-primary">Primary Action</button>
+              <button class="btn btn-primary text-primary hover-text-white btn-outline rounded-full">Rounded
+                Outline</button>
+              <div class="flex gap-2">
+                <span class="tags size-lg bg-red-100 text-red-600">Error</span>
+                <span class="tags size-lg bg-green-100 text-green-600">Success</span>
+                <span class="tags size-lg bg-blue-100 text-blue-600">Info</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!-- 更多内容 -->
-  </div>
-  
-  <script src="../js/Communication.js"></script>
-  <script src="../js/apps/app.js" type="module"></script>
+  </header>
+
+  <!-- 特性网格 -->
+  <section id="features" class="py-20 bg-surface-bg-50 container-fluid">
+    <div class="max-w-7xl mx-auto px-4 px-8 container">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">为什么选择 JquanUI?</h2>
+        <p class="text-surface opacity-70">不仅仅是一个 CSS 文件，而是一套完整的设计系统。</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-8">
+        <!-- 特性 1 -->
+        <div class="card p-6 group hover-border-primary transition-colors">
+          <div class="card-decoration deco-grid"></div>
+          <div
+            class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-2xl mb-4 hover-bg-primary hover-text-white transition-colors">
+            <i class='bx bx-palette'></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">中式传统配色</h3>
+          <p class="text-surface opacity-70 text-sm">
+            内置 <span class="text-primary">金盏花黄</span>、<span class="text-primary">翡翠绿</span>、<span
+              class="text-primary">天霁蓝</span> 等数十种富有诗意的中国传统色彩变量。
+          </p>
+        </div>
+
+        <!-- 特性 2 -->
+        <div class="card p-6 group hover-border-primary transition-colors">
+          <div class="card-decoration deco-grid"></div>
+          <div
+            class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-2xl mb-4 hover-bg-primary hover-text-white transition-colors">
+            <i class='bx bx-moon'></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">完美暗黑模式</h3>
+          <p class="text-surface opacity-70 text-sm">
+            基于 CSS 变量的自动暗黑模式。只需给 body 添加 <code>theme-dark</code> 类，所有组件自动适配。
+          </p>
+        </div>
+
+        <!-- 特性 3 -->
+        <div class="card p-6 group hover-border-primary transition-colors">
+          <div class="card-decoration deco-grid"></div>
+          <div
+            class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-2xl mb-4 hover-bg-primary hover-text-white transition-colors">
+            <i class='bx bx-cube-alt'></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">3D 与 动效</h3>
+          <p class="text-surface opacity-70 text-sm">
+            内置 3D 翻转卡片、平滑过渡、加载动画等高级 CSS 特效，无需编写额外 JavaScript。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 组件展示 -->
+  <section id="components" class="py-20 container-full">
+    <div class="container mx-auto px-4 px-8">
+      <div class="text-center mb-16">
+        <div>
+          <h2 class="text-3xl font-bold mb-2">精美组件库</h2>
+          <p class="text-surface opacity-70">开箱即用的 UI 元素，支持完全自定义。</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6">
+        <!-- 3D 卡片展示 -->
+        <div>
+           <cite class="text-primary">3D交互</cite>
+          <div class="imghover mt-6">
+              <div class="relative overflow-hidden rounded-lg bg-gradient-to-r from-teal-400 to-yellow-200">
+                  <img src="https://www.jquan.win/upload/20250715/0841b19e993748.webp"
+                      class="w-full h-auto ">
+                  <div class="text-white text-center w-full absolute top-1/2 left-1/2 z-1">
+                      <a href="">
+                          <h3 class="text-xl font-bold mb-0.5">Williamson</h3>
+                      </a>
+                      <a href=""><span class="text-md block">Web designer</span></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div>
+          <cite class="text-primary">提示器MJS模块</cite>
+          <div class="card mt-6 p-6 h-[207px]">
+            <div class="card-decoration deco-orb"></div>
+            <div class="flex justify-center flex-wrap gap-3">
+                <button class="btn text-white btn-blue rounded center" id="toinfo">info</button>
+                <button class="btn text-white btn-green rounded center" id="tosuccess">success</button>
+                <button class="btn text-white btn-red rounded center" id="toerror">error</button>
+                <button class="btn text-white btn-yellow rounded center" id="towarning">warning</button>
+                <button class="btn text-white btn-pink rounded center" id="toloading">loading</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 常用 UI 元素 -->
+        <div>
+          <cite class="text-primary">表单控件</cite>
+          <!-- 按钮组 -->
+          <div class="card p-6 space-y-4 mt-6 h-[207px]">
+            <div class="card-decoration deco-fog"></div>
+            <div class="form-group-within relative focus-within-text-primary">
+              <input type="text" id="input-default-7"
+                class="block w-full px-3 py-2 pl-10 hover-outline-ring hover-outline-1 focus-ring-primary rounded-md text-sm"
+                placeholder="请输入用户名">
+              <label for="input-default-7"
+                class="absolute top-1/2 left-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center">
+                <i class="bx bx-user text-sm"></i>
+              </label>
+            </div>
+
+            <hr class="border-surface">
+
+            <!-- 输入框 -->
+            <div class="form-group w-80 relative focus-within-text-primary" id="login-form">
+              <label for="pwd"
+                class="absolute top-1/2 left-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center">
+                <i class="bx bx-lock"></i>
+              </label>
+              <input type="password" id="pwd"
+                class="block w-full px-3 py-2 pl-10 hover-outline-ring hover-outline-1 focus-ring-primary rounded-md text-sm"
+                placeholder="请输入密码">
+              <button type="button" id="gen-pwd-btn"
+                class="absolute top-1/2 right-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center"
+                aria-label="生成随机密码">
+                <i class='bxr bx-sparkles-alt'></i>
+              </button>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 中式色彩展示 -->
+  <section id="colors" class="py-20 bg-surface-bg-50 relative overflow-hidden container-full">
+    <div class="absolute -left-20 top-20 w-64 h-64 bg-primary opacity-5 rounded-full blur-3xl"></div>
+    <div class="container mx-auto px-4 px-6 px-8 relative z-10">
+      <h2 class="text-3xl font-bold text-center mb-12">东方美学 · 传统色彩</h2>
+
+      <div class="grid grid-cols-2 grid-cols-6 gap-4">
+        <!-- 色卡生成函数模拟 -->
+        <div class="group cursor-pointer">
+          <div class="h-24 rounded-t-lg bg-placergold transition-transform group-hover:scale-105 shadow-md"></div>
+          <div class="bg-surface p-3 rounded-b-lg shadow-sm border border-surface-border text-center">
+            <div class="font-bold text-sm">金盏花黄</div>
+            <div class="text-xs opacity-50">Placer Gold</div>
+          </div>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="h-24 rounded-t-lg bg-coralorange-500 transition-transform group-hover:scale-105 shadow-md"></div>
+          <div class="bg-surface p-3 rounded-b-lg shadow-sm border border-surface-border text-center">
+            <div class="font-bold text-sm">珊瑚橙</div>
+            <div class="text-xs opacity-50">Coral Orange</div>
+          </div>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="h-24 rounded-t-lg bg-cherrypink-500 transition-transform group-hover:scale-105 shadow-md"></div>
+          <div class="bg-surface p-3 rounded-b-lg shadow-sm border border-surface-border text-center">
+            <div class="font-bold text-sm">樱桃粉</div>
+            <div class="text-xs opacity-50">Cherry Pink</div>
+          </div>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="h-24 rounded-t-lg bg-jadegreen-500 transition-transform group-hover:scale-105 shadow-md"></div>
+          <div class="bg-surface p-3 rounded-b-lg shadow-sm border border-surface-border text-center">
+            <div class="font-bold text-sm">翡翠绿</div>
+            <div class="text-xs opacity-50">Jade Green</div>
+          </div>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="h-24 rounded-t-lg bg-skyazure-500 transition-transform group-hover:scale-105 shadow-md"></div>
+          <div class="bg-surface p-3 rounded-b-lg shadow-sm border border-surface-border text-center">
+            <div class="font-bold text-sm">天霁蓝</div>
+            <div class="text-xs opacity-50">Sky Azure</div>
+          </div>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="h-24 rounded-t-lg bg-royalblue-500 transition-transform group-hover:scale-105 shadow-md"></div>
+          <div class="bg-surface p-3 rounded-b-lg shadow-sm border border-surface-border text-center">
+            <div class="font-bold text-sm">皇家蓝</div>
+            <div class="text-xs opacity-50">Royal Blue</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center mt-10 text-surface opacity-60 text-sm">
+        点击右侧悬浮球可实时预览全站主题切换效果。
+      </p>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-surface container-full">
+    <div class="max-w-7xl mx-auto px-8 container">
+      <div class="border-t border-surface-border pt-8 flex flex-col flex-row justify-between items-center text-sm text-surface opacity-50">
+        <p>&copy; 2025 JquanUI CSS UI Framework. All rights reserved.</p>
+        <div class="flex gap-4 mt-0">
+          <i class='bx bxl-github text-xl cursor-pointer hover-text-primary'></i>
+          <i class='bx bxl-twitter text-xl cursor-pointer hover-text-primary'></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 逻辑脚本 -->
+  <script>
+    // 主题切换逻辑
+    function setTheme(themeName) {
+      // 移除所有已知的主题类
+      const themes = ['theme-tomatored', 'theme-jadegreen', 'theme-placergold', 'theme-skyazure', 'theme-cherrypink'];
+      document.body.classList.remove(...themes);
+
+      // 添加新主题
+      if (themeName) {
+        document.body.classList.add(themeName);
+      }
+    }
+
+    // 暗黑模式切换
+    function toggleDarkMode() {
+      document.body.classList.toggle('theme-dark');
+
+      // 切换图标
+      const btn = document.querySelector('button[onclick="toggleDarkMode()"] i');
+      if (document.body.classList.contains('theme-dark')) {
+        btn.className = 'bx bxs-sun text-xl text-yellow-400';
+      } else {
+        btn.className = 'bx bxs-moon text-xl';
+      }
+    }
+
+
+
+  </script>
+  <script type="module">
+    import PasswordGenerator from '../js/modules/PasswordGenerator.mjs';
+    import { initCodeHighlighter } from '../js/modules/code-block.mjs';
+    import { init } from '../js/modules/jit-engine.mjs';
+    import { msg } from '../js/modules/msg.mjs';
+    // 初始化 JIT 引擎
+    init({});
+
+    // 代码块
+    initCodeHighlighter({
+      showLineNumbers: true, // 显示行号
+      langLabel: false,  // 是否显示语言标签
+    });
+    //智能密码生成器
+    new PasswordGenerator({
+      passwordInputId: 'pwd',
+      generateBtnId: 'gen-pwd-btn',
+      injectTarget: {
+        element: '#login-form',
+        position: 'beforeend'
+      }
+    });
+    document.getElementById('toinfo').addEventListener('click', function() {
+        msg.info('这是一条提示信息！');
+    });
+    document.getElementById('tosuccess').addEventListener('click', function() {
+        msg.success('这是一条成功信息！');
+    });
+    document.getElementById('toerror').addEventListener('click', function() {
+        msg.error('这是一条错误信息！');
+    });
+    document.getElementById('towarning').addEventListener('click', function() {
+        msg.warning('这是一条警告信息！');
+    });
+    document.getElementById('toloading').addEventListener('click', function() {
+        msg.loading(
+            {
+                content: '这是一条加载信息！',
+                showClose: true,
+            }
+        );
+    });
+  </script>
 </body>
+
 </html>

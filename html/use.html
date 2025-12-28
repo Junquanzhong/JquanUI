@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>使用</title>
     <link rel="stylesheet" href="../css/JquanUI@3.0.css">
-    <link rel="stylesheet" href="../css/Config.css">
     <link rel="stylesheet" href="../css/app.css">
     <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
 </head>
@@ -22,17 +21,16 @@
             </div>
       
             <div class="card-body">
-              <p>下载包，并在<span class="tags radius">head</span>中引入：</p>
-              <div class="codeblock codeblock-line-numbers">
-                  <div class="code-toolbar">
-                      <button class="code-toolbar-button radius" onclick="copyToClipboard()">Copy</button>
-                  </div>
-                  <pre>
-  <code class="language-html">
-  <span class="line">&lt;link rel="stylesheet" href="../../css/JquanUI.min.css"&gt; &lt;!--压缩过的核心样式--&gt;</span>
-  <span class="line">&lt;link rel="stylesheet" href="../../css/icons.min.css"&gt; &lt;!--icon图标--&gt;</span>
-  <span class="line">&lt;link rel="stylesheet" href="../css/app.css"&gt; &lt;!--本项目--&gt;</span>
-  </code></pre>
+              <p>下载包，并在<code>head</code>中引入：</p>
+              <div class="w-[600px]">
+                <pre>
+                    <code data-language="html">
+                      <!-- 引入 JquanUI 核心样式 -->
+                      <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+                      <!-- 引入你的自定义样式 -->
+                      <link rel="stylesheet" href="../css/app.css">
+                    </code>
+                </pre>
               </div>
             </div>
           </div>
@@ -42,5 +40,17 @@
          
       </div>
       <script src="../js/apps/app.js" type="module"></script>
+      <script type="module">
+          import { initCodeHighlighter } from '../js/modules/code-block.mjs';
+          import { init } from '../js/modules/jit-engine.mjs';
+          // 初始化 JIT 引擎
+          init({});
+          // 调用初始化函数
+          // 这里可以覆盖默认配置
+          initCodeHighlighter({
+              showLineNumbers: true, // 显示行号
+              langLabel: false,  // 是否显示语言标签
+          });
+      </script>
 </body>
 </html>
