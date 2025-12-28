@@ -1,14 +1,17 @@
 /**
- * 地图模块主入口文件 (v1.3.0 - 新增多语言支持)
- * 新增：通过 `language` 参数控制地图语言（如 'zh-CN', 'en'）
- * 修复：BaiduMapProvider 错误调用 AMap、options 冗余赋值、key 校验增强
+ * 地图模块主入口文件 (v1.4.0 - 集成 Google Maps)
+ * 新增：GoogleMapProvider 支持
+ * 修复：BaiduMapProvider 移动端白屏问题 (v1.0 GL)
+ * 优化：统一坐标格式转换逻辑
  */
 
 // --- 工具函数 ---
 
 function loadScript(url) {
     return new Promise((resolve, reject) => {
-        const existing = document.querySelector(`script[src="${url}"]`);
+        const urlObj = new URL(url);
+        // 简单去重：检查是否已有相同域名的脚本
+        const existing = document.querySelector(`script[src*="${urlObj.hostname}${urlObj.pathname}"]`);
         if (existing) {
             resolve();
             return;
@@ -17,12 +20,17 @@ function loadScript(url) {
         const script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = url;
+        script.crossOrigin = "anonymous"; // 移动端友好
         script.onload = () => resolve();
         script.onerror = () => reject(new Error(`Failed to load script: ${url}`));
         document.head.appendChild(script);
     });
 }
 
+/**
+ * 统一将坐标标准化为 [lng, lat] 数组
+ * 注意：Google Maps 使用 {lat, lng}，在 Provider 内部会进行二次转换
+ */
 function normalizeCoordinate(coordinate) {
     // 处理字符串 "[lng,lat]"
     if (typeof coordinate === 'string') {
@@ -47,18 +55,15 @@ function normalizeCoordinate(coordinate) {
     // 处理对象 {lng, lat}
     if (coordinate && typeof coordinate === 'object') {
         let lng, lat;
-        if (typeof coordinate.lng === 'number' || typeof coordinate.lng === 'string') {
-            lng = parseFloat(coordinate.lng);
-        } else if (typeof coordinate.lon === 'number' || typeof coordinate.lon === 'string') {
-            lng = parseFloat(coordinate.lon);
-        } else if (typeof coordinate.longitude === 'number' || typeof coordinate.longitude === 'string') {
-            lng = parseFloat(coordinate.longitude);
-        }
-        if (typeof coordinate.lat === 'number' || typeof coordinate.lat === 'string') {
-            lat = parseFloat(coordinate.lat);
-        } else if (typeof coordinate.latitude === 'number' || typeof coordinate.latitude === 'string') {
-            lat = parseFloat(coordinate.latitude);
-        }
+        // 兼容 lng, lon, longitude
+        if (typeof coordinate.lng !== 'undefined') lng = parseFloat(coordinate.lng);
+        else if (typeof coordinate.lon !== 'undefined') lng = parseFloat(coordinate.lon);
+        else if (typeof coordinate.longitude !== 'undefined') lng = parseFloat(coordinate.longitude);
+
+        // 兼容 lat, latitude
+        if (typeof coordinate.lat !== 'undefined') lat = parseFloat(coordinate.lat);
+        else if (typeof coordinate.latitude !== 'undefined') lat = parseFloat(coordinate.latitude);
+
         if (isNaN(lng) || isNaN(lat)) {
             throw new Error('Invalid coordinate object: missing or non-numeric lng/lat.');
         }
@@ -70,17 +75,18 @@ function normalizeCoordinate(coordinate) {
 // --- 全局加载状态（防重复加载）---
 let isBaiduLoading = false;
 let isGaodeLoading = false;
+let isGoogleLoading = false;
 
 // --- 主工厂类 ---
 class Map {
     static defaultOptions = {
-        source: 'baidu',
+        source: 'baidu', // 'baidu' | 'gaode' | 'google'
         key: null,
         zoom: 12,
-        mapType: 'normal',
+        mapType: 'normal', // 'normal' | 'satellite'
         showZoomControl: true,
         showScaleControl: true,
-        language: 'zh-CN', // ✅ 新增默认语言
+        language: 'zh-CN',
     };
 
     static configure(defaults) {
@@ -98,26 +104,43 @@ class Map {
 
         this.options = Object.assign({}, Map.defaultOptions, options);
 
-        // 校验 key
-        if (!this.options.key) {
-            throw new Error('Map API key is required. Please set it via Map.configure({ key: "YOUR_KEY" }).');
+        // 获取 DOM
+        if (typeof this.options.container === 'string') {
+            this.containerElement = document.getElementById(this.options.container);
+        } else {
+            this.containerElement = this.options.container;
         }
 
-        // ✅ 统一语言格式为小写
-        this.options.language = (this.options.language || 'zh-CN').toLowerCase();
+        if (!this.containerElement) {
+            throw new Error(`Map container not found: ${options.container}`);
+        }
 
+        if (!this.options.key) {
+            throw new Error('Map API key is required.');
+        }
+
+        this.options.language = (this.options.language || 'zh-CN').toLowerCase();
         this.provider = null;
     }
 
     async init() {
+        // 容器高度检查
+        const height = this.containerElement.clientHeight;
+        if (height === 0) {
+            console.warn('⚠️ Map Warning: 容器高度为 0。请设置 CSS height。');
+        }
+
         const { source } = this.options;
+        const providerOptions = { ...this.options, container: this.containerElement };
 
         if (source === 'baidu') {
-            this.provider = new BaiduMapProvider(this.options);
+            this.provider = new BaiduMapProvider(providerOptions);
         } else if (source === 'gaode') {
-            this.provider = new GaodeMapProvider(this.options);
+            this.provider = new GaodeMapProvider(providerOptions);
+        } else if (source === 'google') {
+            this.provider = new GoogleMapProvider(providerOptions);
         } else {
-            throw new Error(`Unsupported map source: ${source}. Use 'baidu' or 'gaode'.`);
+            throw new Error(`Unsupported map source: ${source}. Use 'baidu', 'gaode', or 'google'.`);
         }
 
         await this.provider.init();
@@ -137,7 +160,7 @@ class Map {
     }
 }
 
-// --- 百度地图 Provider ---
+// --- 百度地图 Provider (BMapGL) ---
 class BaiduMapProvider {
     constructor(options) {
         this.map = null;
@@ -151,18 +174,8 @@ class BaiduMapProvider {
             this._createMap();
             return;
         }
-
         if (isBaiduLoading) {
-            await new Promise(resolve => {
-                const check = () => {
-                    if (window.BMapGL) {
-                        resolve();
-                    } else {
-                        setTimeout(check, 100);
-                    }
-                };
-                check();
-            });
+            await this._waitFor(() => window.BMapGL);
             this._createMap();
             return;
         }
@@ -180,17 +193,22 @@ class BaiduMapProvider {
                     reject(e);
                 }
             };
-
-            // ✅ 加入 lang 参数
-            const scriptUrl = `https://api.map.baidu.com/api?v=3.0&type=webgl&ak=${this.options.key}&lang=${this.options.language}&callback=${callbackName}`;
+            // 修复：WebGL 版必须用 v=1.0
+            const scriptUrl = `https://api.map.baidu.com/api?type=webgl&v=1.0&ak=${this.options.key}&lang=${this.options.language}&callback=${callbackName}`;
             const script = document.createElement('script');
             script.src = scriptUrl;
             script.onerror = () => {
-                delete window[callbackName];
                 isBaiduLoading = false;
-                reject(new Error('百度地图 SDK 加载失败，请检查网络或 AK'));
+                reject(new Error('百度地图加载失败'));
             };
             document.head.appendChild(script);
+        });
+    }
+
+    _waitFor(condition) {
+        return new Promise(resolve => {
+            const check = () => condition() ? resolve() : setTimeout(check, 100);
+            check();
         });
     }
 
@@ -199,14 +217,17 @@ class BaiduMapProvider {
         this.map = new BMapGL.Map(this.options.container);
         const point = new BMapGL.Point(center[0], center[1]);
         this.map.centerAndZoom(point, this.options.zoom);
+        
         this.map.enableScrollWheelZoom(true);
+        this.map.enablePinchToZoom();
+        this.map.enableRotate();
 
         if (this.options.mapType === 'satellite') {
-            this.map.setMapType(BMAP_SATELLITE_MAP);
+            try { this.map.setMapType(window.BMAP_SATELLITE_MAP); } catch(e){}
         }
 
         if (this.options.showZoomControl) {
-            this.map.addControl(new BMapGL.NavigationControl({ anchor: BMAP_ANCHOR_TOP_RIGHT }));
+            this.map.addControl(new BMapGL.ZoomControl({ anchor: BMAP_ANCHOR_BOTTOM_RIGHT }));
         }
         if (this.options.showScaleControl) {
             this.map.addControl(new BMapGL.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT }));
@@ -214,7 +235,7 @@ class BaiduMapProvider {
 
         if (this.options.markers) {
             const markers = Array.isArray(this.options.markers) ? this.options.markers : [this.options.markers];
-            markers.forEach(marker => this.addMarker(marker));
+            markers.forEach(m => this.addMarker(m));
         }
 
         this.map.addEventListener('tilesloaded', () => {
@@ -226,113 +247,47 @@ class BaiduMapProvider {
     }
 
     addMarker(markerOpts) {
-    if (!markerOpts || markerOpts.position == null) {
-        console.error('❌ Marker skipped: missing "position" field.', markerOpts);
-        return;
+        if (!markerOpts || !markerOpts.position) return;
+        const pos = normalizeCoordinate(markerOpts.position);
+        const point = new BMapGL.Point(pos[0], pos[1]);
+
+        let marker;
+        if (markerOpts.iconUrl) {
+            const icon = new BMapGL.Icon(markerOpts.iconUrl, new BMapGL.Size(
+                markerOpts.iconSize?.width || 24, markerOpts.iconSize?.height || 36
+            ));
+            marker = new BMapGL.Marker(point, { icon });
+        } else {
+            marker = new BMapGL.Marker(point);
+        }
+
+        if (markerOpts.title || markerOpts.content) {
+            let html = '';
+            if (markerOpts.title) html += `<div style="font-weight:bold;margin-bottom:4px">${markerOpts.title}</div>`;
+            if (markerOpts.content) html += `<div style="font-size:13px">${markerOpts.content}</div>`;
+
+            const infoWindow = new BMapGL.InfoWindow(html, { offset: new BMapGL.Size(0, -20) });
+            marker.addEventListener('click', () => this.map.openInfoWindow(infoWindow, point));
+            if (markerOpts.autoOpen) this.autoOpenMarkers.push({ infoWindow, point });
+        }
+
+        this.map.addOverlay(marker);
+        this.markers.push(marker);
     }
-
-    let position;
-    try {
-        position = normalizeCoordinate(markerOpts.position);
-    } catch (err) {
-        console.error('❌ Invalid coordinate:', err.message, markerOpts.position);
-        return;
-    }
-
-    const point = new BMapGL.Point(position[0], position[1]);
-    const marker = new BMapGL.Marker(point);
-
-    // ✅ 不再使用 setLabel() 显示 title
-    // 如果只有 title 没有 content，我们仍可创建一个只含标题的 InfoWindow
-    // 构建 InfoWindow 选项
-    if (markerOpts.title || markerOpts.content) {
-    // 构建内容：标题 + 内容
-    let innerHTML = '';
-    if (markerOpts.title) {
-        innerHTML += `<div class="bmap-title" style="font-weight: bold; font-size: 14px; color: #2c3e50; margin-bottom: 4px;">${markerOpts.title}</div>`;
-    }
-    if (markerOpts.content) {
-        innerHTML += `<div class="bmap-content" style="font-size: 13px; line-height: 1.4; color: #555;">${markerOpts.content}</div>`;
-    }
-
-    // 关键：注入全局 CSS（仅一次）
-    if (!window.__bmap_custom_info_css_injected) {
-        const style = document.createElement('style');
-        style.textContent = `
-            /* 确保关闭按钮浮动到右上角 */
-            .BMapGL_infowindow .BMapGL_close {
-                position: absolute !important;
-                top: 8px !important;
-                right: 10px !important;
-                width: 18px !important;
-                height: 18px !important;
-                line-height: 18px !important;
-                text-align: center !important;
-                background: #fff !important;
-                border: none !important;
-                border-radius: 50% !important;
-                color: #999 !important;
-                cursor: pointer !important;
-                font-weight: bold !important;
-                font-size: 14px !important;
-                box-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
-                z-index: 10 !important;
-            }
-            /* 给内容区域留出顶部空间，避免被 × 遮挡 */
-            .BMapGL_infowindow .BMapGL_content > div:first-child {
-                position: relative;
-                padding-top: 20px !important;
-            }
-            /* 可选：美化 InfoWindow 整体 */
-            .BMapGL_infowindow {
-                border-radius: 8px !important;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-                border: none !important;
-            }
-        `;
-        document.head.appendChild(style);
-        window.__bmap_custom_info_css_injected = true;
-    }
-
-    const infoWindow = new BMapGL.InfoWindow(`<div style="padding: 10px;">${innerHTML}</div>`);
-    
-    marker.addEventListener('click', () => {
-        this.map.openInfoWindow(infoWindow, point);
-    });
-
-    if (markerOpts.autoOpen) {
-        this.autoOpenMarkers.push({ infoWindow, point });
-    }
-}
-
-
-    this.map.addOverlay(marker);
-    this.markers.push(marker);
-}
-
 
     removeMarkers() {
         this.markers.forEach(m => this.map.removeOverlay(m));
         this.markers = [];
     }
-
-    setCenter(center) {
-        const normalized = normalizeCoordinate(center);
-        const point = new BMapGL.Point(normalized[0], normalized[1]);
-        this.map.setCenter(point);
+    setCenter(c) {
+        const n = normalizeCoordinate(c);
+        this.map.setCenter(new BMapGL.Point(n[0], n[1]));
     }
-
-    setZoom(zoom) {
-        this.map.setZoom(zoom);
-    }
-
-    destroy() {
-        if (this.map) this.map.destroy();
-        this.markers = [];
-    }
+    setZoom(z) { this.map.setZoom(z); }
+    destroy() { if(this.map) this.map.destroy(); this.markers = []; }
 }
 
-// --- 高德地图 Provider ---
+// --- 高德地图 Provider (AMap v2.0) ---
 class GaodeMapProvider {
     constructor(options) {
         this.map = null;
@@ -346,92 +301,205 @@ class GaodeMapProvider {
             this._createMap();
             return;
         }
-
         if (isGaodeLoading) {
-            await new Promise(resolve => {
-                const check = () => window.AMap ? resolve() : setTimeout(check, 100);
-            });
+            await new Promise(r => { const c = () => window.AMap ? r() : setTimeout(c, 100); c(); });
             this._createMap();
             return;
         }
 
         isGaodeLoading = true;
         try {
-            // ✅ 加入 lang 参数
             await loadScript(`https://webapi.amap.com/maps?v=2.0&key=${this.options.key}&lang=${this.options.language}`);
             isGaodeLoading = false;
             this._createMap();
-        } catch (error) {
+        } catch (e) {
             isGaodeLoading = false;
-            throw new Error(`高德地图 SDK 加载失败: ${error.message}`);
+            throw e;
         }
     }
 
     _createMap() {
         const center = normalizeCoordinate(this.options.center);
-        const mapOptions = {
+        const opts = {
             zoom: this.options.zoom,
-            center: center
+            center: center,
+            resizeEnable: true
         };
-        if (this.options.mapType === 'satellite') {
-            mapOptions.mapStyle = 'amap://styles/satellite';
-        }
-        this.map = new AMap.Map(this.options.container, mapOptions);
+        if (this.options.mapType === 'satellite') opts.layers = [new AMap.TileLayer.Satellite()];
+
+        this.map = new AMap.Map(this.options.container, opts);
+
+        this.map.plugin(['AMap.ToolBar', 'AMap.Scale'], () => {
+            if (this.options.showZoomControl) this.map.addControl(new AMap.ToolBar());
+            if (this.options.showScaleControl) this.map.addControl(new AMap.Scale());
+        });
 
         if (this.options.markers) {
             const markers = Array.isArray(this.options.markers) ? this.options.markers : [this.options.markers];
-            markers.forEach(marker => this.addMarker(marker));
+            markers.forEach(m => this.addMarker(m));
         }
 
         this.map.on('complete', () => {
-            this.autoOpenMarkers.forEach(({ infoWindow, marker }) => {
-                infoWindow.open(this.map, marker.getPosition());
+            this.autoOpenMarkers.forEach(({ infoWindow, marker }) => infoWindow.open(this.map, marker.getPosition()));
+            this.autoOpenMarkers = [];
+        });
+    }
+
+    addMarker(markerOpts) {
+        if (!markerOpts || !markerOpts.position) return;
+        const pos = normalizeCoordinate(markerOpts.position);
+        
+        const config = { position: pos, title: markerOpts.title };
+        if (markerOpts.iconUrl) {
+            config.icon = new AMap.Icon({
+                image: markerOpts.iconUrl,
+                size: new AMap.Size(markerOpts.iconSize?.width||34, markerOpts.iconSize?.height||51),
+                imageSize: new AMap.Size(markerOpts.iconSize?.width||34, markerOpts.iconSize?.height||51)
+            });
+        }
+
+        const marker = new AMap.Marker(config);
+        this.map.add(marker);
+        this.markers.push(marker);
+
+        if (markerOpts.content || markerOpts.title) {
+            let html = '';
+            if (markerOpts.title) html += `<b>${markerOpts.title}</b><br/>`;
+            if (markerOpts.content) html += markerOpts.content;
+            
+            const infoWindow = new AMap.InfoWindow({ content: `<div style="padding:5px">${html}</div>`, offset: new AMap.Pixel(0, -30) });
+            marker.on('click', () => infoWindow.open(this.map, marker.getPosition()));
+            if (markerOpts.autoOpen) this.autoOpenMarkers.push({ infoWindow, marker });
+        }
+    }
+
+    removeMarkers() { this.map.remove(this.markers); this.markers = []; }
+    setCenter(c) { this.map.setCenter(normalizeCoordinate(c)); }
+    setZoom(z) { this.map.setZoom(z); }
+    destroy() { if(this.map) this.map.destroy(); this.markers = []; }
+}
+
+// --- Google Maps Provider (新增) ---
+class GoogleMapProvider {
+    constructor(options) {
+        this.map = null;
+        this.markers = [];
+        this.options = options;
+        this.autoOpenMarkers = [];
+    }
+
+    async init() {
+        if (window.google && window.google.maps) {
+            this._createMap();
+            return;
+        }
+
+        if (isGoogleLoading) {
+            await new Promise(resolve => {
+                const check = () => window.google && window.google.maps ? resolve() : setTimeout(check, 100);
+                check();
+            });
+            this._createMap();
+            return;
+        }
+
+        isGoogleLoading = true;
+        return new Promise((resolve, reject) => {
+            const callbackName = `__google_map_init_${Date.now()}`;
+            window[callbackName] = () => {
+                delete window[callbackName];
+                isGoogleLoading = false;
+                this._createMap();
+                resolve();
+            };
+
+            // 注意：Google Maps 必须启用 Billing 才能使用 JS API
+            const scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${this.options.key}&language=${this.options.language}&callback=${callbackName}`;
+            const script = document.createElement('script');
+            script.src = scriptUrl;
+            script.onerror = () => {
+                delete window[callbackName];
+                isGoogleLoading = false;
+                reject(new Error('Google Maps SDK 加载失败'));
+            };
+            document.head.appendChild(script);
+        });
+    }
+
+    _createMap() {
+        const centerArr = normalizeCoordinate(this.options.center);
+        // Google Maps 使用 {lat, lng} 格式
+        const centerObj = { lat: centerArr[1], lng: centerArr[0] };
+
+        const mapOptions = {
+            center: centerObj,
+            zoom: this.options.zoom,
+            // 控件配置
+            disableDefaultUI: false,
+            zoomControl: this.options.showZoomControl,
+            scaleControl: this.options.showScaleControl,
+            mapTypeControl: false, // 简化显示
+            streetViewControl: false,
+            fullscreenControl: false,
+            // 地图类型
+            mapTypeId: this.options.mapType === 'satellite' ? 'satellite' : 'roadmap',
+        };
+
+        this.map = new google.maps.Map(this.options.container, mapOptions);
+
+        if (this.options.markers) {
+            const markers = Array.isArray(this.options.markers) ? this.options.markers : [this.options.markers];
+            markers.forEach(m => this.addMarker(m));
+        }
+
+        // Google Maps 首次加载完成没有明确的 'complete' 事件，常用 'idle'
+        google.maps.event.addListenerOnce(this.map, 'idle', () => {
+             this.autoOpenMarkers.forEach(({ infoWindow, marker }) => {
+                infoWindow.open(this.map, marker);
             });
             this.autoOpenMarkers = [];
         });
     }
 
     addMarker(markerOpts) {
-        if (!markerOpts || markerOpts.position == null) {
-            console.error('❌ Marker skipped: missing "position" field.', markerOpts);
-            return;
-        }
-        let position;
-        try {
-            position = normalizeCoordinate(markerOpts.position);
-        } catch (err) {
-            console.error('❌ Invalid coordinate:', err.message, markerOpts.position);
-            return;
-        }
-        const defaultIcon = new AMap.Icon({
-            image: '//webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
-            size: new AMap.Size(24, 36),
-            imageSize: new AMap.Size(24, 36)
-        });
+        if (!markerOpts || !markerOpts.position) return;
+        const pos = normalizeCoordinate(markerOpts.position);
+        const position = { lat: pos[1], lng: pos[0] };
+
         const markerConfig = {
             position: position,
-            title: markerOpts.title,
-            icon: markerOpts.iconUrl
-                ? new AMap.Icon({
-                    image: markerOpts.iconUrl,
-                    size: new AMap.Size(
-                        markerOpts.iconSize?.width || 34,
-                        markerOpts.iconSize?.height || 51
-                    )
-                })
-                : defaultIcon
+            map: this.map,
+            title: markerOpts.title
         };
-        const marker = new AMap.Marker(markerConfig);
-        this.map.add(marker);
+
+        if (markerOpts.iconUrl) {
+            // Google Maps 图标配置
+            markerConfig.icon = {
+                url: markerOpts.iconUrl,
+                scaledSize: new google.maps.Size(
+                    markerOpts.iconSize?.width || 24, 
+                    markerOpts.iconSize?.height || 36
+                )
+            };
+        }
+
+        const marker = new google.maps.Marker(markerConfig);
         this.markers.push(marker);
-        if (markerOpts.content) {
-            const infoWindow = new AMap.InfoWindow({
-                content: markerOpts.content,
-                anchor: 'bottom-center'
+
+        if (markerOpts.content || markerOpts.title) {
+            let contentStr = '<div style="color: black;">'; // Google 默认深色模式下可能字体颜色问题
+            if (markerOpts.title) contentStr += `<h5 style="margin:0 0 5px 0;">${markerOpts.title}</h5>`;
+            if (markerOpts.content) contentStr += `<div>${markerOpts.content}</div>`;
+            contentStr += '</div>';
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: contentStr
             });
-            marker.on('click', () => {
-                infoWindow.open(this.map, marker.getPosition());
+
+            marker.addListener('click', () => {
+                infoWindow.open(this.map, marker);
             });
+
             if (markerOpts.autoOpen) {
                 this.autoOpenMarkers.push({ infoWindow, marker });
             }
@@ -439,26 +507,30 @@ class GaodeMapProvider {
     }
 
     removeMarkers() {
-        if (this.markers.length > 0) {
-            this.map.remove(this.markers);
-            this.markers = [];
-        }
+        this.markers.forEach(m => m.setMap(null));
+        this.markers = [];
     }
 
-    setCenter(center) {
-        const normalized = normalizeCoordinate(center);
-        this.map.setCenter(normalized);
+    setCenter(c) {
+        const arr = normalizeCoordinate(c);
+        this.map.setCenter({ lat: arr[1], lng: arr[0] });
     }
 
-    setZoom(zoom) {
-        this.map.setZoom(zoom);
+    setZoom(z) {
+        this.map.setZoom(z);
     }
 
     destroy() {
-        if (this.map) this.map.destroy();
+        // Google Maps JS API 没有官方 destroy，通常移除 DOM 即可
+        if (this.map) {
+            // 清理事件
+            google.maps.event.clearInstanceListeners(this.map);
+            this.map = null;
+        }
         this.markers = [];
+        this.options.container.innerHTML = '';
     }
 }
 
 export default Map;
-export { BaiduMapProvider, GaodeMapProvider, normalizeCoordinate, loadScript };
+export { BaiduMapProvider, GaodeMapProvider, GoogleMapProvider, normalizeCoordinate, loadScript };
