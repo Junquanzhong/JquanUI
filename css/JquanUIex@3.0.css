@@ -4526,6 +4526,42 @@ input[type="year"]::-webkit-datetime-edit-text {
   73%, 77% { transform: translateX(90px); }
   98%, 100% { transform: translateX(120px); }
 }
+/* 珍珠微光 */
+.bg-pearlshimmer {
+  background-image: linear-gradient(
+    in oklch longer hue to right,
+    oklch(0.93 0.03 0),
+    oklch(0.93 0.03 1)
+  );
+  background-size: 200% 100%; 
+  background-repeat: repeat;
+  background-position: 0% 50%; /* 初始位置 */
+  color: PaleVioletRed;
+  -webkit-animation-name: anim_pearl_flow;
+          animation-name: anim_pearl_flow;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+@keyframes anim_pearl_flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+@-webkit-keyframes anim_pearl_flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
 
 
 
