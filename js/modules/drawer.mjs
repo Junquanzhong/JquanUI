@@ -1,212 +1,202 @@
 /**
- * drawer.mjs (JquanUIex 版本)
- * 一个灵活的、可配置的抽屉组件脚本。
- * 依赖 JquanUIex CSS 框架来处理样式和过渡效果。
+ * drawer.mjs (JquanUIex Refactored - Production Grade)
+ * 
+ * 特性：
+ * 1. 支持上下左右四个方向 (data-position)
+ * 2. 完整的生命周期事件 (onShow, onHide) 和 DOM 事件分发
+ * 3. 焦点陷阱 (Focus Trap) A11y 支持
+ * 4. 实例管理与编程式调用
+ * 5. 单例遮罩层
  */
 
-// ---------------------------------------------------------------------------
-// 1. 状态管理和配置 (无变动)
-// ---------------------------------------------------------------------------
-const state = {
-    openDrawerId: null,
-    drawerOptions: new Map(),
-};
-
-const defaultOptions = {
+const DEFAULTS = {
     position: 'right',
-    disableMask: false,
+    backdrop: true,
     bodyLock: true,
+    closeOnBackdrop: true,
+    closeOnEsc: true,
+    onShow: () => { },
+    onHide: () => { },
 };
 
-// ---------------------------------------------------------------------------
-// 2. DOM 元素缓存和工具函数
-// ---------------------------------------------------------------------------
+const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-// 创建一个全局遮罩层，并附加到 body
-const mask = document.createElement('div');
-mask.dataset.drawerMask = ''; // 用于选择器和自定义CSS
-document.body.appendChild(mask);
+function trapFocus(element, e) {
+    const focusableContent = element.querySelectorAll(focusableSelector);
+    if (focusableContent.length === 0) return;
+    const firstFocusable = focusableContent[0];
+    const lastFocusable = focusableContent[focusableContent.length - 1];
 
-/**
- * 获取抽屉元素的选项配置
- * @param {HTMLElement} triggerEl - 触发按钮元素
- * @returns {Object} - 合并后的选项对象
- */
-function getDrawerOptions(triggerEl) {
-    const drawerId = triggerEl.dataset.drawerTarget;
-    if (state.drawerOptions.has(drawerId)) {
-        return state.drawerOptions.get(drawerId);
-    }
-
-    const options = { ...defaultOptions };
-    if (triggerEl.dataset.drawerDisableMask !== undefined) {
-        options.disableMask = true;
-    }
-    if (triggerEl.dataset.drawerPosition) {
-        options.position = triggerEl.dataset.drawerPosition;
-    }
-    if (triggerEl.dataset.drawerBodyLock !== undefined) {
-        options.bodyLock = triggerEl.dataset.drawerBodyLock === 'true';
-    }
-    
-    state.drawerOptions.set(drawerId, options);
-    return options;
-}
-
-function toggleDrawer(drawerId, triggerEl) {
-    if (state.openDrawerId === drawerId) {
-        closeDrawer();
+    if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+            lastFocusable.focus();
+            e.preventDefault();
+        }
     } else {
-        openDrawer(drawerId, triggerEl);
+        if (document.activeElement === lastFocusable) {
+            firstFocusable.focus();
+            e.preventDefault();
+        }
     }
 }
 
-// ---------------------------------------------------------------------------
-// 3. 核心 Open/Close 逻辑 (使用类名和自定义CSS)
-// ---------------------------------------------------------------------------
-
-function openDrawer(drawerId, triggerEl) {
-    const drawer = document.getElementById(drawerId);
-    if (!drawer) {
-        console.error(`Drawer with id "${drawerId}" not found.`);
-        return;
+class Drawer {
+    constructor(targetEl, options = {}) {
+        this._targetEl = typeof targetEl === 'string' ? document.querySelector(targetEl) : targetEl;
+        if (!this._targetEl) {
+            console.error('Drawer: Target element not found.', targetEl);
+            return;
+        }
+        this._options = { ...DEFAULTS, ...options, ...this._getDataAttributes() };
+        this._visible = false;
+        this._triggerEl = null;
+        this._initDom();
+        this._targetEl.__drawerInstance = this;
     }
 
-    const options = getDrawerOptions(triggerEl);
-    
-    if (state.openDrawerId && state.openDrawerId !== drawerId) {
-        closeDrawer(false);
-    }
-    
-    state.openDrawerId = drawerId;
-    state.lastFocusedTrigger = triggerEl;
-
-    // 更新 ARIA 属性
-    drawer.setAttribute('aria-hidden', 'false');
-    
-    // 打开遮罩
-    if (!options.disableMask) {
-        mask.classList.add('is-open');
-    }
-    
-    // 锁定body滚动
-    if (options.bodyLock) {
-        document.body.classList.add('is-drawer-open');
+    _getDataAttributes() {
+        const dataset = this._targetEl.dataset;
+        const config = {};
+        if (dataset.position) config.position = dataset.position;
+        if (dataset.backdrop !== undefined) config.backdrop = dataset.backdrop !== 'false';
+        if (dataset.bodyLock !== undefined) config.bodyLock = dataset.bodyLock !== 'false';
+        return config;
     }
 
-    // 使用 requestAnimationFrame 确保DOM更新后再执行动画
-    requestAnimationFrame(() => {
-        // 通过添加/移除 'is-open' 类来控制滑动动画
-        drawer.classList.add('is-open');
-        
-        // 焦点管理
-        const focusableElement = drawer.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (focusableElement) {
-            setTimeout(() => focusableElement.focus(), 100);
+    _initDom() {
+        this._targetEl.classList.add('drawer-panel');
+        this._targetEl.setAttribute('data-position', this._options.position);
+        this._targetEl.setAttribute('aria-hidden', 'true');
+        this._targetEl.setAttribute('role', 'dialog');
+        this._targetEl.setAttribute('aria-modal', 'true');
+        this._targetEl.setAttribute('tabindex', '-1');
+    }
+
+    show(triggerEl = null) {
+        if (this._visible) return;
+        DrawerManager.closeAll(this);
+        this._triggerEl = triggerEl;
+        if (typeof this._options.onShow === 'function') this._options.onShow(this);
+        if (this._options.backdrop) DrawerManager.showBackdrop(this);
+
+        this._targetEl.setAttribute('aria-hidden', 'false');
+        this._visible = true;
+        if (this._options.bodyLock) document.body.classList.add('drawer-open');
+
+        this._addEventListeners();
+        setTimeout(() => {
+            const firstFocusable = this._targetEl.querySelector(focusableSelector);
+            if (firstFocusable) firstFocusable.focus();
+            else this._targetEl.focus();
+        }, 50);
+        this._targetEl.dispatchEvent(new CustomEvent('drawer:shown', { detail: { drawer: this } }));
+    }
+
+    hide() {
+        if (!this._visible) return;
+        if (typeof this._options.onHide === 'function') this._options.onHide(this);
+        this._targetEl.setAttribute('aria-hidden', 'true');
+        this._visible = false;
+        if (!DrawerManager.hasOpenDrawers()) {
+            DrawerManager.hideBackdrop();
+            document.body.classList.remove('drawer-open');
+        }
+        this._removeEventListeners();
+        if (this._triggerEl && document.body.contains(this._triggerEl)) this._triggerEl.focus();
+        this._targetEl.dispatchEvent(new CustomEvent('drawer:hidden', { detail: { drawer: this } }));
+    }
+
+    toggle(triggerEl) {
+        this._visible ? this.hide() : this.show(triggerEl);
+    }
+
+    _addEventListeners() {
+        this._keydownHandler = (e) => {
+            if (e.key === 'Escape' && this._options.closeOnEsc) this.hide();
+            if (e.key === 'Tab') trapFocus(this._targetEl, e);
+        };
+        document.addEventListener('keydown', this._keydownHandler);
+        this._closeBtnHandler = (e) => {
+            const closeBtn = e.target.closest('[data-drawer-close]');
+            if (closeBtn) this.hide();
+        };
+        this._targetEl.addEventListener('click', this._closeBtnHandler);
+    }
+
+    _removeEventListeners() {
+        if (this._keydownHandler) document.removeEventListener('keydown', this._keydownHandler);
+        if (this._closeBtnHandler) this._targetEl.removeEventListener('click', this._closeBtnHandler);
+    }
+
+    isVisible() { return this._visible; }
+    shouldCloseOnBackdrop() { return this._options.closeOnBackdrop; }
+}
+
+const DrawerManager = {
+    backdropEl: null,
+    activeDrawers: [],
+    initBackdrop() {
+        if (this.backdropEl) return;
+        this.backdropEl = document.createElement('div');
+        this.backdropEl.className = 'drawer-backdrop';
+        this.backdropEl.setAttribute('tabindex', '-1');
+        document.body.appendChild(this.backdropEl);
+        this.backdropEl.addEventListener('click', () => {
+            const topDrawer = this.activeDrawers[this.activeDrawers.length - 1];
+            if (topDrawer && topDrawer.shouldCloseOnBackdrop()) topDrawer.hide();
+        });
+    },
+    showBackdrop(drawerInstance) {
+        this.initBackdrop();
+        if (!this.activeDrawers.includes(drawerInstance)) this.activeDrawers.push(drawerInstance);
+        requestAnimationFrame(() => this.backdropEl.classList.add('is-visible'));
+    },
+    hideBackdrop() {
+        if (!this.backdropEl) return;
+        this.backdropEl.classList.remove('is-visible');
+    },
+    closeAll(excludeInstance = null) {
+        this.activeDrawers.forEach(d => {
+            if (d !== excludeInstance && d.isVisible()) d.hide();
+        });
+        if (excludeInstance) this.activeDrawers = [excludeInstance];
+        else this.activeDrawers = [];
+    },
+    hasOpenDrawers() { return this.activeDrawers.some(d => d.isVisible()); }
+};
+
+function initDrawers(options = {}) {
+    console.log('JquanUIex: Initializing Drawers...');
+    const triggers = document.querySelectorAll('[data-drawer-target]');
+    triggers.forEach(trigger => {
+        const targetId = trigger.dataset.drawerTarget;
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+            if (!targetEl.__drawerInstance) {
+                const triggerOptions = {};
+                if (trigger.dataset.drawerPosition) triggerOptions.position = trigger.dataset.drawerPosition;
+                if (trigger.dataset.drawerBackdrop) triggerOptions.backdrop = trigger.dataset.drawerBackdrop !== 'false';
+                new Drawer(targetEl, { ...options, ...triggerOptions });
+            }
+            trigger.addEventListener('click', handleTriggerClick);
         }
     });
 }
 
-function closeDrawer(restoreFocus = true) {
-    if (!state.openDrawerId) return;
-
-    const drawer = document.getElementById(state.openDrawerId);
-    if (!drawer) return;
-    
-    const triggerEl = document.querySelector(`[data-drawer-target="${state.openDrawerId}"]`);
-    const options = triggerEl ? getDrawerOptions(triggerEl) : defaultOptions;
-    
-    // 立即更新 ARIA 属性和恢复焦点
-    drawer.setAttribute('aria-hidden', 'true');
-    if (restoreFocus && state.lastFocusedTrigger) {
-        state.lastFocusedTrigger.focus();
-    }
-
-    // 隐藏遮罩
-    mask.classList.remove('is-open');
-    
-    // 解锁body滚动
-    if (options.bodyLock) {
-        document.body.classList.remove('is-drawer-open');
-    }
-
-    // 移除 'is-open' 类，触发关闭动画
-    drawer.classList.remove('is-open');
-
-    state.openDrawerId = null;
-    state.lastFocusedTrigger = null;
-}
-
-// ---------------------------------------------------------------------------
-// 4. 事件监听器 (无变动)
-// ---------------------------------------------------------------------------
-function handleTriggerClick(event) {
-    const trigger = event.target.closest('[data-drawer-target]');
-    if (trigger) {
-        const drawerId = trigger.dataset.drawerTarget;
-        toggleDrawer(drawerId, trigger);
+function handleTriggerClick(e) {
+    if (e.currentTarget.tagName === 'A') e.preventDefault();
+    const targetId = e.currentTarget.dataset.drawerTarget;
+    const targetEl = document.getElementById(targetId);
+    if (targetEl && targetEl.__drawerInstance) {
+        targetEl.__drawerInstance.toggle(e.currentTarget);
     }
 }
 
-function handleMaskClick(event) {
-    if (event.target === mask) {
-        const triggerEl = document.querySelector(`[data-drawer-target="${state.openDrawerId}"]`);
-        const options = triggerEl ? getDrawerOptions(triggerEl) : defaultOptions;
-        if (!options.disableMask) {
-            closeDrawer();
-        }
-    }
-}
+// 导出 Drawer 类，允许高级用户手动实例化： const myDrawer = new Drawer('#my-id', { position: 'top' });
+export { Drawer };
 
-function handleEscKey(event) {
-    if (event.key === 'Escape' && state.openDrawerId) {
-        closeDrawer();
-    }
-}
-
-function handleCloseClick(event) {
-    const closeButton = event.target.closest('[data-drawer-close]');
-    if (closeButton) {
-        const drawer = closeButton.closest('.drawer');
-        if (drawer && drawer.id === state.openDrawerId) {
-            closeDrawer();
-        }
-    }
-}
-
-// ---------------------------------------------------------------------------
-// 5. 初始化函数 (更新类名)
-// ---------------------------------------------------------------------------
-export function initDrawers() {
-    console.log('Initializing drawers with JquanUIex (Optimized)...');
-    document.querySelectorAll('[id]').forEach(el => {
-        // 检查是否存在对应的触发按钮
-        const trigger = document.querySelector(`[data-drawer-target="${el.id}"]`);
-        if (trigger) {
-            const options = getDrawerOptions(trigger);
-            
-            // 1. 添加核心抽屉类，这是 CSS 的钩子
-            el.classList.add('drawer');
-            // 2. 将位置写入 data 属性，供 CSS 选择器使用
-            el.dataset.drawerPosition = options.position;
-            
-            // 3. 应用基础样式类
-            el.classList.add(
-                'fixed', 'top-0', 'h-full', 'w-80', 'bg-white', 'shadow-xl', 'z-50'
-            );
-            // 4. 初始 ARIA 状态
-            el.setAttribute('aria-hidden', 'true');
-        }
-    });
-    document.addEventListener('click', handleTriggerClick, true);
-    document.addEventListener('click', handleCloseClick, true);
-    
-    mask.addEventListener('click', handleMaskClick);
-    document.addEventListener('keydown', handleEscKey);
-    console.log('JquanUIex drawers (Optimized) initialized.');
-    requestAnimationFrame(() => {
-        document.body.classList.remove('is-drawer-ready');
-        document.body.classList.add('is-loaded');
-        console.log('Drawer transitions enabled.');
-    });
+// 默认初始化
+if (typeof window !== 'undefined') {
+    // 可选：文档加载完成后自动初始化
+    window.addEventListener('DOMContentLoaded', () => initDrawers());
 }

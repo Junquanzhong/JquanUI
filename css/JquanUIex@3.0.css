@@ -1685,80 +1685,77 @@ textarea:before {
 
 /* 抽屉组件的补充样式 (终极优化版) */
 
-/* 遮罩层样式 (无变动) */
-[data-drawer-mask] {
-  position: fixed;
-  inset: 0;
-  background-color: rgb(var(--black) / 50%);
-  z-index: 40;
-  opacity: 0;
-  visibility: hidden;
-  /* 过渡也加上类名限制 */
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+/* 1. 基础面板样式 */
+.drawer-panel {
+    position: fixed;
+    z-index: 9999; /* 确保层级够高 */
+    background-color: white;
+    transition-property: transform, opacity, visibility;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    will-change: transform;
+    /* 默认隐藏 */
+    visibility: hidden; 
 }
-
-[data-drawer-mask].is-open {
-  opacity: 1;
-  visibility: visible;
+/* 2. 显示状态 (配合 JS 的 aria-hidden 切换) */
+.drawer-panel[aria-hidden="false"] {
+    visibility: visible;
 }
-
-/* 页面加载时，先完全隐藏抽屉，防止闪烁 */
-.drawer {
-  visibility: hidden;
+/* 3. 方向定义 (配合 data-position) */
+/* Right */
+.drawer-panel[data-position="right"] {
+    top: 0; right: 0; bottom: 0;
+    width: 20rem; /* 默认宽度，可被 tailwind 类覆盖 */
+    transform: translateX(100%);
 }
-
-/* 抽屉的定位和基础样式 */
-.drawer {
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 20rem;
-  /* w-80 */
-  background-color: rgb(var(--white));
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  z-index: 50;
-
-  /* --- 核心优化：只在页面就绪后启用过渡 --- */
-  /* 默认没有 transition */
+.drawer-panel[data-position="right"][aria-hidden="false"] {
+    transform: translateX(0);
 }
-
-/* 当 body 上有 'is-loaded' 类时，才启用过渡 */
-body.is-loaded .drawer {
-  transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+/* Left */
+.drawer-panel[data-position="left"] {
+    top: 0; left: 0; bottom: 0;
+    width: 20rem;
+    transform: translateX(-100%);
 }
-
-
-/* --- 定义初始位置 --- */
-
-/* 默认右侧抽屉的初始位置 (屏幕外) */
-.drawer[data-drawer-position="right"] {
-  right: 0;
-  transform: translateX(110%);
-  visibility: visible;
-  /* 初始位置确定后，设为可见 */
+.drawer-panel[data-position="left"][aria-hidden="false"] {
+    transform: translateX(0);
 }
-
-/* 左侧抽屉的初始位置 (屏幕外) */
-.drawer[data-drawer-position="left"] {
-  left: 0;
-  transform: translateX(-110%);
-  visibility: visible;
-  /* 初始位置确定后，设为可见 */
+/* Top */
+.drawer-panel[data-position="top"] {
+    top: 0; left: 0; right: 0;
+    height: 16rem;
+    transform: translateY(-100%);
 }
-
-/* --- 打开状态 (JS 会添加 is-open 类) --- */
-
-.drawer.is-open {
-  transform: translateX(0);
+.drawer-panel[data-position="top"][aria-hidden="false"] {
+    transform: translateY(0);
 }
-
-/* 当抽屉打开时，禁用 body 滚动 */
-/* 这段代码很可能在你的自定义 CSS 文件中 */
-body.is-drawer-open {
-  overflow: hidden;
-  /* --- 这里是关键！ --- */
-  padding-right: 17px;
-  /* 或者其他像素值 */
+/* Bottom */
+.drawer-panel[data-position="bottom"] {
+    bottom: 0; left: 0; right: 0;
+    height: 20rem;
+    transform: translateY(100%);
+}
+.drawer-panel[data-position="bottom"][aria-hidden="false"] {
+    transform: translateY(0);
+}
+/* 4. 遮罩层样式 */
+.drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9998; /* 比 drawer-panel 低一层 */
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 300ms ease, visibility 300ms ease;
+}
+.drawer-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+/* 5. 锁定 Body 滚动 */
+body.drawer-open {
+    overflow: hidden !important;
 }
 
 
