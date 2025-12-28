@@ -1,181 +1,253 @@
-// js/i18n.mjs - v2.0.0
+// js/i18n.mjs - v3.0.2 (Debug & Path Fix)
 import { get, set, on } from "./localStorage.mjs";
 
-let translations = {};
-let currentLang = "en";
-let config = {};
-
-/**
- * 初始化 i18n
- * @param {Object} userConfig 配置对象
- * @param {string} userConfig.mode - 'json' (默认) 或 'tag'
- */
-export function initI18n(userConfig) {
-  config = {
-    storageKey: "language",
-    urlParamKey: "lg",
-    debug: false,
-    mode: "json", // 新增参数：默认使用 JSON 模式
-    languages: ["en", "zh"], // 默认语言列表
-    defaultLanguage: "en",
-    ...userConfig,
-  };
-  
-  const { languages, defaultLanguage, storageKey, urlParamKey } = config;
-
-  function determineLanguage() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlLang = urlParams.get(urlParamKey);
-    if (urlLang && languages.includes(urlLang)) {
-      if (config.debug) console.log(`[I18n Debug] Language from URL: ${urlLang}`);
-      set(storageKey, urlLang);
-      return urlLang;
-    }
-    const storedLang = get(storageKey);
-    if (storedLang && languages.includes(storedLang)) {
-      if (config.debug) console.log(`[I18n Debug] Language from storage: ${storedLang}`);
-      return storedLang;
-    }
-    const browserLang = navigator.language.split("-")[0];
-    if (languages.includes(browserLang)) {
-      if (config.debug) console.log(`[I18n Debug] Language from browser: ${browserLang}`);
-      return browserLang;
-    }
-    return defaultLanguage;
-  }
-
-  // 仅在 JSON 模式下加载文件
-  async function loadTranslations(lang) {
-    if (config.mode !== 'json') return; // TAG 模式不需要加载
+class I18n {
+  constructor() {
+    this.translations = {};
+    this.currentLang = "en";
+    this.isInitialized = false;
+    this.observer = null;
     
-    if (translations[lang]) return;
-    try {
-      const response = await fetch(`./locales/${lang}.json`);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      translations[lang] = await response.json();
-      if (config.debug) console.log(`[I18n Debug] Loaded translations for '${lang}'.`);
-    } catch (error) {
-      console.error(`[I18n Error] Could not load translations for '${lang}':`, error);
-      translations[lang] = {};
-    }
+    this.config = {
+      storageKey: "language",  // 存储语言的 localStorage 键名
+      urlParamKey: "lg",  // URL 参数键名，用于指定语言
+      debug: true, // 默认开启调试，方便排查
+      mode: "json",  // 翻译模式：json 或 tag
+      languages: ["en", "zh"],  // 支持的语言列表
+      defaultLanguage: "en",  // 默认语言
+      localesPath: "../locales",  // 翻译文件所在目录
+      autoObserve: true,  // 是否自动监听 localStorage 变化
+    };
+
+    this.t = this.t.bind(this);
+    this.setLanguage = this.setLanguage.bind(this);
   }
 
-  // 更新 DOM 的核心逻辑
-  function updateDOM(lang) {
-    // 1. 处理 Title
-    const titleEl = document.querySelector("title");
-    if (titleEl) {
-      // 尝试匹配 data-lang-zh 属性
-      const titleText = titleEl.getAttribute(`data-lang-${lang}`);
-      if (titleText) document.title = titleText;
+  async init(userConfig = {}) {
+    if (this.isInitialized) return;
+    this.config = { ...this.config, ...userConfig };
+    
+    const lang = this._determineLanguage();
+    
+    on(this.config.storageKey, (newLang) => {
+      if (newLang && newLang !== this.currentLang && this.config.languages.includes(newLang)) {
+        this.setLanguage(newLang, false, false);
+      }
+    });
+
+    if (this.config.autoObserve && typeof window !== 'undefined') {
+      this._startObserver();
     }
 
-    // 2. 根据模式分流
-    if (config.mode === 'json') {
-      // JSON 模式：查找 data-i18n-key 并替换文本
-      document.querySelectorAll("[data-i18n-key]").forEach((el) => {
-        const key = el.getAttribute("data-i18n-key");
-        if (key) el.textContent = t(key);
-      });
-    } else if (config.mode === 'tag') {
-      // TAG 模式：查找所有 data-lang 属性
-      // 逻辑：如果 data-lang 等于当前语言，显示；否则隐藏
-      document.querySelectorAll("[data-lang]").forEach((el) => {
-        const targetLang = el.getAttribute("data-lang");
-        if (targetLang === lang) {
-            // 移除 display: none，恢复默认显示方式 (block, inline, flex 等由 CSS 决定)
-            el.style.display = ""; 
-        } else {
-            el.style.display = "none";
-        }
-      });
-    }
+    await this.setLanguage(lang, true, true);
+    this.isInitialized = true;
+    this._log("Ready.");
   }
 
-  // 设置语言的主函数
-  async function setLanguageInternal(lang, saveToStorage = true, updateUrl = true) {
-    if (!languages.includes(lang)) {
-      console.error(`[I18n Error] Language "${lang}" is not supported.`);
+  t(key, variables = {}) {
+    if (this.config.mode === 'tag') return key;
+    const lang = this.currentLang;
+    
+    // 安全获取翻译
+    let translation = this._getNestedValue(this.translations[lang], key);
+    
+    // Fallback 到默认语言
+    if (!translation && lang !== this.config.defaultLanguage) {
+      translation = this._getNestedValue(this.translations[this.config.defaultLanguage], key);
+    }
+    
+    // 如果找不到翻译，返回 Key 本身
+    if (!translation) {
+        // 可选：开发模式下标记缺失的 Key
+        // if (this.config.debug) console.warn(`[I18n] Missing key: ${key}`);
+        return key;
+    }
+
+    // 复数处理
+    if (typeof translation === "object" && variables.count !== undefined) {
+      const rule = new Intl.PluralRules(lang).select(variables.count);
+      translation = translation[rule] || translation.other || key;
+    }
+
+    // 如果仍是对象（如父节点），返回 Key
+    if (typeof translation === "object") return key;
+
+    // 变量插值
+    return String(translation).replace(/{{(\w+)}}/g, (_, varName) => {
+      const value = variables[varName];
+      return value !== undefined ? this._escapeHtml(String(value)) : `{{${varName}}}`;
+    });
+  }
+
+  async setLanguage(lang, saveToStorage = true, updateUrl = true) {
+    if (!this.config.languages.includes(lang)) {
+      console.error(`[I18n] Not supported: ${lang}`);
       return;
     }
 
-    document.documentElement.lang = lang;
-
-    // 可以在这里处理 active 类，但为了解耦，建议在 UI 组件(app.js)中处理视觉反馈
-    // 仅保留最基础的 active 标记
-    document.querySelectorAll('[id^="lang-"]').forEach((btn) => btn.classList.remove("active"));
-    const activeBtn = document.getElementById(`lang-${lang}`);
-    if (activeBtn) activeBtn.classList.add("active");
-
-    // 异步加载翻译 (如果是 TAG 模式，这里会直接返回)
-    await loadTranslations(lang);
-    
-    // 更新页面内容
-    updateDOM(lang);
-
-    // 持久化与 URL 更新
-    if (saveToStorage) set(storageKey, lang);
-    if (updateUrl) {
-      const url = new URL(window.location);
-      if (url.searchParams.get(urlParamKey) !== lang) {
-        url.searchParams.set(urlParamKey, lang);
-        window.history.replaceState({}, "", url);
+    if (this.config.mode === 'json') {
+      await this._loadTranslations(lang);
+      // 预加载默认语言作为备用
+      if (lang !== this.config.defaultLanguage) {
+        await this._loadTranslations(this.config.defaultLanguage);
       }
     }
 
-    currentLang = lang;
-    
-    // 触发自定义事件，供外部监听
-    window.dispatchEvent(
-      new CustomEvent("languageChanged", { detail: { language: lang } })
-    );
-    
-    if (config.debug) console.log(`[I18n Debug] Language set to "${lang}" (Mode: ${config.mode}).`);
-  }
+    this.currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = this._isRtl(lang) ? "rtl" : "ltr";
 
-  // 监听 Storage 变化（多标签页同步）
-  on(storageKey, (newLang) => {
-    if (newLang && newLang !== currentLang) {
-      setLanguageInternal(newLang, false, false);
+    this._updateActiveState(lang);
+    
+    // 强制 UI 更新
+    this.updateDOM(); 
+
+    if (saveToStorage) set(this.config.storageKey, lang);
+    if (updateUrl) {
+      const url = new URL(window.location);
+      if (url.searchParams.get(this.config.urlParamKey) !== lang) {
+        url.searchParams.set(this.config.urlParamKey, lang);
+        window.history.replaceState({}, "", url);
+      }
     }
-  });
-
-  // 启动
-  setLanguageInternal(determineLanguage());
-  
-  // 导出 setLanguage 给外部使用
-  // 注意：这里将内部函数赋值给外部可见的 export 变量是不行的，
-  // 我们需要把 setLanguageInternal 赋给一个模块级变量或者直接作为 export 导出。
-  // 为了不破坏下面的 export 结构，我们在 init 内部把 setLanguageInternal 挂载到 window 或者通过闭包返回是不够的。
-  // 最好的方式是重构导出。但在不大幅修改结构的情况下，我将 setLanguageInternal 赋值给外部导出的引用是行不通的（ESM特性）。
-  // **修正方案**：将 setLanguageInternal 提升到 initI18n 外部，或者在 initI18n 内部修改一个模块级的 export 变量（也不行）。
-  // **最佳修正**：使用一个模块作用域的引用，如下所示：
-  _globalSetLanguage = setLanguageInternal;
-}
-
-// 模块级变量，用于中转 setLanguage
-let _globalSetLanguage = async () => { console.warn("I18n not initialized"); };
-
-// 导出供外部调用的 setLanguage
-export async function setLanguage(lang, saveToStorage = true, updateUrl = true) {
-    return _globalSetLanguage(lang, saveToStorage, updateUrl);
-}
-
-// JSON 模式下的翻译函数
-export function t(key, variables = {}) {
-  // Tag 模式下调用 t() 可能没有意义，但也允许返回 key 防止报错
-  if (config.mode === 'tag') return key;
-
-  const lang = document.documentElement.lang || currentLang;
-  let translation =
-    translations[lang]?.[key] ||
-    translations[config.defaultLanguage]?.[key] ||
-    key;
-  if (typeof translation === "object" && variables.count !== undefined) {
-    const rule = new Intl.PluralRules(lang).select(variables.count);
-    translation = translation[rule] || translation.other || key;
+    
+    window.dispatchEvent(new CustomEvent("languageChanged", { detail: { language: lang } }));
   }
-  return translation.replace(/{{(\w+)}}/g, (match, varName) =>
-    variables[varName] !== undefined ? variables[varName] : match
-  );
+
+  updateDOM(rootElement = document) {
+    // 1. 暂停 Observer 防止死循环
+    if (this.observer) this.observer.disconnect();
+
+    try {
+        const titleEl = document.querySelector("title");
+        if (titleEl) {
+            const titleText = titleEl.getAttribute(`data-lang-${this.currentLang}`);
+            if (titleText) document.title = titleText;
+        }
+
+        if (this.config.mode === 'json') {
+            this._updateJsonMode(rootElement);
+        } else {
+            this._updateTagMode(rootElement);
+        }
+    } catch (e) {
+        console.error("[I18n] Update DOM failed:", e);
+    }
+
+    // 2. 恢复 Observer
+    if (this.config.autoObserve && this.observer) {
+        this.observer.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  _updateJsonMode(root) {
+    // 文本翻译
+    root.querySelectorAll("[data-i18n-key]").forEach(el => {
+      const key = el.getAttribute("data-i18n-key");
+      const paramsRaw = el.getAttribute("data-i18n-params");
+      let params = {};
+      try { if (paramsRaw) params = JSON.parse(paramsRaw.replace(/'/g, '"')); } catch(e) {}
+      
+      const newText = this.t(key, params);
+      // 只在内容变化时更新，避免无意义的 DOM 操作
+      if (el.textContent !== newText) {
+          el.textContent = newText;
+      }
+    });
+
+    // 属性翻译
+    root.querySelectorAll("[data-i18n-attr]").forEach(el => {
+      const config = el.getAttribute("data-i18n-attr");
+      config.split(';').forEach(pair => {
+        const [attr, key] = pair.split(':').map(s => s.trim());
+        if (attr && key) {
+          const newVal = this.t(key);
+          if (el.getAttribute(attr) !== newVal) {
+              el.setAttribute(attr, newVal);
+          }
+        }
+      });
+    });
+  }
+
+  _updateTagMode(root) {
+    root.querySelectorAll("[data-lang]").forEach(el => {
+      el.style.display = el.getAttribute("data-lang") === this.currentLang ? "" : "none";
+    });
+  }
+
+  async _loadTranslations(lang) {
+    // 如果已经加载过且不为空，直接返回
+    if (this.translations[lang] && Object.keys(this.translations[lang]).length > 0) return;
+
+    try {
+      // 路径处理：移除末尾斜杠，确保路径拼接正确
+      const basePath = this.config.localesPath.replace(/\/+$/, ''); 
+      const url = `${basePath}/${lang}.json`;
+      
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Status ${res.status}`);
+      
+      this.translations[lang] = await res.json();
+      this._log(`Loaded: ${lang}`);
+    } catch (error) {
+      console.error(`[I18n Error] Failed to load "${lang}" from "${this.config.localesPath}". check your "localesPath" config.`, error);
+      // 加载失败时初始化为空对象，防止报错
+      this.translations[lang] = {}; 
+    }
+  }
+
+  _getNestedValue(obj, path) {
+    if (!obj || !path) return undefined;
+    return path.split('.').reduce((acc, part) => (acc ? acc[part] : undefined), obj);
+  }
+
+  _determineLanguage() {
+    const { urlParamKey, storageKey, languages, defaultLanguage } = this.config;
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get(urlParamKey);
+    if (urlLang && languages.includes(urlLang)) return urlLang;
+    const storedLang = get(storageKey);
+    if (storedLang && languages.includes(storedLang)) return storedLang;
+    const browserLang = navigator.language.split("-")[0];
+    if (languages.includes(browserLang)) return browserLang;
+    return defaultLanguage;
+  }
+
+  _updateActiveState(lang) {
+    document.querySelectorAll('[data-i18n-switcher]').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+    });
+    const target = document.querySelector(`[data-i18n-switcher="${lang}"]`);
+    if (target) {
+        target.classList.add('active');
+        target.setAttribute('aria-pressed', 'true');
+    }
+  }
+
+  _startObserver() {
+    this.observer = new MutationObserver((mutations) => {
+      let shouldUpdate = false;
+      mutations.forEach(m => {
+        if (m.type === 'childList' && m.addedNodes.length > 0) shouldUpdate = true;
+      });
+      if (shouldUpdate) this.updateDOM();
+    });
+    this.observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  _isRtl(lang) { return ["ar", "he", "fa", "ur"].includes(lang); }
+  
+  _escapeHtml(str) {
+    if (typeof str !== 'string') return str;
+    return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+  }
+  
+  _log(...args) { if (this.config.debug) console.log("[I18n]", ...args); }
 }
+
+export const i18n = new I18n();
+export const initI18n = i18n.init.bind(i18n);
+export const setLanguage = i18n.setLanguage.bind(i18n);
+export const t = i18n.t;

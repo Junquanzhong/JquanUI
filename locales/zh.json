@@ -1,0 +1,30 @@
+{
+  "app": {
+    "title": "终极 I18n 演示",
+    "subtitle": "生产级国际化解决方案"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于我们"
+  },
+  "form": {
+    "title": "属性与表单",
+    "label": "用户名：",
+    "placeholder": "请输入您的名字...",
+    "submit": "登录"
+  },
+  "msg": {
+    "title": "变量与复数形式",
+    "welcome": "欢迎回来，{{name}}！",
+    "apples": {
+      "one": "你有一个苹果。",
+      "other": "你有 {{count}} 个苹果。"
+    }
+  },
+  "dynamic": {
+    "title": "实时 DOM 观察",
+    "desc": "通过 JavaScript 添加新元素，实时观察翻译效果。",
+    "btn": "添加新元素",
+    "added": "我是通过 JavaScript 动态添加的！"
+  }
+}

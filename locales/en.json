@@ -1,0 +1,30 @@
+{
+  "app": {
+    "title": "Ultimate I18n Demo",
+    "subtitle": "Production grade internationalization"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About"
+  },
+  "form": {
+    "title": "Attributes & Forms",
+    "label": "Username:",
+    "placeholder": "Enter your name...",
+    "submit": "Sign In"
+  },
+  "msg": {
+    "title": "Variables and Pluralization",
+    "welcome": "Welcome back, {{name}}!",
+    "apples": {
+      "one": "You have 1 apple.",
+      "other": "You have {{count}} apples."
+    }
+  },
+  "dynamic": {
+    "title": "Live DOM Observation",
+    "desc": "Elements added via JavaScript are translated instantly.",
+    "btn": "Add New Element",
+    "added": "I was added by JavaScript!"
+  }
+}
