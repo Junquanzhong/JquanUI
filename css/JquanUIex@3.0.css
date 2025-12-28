@@ -3908,7 +3908,7 @@ input[type="year"]::-webkit-datetime-edit-text {
 }
 /* 赛博天鹅绒 */
 .bg-gradient-cybervelvet{
-  background-image: linear-gradient(45deg, rgba(92, 10, 92, 0.8) 25%, transparent), repeating-radial-gradient(ellipse at 0% 100%, var(--radial-2), rgba(184, 20, 102, 0.25) 50px), repeating-radial-gradient(ellipse at 100% 0%, var(--radial-1), rgba(184, 20, 102, 0.25) 50px) purple;
+  background: linear-gradient(45deg, rgba(92, 10, 92, 0.8) 25%, transparent), repeating-radial-gradient(ellipse at 0% 100%, hsl(160 60% 40% / 0.5), rgba(184, 20, 102, 0.25) 50px), repeating-radial-gradient(ellipse at 100% 0%, hsl(280 60% 80% / 0.5), rgba(184, 20, 102, 0.25) 50px) purple;
 }
 /* 皇家海绿 */
 .bg-img-royalheath{
