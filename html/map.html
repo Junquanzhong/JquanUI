@@ -142,29 +142,33 @@
                         </tbody>
                     </table>
                     <div>
-                        <pre class="border border-strong"><code class="code-block" data-language="javascript" data-show-lines="true">import Map from '../js/modules/map.mjs';
-Map.configure({
-    key: 'Jn1kjKMWhayuh8IE56qNGz9cY0PmJMoi', 
-    
-});
-// 创建地图
-const mapInstance = new Map({
-    container: 'map-container', // DOM 元素 ID
-    center: [121.550265,29.873427],
-    zoom: 16,
-    source: 'baidu', // or 'gaode'
-    language: 'en', // ← 这里可单独指定 语言无效，无需配置
-    markers: [{ 
-        position: [121.550265,29.873427], 
-        title: '月湖公园', 
-        content: '宁波市海曙区浙江省宁波市海曙区大书院巷与偃月街交叉路口往东约100米' ,
-        autoOpen: true // 是否自动打开信息窗口
-    }]
-});
-mapInstance.init().then(controller => {
-    console.log('地图加载成功');
-    // controller.setCenter(...);
-});</code></pre>
+                        <pre class="border border-strong">
+                            <code class="code-block" data-language="javascript" data-show-lines="true">
+                                import Map from '../js/modules/map.mjs';
+                                Map.configure({
+                                    key: 'Jn1kjKMWhayuh8IE56qNGz9cY0PmJMoi', 
+                                    
+                                });
+                                // 创建地图
+                                const mapInstance = new Map({
+                                    container: 'map-container', // DOM 元素 ID
+                                    center: [121.550265,29.873427],
+                                    zoom: 16,
+                                    source: 'baidu', // or 'gaode' or 'google'
+                                    language: 'en', // ← 这里可单独指定 语言无效，无需配置
+                                    markers: [{ 
+                                        position: [121.550265,29.873427], 
+                                        title: '月湖公园', 
+                                        content: '宁波市海曙区浙江省宁波市海曙区大书院巷与偃月街交叉路口往东约100米' ,
+                                        autoOpen: true // 是否自动打开信息窗口
+                                    }]
+                                });
+                                mapInstance.init().then(controller => {
+                                    console.log('地图加载成功');
+                                    // controller.setCenter(...);
+                                });
+                            </code>
+                        </pre>
                     </div>
                 </div>
 
@@ -172,15 +176,14 @@ mapInstance.init().then(controller => {
         </div>
         <script type="module">
             import { initCodeHighlighter } from '../js/modules/code-block.mjs';
-
+            import { init } from '../js/modules/jit-engine.mjs';
+            // 初始化 JIT 引擎
+            init({});
             // 调用初始化函数
             // 这里可以覆盖默认配置
             initCodeHighlighter({
-                copyButtonText: 'Copy',
-                copiedButtonText: 'Copied!',
-                copiedTextDuration: 3000, // 3秒
-                showLinesByDefault: false // 不显示行号
-                // showLinesByDefault 保持 true，因为我们大部分都需要
+                showLineNumbers: true, // 显示行号
+                langLabel: false,  // 是否显示语言标签
             });
         </script>
     </div>
