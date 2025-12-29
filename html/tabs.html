@@ -143,11 +143,8 @@
                         });
                         // 初始化代码高亮
                         initCodeHighlighter({
-                            copyButtonText: 'Copy',
-                            copiedButtonText: 'Copied!',
-                            copiedTextDuration: 3000, // 3秒
-                            showLinesByDefault: true // 不显示行号
-                            // showLinesByDefault 保持 true，因为我们大部分都需要
+                            showLineNumbers: true, // 显示行号
+                            langLabel: false,  // 是否显示语言标签
                         });
                     </script>
                 </div>

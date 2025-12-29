@@ -1,239 +1,240 @@
 /**
- * JquanUI JIT Engine (ES Module)
- * 一个轻量级、运行时、基于属性映射的原子化 CSS 引擎。
+ * JquanUI JIT Engine (ES Module) - CAN Stable Core
  * 
- * @author Gemini-3-Pro
- * @version 1.0.0
+ * 修复了正则贪婪匹配导致的属性截断问题。
+ * 完美支持 URL、连字符属性 (min-w) 及任意变体。
+ * 
+ * @author Gemini-3-Pro & CAN
+ * @version 3.2.1 (Smart Text Fix)
  * @license MIT
  */
 
-// 默认属性映射表 (Registry)
-const DEFAULT_MAP = {
-    // --- 尺寸 (Sizing) ---
-    'w': 'width',
-    'h': 'height',
-    'min-w': 'min-width',
-    'max-w': 'max-width',
-    'min-h': 'min-height',
-    'max-h': 'max-height',
+// ----------------------------------------------------------------------
+// 1. 配置
+// ----------------------------------------------------------------------
 
-    // --- 间距 (Spacing) ---
-    'm': 'margin',
-    'mt': 'margin-top',
-    'mb': 'margin-bottom',
-    'ml': 'margin-left',
-    'mr': 'margin-right',
-    'mx': ['margin-left', 'margin-right'],
-    'my': ['margin-top', 'margin-bottom'],
-    'p': 'padding',
-    'pt': 'padding-top',
-    'pb': 'padding-bottom',
-    'pl': 'padding-left',
-    'pr': 'padding-right',
-    'px': ['padding-left', 'padding-right'],
-    'py': ['padding-top', 'padding-bottom'],
-
-    // --- 排版 (Typography) ---
-    'fs': 'font-size',        // font-size
-    'fw': 'font-weight',      // font-weight
-    'lh': 'line-height',      // line-height
-    'ls': 'letter-spacing',   // letter-spacing
-    'c': 'color',             // color
-    'text': 'color',          // 习惯兼容
-    'align': 'text-align',
-    'decoration': 'text-decoration',
-
-    // --- 背景 (Background) ---
-    'bg': 'background',       // 可以是颜色，也可以是 image/gradient
-    'bg-c': 'background-color',
-    'bg-img': 'background-image',
-    'bg-pos': 'background-position',
-    'bg-size': 'background-size',
-
-    // --- 边框 (Borders) ---
-    'border': 'border-width',
-    'border-c': 'border-color',
-    'border-s': 'border-style',
-    'border-t': 'border-top-width',
-    'border-b': 'border-bottom-width',
-    'border-l': 'border-left-width',
-    'border-r': 'border-right-width',
-    'rounded': 'border-radius',
-    'rounded-t': ['border-top-left-radius', 'border-top-right-radius'],
-    'rounded-b': ['border-bottom-left-radius', 'border-bottom-right-radius'],
-    'rounded-l': ['border-top-left-radius', 'border-bottom-left-radius'],
-    'rounded-r': ['border-top-right-radius', 'border-bottom-right-radius'],
-
-    // --- 布局 (Layout - Flex/Grid) ---
-    'flex': 'flex',
-    'grow': 'flex-grow',
-    'shrink': 'flex-shrink',
-    'order': 'order',
-    'grid-cols': 'grid-template-columns',
-    'grid-rows': 'grid-template-rows',
-    'gap': 'gap',
-    'gap-x': 'column-gap',
-    'gap-y': 'row-gap',
-    'justify': 'justify-content',
-    'items': 'align-items',
-    'self': 'align-self',
-
-    // --- 定位 (Positioning) ---
-    'inset': ['top', 'right', 'bottom', 'left'],
-    'top': 'top',
-    'right': 'right',
-    'bottom': 'bottom',
-    'left': 'left',
-    'z': 'z-index',
-
-    // --- 视觉效果 (Effects) ---
-    'opacity': 'opacity',
-    'shadow': 'box-shadow',
-    'outline': 'outline',
-    'outline-o': 'outline-offset',
-    
-    // --- 变换 (Transforms) ---
-    // 注意：现代浏览器支持独立的 translate/rotate/scale 属性，无需写在 transform 字符串里
-    'rotate': 'rotate',
-    'scale': 'scale',
-    'translate-x': 'translate', // 简单映射，虽然 translate 属性通常接受两个值，但 JIT 直接填入值
-    'translate-y': 'translate', 
-    
-    // --- 滤镜 (Filters) ---
-    'filter': 'filter',
-    'blur': 'filter',         // 用户需写 blur-[blur(5px)]
-    'backdrop': 'backdrop-filter',
-    
-    // --- 其他 ---
-    'cursor': 'cursor',
-    'overflow': 'overflow',
-    'variable': '--*'         // 特殊处理逻辑
+const BREAKPOINTS = {
+    'sm': '640px', 'md': '768px', 'lg': '1024px', 'xl': '1280px', '2xl': '1536px',
 };
 
-// 正则：匹配 (!)?prefix-[value]
-// 捕获组 1: (!) 可选，表示 !important
-// 捕获组 2: 前缀
-// 捕获组 3: 值
-const PARSE_REGEX = /^(!?)([a-z0-9-]+)-\[(.+)\]$/;
+const PSEUDO_MAP = {
+    'hover': ':hover', 'focus': ':focus', 'active': ':active', 
+    'visited': ':visited', 'disabled': ':disabled', 
+    'first': ':first-child', 'last': ':last-child', 
+    'odd': ':nth-child(odd)', 'even': ':nth-child(even)',
+    'before': '::before', 'after': '::after', 'placeholder': '::placeholder',
+};
 
-// 内部状态
-let _observer = null;
-let _config = { ...DEFAULT_MAP };
+// 基础映射表
+const PROP_MAP = {
+    'w': 'width', 'h': 'height', 'min-w': 'min-width', 'max-w': 'max-width', 'min-h': 'min-height', 'max-h': 'max-height',
+    'm': 'margin', 'mt': 'margin-top', 'mb': 'margin-bottom', 'ml': 'margin-left', 'mr': 'margin-right',
+    'mx': ['margin-left', 'margin-right'], 'my': ['margin-top', 'margin-bottom'],
+    'p': 'padding', 'pt': 'padding-top', 'pb': 'padding-bottom', 'pl': 'padding-left', 'pr': 'padding-right',
+    'px': ['padding-left', 'padding-right'], 'py': ['padding-top', 'padding-bottom'],
+    'fs': 'font-size', 'fw': 'font-weight', 'lh': 'line-height', 'ls': 'letter-spacing',
+    'c': 'color', 
+    // 注意：'text' 属性现在由 compileClass 内部的智能逻辑处理，此处仅作 align 别名保留
+    'align': 'text-align', 'decoration': 'text-decoration',
+    'bg-c': 'background-color', 'bg-img': 'background-image',
+    'border': 'border-width', 'border-c': 'border-color', 'border-s': 'border-style',
+    'rounded': 'border-radius', 
+    'rounded-t': ['border-top-left-radius', 'border-top-right-radius'],
+    'rounded-b': ['border-bottom-left-radius', 'border-bottom-right-radius'],
+    'd': 'display', 'flex': 'flex', 'grow': 'flex-grow', 'shrink': 'flex-shrink', 'order': 'order',
+    'grid-cols': 'grid-template-columns', 'gap': 'gap', 'justify': 'justify-content', 'items': 'align-items',
+    'inset': ['top', 'right', 'bottom', 'left'], 'top': 'top', 'right': 'right', 'bottom': 'bottom', 'left': 'left',
+    'pos': 'position', 'z': 'z-index',
+    'opacity': 'opacity', 'shadow': 'box-shadow', 'outline': 'outline',
+    'cursor': 'cursor', 'overflow': 'overflow', 'filter': 'filter',
+    'transition': 'transition', 'transform': 'transform'
+};
 
-/**
- * 解析单个元素的所有类名
- * @param {HTMLElement} el 
- */
-function processElement(el) {
-    // 性能优化：快速检查是否可能包含 JIT 类
-    if (!el.className.includes('-[') && !el.className.includes('!')) return;
+// ----------------------------------------------------------------------
+// 2. 核心正则 (The Fix)
+// ----------------------------------------------------------------------
 
-    el.classList.forEach(cls => {
-        try {
-            const match = cls.match(PARSE_REGEX);
-            if (!match) return;
+// 匹配: prefix:prefix:prop-[value]
+const PARSE_REGEX = /^((?:[^:]+:)*)(!?)([a-z0-9-]+)-\[(.+)\]$/;
 
-            const isImportant = match[1] === '!';
-            const prefix = match[2];
-            let rawValue = match[3];
+// ----------------------------------------------------------------------
+// 3. 编译逻辑
+// ----------------------------------------------------------------------
 
-            // 1. 下划线处理：将 _ 替换为空格 (Tailwind 习惯)
-            // 排除 url() 内部的下划线，这里做简单替换，复杂情况暂不考虑
-            const value = rawValue.replace(/_/g, ' ');
+const _generatedClasses = new Set();
+const _parseCache = new Map();
+let _styleSheet = null;
 
-            // 2. 查找映射
-            if (_config.hasOwnProperty(prefix)) {
-                const propOrProps = _config[prefix];
-                const priority = isImportant ? 'important' : '';
-
-                if (Array.isArray(propOrProps)) {
-                    // 一对多映射 (如 mx -> margin-left, margin-right)
-                    propOrProps.forEach(p => {
-                        el.style.setProperty(p, value, priority);
-                    });
-                } else {
-                    // 一对一映射
-                    el.style.setProperty(propOrProps, value, priority);
-                }
-            } else if (prefix.startsWith('--')) {
-                // 3. 支持 CSS 变量直接赋值: --my-var-[#fff]
-                // 这允许用户定义任意 CSS 变量
-                el.style.setProperty(prefix, value, isImportant ? 'important' : '');
-            }
-
-        } catch (e) {
-            console.warn(`[JquanUI-JIT] Error parsing class "${cls}":`, e);
-        }
-    });
+function getStyleSheet() {
+    if (_styleSheet) return _styleSheet;
+    const styleEl = document.createElement('style');
+    styleEl.id = 'jquan-jit-v3-2-1';
+    document.head.appendChild(styleEl);
+    _styleSheet = styleEl.sheet;
+    return _styleSheet;
 }
 
-/**
- * 全局扫描并应用样式
- */
-function runParser() {
-    // 性能优化：使用 QuerySelector 缩小范围
-    const elements = document.querySelectorAll('[class*="-["]');
-    elements.forEach(processElement);
-}
+function compileClass(fullClass) {
+    if (_generatedClasses.has(fullClass) || _parseCache.has(fullClass)) return;
+    
+    // 基础过滤：必须包含 -[ 且不只是 !
+    if (fullClass.indexOf('-[') === -1) {
+        _parseCache.set(fullClass, false);
+        return;
+    }
 
-/**
- * 初始化引擎
- * @param {Object} customMap - 可选，扩展默认映射表
- */
-export function init(customMap = {}) {
-    // 合并配置
-    _config = { ..._config, ...customMap };
-
-    // 初次运行
-    runParser();
-
-    // 如果已经有观察者，先断开
-    if (_observer) _observer.disconnect();
-
-    // 创建新的观察者
-    _observer = new MutationObserver((mutations) => {
-        let shouldUpdate = false;
+    try {
+        const match = fullClass.match(PARSE_REGEX);
         
-        // 快速过滤
-        for (const m of mutations) {
-            if (m.type === 'childList') {
-                shouldUpdate = true;
-                break;
-            } else if (m.type === 'attributes' && m.attributeName === 'class') {
-                shouldUpdate = true;
-                break; 
+        if (!match) {
+            _parseCache.set(fullClass, false);
+            return;
+        }
+
+        const prefixChain = match[1]; // 如 "md:hover:"
+        const isImportant = match[2] === '!';
+        const propKey = match[3];     // 如 "bg", "text", "min-w"
+        let propValue = match[4];     // 如 "center", "#fff", "url(...)"
+
+        // 1. 值处理: 只有非 url 才替换下划线
+        if (!propValue.startsWith('url(')) {
+            propValue = propValue.replace(/_/g, ' ');
+        }
+
+        // 2. 属性映射 (Property Mapping)
+        let cssProps = [];
+
+        // === 智能属性处理 ===
+        if (propKey === 'bg') {
+            // Smart BG
+            if (propValue.startsWith('url(') || propValue.includes('gradient(')) {
+                cssProps = ['background-image'];
+            } else if (/^(#|rgb|hsl|[a-z]+$)/.test(propValue)) {
+                cssProps = ['background-color'];
+            } else {
+                cssProps = ['background'];
+            }
+        } 
+        else if (propKey === 'text') {
+            // Smart Text (Fix for .text-[center])
+            if (/^(center|left|right|justify|start|end)$/.test(propValue)) {
+                cssProps = ['text-align'];
+            } else if (/^(\d+(px|rem|em|%)|calc|var)/.test(propValue)) {
+                cssProps = ['font-size']; // 允许 text-[16px]
+            } else {
+                cssProps = ['color']; // 默认 text-[#333]
+            }
+        }
+        else if (PROP_MAP[propKey]) {
+            // Standard Map
+            cssProps = Array.isArray(PROP_MAP[propKey]) ? PROP_MAP[propKey] : [PROP_MAP[propKey]];
+        } 
+        else if (propKey.startsWith('--')) {
+            // CSS Variables
+            cssProps = [propKey];
+        } 
+        else {
+            // Unknown Property
+            _parseCache.set(fullClass, false);
+            return;
+        }
+
+        // 3. 构建 CSS
+        const priority = isImportant ? ' !important' : '';
+        const declarations = cssProps.map(p => `${p}: ${propValue}${priority};`).join(' ');
+
+        // 4. 处理选择器 (Prefixes)
+        let mediaQuery = null;
+        let pseudoSelector = '';
+        let parentSelector = '';
+
+        if (prefixChain) {
+            const parts = prefixChain.slice(0, -1).split(':'); // 去掉末尾冒号
+            for (const part of parts) {
+                if (BREAKPOINTS[part]) {
+                    mediaQuery = `@media (min-width: ${BREAKPOINTS[part]})`;
+                } else if (PSEUDO_MAP[part]) {
+                    pseudoSelector += PSEUDO_MAP[part];
+                } else if (part.startsWith('[') && part.endsWith(']')) {
+                    // 任意变体 [&_img]
+                    const raw = part.slice(1, -1).replace(/_/g, ' ');
+                    parentSelector = raw.includes('&') ? raw : `& ${raw}`;
+                } else if (part === 'dark') {
+                    parentSelector = `.dark &`;
+                }
             }
         }
 
-        if (shouldUpdate) {
-            // 在微任务中运行，或使用简单的防抖，这里直接运行保证响应速度
-            // 对于极大页面，建议加 requestAnimationFrame
-            runParser(); 
+        // 5. 组合最终规则
+        const escapedClass = `.${CSS.escape(fullClass)}`;
+        let finalSelector = escapedClass;
+
+        if (parentSelector) {
+            finalSelector = parentSelector.replace(/&/g, escapedClass);
         }
-    });
+        finalSelector += pseudoSelector;
 
-    _observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['class']
-    });
+        let cssRule = `${finalSelector} { ${declarations} }`;
+        if (mediaQuery) {
+            cssRule = `${mediaQuery} { ${cssRule} }`;
+        }
 
-    console.log('%c JquanUI JIT Engine v1.0 Started ', 'background: #222; color: #bada55');
+        const sheet = getStyleSheet();
+        sheet.insertRule(cssRule, sheet.cssRules.length);
+        _generatedClasses.add(fullClass);
+
+    } catch (e) {
+        console.warn(`[JquanUI] Error: ${fullClass}`, e);
+        _parseCache.set(fullClass, false);
+    }
 }
 
-/**
- * 手动触发更新（用于极特殊情况下的动态内容）
- */
-export function refresh() {
-    runParser();
+// ----------------------------------------------------------------------
+// 4. 扫描器
+// ----------------------------------------------------------------------
+
+function scan() {
+    const elements = document.querySelectorAll('*[class]');
+    for (let i = 0; i < elements.length; i++) {
+        const classes = elements[i].classList;
+        for (let j = 0; j < classes.length; j++) {
+            const cls = classes[j];
+            // 只处理包含 -[ 的类名
+            if (cls.indexOf('-[') > 0) { 
+                compileClass(cls);
+            }
+        }
+    }
 }
 
-/**
- * 自动启动 (可选)
- * 如果检测到 script 标签上有 data-auto-init 属性
- */
-if (typeof document !== 'undefined') {
-    const currentScript = document.currentScript; // ES Module 中通常为 null，但为了兼容性保留
-    // 在 Module 环境下，更推荐显式调用 init()
+// ----------------------------------------------------------------------
+// 5. 初始化
+// ----------------------------------------------------------------------
+
+let _observer = null;
+
+export function init(customMap = {}) {
+    Object.assign(PROP_MAP, customMap);
+    scan();
+
+    if (_observer) _observer.disconnect();
+    _observer = new MutationObserver((mutations) => {
+        let shouldScan = false;
+        for (const m of mutations) {
+            if ((m.type === 'childList' && m.addedNodes.length) || 
+                (m.type === 'attributes' && m.attributeName === 'class')) {
+                shouldScan = true; break;
+            }
+        }
+        if (shouldScan) scan();
+    });
+
+    _observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+    console.log('%c JquanUI JIT v3.2.1 (Fixed) ', 'background: #0ea5e9; color: #fff; padding: 2px 5px;');
+}
+
+export function refresh() { scan(); }
+
+if (typeof document !== 'undefined' && document.currentScript && document.currentScript.hasAttribute('data-auto-init')) {
+    init();
 }

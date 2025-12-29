@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>MJS</a></li>
+            <li class="active">JIT 引擎</li>
+        </ul>
+        <div class="container py-3">
+            <!-- 1. 顶部 Hero 区域 -->
+            <div class="bg-[linear-gradient(135deg,_#1e293b_0%,_#0f172a_100%)] c-[#fff] pb-[80px] pt-[60px] px-[20px] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] relative overflow-[hidden]">
+                <!-- 装饰性背景球 -->
+                <div
+                    class="pos-[absolute] top-[-100px] right-[-100px] w-[400px] h-[400px] rounded-[50%] bg-[radial-gradient(circle,_rgba(59,130,246,0.2),_transparent)] filter-[blur(60px)] z-[0]">
+                </div>
+
+                <div class="max-w-[1000px] mx-[auto] pos-[relative] z-[1] text-[center]">
+                    <div class="d-[inline-block] px-[12px] py-[4px] rounded-[20px] bg-[rgba(255,255,255,0.1)] border-[1px] border-c-[rgba(255,255,255,0.2)] fs-[0.85rem] fw-[600] ls-[1px] mb-[20px] c-[#94a3b8]">
+                        CORE VERSION 3.2.1
+                    </div>
+                    <h1
+                        class="fs-[3rem] md:fs-[4rem] fw-[800] lh-[1.1] mb-[20px] text-shadow-[0_4px_10px_rgba(0,0,0,0.3)]">
+                        JquanUI <span class="text-[#38bdf8]">JIT Engine</span>
+                    </h1>
+                    <p class="fs-[1.2rem] c-[#94a3b8] max-w-[600px] mx-[auto] lh-[1.6] fw-[300]">
+                        极速、轻量、无依赖的原子化 CSS 引擎。<br>
+                        完美修复正则贪婪匹配，支持任意连字符属性与复杂值。
+                    </p>
+
+                    <div class="mt-[40px] d-[flex] justify-[center] gap-[15px]">
+                        <a href="#demo"
+                            class="px-[24px] py-[12px] bg-[#38bdf8] text-[#0f172a] fw-[700] rounded-[6px] decoration-[none] hover:bg-[#7dd3fc] transition-[all_0.2s] shadow-[0_4px_14px_rgba(56,189,248,0.4)]">
+                            查看演示
+                        </a>
+                        <a href="#api"
+                            class="px-[24px] py-[12px] bg-[rgba(255,255,255,0.1)] c-[#fff] fw-[600] rounded-[6px] decoration-[none] hover:bg-[rgba(255,255,255,0.2)] transition-[all_0.2s] backdrop-filter-[blur(5px)]">
+                            API 速查
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 功能演示 Grid -->
+            <div id="demo" class="max-w-[1100px] mx-[auto] px-[20px] mt-[-40px] pos-[relative] z-[10]">
+                <div class="grid-cols-[1] md:grid-cols-[2] lg:grid-cols-[3] gap-[24px] d-[grid]">
+
+                    <!-- 卡片 1: 修复展示 -->
+                    <div
+                        class="bg-[#fff] rounded-[16px] p-[24px] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.05)] border-[1px] border-c-[#e2e8f0] hover:transform-[translateY(-5px)] transition-[transform_0.3s]">
+                        <div
+                            class="w-[40px] h-[40px] rounded-[8px] bg-[#dbeafe] c-[#2563eb] d-[flex] items-[center] justify-[center] fs-[1.2rem] mb-[16px]">
+                            🛡️</div>
+                        <h3 class="fs-[1.2rem] fw-[700] mb-[8px] c-[#1e293b]">属性截断修复</h3>
+                        <p class="fs-[0.9rem] c-[#64748b] mb-[16px] lh-[1.5]">
+                            完美处理 <code>min-w</code>, <code>max-h</code>, <code>border-t</code> 等连字符属性。
+                        </p>
+                        <div class="p-[16px] bg-[#f8fafc] rounded-[8px] border-[1px] border-c-[#e2e8f0]">
+                            <div class="min-w-[100%] h-[30px] bg-[#3b82f6] rounded-[4px] opacity-[0.2] mb-[4px]"></div>
+                            <div
+                                class="min-w-[60%] h-[30px] bg-[#3b82f6] rounded-[4px] c-[#fff] fs-[0.8rem] d-[flex] items-[center] justify-[center]">
+                                min-w-[60%]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片 2: 复杂值 -->
+                    <div
+                        class="bg-[#fff] rounded-[16px] p-[24px] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.05)] border-[1px] border-c-[#e2e8f0] hover:transform-[translateY(-5px)] transition-[transform_0.3s]">
+                        <div
+                            class="w-[40px] h-[40px] rounded-[8px] bg-[#fce7f3] c-[#db2777] d-[flex] items-[center] justify-[center] fs-[1.2rem] mb-[16px]">
+                            🎨</div>
+                        <h3 class="fs-[1.2rem] fw-[700] mb-[8px] c-[#1e293b]">复杂值支持</h3>
+                        <p class="fs-[0.9rem] c-[#64748b] mb-[16px] lh-[1.5]">
+                            自动解析 CSS 函数、空格（用下划线代替）及 URL。
+                        </p>
+                        <!-- 演示渐变 -->
+                        <div class="h-[60px] w-[100%] rounded-[8px] d-[flex] items-[center] justify-[center] c-[#fff] fw-[bold] fs-[0.8rem] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.1)]
+                            bg-[linear-gradient(to_right,_#ec4899,_#8b5cf6)]">
+                            bg-[linear-gradient(...)]
+                        </div>
+                    </div>
+
+                    <!-- 卡片 3: 状态与响应式 -->
+                    <div
+                        class="bg-[#fff] rounded-[16px] p-[24px] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.05)] border-[1px] border-c-[#e2e8f0] hover:transform-[translateY(-5px)] transition-[transform_0.3s]">
+                        <div
+                            class="w-[40px] h-[40px] rounded-[8px] bg-[#dcfce7] c-[#16a34a] d-[flex] items-[center] justify-[center] fs-[1.2rem] mb-[16px]">
+                            ⚡</div>
+                        <h3 class="fs-[1.2rem] fw-[700] mb-[8px] c-[#1e293b]">响应式 & 状态</h3>
+                        <p class="fs-[0.9rem] c-[#64748b] mb-[16px] lh-[1.5]">
+                            支持 <code>hover:</code>, <code>focus:</code>, <code>md:</code> 等前缀链式组合。
+                        </p>
+                        <button class="w-[100%] py-[8px] rounded-[6px] border-[1px] border-c-[#e2e8f0] cursor-[pointer] transition-[all_0.2s]
+                               bg-[#fff] c-[#334155]
+                               hover:bg-[#3b82f6] hover:c-[#fff] hover:border-c-[#3b82f6]
+                               active:transform-[scale(0.95)]">
+                            Hover me!
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 3. 代码对比区域 -->
+            <div class="max-w-[1000px] mx-[auto] px-[20px] mt-[60px] mb-[60px]">
+                <div class="d-[flex] items-[center] gap-[12px] mb-[24px]">
+                    <h2 class="fs-[1.8rem] fw-[800] c-[#1e293b] m-[0]">极简语法</h2>
+                    <span
+                        class="px-[8px] py-[2px] bg-[#f1f5f9] c-[#64748b] rounded-[4px] fs-[0.8rem]">Just-In-Time</span>
+                </div>
+                <div id="my-tabs" class="tabs-container">
+                    <div class="flex justify-center mb-3">
+                        <nav class="tabs-nav p-2 bg-gray-100 rounded-lg space-x-2" role="tablist">
+                            <button class="tabs-item tabs-item rounded-md text-sm center inline-block cursor-pointer px-2 border-0 active:bg-[#3b82f6] active:c-[#fff]" data-tab-target="#panel-4">HTML</button>
+                            <button class="tabs-item tabs-item rounded-md text-sm center inline-block cursor-pointer px-2 border-0 active:bg-[#3b82f6] active:c-[#fff]" data-tab-target="#panel-5">CSS</button>
+                        </nav>
+                    </div>
+                    <div class="tabs-content">
+                        <section id="panel-4" class="tabs-panel">
+                            <pre>
+                                <code data-language="html">
+                                    <div class="w-[240px] h-[120px] bg-[url('/img/bg.png')] shadow-[0_10px_20px_rgba(0,0,0,0.2)] md:hover:scale-[1.05]"></div>
+                                </code>
+                            </pre>
+                        </section>
+                        <section id="panel-5" class="tabs-panel">
+                            <pre>
+                                <code data-language="css">
+                                    .w-\[240px\] { 
+                                        width: 240px; 
+                                    }
+                                    .bg-\[...\] { 
+                                        background-image: url(...); 
+                                    }
+                                    .shadow-\[...\] { 
+                                        box-shadow: 0 10px...; 
+                                    }
+                                    @media... :hover { 
+                                        transform: scale(1.05); 
+                                    }
+                                </code>
+                            </pre>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. API 速查表 (自动生成) -->
+            <div id="api" class="bg-[#fff] border-t-[1px] border-c-[#e2e8f0] py-[60px]">
+                <div class="max-w-[1000px] mx-[auto] px-[20px]">
+                    <h2 class="fs-[1.8rem] fw-[800] c-[#1e293b] mb-[30px] text-[center]">支持的属性映射 (Prop Map)</h2>
+
+                    <div
+                        class="overflow-x-[auto] rounded-[12px] border-[1px] border-c-[#e2e8f0] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)]">
+                        <table class="w-[100%] border-collapse text-align-[left]">
+                            <thead>
+                                <tr class="bg-[#f8fafc] border-b-[1px] border-c-[#e2e8f0]">
+                                    <th class="p-[16px] fs-[0.9rem] fw-[600] c-[#475569] w-[30%]">JquanUI 前缀</th>
+                                    <th class="p-[16px] fs-[0.9rem] fw-[600] c-[#475569] w-[40%]">CSS 属性</th>
+                                    <th class="p-[16px] fs-[0.9rem] fw-[600] c-[#475569] w-[30%]">示例</th>
+                                </tr>
+                            </thead>
+                            <tbody id="api-table-body" class="bg-[#fff]">
+                                <!-- JS 将自动填充这里 -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-[20px] text-[center] fs-[0.9rem] c-[#64748b]">
+                        * 提示：你可以通过 <code>init({ 'key': 'property' })</code> 随意扩展此列表。
+                    </p>
+                </div>
+            </div>
+            <!-- 脚本 -->
+            <script type="module">
+                import { init } from '../js/modules/jit-engine.mjs';
+                import { initCodeHighlighter } from '../js/modules/code-block.mjs';
+                import { Tabs } from '../js/modules/tabs.mjs';
+                new Tabs('#my-tabs', {
+                    mode: 'fade',
+                    duration: 400,
+                    autoHeight: true, // 此时高度由内容自然撑开
+                });
+                // 1. 初始化引擎
+                init({
+                    'scale': 'transform', // 演示添加额外的映射
+                });
+                initCodeHighlighter({
+                    showLineNumbers: true, // 显示行号
+                    langLabel: false,  // 是否显示语言标签
+                });
+                // 2. 为了生成下方的表格，我们需要手动定义一遍 PropMap 数据源
+                // 注意：实际项目中不需要这样做，这里仅为了生成文档展示
+                const DOC_MAP = {
+                    'w': 'width', 'h': 'height', 'min-w': 'min-width', 'max-w': 'max-width', 'min-h': 'min-height', 'max-h': 'max-height',
+                    'm': 'margin', 'mt': 'margin-top', 'mb': 'margin-bottom', 'ml': 'margin-left', 'mr': 'margin-right',
+                    'mx': 'margin-x', 'my': 'margin-y',
+                    'p': 'padding', 'pt': 'padding-top', 'pb': 'padding-bottom', 'pl': 'padding-left', 'pr': 'padding-right',
+                    'px': 'padding-x', 'py': 'padding-y',
+                    'fs': 'font-size', 'fw': 'font-weight', 'lh': 'line-height', 'ls': 'letter-spacing',
+                    'c': 'color', 'text': 'color', 'bg-c': 'background-color', 'bg-img': 'background-image',
+                    'rounded': 'border-radius', 'd': 'display', 'flex': 'flex',
+                    'grid-cols': 'grid-template-columns', 'gap': 'gap',
+                    'items': 'align-items', 'justify': 'justify-content',
+                    'pos': 'position', 'z': 'z-index', 'opacity': 'opacity', 'shadow': 'box-shadow',
+                    'cursor': 'cursor', 'overflow': 'overflow', 'transition': 'transition', 'transform': 'transform'
+                };
+
+                const tableBody = document.getElementById('api-table-body');
+
+                Object.entries(DOC_MAP).forEach(([key, val]) => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'border-b-[1px] border-c-[#f1f5f9] hover:bg-[#f8fafc] transition-[background_0.1s]';
+
+                    // 示例生成逻辑
+                    let example = '';
+                    if (val.includes('color')) example = `${key}-[#3b82f6]`;
+                    else if (val.includes('width') || val.includes('height') || val.includes('margin') || val.includes('padding')) example = `${key}-[20px]`;
+                    else if (key === 'd') example = `d-[flex]`;
+                    else example = `${key}-[...]`;
+
+                    tr.innerHTML = `
+                <td class="p-[16px] font-family-[monospace] c-[#d946ef] fw-[600]">${key}-</td>
+                <td class="p-[16px] c-[#334155] font-family-[monospace] fs-[0.85rem]">${Array.isArray(val) ? val.join(', ') : val}</td>
+                <td class="p-[16px] c-[#64748b] fs-[0.85rem]"><code class="bg-[#f1f5f9] px-[6px] py-[2px] rounded-[4px] c-[#475569]">${example}</code></td>
+            `;
+                    tableBody.appendChild(tr);
+                });
+
+                // 重新扫描以应用表格中的样式 (因为表格是动态生成的)
+                // 这里的 setTimeout 是为了确保 DOM 插入后再执行一次 scan
+                // 实际上 jit-engine 的 MutationObserver 会自动处理，但手动触发更稳妥
+                import { refresh } from '../js/modules/jit-engine.mjs';
+                setTimeout(refresh, 50);
+
+            </script>
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>
