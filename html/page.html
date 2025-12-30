@@ -26,61 +26,58 @@
                 <div class="card-body">
                     <div id="demo" class="w-full max-w-2xl mx-auto p-3 rounded-md">
                         <div class="flex justify-center mb-5">
-                            <nav class="tabs-nav p-2 bg-gray-100 rounded-lg space-x-2 flex">
-                                <span
-                                    class="tabs-item rounded-md text-sm center inline-block cursor-pointer tabs-active"><i
-                                        class='bxr bx-eye align-middle'></i> 预览</span>
-                                <span class="tabs-item rounded-md text-sm center inline-block cursor-pointer"><i
-                                        class='bxr bx-code align-middle'></i> 代码</span>
+                            <nav class="tabs-nav p-2 bg-gray-100 rounded-lg space-x-2">
+                                <button data-tab-target="#panel-1" class="tabs-item rounded-md text-sm center inline-block cursor-pointer px-2 border-0">
+                                    <i class='bxr bx-eye align-middle'></i> 预览</button>
+                                <button data-tab-target="#panel-2" class="tabs-item rounded-md text-sm center inline-block cursor-pointer px-2 border-0"><i
+                                        class='bxr bx-code align-middle'></i> 代码</button>
                             </nav>
                         </div>
-                        <div class="tabs-content relative overflow-hidden">
-                            <div class="tabs-track flex transition-transform duration-500">
-                                <section class="tabs-panel border rounded-md border-surface col-12 w-full shrink-0">
-                                    <div class="pages flex justify-center mt-10 w-full">
-                                        <span class="page-status">共8条 当前1/1页</span>
-                                        <span>
-                                            <a href="/list_6/">首页</a>
-                                        </span>
-                                        <span>
-                                            <a href="javascript:;">前一页</a>
-                                        </span>
-                                        <span>
-                                            <a href="/list_6/" class="page-num-current">1</a>
-                                        </span>
-                                        <span>
-                                            <a href="javascript:;">后一页</a>
-                                        </span>
-                                        <span>
-                                            <a href="/list_6/">尾页</a>
-                                        </span>
-                                    </div>
-                                </section>
-                                <section
-                                    class="tabs-panel border rounded-md border-surface col-12 w-full shrink-0 tabs-panel-max-height">
-                                    <div
-                                        class="codeblock codeblock-line-numbers border border-strong rounded-md h-full">
-                                        <pre><code class="code-block" data-language="html" data-show-lines="true"><div class="pages flex justify-center mt-10 w-full">
-        <span class="page-status">共8条 当前1/1页</span>
-        <span>
-            <a href="/list_6/">首页</a>
-        </span>
-        <span>
-            <a href="javascript:;">前一页</a>
-        </span>
-        <span>
-            <a href="/list_6/" class="page-num-current">1</a>
-        </span>
-        <span>
-            <a href="javascript:;">后一页</a>
-        </span>
-        <span>
-            <a href="/list_6/">尾页</a>
-        </span>
-    </div></code></pre>
-                                    </div>
-                                </section>
-                            </div>
+                        <div class="tabs-content">
+                            <section class="tabs-panel border rounded-md border-surface" id="panel-1">
+                                <div class="pages flex justify-center mt-10 w-full p-5">
+                                    <span class="page-status">共8条 当前1/1页</span>
+                                    <span>
+                                        <a href="/list_6/">首页</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;">前一页</a>
+                                    </span>
+                                    <span>
+                                        <a href="/list_6/" class="page-num-current">1</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;">后一页</a>
+                                    </span>
+                                    <span>
+                                        <a href="/list_6/">尾页</a>
+                                    </span>
+                                </div>
+                            </section>
+                            <section class="tabs-panel rounded-md" id="panel-2">
+                                <pre>
+                                    <code class="code-block" data-language="html" data-show-lines="true">
+                                        <div class="pages flex justify-center mt-10 w-full">
+                                            <span class="page-status">共8条 当前1/1页</span>
+                                            <span>
+                                                <a href="/list_6/">首页</a>
+                                            </span>
+                                            <span>
+                                                <a href="javascript:;">前一页</a>
+                                            </span>
+                                            <span>
+                                                <a href="/list_6/" class="page-num-current">1</a>
+                                            </span>
+                                            <span>
+                                                <a href="javascript:;">后一页</a>
+                                            </span>
+                                            <span>
+                                                <a href="/list_6/">尾页</a>
+                                            </span>
+                                        </div>
+                                    </code>
+                                </pre>
+                            </section>
                         </div>
                     </div>
                 </div>

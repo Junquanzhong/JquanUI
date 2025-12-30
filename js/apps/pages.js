@@ -1,25 +1,16 @@
 import { initCodeHighlighter } from '../modules/code-block.mjs';
 import { Tabs } from '../modules/tabs.mjs'
-
+import { init } from '../modules/jit-engine.mjs';
+// 初始化 JIT 引擎
+init({});
+// 初始化 Tabs 组件
+new Tabs('#demo', {
+    mode: 'fade',
+    duration: 400,
+    autoHeight: true, // 此时高度由内容自然撑开
+});
 // 代码块
 initCodeHighlighter({
-    copyButtonText: 'Copy',
-    copiedButtonText: 'Copied!',
-    copiedTextDuration: 3000, // 3秒
-    showLinesByDefault: true // 不显示行号
-    // showLinesByDefault 保持 true，因为我们大部分都需要
+    showLineNumbers: true, // 显示行号
+    langLabel: false,  // 是否显示语言标签
 });
-
-//选项卡
-new Tabs('#demo', {
-    trigger: 'click',
-    swipeable: true,
-    animation: 'slide',
-    duration: 500,
-    itemCLS: 'tabs-item',
-    activeCLS: 'tabs-active',
-    navCLS: 'tabs-nav',
-    contentCLS: 'tabs-content',
-    trackCLS: 'tabs-track',
-    panelCLS: 'tabs-panel'
-})
