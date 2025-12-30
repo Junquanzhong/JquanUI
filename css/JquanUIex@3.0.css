@@ -3910,6 +3910,18 @@ input[type="year"]::-webkit-datetime-edit-text {
 .bg-gradient-cybervelvet{
   background: linear-gradient(45deg, rgba(92, 10, 92, 0.8) 25%, transparent), repeating-radial-gradient(ellipse at 0% 100%, rgba(41, 163, 122, 0.5), rgba(184, 20, 102, 0.25) 50px), repeating-radial-gradient(ellipse at 100% 0%, rgba(214, 173, 235, 0.5), rgba(184, 20, 102, 0.25) 50px) purple;
 }
+/* 复古纸张 */
+.bg-gradient-vintagepaper {
+  background-color: #F9F6EF;
+  background-image: repeating-linear-gradient(135deg, #0000 0 6px, #00000005 0 9px),radial-gradient(circle, #F9F6EF, #EBEBE3),radial-gradient(at 100% 20%, #5EB0E525, #0000 70%),radial-gradient(at 20% 20%, #F3D06025, #0000 70%),radial-gradient(at 20% 100%, #A5282C25, #0000 70%),radial-gradient(at 100% 100%, #AEE1CD25, #0000 70%);
+  background-blend-mode: darken;
+}
+/* 梦幻糖果 */
+.bg-gradient-holographicaurora {
+  background-size: 100% 100%;
+  background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+  background-image: radial-gradient(49% 81% at 45% 47%, #03FF6D45 0%, #073AFF00 100%),radial-gradient(113% 91% at 17% -2%, #F8DDD4 1%, #FF000000 99%),radial-gradient(142% 91% at 83% 7%, #FAE5F4 1%, #FF000000 99%),radial-gradient(142% 91% at -6% 74%, #71CEEBFF 0%, #FF000000 99%),radial-gradient(142% 91% at 111% 84%, #E583B9 0%, #AC23D7FF 100%);
+}
 /* 皇家海绿 */
 .bg-img-royalheath{
   --bg-size:100% 100%;
