@@ -138,9 +138,10 @@ async function processBlock(codeEl, config) {
     let rawHtml = codeEl.innerHTML;
     let rawText = decodeHTML(rawHtml);
     let formattedCode = normalizeIndent(rawText, config.tabSize);
-
     if (!formattedCode) return;
-
+    // 提前计算行数，用于 UI 逻辑判断
+    const lines = formattedCode.split('\n');
+    const lineCount = lines.length;
     // 2. 识别语言
     let lang = 'plaintext';
     const classList = Array.from(codeEl.classList);
@@ -150,28 +151,23 @@ async function processBlock(codeEl, config) {
     } else if (codeEl.dataset.language) {
         lang = codeEl.dataset.language;
     }
-
     // 3. 动态加载语言
     const loadedLang = await loadLanguage(lang);
-
     // 4. 高亮
     const highlightResult = hljs.highlight(formattedCode, { language: loadedLang, ignoreIllegals: true });
     
     // 5. DOM 重构
     const preEl = codeEl.closest('pre');
     if (!preEl) return;
-
     preEl.innerHTML = '';
     preEl.className = config.containerClass;
-
-    // A. 语言水印 (User Custom: bottom-3 right-6 text-gray)
-    if (config.langLabel) {
+    // A. 语言水印 (优化：仅当行数 > 1 且配置开启时显示)
+    if (config.langLabel && lineCount > 1) {
         const langBadge = document.createElement('div');
-        langBadge.className = 'absolute bottom-3 right-3 text-sm font-bold text-gray pointer-events-none select-none uppercase tracking-widest z-10';
+        langBadge.className = 'absolute bottom-3 right-3 text-xs text-gray-400 pointer-events-none select-none uppercase tracking-widest z-10';
         langBadge.innerText = loadedLang; // 显示实际加载的语言名
         preEl.appendChild(langBadge);
     }
-
     // B. 复制按钮 (User Custom: bg-white hover-bg-primary right-6)
     const copyBtn = document.createElement('button');
     copyBtn.className = 'absolute top-3 right-3 p-1.5 rounded-md bg-white hover-bg-primary text-gray-400 hover-text-white transition-all z-20 focus-outline-none backdrop-blur-sm';
@@ -189,7 +185,6 @@ async function processBlock(codeEl, config) {
         } catch (e) { console.error(e); }
     });
     preEl.appendChild(copyBtn);
-
     // C. 滚动视口
     const scrollWrapper = document.createElement('div');
     scrollWrapper.className = config.scrollWrapperClass;
@@ -197,10 +192,7 @@ async function processBlock(codeEl, config) {
     // D. Grid 布局
     const gridLayout = document.createElement('div');
     gridLayout.className = 'grid grid-cols-[auto_1fr] gap-0 min-w-full';
-
-    const lines = formattedCode.split('\n');
-    const lineCount = lines.length;
-
+    // (lines 和 lineCount 已在上方提前计算)
     // E. 行号列 (User Custom: text-gray-600 border-gray)
     if (config.showLineNumbers) {
         const lineNumCol = document.createElement('div');
@@ -212,7 +204,6 @@ async function processBlock(codeEl, config) {
         lineNumCol.innerHTML = nums;
         gridLayout.appendChild(lineNumCol);
     }
-
     // F. 代码列 (User Custom: text-gray-300 text-gray)
     const codeContentCol = document.createElement('div');
     codeContentCol.className = 'py-3 px-4 whitespace-pre font-mono text-sm leading-6 text-gray-300 text-gray';

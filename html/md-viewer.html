@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI 概述</title>
+    <link rel="stylesheet" href="../css/JquanUI@3.0.css">
+
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/JquanUI-Theme@3.0.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="breadcrumb breadcrumb-filled breadcrumb-arrow breadcrumb-with-icons">
+            <li><a href="/"><i class="bx bx-home"></i>Markdown渲染器</a></li>
+            <li class="active">Markdown渲染器</li>
+        </ul>
+        <div class="container py-3">
+            <div class="card">
+                <div class="card-header">
+                    <cite class="mt-3 mb-3">Markdown渲染器</cite>
+                </div>
+                <div class="card-body">
+                    <!-- Markdown 渲染目标容器 -->
+                    <div id="doc-container" class="text-surface hidden"></div>
+                    <script type="module">
+                        import { displayMarkdown } from '../js/modules/md-viewer.mjs';
+                        //container.classList.add('animate-fade-in');
+                    </script>
+                    <script type="text/markdown" data-target="#doc-container">
+# 🚀 JquanUI 集成指南
+
+感谢您选择 **JquanUI**。本文档由后端动态生成。
+
+## 1. 表格
+
+| 服务名称 | 状态 | 延迟 (ms) |
+| :--- | :---: | ---: |
+| API Gateway | 🟢 在线 | 24ms |
+| Database | 🟢 在线 | 12ms |
+| Render Engine | 🟡 负载较高 | 145ms |
+
+## 2. 代码块
+
+```json
+{
+    "theme": "jquan-light",
+    "modules": [
+        "typography",
+        "components"
+    ],
+    "render_options": {
+        "lazy_load": true,
+        "sanitize": true
+    }
+}
+```
+
+## 3. 引用
+
+> **注意**：所有的代码块都支持复制功能，且行号是自动生成的。
+
+## 4. 单行代码
+`import { displayMarkdown } from '../js/modules/md-viewer.mjs';`
+
+## 5. 列表
+
+- 项目 1
+- 项目 2
+- 项目 3
+
+## 6.图片
+
+![图片标题](//www.jquan.win/upload/20250715/0841b19e993748.webp)
+
+## 7.链接
+
+[JquanUI 官方网站](https://www.jquan.win)
+
+## 8. 流程图
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+## 9. 公式
+
+$$
+E = mc^2
+$$
+
+## 10. 结尾
+
+祝您开发愉快！
+                        
+                    </script>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="../js/apps/app.js" type="module"></script>
+</body>
+
+</html>
