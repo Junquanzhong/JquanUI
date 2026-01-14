@@ -251,7 +251,6 @@ table {
   width: 100%;
   background-color: rgb(var(--surface-bg));
   color: var(--surface-text);
-  margin: 10px 0;
 }
 
 table tr {
