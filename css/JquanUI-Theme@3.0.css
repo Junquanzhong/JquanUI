@@ -440,6 +440,19 @@ into CSS variables, allowing for complete theme overhauls with minimal effort.
 .focus-text-primary:focus {
     color: rgb(var(--primary-hue-500));
 }
+.text-primary-600,
+.hover-text-primary-600:hover {
+    color: rgb(var(--primary-hue-600));
+}
+.text-primary-700,
+.hover-text-primary-700:hover {
+    color: rgb(var(--primary-hue-700));
+}
+
+.text-primary-800,
+.hover-text-primary-800:hover {
+    color: rgb(var(--primary-hue-800));
+}
 
 .text-secondary,
 .text-theme-secondary,

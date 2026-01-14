@@ -64,30 +64,30 @@ class JquanRenderer {
     setupJquanStyles() {
         this.renderer.heading = (text, level) => {
             const map = {
-                1: 'text-3xl font-bold border-b border-gray-200 pb-4 mb-6 mt-8 text-surface-text',
-                2: 'text-2xl font-bold mb-4 mt-8 text-surface-text',
-                3: 'text-xl font-semibold mb-3 mt-6 text-surface-text',
+                1: 'text-3xl font-bold border-b border-gray-200 pb-4 mb-6 mt-8 text-surface',
+                2: 'text-2xl font-bold mb-4 mt-8 text-surface',
+                3: 'text-xl font-semibold mb-3 mt-6 text-surface',
                 4: 'text-lg font-semibold mb-2 mt-4',
                 5: 'text-base font-medium mb-2',
-                6: 'text-sm font-medium text-gray-500 uppercase tracking-wide'
+                6: 'text-sm font-medium text-surface uppercase tracking-wide'
             };
             return `<h${level} class="${map[level] || map[6]}">${text}</h${level}>`;
         };
 
         this.renderer.table = (header, body) => `
-            <div class="overflow-x-auto my-6 rounded-lg border border-surface-border">
-                <table class="table w-full text-left bg-surface-bg">
-                    <thead class="bg-gray-50 font-semibold text-gray-700 border-b border-surface-border">
+            <div class="overflow-x-auto my-6 rounded-lg border border-surface">
+                <table class="table w-full text-left bg-surface">
+                    <thead class="bg-gray-50 font-semibold text-gray-700 border-b border-surface">
                         ${header}
                     </thead>
-                    <tbody class="divide-y divide-surface-border">
+                    <tbody class="divide-y divide-surface">
                         ${body}
                     </tbody>
                 </table>
             </div>`;
 
         this.renderer.blockquote = (quote) => 
-            `<blockquote class="border-l-4 border-primary pl-4 py-2 my-4 bg-gray-50 rounded-r text-gray-600 italic">${quote}</blockquote>`;
+            `<blockquote class="border-l-4 border-primary pl-4 py-2 my-4 bg-gray-50 rounded-r text-surface italic">${quote}</blockquote>`;
 
         this.renderer.list = (body, ordered) => {
             const type = ordered ? 'list-decimal' : 'list-disc';
@@ -95,12 +95,12 @@ class JquanRenderer {
         };
 
         this.renderer.link = (href, title, text) => 
-            `<a href="${href}" class="text-blue-600 hover-text-blue-800 hover-underline transition-colors" title="${title || ''}">${text}</a>`;
+            `<a href="${href}" class="text-primary hover-text-primary-800 hover-underline transition-colors" title="${title || ''}">${text}</a>`;
 
         this.renderer.image = (href, title, text) => 
             `<figure class="my-6">
-                <img src="${href}" alt="${text}" class="max-w-full h-auto rounded-lg shadow-sm mx-auto block border border-gray-200" />
-                ${text ? `<figcaption class="text-center text-sm text-gray-500 mt-2">${text}</figcaption>` : ''}
+                <img src="${href}" alt="${text}" class="max-w-full h-auto rounded-lg shadow-sm mx-auto block border border-surface" />
+                ${text ? `<figcaption class="text-center text-sm text-surface mt-2">${text}</figcaption>` : ''}
             </figure>`;
             
         // --- 关键修复：Mermaid 代码块拦截 ---
