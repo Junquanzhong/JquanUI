@@ -95,7 +95,7 @@ class JquanRenderer {
         };
 
         this.renderer.link = (href, title, text) => 
-            `<a href="${href}" class="text-primary hover-text-primary-800 hover-underline transition-colors" title="${title || ''}">${text}</a>`;
+            `<a href="${href}" class="text-primary hover-text-primary-800 hover-underline transition-colors" title="${title || ''}"><i class="bx bx-link"></i>${text}</a>`;
 
         this.renderer.image = (href, title, text) => 
             `<figure class="my-6">

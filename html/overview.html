@@ -252,7 +252,7 @@
                 class="block w-full px-3 py-2 pl-10 hover-outline-ring hover-outline-1 focus-ring-primary rounded-md text-sm"
                 placeholder="请输入用户名">
               <label for="input-default-7"
-                class="absolute top-1/2 left-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center">
+                class="absolute top-1/2 left-2.5 -translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center">
                 <i class="bx bx-user text-sm"></i>
               </label>
             </div>
@@ -262,14 +262,14 @@
             <!-- 输入框 -->
             <div class="form-group w-80 relative focus-within-text-primary" id="login-form">
               <label for="pwd"
-                class="absolute top-1/2 left-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center">
+                class="absolute top-1/2 left-2.5 -translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center">
                 <i class="bx bx-lock"></i>
               </label>
               <input type="password" id="pwd"
                 class="block w-full px-3 py-2 pl-10 hover-outline-ring hover-outline-1 focus-ring-primary rounded-md text-sm"
                 placeholder="请输入密码">
               <button type="button" id="gen-pwd-btn"
-                class="absolute top-1/2 right-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center"
+                class="absolute top-1/2 right-2.5 -translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center"
                 aria-label="生成随机密码">
                 <i class='bxr bx-sparkles-alt'></i>
               </button>
@@ -394,7 +394,6 @@
     // 代码块
     initCodeHighlighter({
       showLineNumbers: true, // 显示行号
-      langLabel: false,  // 是否显示语言标签
     });
     //智能密码生成器
     new PasswordGenerator({

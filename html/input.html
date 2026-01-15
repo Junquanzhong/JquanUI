@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group w-60 relative focus-within-text-primary">
                         <label for="input-default-1"
-                            class="text-sm inline-table absolute top-1/2 left-2.5 translate-y-1/2 text-surface-500">用户名</label>
+                            class="text-sm inline-table absolute top-1/2 left-2.5 -translate-y-1/2 text-surface-500">用户名</label>
                         <input type="text" id="input-default-1"
                             class="block w-full my-1 px-3 py-2 pl-16 focus-outline-ring focus-outline-1 focus-ring-primary rounded-md text-sm"
                             placeholder="请输入用户名">
@@ -52,21 +52,21 @@
                     <p>使用标签属性data-verify="success"或data-verify="danger"添加验证样式</p>
                     <div class="form-group-within w-60 relative focus-within-text-primary">
                         <label for="input-default-2"
-                            class="text-sm inline-table absolute top-1/2 left-3 translate-y-1/2 text-surface-500">用户名</label>
+                            class="text-sm inline-table absolute top-1/2 left-3 -translate-y-1/2 text-surface-500">用户名</label>
                         <input type="text" id="input-default-2"
                             class="block w-full my-1 px-3 py-2 pl-16 outline-ring outline-1 rounded-md text-sm"
                             placeholder="正确样式" data-verify="success">
                     </div>
                     <div class="form-group-within w-60 relative focus-within-text-primary">
                         <label for="input-default-3"
-                            class="text-sm inline-table absolute top-1/2 left-3 translate-y-1/2 text-surface-500">用户名</label>
+                            class="text-sm inline-table absolute top-1/2 left-3 -translate-y-1/2 text-surface-500">用户名</label>
                         <input type="text" id="input-default-3"
                             class="block w-full my-1 px-3 py-2 pl-16 outline-ring outline-1 rounded-md text-sm"
                             placeholder="错误样式" data-verify="danger">
                     </div>
                     <div class="form-group-within w-60 relative focus-within-text-primary">
                         <label for="input-default-4"
-                            class="text-sm inline-table absolute top-1/2 left-3 translate-y-1/2 text-surface-500">用户名</label>
+                            class="text-sm inline-table absolute top-1/2 left-3 -translate-y-1/2 text-surface-500">用户名</label>
                         <input type="text" id="input-default-4"
                             class="block w-full my-1 px-3 py-2 pl-16 outline-ring outline-1 focus-ring-primary rounded-md text-sm"
                             placeholder="禁用状态" disabled>
@@ -86,7 +86,7 @@
                             class="block w-full my-1 px-3 py-2 pl-8 outline-ring outline-1 focus-ring-primary rounded-md text-sm"
                             placeholder="请输入用户名">
                         <label for="input-default-5"
-                            class="text-sm inline-table absolute top-1/2 left-2.5 translate-y-1/2 text-surface-500 center">
+                            class="text-sm inline-table absolute top-1/2 left-2.5 -translate-y-1/2 text-surface-500 center">
                             <i class="bx bx-user"></i>
                         </label>
                     </div>
@@ -95,7 +95,7 @@
                             class="block w-full my-1 px-3 py-2 pr-8 outline-ring outline-1 focus-ring-primary rounded-md text-sm"
                             placeholder="请输入用户名">
                         <label for="input-default-6"
-                            class="text-sm inline-table absolute top-1/2 translate-y-1/2 right-2.5 text-surface-500 center">
+                            class="text-sm inline-table absolute top-1/2 -translate-y-1/2 right-2.5 text-surface-500 center">
                             <i class="bx bx-lock"></i>
                         </label>
                     </div>
@@ -104,7 +104,7 @@
                             class="block w-full px-3 py-2 pl-10 text-sm bg-white border border-gray-300 rounded-md outline-none ring-1 ring-inset ring-gray-300 focus-ring-1 focus-ring-inset focus-ring-primary focus-border-primary transition duration-150 ease-in-out"
                             placeholder="请输入用户名">
                         <label for="input-default-7"
-                            class="absolute top-1/2 left-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center">
+                            class="absolute top-1/2 left-2.5 -translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center">
                             <i class="bx bx-user text-sm"></i>
                         </label>
                     </div>
@@ -124,7 +124,7 @@
                             class="block w-full px-3 py-2 pr-10 text-sm bg-white border rounded-full border-gray-300 rounded-md outline-none ring-1 ring-inset ring-gray-300 focus-ring-1 focus-ring-inset focus-ring-primary focus-border-primary transition duration-150 ease-in-out"
                             placeholder="请输入搜索内容">
                         <button type="submit"
-                            class="absolute top-1/2 right-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 rounded-full center">
+                            class="absolute top-1/2 right-2.5 -translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 rounded-full center">
                             <i class="bx bx-search text-sm"></i>
                         </button>
                     </div>
@@ -159,53 +159,52 @@
                     <div id="demo" class="w-full max-w-2xl mx-auto p-3 rounded-md">
                         <div class="flex justify-center mb-5">
                             <nav class="tabs-nav p-2 bg-gray-100 rounded-lg space-x-2 flex">
-                                <span
-                                    class="tabs-item rounded-md text-sm center inline-block cursor-pointer tabs-active">
+                                <button class="tabs-item tabs-item rounded-md text-sm center inline-block cursor-pointer px-2 border-0" data-tab-target="#panel-1">
                                     <i class="bxr bx-eye align-middle"></i> 预览
-                                </span>
-                                <span class="tabs-item rounded-md text-sm center inline-block cursor-pointer">
+                                </button>
+                                <button class="tabs-item tabs-item rounded-md text-sm center inline-block cursor-pointer px-2 border-0" data-tab-target="#panel-2">
                                     <i class="bxr bx-code align-middle"></i> HTML
-                                </span>
-                                <span class="tabs-item rounded-md text-sm center inline-block cursor-pointer">
+                                </button>
+                                <button class="tabs-item tabs-item rounded-md text-sm center inline-block cursor-pointer px-2 border-0" data-tab-target="#panel-3">
                                     <i class="bxr bx-code align-middle"></i> JS
-                                </span>
+                                </button>
                             </nav>
                         </div>
                         <div class="tabs-content relative overflow-hidden">
                             <div class="tabs-track flex transition-transform duration-500">
-                                <section class="tabs-panel border rounded-md border-surface col-12 w-full shrink-0 p-4 min-h-500">
+                                <section id="panel-1" class="tabs-panel">
                                     <!-- 智能密码输入框组件 -->
                                     <div class="w-80">
                                         <div class="form-group w-80 relative focus-within-text-primary" id="login-form">
                                             <label for="pwd"
-                                                class="text-sm inline-table absolute top-1/2 translate-y-1/2 left-2.5 text-surface-500 center">
+                                                class="text-sm inline-table absolute top-1/2 -translate-y-1/2 left-2.5 text-surface-500 center">
                                                 <i class="bx bx-lock"></i>
                                             </label>
                                             <input type="password" id="pwd"
                                                 class="block w-full my-1 px-9 py-2 hover-outline-ring hover-outline-1 focus-ring-primary rounded-md text-sm"
                                                 placeholder="请输入密码">
                                             <button type="button" id="gen-pwd-btn"
-                                                class="absolute top-1/2 right-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center"
+                                                class="absolute top-1/2 right-2.5 -translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center"
                                                 aria-label="生成随机密码">
                                                 <i class='bxr bx-sparkles-alt'></i>
                                             </button>
                                         </div>
                                     </div>
                                 </section>
-                                <section class="tabs-panel border rounded-md border-surface col-12 w-full shrink-0">
+                                <section id="panel-2" class="tabs-panel">
                                     <pre class="border border-strong relative whitespace-pre overflow-x-auto">
                                         <code class="code-block hljs language-html" data-language="html" data-show-lines="true">
                                             <div class="w-80">
                                                 <div class="form-group w-80 relative focus-within-text-primary" id="login-form">
                                                     <label for="pwd"
-                                                        class="text-sm inline-table absolute top-1/2 translate-y-1/2 left-2.5 text-surface-500 center">
+                                                        class="text-sm inline-table absolute top-1/2 -translate-y-1/2 left-2.5 text-surface-500 center">
                                                         <i class="bx bx-lock"></i>
                                                     </label>
                                                     <input type="password" id="pwd"
                                                         class="block w-full my-1 px-9 py-2 hover-outline-ring hover-outline-1 focus-ring-primary rounded-md text-sm"
                                                         placeholder="请输入密码">
                                                     <button type="button" id="gen-pwd-btn"
-                                                        class="absolute top-1/2 right-2.5 translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center"
+                                                        class="absolute top-1/2 right-2.5 -translate-y-1/2 z-10 text-white bg-primary rounded-md w-6 h-6 center"
                                                         aria-label="生成随机密码">
                                                         <i class='bxr bx-sparkles-alt'></i>
                                                     </button>
@@ -214,7 +213,7 @@
                                         </code>
                                     </pre>
                                 </section>
-                                <section class="tabs-panel border rounded-md border-surface col-12 w-full shrink-0">
+                                <section id="panel-3" class="tabs-panel">
                                     <pre class="border border-strong relative whitespace-pre overflow-x-auto">
                                         <code class="code-block hljs language-javascript" data-language="javascript" data-show-lines="true">
                                             // 实例化时，showStrength 默认为 false

@@ -22,8 +22,8 @@ const LANGUAGE_ALIASES = {
     'py': 'python',
     'sh': 'bash',
     'zsh': 'bash',
-    'html': 'xml',
-    'vue': 'xml',
+    'html': 'html',
+    'vue': 'vue',
     'yml': 'yaml'
 };
 
