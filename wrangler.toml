@@ -1,0 +1,9 @@
+name = "jquanui"
+compatibility_date = "2026-05-10"
+
+[assets]
+directory = "./"  # 或指定实际的静态文件目录
+binding = "ASSETS"
+
+[observability]
+enabled = true
