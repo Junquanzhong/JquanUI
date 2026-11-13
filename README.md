@@ -1031,4 +1031,3 @@ The browser gate opens `components.html` in an isolated Edge session and verifie
 
 This README contains the detailed CLI, Vite, PostCSS, SSR, report, and token bridge documentation. The repository also keeps a modular copy at [dist/cli/README.md](dist/cli/README.md); that duplicate developer file is excluded from the npm tarball.
 
-The repository keeps two minimal visual QA fixtures, `qa-smoke.html` and `qa-regression-4.html`. They load the current Core and provide responsive atomic-class surfaces for `npm run check:visual`.

@@ -1175,7 +1175,6 @@ const filters = storage.get('filters', {});
 
 正式 Core、压缩 Core、Full、CLI 与 package 使用同一发布版本；归档入口 `dist/core/JquanUI@Core v4.5.js` 保持 4.5.3，不参与当前版本检查。迭代演示功能时同步项目 README、设计说明和项目 skill，并运行项目 check、相关 browser 检查与根 check:docs。
 
-视觉结构闸门使用仓库根目录的 `qa-smoke.html` 与 `qa-regression-4.html`。夹具必须声明 viewport、加载当前 `dist/core/JquanUI@Core.js`，并保留至少一个静态原子类；修改 Core 或文档壳后运行 `npm run check:visual`。
 
 - 输出或修改实际可运行代码，不只描述方案。
 - 默认不创建 CSS 文件，不输出 inline style。
