@@ -1,0 +1,16 @@
+{
+  "name": "lanse-crm-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/live-dev.cjs",
+    "build": "node scripts/build.cjs",
+    "check": "node scripts/check.cjs",
+    "check:browser": "node scripts/check-browser.cjs",
+    "check:manufacturing": "node scripts/check-browser.cjs --manufacturing"
+  },
+  "devDependencies": {
+    "live-server": "1.2.2"
+  }
+}

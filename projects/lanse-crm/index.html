@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN" class="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff"><title>澜序 CRM · Lanse</title>
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <script src="../../dist/components/overlayPreset.js"></script>
+  <script src="./src/theme.js"></script>
+  <script src="../../dist/core/JquanUI@Core.js"></script>
+  <script src="../../dist/data/JquanUI@Data.js"></script>
+  <script src="../../dist/components/pagination.js"></script>
+  <script src="../../dist/components/table.js"></script>
+  <script src="../../dist/components/msg.js"></script>
+  <script src="../../dist/components/export.js"></script>
+  <script src="../../dist/components/approvalFlow.js"></script>
+</head>
+<body class="m-0 font-sans text-sm leading-relaxed bg-canvas text-ink selection:bg-primary/25 color-scheme-light dark:color-scheme-dark">
+  <div id="app"></div>
+  <dialog id="overlay" class="fixed inset-0 w-full max-w-2xl max-h-[90vh] p-0 text-ink bg-surface border border-stroke rounded-2xl shadow-2xl backdrop:bg-black/60"></dialog>
+  <dialog id="confirm" class="w-[calc(100%-2rem)] max-w-md p-6 text-ink bg-surface border border-stroke rounded-2xl shadow-2xl backdrop:bg-black/60"></dialog>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>

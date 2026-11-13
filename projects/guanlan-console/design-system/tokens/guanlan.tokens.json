@@ -1,0 +1,43 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "name": "Guanlan Console Tokens",
+  "version": "0.1.0",
+  "color": {
+    "canvas": { "value": "#F7FAFF", "type": "color" },
+    "canvasCool": { "value": "#EEF5FF", "type": "color" },
+    "surface": { "value": "#FFFFFF", "type": "color" },
+    "surfaceSoft": { "value": "#F6F8FF", "type": "color" },
+    "line": { "value": "#E7EAF6", "type": "color" },
+    "ink": { "value": "#30366F", "type": "color" },
+    "muted": { "value": "#747BA8", "type": "color" },
+    "faint": { "value": "#AEB5D1", "type": "color" },
+    "primary": { "value": "#596BE8", "type": "color" },
+    "primaryDeep": { "value": "#3858A8", "type": "color" },
+    "violet": { "value": "#846BFF", "type": "color" },
+    "sky": { "value": "#64C8FF", "type": "color" },
+    "mint": { "value": "#31C879", "type": "color" },
+    "amber": { "value": "#FFC84A", "type": "color" },
+    "orange": { "value": "#FF8A62", "type": "color" },
+    "rose": { "value": "#FF6F86", "type": "color" }
+  },
+  "radius": {
+    "control": { "value": "12px", "type": "dimension" },
+    "card": { "value": "18px", "type": "dimension" },
+    "panel": { "value": "28px", "type": "dimension" },
+    "screen": { "value": "32px", "type": "dimension" }
+  },
+  "shadow": {
+    "soft": { "value": "0 16px 40px rgba(86, 103, 214, 0.12)", "type": "shadow" },
+    "float": { "value": "0 22px 55px rgba(68, 77, 146, 0.16)", "type": "shadow" },
+    "glass": { "value": "0 28px 80px rgba(77, 91, 160, 0.18)", "type": "shadow" }
+  },
+  "space": {
+    "xs": { "value": "4px", "type": "dimension" },
+    "sm": { "value": "8px", "type": "dimension" },
+    "md": { "value": "12px", "type": "dimension" },
+    "lg": { "value": "16px", "type": "dimension" },
+    "xl": { "value": "24px", "type": "dimension" },
+    "2xl": { "value": "32px", "type": "dimension" },
+    "3xl": { "value": "48px", "type": "dimension" }
+  }
+}

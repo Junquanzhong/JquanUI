@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editor | 观澜台</title>
+  <link rel="stylesheet" href="../../../assets/phosphor/regular/style.css">
+  <script src="../design-system/tokens/guanlan-jquan.config.js"></script>
+  <script src="../../../dist/core/JquanUI@Core.js"></script><script src="../../../dist/components/i18n.js"></script>
+  <script src="../../../dist/components/select.js"></script>
+  <script src="../../../dist/components/tagInput.js"></script>
+  <script src="../../../dist/components/dateTimePicker.js"></script>
+  <script src="../../../dist/components/upload.js"></script>
+  <script src="../scripts/guanlan-controls.js"></script>
+  <script src="../scripts/guanlan-preferences.js?v=20260921-i18n-theme-11" defer></script><script src="../scripts/guanlan-interactions.js?v=20260918-nav" defer></script>
+  <script src="../scripts/guanlan-showcase.js?v=20260918-showcase" defer></script>
+  <script>
+    JquanUI.use(JquanUIComponents.select);
+    JquanUI.use(JquanUIComponents.tagInput);
+    JquanUI.use(JquanUIComponents.dateTimePicker);
+    JquanUI.use(JquanUIComponents.upload);
+  </script>
+</head>
+<body class="gl-page overflow-x-hidden">
+  <main class="gl-stage">
+    <section class="gl-screen">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_84%_8%,rgba(132,107,255,0.18),transparent_30%),linear-gradient(135deg,rgba(255,255,255,0.96),rgba(238,245,255,0.72))]"></div>
+      <div class="gl-shell">
+        <aside class="gl-sidebar"><a href="home.html" class="grid size-9 place-items-center rounded-full bg-[conic-gradient(from_20deg,#FF6F86,#846BFF,#64C8FF,#FF6F86)] p-1 shadow-[0_16px_40px_rgba(86,_103,_214,_0.12)]" aria-label="观澜台首页"><span class="size-full rounded-full bg-white"></span></a><nav aria-label="主导航" class="flex gap-2 lg:flex-col lg:gap-4"><div class="gl-nav-group"><a class="gl-nav-icon" href="home.html" title="首页" aria-haspopup="menu"><i class="ph ph-squares-four text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Workspace</p><a href="home.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-squares-four"></i>Overview</a><a href="detail.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-chart-line-up"></i>Growth report</a><a href="list.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-stack"></i>Content library</a></div></div><div class="gl-nav-group"><a class="gl-nav-icon" href="list.html" title="内容" aria-haspopup="menu"><i class="ph ph-stack text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Content</p><a href="list.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-files"></i>All content</a><a href="list.html?type=article" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-newspaper"></i>Articles</a><a href="list.html?type=product" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-package"></i>Products</a><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-plus-circle"></i>New article</a></div></div><div class="gl-nav-group"><a class="gl-nav-icon gl-nav-active" href="form.html" title="内容工作台" aria-haspopup="menu"><i class="ph ph-pencil-simple-line text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Content studio</p><a href="form.html" class="gl-flyout-menu-link gl-flyout-menu-active" role="menuitem"><i class="ph ph-file-plus"></i>New article</a><a href="detail.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-file-text"></i>Open report</a><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-pencil-simple"></i>Edit current</a></div></div><div class="gl-nav-group"><a class="gl-nav-icon" href="settings.html" title="配置中心" aria-haspopup="menu"><i class="ph ph-sliders-horizontal text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Administration</p><a href="settings.html#workspace-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-buildings"></i>Workspace</a><a href="settings.html#members-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-users-three"></i>Members & roles</a><a href="settings.html#notifications-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-bell"></i>Notifications</a></div></div></nav><a href="login.html" class="hidden size-10 items-center justify-center rounded-full bg-white text-faint shadow-[0_16px_40px_rgba(86,_103,_214,_0.12)] lg:inline-flex" title="退出"><i class="ph ph-sign-out text-xl"></i></a></aside>
+        <section class="gl-content">
+          <header class="gl-toolbar"><div><p class="gl-kicker mb-3">Content studio / New article</p><h1 class="gl-section-title">Create a content record</h1><p class="mt-2 text-sm text-muted">用结构化字段快速完成内容创建，并在发布前确认预览。</p></div><div class="flex items-center gap-3"><a href="list.html" class="gl-action-soft"><i class="ph ph-arrow-left"></i><span>Cancel</span></a><button type="submit" form="content-form" class="gl-action"><i class="ph ph-check"></i><span>Save draft</span></button></div></header>
+          <nav aria-label="内容工作流" class="gl-link-tabs mt-5"><a href="list.html" class="gl-link-tab"><i class="ph ph-list-dashes"></i>All content</a><a href="form.html" class="gl-link-tab gl-link-tab-active"><i class="ph ph-plus-circle"></i>New article</a><a href="detail.html" class="gl-link-tab"><i class="ph ph-file-text"></i>Current report</a><a href="form.html" class="gl-link-tab"><i class="ph ph-pencil-simple"></i>Edit article</a></nav>
+          <form id="content-form" class="mt-5 grid gap-5 xl:grid-cols-[1fr_340px]">
+            <div class="space-y-5">
+              <section class="gl-form-section"><div class="mb-5 flex items-start gap-3"><span class="gl-icon bg-violet"><i class="ph ph-text-aa"></i></span><div><h2 class="text-lg font-black text-ink">Basic information</h2><p class="mt-1 text-xs text-muted">定义内容的身份、分类和发布语言。</p></div></div><div class="grid gap-5 sm:grid-cols-2"><div class="sm:col-span-2"><label class="gl-field-label" for="title"><i class="ph ph-text-t"></i>Title</label><input id="title" name="title" class="gl-input" required value="Q3 Regional Growth Report"></div><div><label class="gl-field-label" for="type"><i class="ph ph-squares-four"></i>Content type</label><select id="type" name="type" class="gl-select" data-jq-select data-placeholder="Select content type" data-select-searchable="false"><option>Article</option><option>Product</option><option>Announcement</option></select></div><div><label class="gl-field-label" for="language"><i class="ph ph-translate"></i>Language</label><select id="language" name="language" class="gl-select" data-jq-select data-placeholder="Select language" data-select-searchable="false"><option>English</option><option>简体中文</option><option>日本語</option></select></div></div></section>
+              <section class="gl-form-section"><div class="mb-5 flex items-start gap-3"><span class="gl-icon bg-sky"><i class="ph ph-align-left"></i></span><div><h2 class="text-lg font-black text-ink">Content body</h2><p class="mt-1 text-xs text-muted">支持正文、摘要和封面信息。</p></div></div><div class="space-y-5"><div><label class="gl-field-label" for="summary"><i class="ph ph-quotes"></i>Summary</label><textarea id="summary" name="summary" class="gl-input min-h-24 resize-y" required>一份关于区域增长、活跃用户和市场覆盖的运营分析报告。</textarea></div><div><label class="gl-field-label" for="body"><i class="ph ph-article"></i>Body</label><textarea id="body" name="body" class="gl-input min-h-44 resize-y" required>本季度的区域数据保持稳定增长。北美区域贡献了最大的活跃用户规模，亚太区域的新增用户增速最为明显。</textarea></div></div></section>
+              <section class="gl-form-section" data-gl-url-assets>
+                <div class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div class="flex items-start gap-3"><span class="gl-icon bg-sky"><i class="ph ph-images"></i></span><div><h2 class="text-lg font-black text-ink">Images & attachments</h2><p class="mt-1 text-xs text-muted">拖拽或选择本地文件，支持多图预览、删除、手动上传和 URL 资源。</p></div></div>
+                  <span class="gl-chip bg-primary/10 text-primary"><i class="ph ph-stack"></i>Up to 12 files</span>
+                </div>
+                <div class="grid gap-5">
+                  <div data-gl-upload aria-label="Article images and attachments uploader"></div>
+                  <div class="rounded-2xl border border-line/80 bg-white/50 p-4">
+                    <div class="mb-3 flex items-center gap-2"><i class="ph ph-link-simple text-primary"></i><h3 class="text-sm font-black text-ink">Use a remote URL</h3></div>
+                    <div class="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto]" data-gl-url-form>
+                      <label class="sr-only" for="article-asset-url">Image or attachment URL</label>
+                      <input id="article-asset-url" class="gl-input" type="url" placeholder="https://example.com/cover.jpg" data-gl-url-input>
+                      <button type="button" class="gl-action-soft" data-gl-url-submit><i class="ph ph-plus"></i>Add URL</button>
+                    </div>
+                    <div class="mt-4 grid gap-3" data-gl-url-list aria-live="polite"></div>
+                  </div>
+                </div>
+              </section>
+              <section class="gl-form-section"><div class="mb-5 flex items-start gap-3"><span class="gl-icon bg-mint"><i class="ph ph-tag"></i></span><div><h2 class="text-lg font-black text-ink">Metadata</h2><p class="mt-1 text-xs text-muted">帮助团队检索和分发内容。</p></div></div><div class="grid gap-5 sm:grid-cols-2"><div><label class="gl-field-label" for="owner"><i class="ph ph-user"></i>Owner</label><select id="owner" class="gl-select" data-jq-select data-placeholder="Select owner" data-select-searchable="false"><option value="mina">Mina Chen</option><option value="alex">Alex Wu</option><option value="sam">Sam Rivera</option></select></div><div><label class="gl-field-label" for="publish"><i class="ph ph-calendar-blank"></i>Publish date</label><input id="publish" type="date" class="gl-input" value="2026-09-17" data-jq-date-time-picker data-placeholder="Select publish date"></div><div><label class="gl-field-label" for="publish-at"><i class="ph ph-clock"></i>Publish time</label><input id="publish-at" type="time" class="gl-input" value="09:30" data-jq-date-time-picker data-placeholder="Select publish time" data-minute-step="15"></div><div><label class="gl-field-label" for="publish-window"><i class="ph ph-calendar-check"></i>Publish window</label><input id="publish-window" type="datetime-local" class="gl-input" value="2026-09-17T09:30" data-jq-date-time-picker data-placeholder="Select publish window" data-minute-step="15"></div><div class="sm:col-span-2"><label class="gl-field-label" for="tags"><i class="ph ph-hash"></i>Tags</label><input id="tags" class="gl-input" value="growth, regional, q3" placeholder="Add a tag and press Enter" data-jq-tag-input data-tag-suggestions='["growth","regional","q3","operations","report"]'></div></div></section>
+            </div>
+            <aside class="space-y-5"><section class="gl-panel p-5 sm:p-6"><div class="mb-5 flex items-center justify-between"><div><p class="gl-label mb-1">Live preview</p><h2 class="text-xl font-black text-ink">Article card</h2></div><span class="gl-chip bg-mint/10 text-mint"><i class="ph ph-eye"></i>Visible</span></div><div class="rounded-2xl bg-[linear-gradient(135deg,#EAF7FF,#DDDFFF)] p-5"><span class="gl-chip mb-12 bg-white/75"><i class="ph ph-chart-line-up text-primary"></i>Report</span><h3 class="text-2xl font-black text-ink">Q3 Regional Growth Report</h3><p class="mt-3 text-sm leading-7 text-muted">一份关于区域增长、活跃用户和市场覆盖的运营分析报告。</p><div class="mt-8 flex items-center justify-between border-t border-white/70 pt-4 text-xs font-bold text-muted"><span>6 min read</span><span>Sep 17, 2026</span></div></div></section><section class="gl-panel p-5 sm:p-6"><div class="mb-4 flex items-center gap-3"><span class="gl-icon size-9 bg-amber"><i class="ph ph-info"></i></span><h2 class="font-black text-ink">Publishing checklist</h2></div><div class="space-y-3 text-sm text-muted"><p><i class="ph ph-check-circle mr-2 text-mint"></i>Title and summary are complete</p><p><i class="ph ph-check-circle mr-2 text-mint"></i>Owner and publish date selected</p><p><i class="ph ph-circle mr-2 text-faint"></i>Approval still required</p></div></section></aside>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+

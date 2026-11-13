@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Permissions | 观澜台</title>
+  <link rel="stylesheet" href="../../../assets/phosphor/regular/style.css">
+  <script src="../design-system/tokens/guanlan-jquan.config.js"></script>
+  <script src="../../../dist/core/JquanUI@Core.js"></script><script src="../../../dist/components/i18n.js"></script>
+  <script src="../../../dist/components/permissionMatrix.js"></script>
+  <script src="../../../dist/components/roleMemberAssigner.js"></script>
+  <script src="../scripts/guanlan-controls.js"></script>
+  <script src="../scripts/guanlan-preferences.js?v=20260921-i18n-theme-11" defer></script><script src="../scripts/guanlan-interactions.js?v=20260918-nav" defer></script>
+  <script src="../scripts/guanlan-showcase.js?v=20260918-showcase" defer></script>
+  <script>
+    JquanUI.use(JquanUIComponents.permissionMatrix);
+    JquanUI.use(JquanUIComponents.roleMemberAssigner);
+  </script>
+</head>
+<body class="gl-page overflow-x-hidden">
+  <main class="gl-stage">
+    <section class="gl-screen">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_92%_12%,rgba(255,200,74,0.16),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.96),rgba(238,245,255,0.72))]"></div>
+      <div class="gl-shell">
+        <aside class="gl-sidebar"><a href="home.html" class="grid size-9 place-items-center rounded-full bg-[conic-gradient(from_20deg,#FF6F86,#846BFF,#64C8FF,#FF6F86)] p-1 shadow-[0_16px_40px_rgba(86,_103,_214,_0.12)]" aria-label="观澜台首页"><span class="size-full rounded-full bg-white"></span></a><nav aria-label="主导航" class="flex gap-2 lg:flex-col lg:gap-4"><div class="gl-nav-group"><a class="gl-nav-icon" href="home.html" title="首页" aria-haspopup="menu"><i class="ph ph-squares-four text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Workspace</p><a href="home.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-squares-four"></i>Overview</a><a href="list.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-stack"></i>Content library</a></div></div><div class="gl-nav-group"><a class="gl-nav-icon" href="list.html" title="内容" aria-haspopup="menu"><i class="ph ph-stack text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Content</p><a href="list.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-files"></i>All content</a><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-plus-circle"></i>New article</a></div></div><div class="gl-nav-group"><a class="gl-nav-icon" href="form.html" title="内容工作台" aria-haspopup="menu"><i class="ph ph-pencil-simple-line text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Content studio</p><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-file-plus"></i>New article</a><a href="detail.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-file-text"></i>Open report</a></div></div><div class="gl-nav-group"><a class="gl-nav-icon gl-nav-active" href="settings.html" title="配置中心" aria-haspopup="menu"><i class="ph ph-sliders-horizontal text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Administration</p><a href="settings.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-buildings"></i>Configuration</a><a href="model-designer.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-brackets-curly"></i>Model schema</a><a href="media-library.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-images"></i>Media library</a><a href="permissions.html" class="gl-flyout-menu-link gl-flyout-menu-active" role="menuitem"><i class="ph ph-key"></i>Permissions</a><a href="review-queue.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-checks"></i>Review queue</a></div></div></nav><a href="login.html" class="hidden size-10 items-center justify-center rounded-full bg-white text-faint shadow-[0_16px_40px_rgba(86,_103,_214,_0.12)] lg:inline-flex" title="退出"><i class="ph ph-sign-out text-xl"></i></a></aside>
+        <section class="gl-content">
+          <header class="gl-toolbar"><div><p class="gl-kicker mb-3">Administration / Access control</p><h1 class="gl-section-title">Permissions</h1><p class="mt-2 text-sm text-muted">为每个角色设置模块操作范围，再把角色分配给团队成员。</p></div><button type="button" class="gl-action"><i class="ph ph-check"></i><span>Save policy</span></button></header>
+          <nav aria-label="配置工作流" class="gl-link-tabs mt-5"><a href="settings.html" class="gl-link-tab"><i class="ph ph-sliders-horizontal"></i>Configuration</a><a href="model-designer.html" class="gl-link-tab"><i class="ph ph-brackets-curly"></i>Model schema</a><a href="permissions.html" class="gl-link-tab gl-link-tab-active"><i class="ph ph-key"></i>Permissions</a><a href="review-queue.html" class="gl-link-tab"><i class="ph ph-checks"></i>Review queue</a></nav>
+          <div class="mt-5 space-y-5"><section class="gl-form-section"><div class="mb-5 flex items-start gap-3"><span class="gl-icon bg-violet"><i class="ph ph-key"></i></span><div><h2 class="text-lg font-black text-ink">Role permission matrix</h2><p class="mt-1 text-xs text-muted">当前角色：Admin。按行或按列快速设置整组权限。</p></div></div><div data-gl-permission-matrix data-jq-permission-matrix></div></section><section class="gl-form-section"><div class="mb-5 flex items-start gap-3"><span class="gl-icon bg-sky"><i class="ph ph-users-three"></i></span><div><h2 class="text-lg font-black text-ink">Assign members to roles</h2><p class="mt-1 text-xs text-muted">切换角色后，为成员分配或移除当前角色。</p></div></div><div data-gl-role-assigner data-jq-role-member-assigner></div></section></div>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

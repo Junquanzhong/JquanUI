@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home | 观澜台</title>
+  <link rel="stylesheet" href="../../../assets/phosphor/regular/style.css">
+  <script src="../design-system/tokens/guanlan-jquan.config.js"></script>
+  <script src="../../../dist/core/JquanUI@Core.js"></script><script src="../../../dist/components/i18n.js"></script>
+  <script src="../scripts/guanlan-preferences.js?v=20260921-i18n-theme-11" defer></script><script src="../scripts/guanlan-interactions.js?v=20260918-nav" defer></script>
+</head>
+<body class="gl-page overflow-x-hidden">
+  <main class="gl-stage">
+    <section class="gl-screen">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_82%_20%,rgba(132,107,255,0.18),transparent_30%),radial-gradient(circle_at_18%_5%,rgba(100,200,255,0.22),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.96),rgba(238,245,255,0.74))]"></div>
+      <div class="gl-shell">
+        <aside class="gl-sidebar">
+          <a href="home.html" class="grid size-9 place-items-center rounded-full bg-[conic-gradient(from_20deg,#FF6F86,#846BFF,#64C8FF,#FF6F86)] p-1 shadow-[0_16px_40px_rgba(86,_103,_214,_0.12)]" aria-label="观澜台首页"><span class="size-full rounded-full bg-white"></span></a>
+          <nav aria-label="主导航" class="flex gap-2 lg:flex-col lg:gap-4">
+            <div class="gl-nav-group"><a class="gl-nav-icon gl-nav-active" href="home.html" title="首页" aria-haspopup="menu"><i class="ph ph-squares-four text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Workspace</p><a href="home.html" class="gl-flyout-menu-link gl-flyout-menu-active" role="menuitem"><i class="ph ph-squares-four"></i>Overview</a><a href="detail.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-chart-line-up"></i>Growth report</a><a href="list.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-stack"></i>Content library</a></div></div>
+            <div class="gl-nav-group"><a class="gl-nav-icon" href="list.html" title="内容" aria-haspopup="menu"><i class="ph ph-stack text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Content</p><a href="list.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-files"></i>All content</a><a href="list.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-newspaper"></i>Articles</a><a href="list.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-package"></i>Products</a><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-plus-circle"></i>New article</a></div></div>
+            <div class="gl-nav-group"><a class="gl-nav-icon" href="form.html" title="内容工作台" aria-haspopup="menu"><i class="ph ph-pencil-simple-line text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Content studio</p><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-file-plus"></i>New article</a><a href="detail.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-file-text"></i>Open report</a><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-pencil-simple"></i>Edit current</a></div></div>
+            <div class="gl-nav-group"><a class="gl-nav-icon" href="settings.html" title="配置中心" aria-haspopup="menu"><i class="ph ph-sliders-horizontal text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Administration</p><a href="settings.html#workspace-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-buildings"></i>Workspace</a><a href="settings.html#members-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-users-three"></i>Members & roles</a><a href="settings.html#notifications-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-bell"></i>Notifications</a></div></div>
+          </nav>
+          <a href="login.html" class="hidden size-10 items-center justify-center rounded-full bg-white text-faint shadow-[0_16px_40px_rgba(86,_103,_214,_0.12)] transition-colors hover:text-primary lg:inline-flex" title="退出"><i class="ph ph-sign-out text-xl"></i></a>
+        </aside>
+
+        <section class="gl-content">
+          <header class="gl-toolbar mb-6 border-b-0 pb-0">
+            <div>
+              <p class="gl-kicker mb-3">Wednesday, September 17, 2026 / Overview</p>
+              <h1 class="gl-section-title text-3xl sm:text-4xl">Good morning, <span class="text-primary">Mina</span></h1>
+              <p class="mt-2 text-sm text-muted">这里是今天的业务总览，所有区域都在稳定运行。</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button type="button" class="gl-action-soft" title="搜索"><i class="ph ph-magnifying-glass text-lg"></i><span class="hidden sm:inline">Search</span></button>
+              <button type="button" class="gl-action"><i class="ph ph-plus text-lg"></i><span>New report</span></button>
+            </div>
+          </header>
+
+          <div class="mb-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <article class="gl-card p-5">
+              <div class="mb-6 flex items-center justify-between"><span class="gl-label">Total users</span><span class="gl-icon size-9 bg-violet"><i class="ph ph-users-three"></i></span></div>
+              <strong class="gl-number text-4xl">2.43M</strong>
+              <p class="mt-3 text-xs font-bold text-mint"><i class="ph ph-trend-up mr-1"></i>12.8% <span class="font-medium text-muted">vs last month</span></p>
+            </article>
+            <article class="gl-card p-5">
+              <div class="mb-6 flex items-center justify-between"><span class="gl-label">Monthly revenue</span><span class="gl-icon size-9 bg-sky"><i class="ph ph-currency-dollar"></i></span></div>
+              <strong class="gl-number text-4xl">$486K</strong>
+              <p class="mt-3 text-xs font-bold text-mint"><i class="ph ph-trend-up mr-1"></i>8.4% <span class="font-medium text-muted">vs last month</span></p>
+            </article>
+            <article class="gl-card p-5">
+              <div class="mb-6 flex items-center justify-between"><span class="gl-label">Active projects</span><span class="gl-icon size-9 bg-orange"><i class="ph ph-kanban"></i></span></div>
+              <strong class="gl-number text-4xl">128</strong>
+              <p class="mt-3 text-xs font-bold text-orange"><i class="ph ph-minus mr-1"></i>2.1% <span class="font-medium text-muted">vs last month</span></p>
+            </article>
+            <article class="gl-card p-5">
+              <div class="mb-6 flex items-center justify-between"><span class="gl-label">Service health</span><span class="gl-icon size-9 bg-mint"><i class="ph ph-heartbeat"></i></span></div>
+              <strong class="gl-number text-4xl">99.8%</strong>
+              <p class="mt-3 text-xs font-bold text-mint"><i class="ph ph-check mr-1"></i>All systems <span class="font-medium text-muted">operational</span></p>
+            </article>
+          </div>
+
+          <div class="grid gap-5 xl:grid-cols-[1.35fr_0.65fr]">
+            <article class="gl-panel min-h-[300px] p-5 sm:p-6">
+              <div class="mb-5 flex items-center justify-between"><div><p class="gl-label mb-1">Performance pulse</p><h2 class="text-xl font-black text-ink">Revenue overview</h2></div><span class="gl-chip"><i class="ph ph-calendar-blank"></i>Last 30 days</span></div>
+              <div class="flex h-48 items-end gap-2 border-b border-line/70 px-2 pb-0 sm:gap-4">
+                <span class="h-[36%] flex-1 rounded-t-lg bg-primary/15"></span><span class="h-[45%] flex-1 rounded-t-lg bg-primary/20"></span><span class="h-[42%] flex-1 rounded-t-lg bg-primary/25"></span><span class="h-[58%] flex-1 rounded-t-lg bg-violet/40"></span><span class="h-[64%] flex-1 rounded-t-lg bg-violet/55"></span><span class="h-[53%] flex-1 rounded-t-lg bg-primary/45"></span><span class="h-[74%] flex-1 rounded-t-lg bg-primary/65"></span><span class="h-[81%] flex-1 rounded-t-lg bg-primary"></span><span class="h-[68%] flex-1 rounded-t-lg bg-violet/70"></span><span class="h-[90%] flex-1 rounded-t-lg bg-violet"></span><span class="h-[78%] flex-1 rounded-t-lg bg-primary/80"></span><span class="h-[96%] flex-1 rounded-t-lg bg-primary-deep"></span>
+              </div>
+              <div class="mt-3 flex justify-between px-2 text-[10px] font-bold uppercase tracking-[0.12em] text-faint"><span>Aug 19</span><span>Aug 26</span><span>Sep 02</span><span>Sep 09</span><span>Sep 17</span></div>
+            </article>
+            <article class="gl-panel min-h-[300px] p-5 sm:p-6">
+              <div class="mb-5 flex items-center justify-between"><div><p class="gl-label mb-1">Workspace activity</p><h2 class="text-xl font-black text-ink">Recent updates</h2></div><button type="button" class="text-xs font-bold text-primary">View all</button></div>
+              <div class="space-y-5">
+                <div class="flex gap-3"><span class="gl-icon size-9 shrink-0 bg-violet"><i class="ph ph-file-text"></i></span><div><p class="text-sm font-bold text-ink">Q3 regional report published</p><p class="mt-1 text-xs text-muted">12 minutes ago · Content team</p></div></div>
+                <div class="flex gap-3"><span class="gl-icon size-9 shrink-0 bg-mint"><i class="ph ph-check-circle"></i></span><div><p class="text-sm font-bold text-ink">Product sync completed</p><p class="mt-1 text-xs text-muted">48 minutes ago · System</p></div></div>
+                <div class="flex gap-3"><span class="gl-icon size-9 shrink-0 bg-sky"><i class="ph ph-user-plus"></i></span><div><p class="text-sm font-bold text-ink">8 new members joined</p><p class="mt-1 text-xs text-muted">2 hours ago · Workspace</p></div></div>
+                <div class="flex gap-3"><span class="gl-icon size-9 shrink-0 bg-amber"><i class="ph ph-warning"></i></span><div><p class="text-sm font-bold text-ink">Review 3 pending approvals</p><p class="mt-1 text-xs text-muted">Today · Operations</p></div></div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+

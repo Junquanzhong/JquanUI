@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Content list | 观澜台</title>
+  <link rel="stylesheet" href="../../../assets/phosphor/regular/style.css">
+  <script src="../design-system/tokens/guanlan-jquan.config.js"></script>
+  <script src="../../../dist/core/JquanUI@Core.js"></script><script src="../../../dist/components/i18n.js"></script>
+  <script src="../../../dist/components/select.js"></script>
+  <script src="../scripts/guanlan-controls.js" defer></script>
+  <script src="../scripts/guanlan-preferences.js?v=20260921-i18n-theme-11" defer></script><script src="../scripts/guanlan-interactions.js?v=20260918-nav" defer></script>
+  <script>
+    JquanUI.use(JquanUIComponents.select);
+  </script>
+</head>
+<body class="gl-page overflow-x-hidden">
+  <main class="gl-stage">
+    <section class="gl-screen">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_90%_8%,rgba(100,200,255,0.2),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.96),rgba(238,245,255,0.72))]"></div>
+      <div class="gl-shell">
+        <aside class="gl-sidebar">
+          <a href="home.html" class="grid size-9 place-items-center rounded-full bg-[conic-gradient(from_20deg,#FF6F86,#846BFF,#64C8FF,#FF6F86)] p-1 shadow-[0_16px_40px_rgba(86,_103,_214,_0.12)]" aria-label="观澜台首页"><span class="size-full rounded-full bg-white"></span></a>
+          <nav aria-label="主导航" class="flex gap-2 lg:flex-col lg:gap-4">
+            <div class="gl-nav-group"><a class="gl-nav-icon" href="home.html" title="首页" aria-haspopup="menu"><i class="ph ph-squares-four text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Workspace</p><a href="home.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-squares-four"></i>Overview</a><a href="detail.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-chart-line-up"></i>Growth report</a><a href="list.html" class="gl-flyout-menu-link gl-flyout-menu-active" role="menuitem"><i class="ph ph-stack"></i>Content library</a></div></div>
+            <div class="gl-nav-group"><a class="gl-nav-icon gl-nav-active" href="list.html" title="内容" aria-haspopup="menu"><i class="ph ph-stack text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Content</p><a href="list.html" class="gl-flyout-menu-link gl-flyout-menu-active" role="menuitem"><i class="ph ph-files"></i>All content</a><a href="list.html?type=article" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-newspaper"></i>Articles</a><a href="list.html?type=product" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-package"></i>Products</a><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-plus-circle"></i>New article</a></div></div>
+            <div class="gl-nav-group"><a class="gl-nav-icon" href="form.html" title="内容工作台" aria-haspopup="menu"><i class="ph ph-pencil-simple-line text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Content studio</p><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-file-plus"></i>New article</a><a href="detail.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-file-text"></i>Open report</a><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-pencil-simple"></i>Edit current</a></div></div>
+            <div class="gl-nav-group"><a class="gl-nav-icon" href="settings.html" title="配置中心" aria-haspopup="menu"><i class="ph ph-sliders-horizontal text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Administration</p><a href="settings.html#workspace-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-buildings"></i>Workspace</a><a href="settings.html#members-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-users-three"></i>Members & roles</a><a href="settings.html#notifications-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-bell"></i>Notifications</a></div></div>
+          </nav>
+          <a href="login.html" class="hidden size-10 items-center justify-center rounded-full bg-white text-faint shadow-[0_16px_40px_rgba(86,_103,_214,_0.12)] transition-colors hover:text-primary lg:inline-flex" title="退出"><i class="ph ph-sign-out text-xl"></i></a>
+        </aside>
+        <section class="gl-content">
+          <header class="gl-toolbar">
+            <div><p class="gl-kicker mb-3">Workspace / Content library</p><h1 class="gl-section-title">Articles & products</h1><p class="mt-2 text-sm text-muted">管理已发布内容、产品资料和待审核条目。</p></div>
+            <div class="flex flex-wrap items-center gap-3"><button type="button" class="gl-action-soft"><i class="ph ph-download-simple text-lg"></i><span>Export</span></button><a href="form.html" class="gl-action"><i class="ph ph-plus text-lg"></i><span>Create new</span></a></div>
+          </header>
+          <nav aria-label="内容工作流" class="gl-link-tabs mt-5">
+            <a href="list.html" class="gl-link-tab gl-link-tab-active"><i class="ph ph-list-dashes"></i>All content</a>
+            <a href="list.html?type=article" class="gl-link-tab"><i class="ph ph-newspaper"></i>Articles</a>
+            <a href="list.html?type=product" class="gl-link-tab"><i class="ph ph-package"></i>Products</a>
+            <a href="form.html" class="gl-link-tab"><i class="ph ph-plus-circle"></i>New article</a>
+          </nav>
+          <div class="mt-5 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(180px,220px)_auto]">
+            <label class="relative min-w-0"><span class="sr-only">搜索内容</span><i class="ph ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-lg text-faint"></i><input class="gl-input pl-11" type="search" placeholder="Search title, owner or ID"></label>
+            <select class="gl-select" aria-label="内容类型" data-jq-select data-placeholder="All types" data-select-searchable="false" data-select-clearable="false"><option value="all">All types</option><option value="article">Article</option><option value="product">Product</option></select>
+            <button type="button" class="gl-action-soft lg:min-w-32 data-[state=open]:border-primary/30 data-[state=open]:bg-primary/10 data-[state=open]:text-primary" data-gl-filter="#advanced-filters" aria-controls="advanced-filters" aria-expanded="false"><i class="ph ph-faders text-lg"></i><span>Filters</span></button>
+          </div>
+          <div id="advanced-filters" data-state="closed" hidden class="gl-filter-panel mt-4 sm:grid-cols-3">
+            <select class="gl-select" aria-label="状态" data-jq-select data-placeholder="Any status" data-select-searchable="false" data-select-clearable="false"><option value="any">Any status</option><option value="published">Published</option><option value="draft">Draft</option><option value="review">Review</option></select><select class="gl-select" aria-label="负责人" data-jq-select data-placeholder="Any owner" data-select-searchable="false" data-select-clearable="false"><option value="any">Any owner</option><option value="mina">Mina Chen</option><option value="alex">Alex Wu</option></select><input class="gl-input" type="date" aria-label="更新时间">
+          </div>
+          <div class="mt-5 flex flex-wrap items-center gap-2"><span class="gl-chip bg-primary/10 text-primary"><i class="ph ph-check-circle"></i>All items · 248</span><span class="gl-chip"><i class="ph ph-file-text"></i>Articles · 184</span><span class="gl-chip"><i class="ph ph-package"></i>Products · 64</span></div>
+          <div data-gl-bulk-bar data-state="empty" class="gl-bulk-bar mt-5">
+            <div class="flex items-center gap-3">
+              <span class="gl-icon size-9 bg-primary/15 text-primary shadow-none"><i class="ph ph-check-square-offset"></i></span>
+              <div><strong data-gl-selected-count class="font-black text-ink">0 selected</strong><p data-gl-bulk-feedback class="mt-0.5 text-xs text-muted">Select items to enable bulk actions.</p></div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" class="gl-action-soft px-3 py-2 text-xs" data-gl-bulk-action="Archive" disabled><i class="ph ph-archive"></i><span>Archive</span></button>
+              <button type="button" class="gl-action-soft px-3 py-2 text-xs" data-gl-bulk-action="Assign" disabled><i class="ph ph-user-plus"></i><span>Assign</span></button>
+              <button type="button" class="gl-action-soft px-3 py-2 text-xs text-rose hover:border-rose/40 hover:bg-rose/5" data-gl-bulk-action="Delete" disabled><i class="ph ph-trash"></i><span>Delete</span></button>
+            </div>
+          </div>
+          <div class="gl-table-wrap mt-5">
+            <table class="gl-table">
+              <caption class="sr-only">内容列表</caption>
+              <thead class="gl-table-head"><tr><th class="w-14 px-5 py-4"><input type="checkbox" data-gl-select-all aria-label="选择全部内容" class="size-4 accent-primary"></th><th class="px-5 py-4">Content</th><th class="px-5 py-4">Type</th><th class="px-5 py-4">Status</th><th class="px-5 py-4">Owner</th><th class="px-5 py-4">Updated</th><th class="px-5 py-4 text-right">Action</th></tr></thead>
+              <tbody>
+                <tr data-gl-row class="gl-table-row"><td class="px-5 py-4"><input type="checkbox" data-gl-row-select aria-label="选择 Q3 Regional Growth Report" class="size-4 accent-primary"></td><td class="px-5 py-4"><div class="flex items-center gap-3"><span class="gl-icon size-9 bg-violet"><i class="ph ph-chart-line-up"></i></span><div><a href="detail.html" class="font-bold text-ink hover:text-primary">Q3 Regional Growth Report</a><p class="mt-1 text-xs text-muted">CNT-2038 · 8 sections</p></div></div></td><td class="px-5 py-4">Article</td><td class="px-5 py-4"><span class="gl-status bg-mint/12 text-mint"><i class="ph ph-check-circle"></i>Published</span></td><td class="px-5 py-4">Mina Chen</td><td class="px-5 py-4">12 min ago</td><td class="px-5 py-4 text-right"><button class="text-xl text-faint hover:text-primary" title="更多操作"><i class="ph ph-dots-three"></i></button></td></tr>
+                <tr data-gl-row class="gl-table-row"><td class="px-5 py-4"><input type="checkbox" data-gl-row-select aria-label="选择 Atlas Analytics Suite" class="size-4 accent-primary"></td><td class="px-5 py-4"><div class="flex items-center gap-3"><span class="gl-icon size-9 bg-sky"><i class="ph ph-package"></i></span><div><a href="detail.html" class="font-bold text-ink hover:text-primary">Atlas Analytics Suite</a><p class="mt-1 text-xs text-muted">PRD-1082 · v2.4.0</p></div></div></td><td class="px-5 py-4">Product</td><td class="px-5 py-4"><span class="gl-status bg-amber/15 text-orange"><i class="ph ph-clock"></i>Review</span></td><td class="px-5 py-4">Alex Wu</td><td class="px-5 py-4">48 min ago</td><td class="px-5 py-4 text-right"><button class="text-xl text-faint hover:text-primary" title="更多操作"><i class="ph ph-dots-three"></i></button></td></tr>
+                <tr data-gl-row class="gl-table-row"><td class="px-5 py-4"><input type="checkbox" data-gl-row-select aria-label="选择 The New Operating Model" class="size-4 accent-primary"></td><td class="px-5 py-4"><div class="flex items-center gap-3"><span class="gl-icon size-9 bg-orange"><i class="ph ph-newspaper"></i></span><div><a href="detail.html" class="font-bold text-ink hover:text-primary">The New Operating Model</a><p class="mt-1 text-xs text-muted">CNT-2034 · 5 sections</p></div></div></td><td class="px-5 py-4">Article</td><td class="px-5 py-4"><span class="gl-status bg-faint/15 text-muted"><i class="ph ph-pencil-simple"></i>Draft</span></td><td class="px-5 py-4">Mina Chen</td><td class="px-5 py-4">Yesterday</td><td class="px-5 py-4 text-right"><button class="text-xl text-faint hover:text-primary" title="更多操作"><i class="ph ph-dots-three"></i></button></td></tr>
+                <tr data-gl-row class="gl-table-row"><td class="px-5 py-4"><input type="checkbox" data-gl-row-select aria-label="选择 Signal Mapping API" class="size-4 accent-primary"></td><td class="px-5 py-4"><div class="flex items-center gap-3"><span class="gl-icon size-9 bg-mint"><i class="ph ph-cube"></i></span><div><a href="detail.html" class="font-bold text-ink hover:text-primary">Signal Mapping API</a><p class="mt-1 text-xs text-muted">PRD-1077 · v1.8.3</p></div></div></td><td class="px-5 py-4">Product</td><td class="px-5 py-4"><span class="gl-status bg-mint/12 text-mint"><i class="ph ph-check-circle"></i>Published</span></td><td class="px-5 py-4">Sam Rivera</td><td class="px-5 py-4">Sep 15, 2026</td><td class="px-5 py-4 text-right"><button class="text-xl text-faint hover:text-primary" title="更多操作"><i class="ph ph-dots-three"></i></button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-3"><p class="text-xs text-muted">Showing <strong class="text-ink">1-4</strong> of 248 items</p><div class="flex items-center gap-2"><button class="gl-action-soft size-10 p-0" title="上一页"><i class="ph ph-caret-left"></i></button><span class="grid size-10 place-items-center rounded-xl bg-primary text-sm font-bold text-white">1</span><button class="gl-action-soft size-10 p-0" title="下一页"><i class="ph ph-caret-right"></i></button></div></div>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+

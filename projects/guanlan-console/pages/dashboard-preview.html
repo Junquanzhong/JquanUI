@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>观澜台 Guanlan Console</title>
+  <link rel="stylesheet" href="../../../assets/phosphor/regular/style.css">
+  <script src="../design-system/tokens/guanlan-jquan.config.js"></script>
+  <script src="../../../dist/core/JquanUI@Core.js"></script><script src="../../../dist/components/i18n.js"></script>
+  <script src="../scripts/guanlan-preferences.js?v=20260921-i18n-theme-11" defer></script><script src="../scripts/guanlan-interactions.js?v=20260918-nav" defer></script>
+</head>
+<body class="gl-page overflow-x-hidden">
+  <main class="gl-stage">
+    <section class="gl-screen">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_42%,rgba(132,107,255,0.22),transparent_34%),radial-gradient(circle_at_18%_10%,rgba(100,200,255,0.28),transparent_30%),linear-gradient(135deg,rgba(255,255,255,0.92),rgba(238,245,255,0.72))]"></div>
+      <div class="relative grid h-full min-h-0 grid-cols-1 lg:grid-cols-[76px_390px_1fr]">
+        <aside class="gl-sidebar">
+          <a href="home.html" class="grid size-9 place-items-center rounded-full bg-[conic-gradient(from_20deg,#FF6F86,#846BFF,#64C8FF,#FF6F86)] p-1 shadow-[0_16px_40px_rgba(86,_103,_214,_0.12)]" aria-label="观澜台首页"><span class="size-full rounded-full bg-white"></span></a>
+          <nav aria-label="主导航" class="flex gap-2 lg:flex-col lg:gap-4">
+            <div class="gl-nav-group"><a class="gl-nav-icon gl-nav-active" href="home.html" title="首页" aria-haspopup="menu"><i class="ph ph-squares-four text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Workspace</p><a href="home.html" class="gl-flyout-menu-link gl-flyout-menu-active" role="menuitem"><i class="ph ph-squares-four"></i>Overview</a><a href="detail.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-chart-line-up"></i>Growth report</a><a href="list.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-stack"></i>Content library</a></div></div>
+            <div class="gl-nav-group"><a class="gl-nav-icon" href="list.html" title="内容" aria-haspopup="menu"><i class="ph ph-stack text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Content</p><a href="list.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-files"></i>All content</a><a href="list.html?type=article" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-newspaper"></i>Articles</a><a href="list.html?type=product" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-package"></i>Products</a><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-plus-circle"></i>New article</a></div></div>
+            <div class="gl-nav-group"><a class="gl-nav-icon" href="form.html" title="内容工作台" aria-haspopup="menu"><i class="ph ph-pencil-simple-line text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Content studio</p><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-file-plus"></i>New article</a><a href="detail.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-file-text"></i>Open report</a><a href="form.html" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-pencil-simple"></i>Edit current</a></div></div>
+            <div class="gl-nav-group"><a class="gl-nav-icon" href="settings.html" title="配置中心" aria-haspopup="menu"><i class="ph ph-sliders-horizontal text-xl"></i></a><div class="gl-flyout-menu" role="menu"><p class="gl-flyout-menu-title">Administration</p><a href="settings.html#workspace-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-buildings"></i>Workspace</a><a href="settings.html#members-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-users-three"></i>Members & roles</a><a href="settings.html#notifications-panel" class="gl-flyout-menu-link" role="menuitem"><i class="ph ph-bell"></i>Notifications</a></div></div>
+          </nav>
+          <button type="button" class="relative hidden size-10 items-center justify-center rounded-full bg-white text-faint shadow-[0_16px_40px_rgba(86,_103,_214,_0.12)] lg:inline-flex" aria-label="通知"><i class="ph ph-bell text-xl"></i><span class="absolute right-2 top-2 size-2 rounded-full bg-rose"></span></button>
+        </aside>
+
+        <section class="relative z-10 p-5 sm:p-7 lg:p-9">
+          <div class="mb-8">
+            <p class="mb-4 text-2xl font-semibold text-ink">General statistics</p>
+            <div class="mb-1 flex items-center gap-3">
+              <span class="text-sm font-black text-ink">All users</span>
+              <button type="button" class="text-[10px] font-black uppercase tracking-[0.2em] text-muted">Detail ></button>
+            </div>
+            <strong class="gl-number">2,431,340</strong>
+          </div>
+
+          <div class="mb-8 grid grid-cols-2 gap-4">
+            <article class="flex items-center gap-3">
+              <div class="grid size-14 place-items-center rounded-full border-4 border-primary/20 border-t-primary text-sm font-semibold text-ink">27%</div>
+              <div>
+                <p class="font-semibold text-ink">92,980</p>
+                <p class="gl-label">Active users</p>
+              </div>
+            </article>
+            <article class="flex items-center gap-3">
+              <div class="grid size-14 place-items-center rounded-full border-4 border-mint/20 border-t-mint text-sm font-semibold text-ink">67%</div>
+              <div>
+                <p class="font-semibold text-ink">22,652</p>
+                <p class="gl-label">New users</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="mb-9 overflow-hidden rounded-2xl border border-line/70 bg-white/45">
+            <div class="grid grid-cols-5 gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-[0.16em] text-faint">
+              <span>Month</span><span>New users</span><span>Unique</span><span>Trend</span><span>Total</span>
+            </div>
+            <div class="grid grid-cols-5 gap-3 px-4 py-2 text-xs text-muted"><span>January</span><span>8,430</span><span>3,210</span><span>10%</span><span>21,320</span></div>
+            <div class="grid grid-cols-5 gap-3 px-4 py-2 text-xs text-muted"><span>February</span><span>12,543</span><span>1,879</span><span>23%</span><span>44,313</span></div>
+          </div>
+
+          <div>
+            <div class="mb-4 flex items-center justify-between">
+              <h2 class="font-black text-ink">Most engaged</h2>
+              <button type="button" class="text-[10px] font-black uppercase tracking-[0.18em] text-muted">See all</button>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between rounded-full bg-violet px-4 py-2 text-sm font-bold text-white"><span>United States</span><span>58,546</span></div>
+              <div class="flex items-center justify-between rounded-full bg-primary px-4 py-2 text-sm font-bold text-white"><span>China</span><span>44,768</span></div>
+              <div class="flex items-center justify-between rounded-full bg-orange px-4 py-2 text-sm font-bold text-white"><span>India</span><span>34,788</span></div>
+              <div class="flex items-center justify-between rounded-full bg-amber px-4 py-2 text-sm font-bold text-white"><span>France</span><span>23,769</span></div>
+              <div class="flex items-center justify-between rounded-full bg-mint px-4 py-2 text-sm font-bold text-white"><span>Spain</span><span>12,400</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="relative min-h-[560px] overflow-hidden p-5 sm:p-7 lg:p-9">
+          <div class="absolute bottom-[-26%] right-[-10%] size-[760px] max-w-none rounded-full bg-[radial-gradient(circle_at_42%_35%,rgba(255,255,255,0.96),rgba(203,218,247,0.86)_32%,rgba(133,157,240,0.94)_63%,rgba(89,107,232,0.98)_100%)] shadow-[0_28px_80px_rgba(77,_91,_160,_0.18)] lg:top-[7%] lg:bottom-auto lg:right-[-12%]"></div>
+          <div class="absolute bottom-[12%] right-[2%] hidden h-[420px] w-[580px] rounded-full border border-white/55 bg-[repeating-linear-gradient(60deg,rgba(255,255,255,0.42)_0_2px,transparent_2px_18px),repeating-linear-gradient(120deg,rgba(255,255,255,0.32)_0_2px,transparent_2px_18px)] opacity-80 lg:block"></div>
+
+          <div class="gl-map-marker left-[16%] top-[15%]">
+            <span class="gl-icon size-9 bg-violet"><i class="ph ph-bank"></i></span>
+            <span><span class="block text-[10px] text-muted">Toronto</span>53,430,001</span>
+          </div>
+          <div class="gl-map-marker left-[8%] top-[34%]">
+            <span class="gl-icon size-9 bg-sky"><i class="ph ph-buildings"></i></span>
+            <span><span class="block text-[10px] text-muted">Memphis</span>12,320,300</span>
+          </div>
+          <div class="gl-map-marker right-[12%] top-[60%]">
+            <span class="gl-icon size-9 bg-orange"><i class="ph ph-factory"></i></span>
+            <span><span class="block text-[10px] text-muted">Manaus</span>23,180,290</span>
+          </div>
+          <div class="gl-map-marker right-[5%] bottom-[14%]">
+            <span class="gl-icon size-9 bg-mint"><i class="ph ph-storefront"></i></span>
+            <span><span class="block text-[10px] text-muted">Sao Paulo</span>41,790,031</span>
+          </div>
+
+          <article class="gl-card absolute bottom-36 left-6 hidden w-56 p-5 sm:block lg:left-10">
+            <div class="mb-2 flex items-center justify-between">
+              <span class="gl-label">Trend</span>
+              <strong class="text-ink">92,980</strong>
+            </div>
+            <svg viewBox="0 0 190 64" role="img" aria-label="趋势折线" class="h-16 w-full overflow-visible">
+              <path d="M2 48 C30 46, 35 16, 65 24 S108 44, 132 20 S162 42, 188 46" fill="none" stroke="#846BFF" stroke-width="3" stroke-linecap="round"/>
+              <path d="M2 52 C22 50, 40 31, 62 33 S99 39, 122 35 S156 48, 188 51" fill="none" stroke="#FFC84A" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </article>
+          <article class="gl-card absolute bottom-8 left-6 hidden w-56 p-5 sm:block lg:left-10">
+            <p class="gl-label mb-2">Total coverage</p>
+            <div class="flex items-end gap-1.5">
+              <span class="h-8 w-1.5 rounded-full bg-mint"></span><span class="h-6 w-1.5 rounded-full bg-mint"></span><span class="h-11 w-1.5 rounded-full bg-mint"></span><span class="h-7 w-1.5 rounded-full bg-mint"></span><span class="h-10 w-1.5 rounded-full bg-mint"></span><span class="h-12 w-1.5 rounded-full bg-mint"></span><span class="h-9 w-1.5 rounded-full bg-mint"></span>
+              <strong class="ml-5 text-xl text-ink">53,430,001</strong>
+            </div>
+          </article>
+        </section>
+      </div>
+    </section>
+
+    <section class="mt-8 grid gap-4 md:grid-cols-3">
+      <article class="gl-panel p-6">
+        <span class="gl-chip mb-4"><i class="ph ph-palette"></i> Style DNA</span>
+        <h2 class="mb-2 text-xl font-black text-ink">浅色、轻玻璃、蓝紫主轴</h2>
+        <p class="text-sm leading-7 text-muted">适合作为经营看板、区域态势、增长分析和数据资产管理的统一视觉底盘。</p>
+      </article>
+      <article class="gl-panel p-6">
+        <span class="gl-chip mb-4"><i class="ph ph-circles-four"></i> Components</span>
+        <h2 class="mb-2 text-xl font-black text-ink">卡片浮层 + 图标导航 + 地图标记</h2>
+        <p class="text-sm leading-7 text-muted">基础组件用 JquanUI 原子类沉淀，复杂交互优先复用现有组件包。</p>
+      </article>
+      <article class="gl-panel p-6">
+        <span class="gl-chip mb-4"><i class="ph ph-ruler"></i> Parameters</span>
+        <h2 class="mb-2 text-xl font-black text-ink">8px 网格，28px 面板圆角</h2>
+        <p class="text-sm leading-7 text-muted">间距、圆角、阴影和语义色已经进入 token 与 shortcut，后续页面可直接继承。</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
+
