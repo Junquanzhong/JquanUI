@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "exports": [
+    "DataSyncError",
+    "DataStorageError",
+    "DataValidationError",
+    "createCollection",
+    "createDatabase",
+    "createMemoryAdapter",
+    "createStorageAdapter",
+    "createIndexedDBAdapter",
+    "createHttpSyncAdapter",
+    "createBroadcastAdapter",
+    "createDataInspector",
+    "createTableDataSource",
+    "createCrudDataSource",
+    "createFilterBuilderMatcher",
+    "liveQuery",
+    "matches",
+    "clone"
+  ]
+}

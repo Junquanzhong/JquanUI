@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review Mode Select 配置预览</title>
+  <script src="../dist/core/JquanUI@Core.js"></script>
+</head>
+<body class="bg-slate-50 p-6 text-slate-900">
+  <main id="preview" class="mx-auto max-w-xl rounded-2xl bg-white p-6 shadow-lg">
+    <p class="text-sm font-semibold text-blue-600">JQUANUI REVIEW MODE</p>
+    <h1 class="mt-3 text-3xl font-bold">让客户直接选择交互方式</h1>
+    <p class="mt-3 mb-6 text-slate-600">打开审查后，点击下拉框即可调整是否禁用、允许搜索和允许清空，选项与当前值保持不变。</p>
+    <label for="sample-select" class="block mb-2 text-sm font-medium">交付方式</label>
+    <select id="sample-select" data-jq-review-key="delivery-select">
+      <option value="online" selected>线上交付</option>
+      <option value="meeting">现场演示</option>
+    </select>
+    <button id="start-review" type="button" class="mt-6 rounded-xl bg-blue-600 px-4 py-3 font-medium text-white disabled:opacity-50">审查下拉框配置</button>
+    <p id="load-status" role="status" class="mt-3 text-sm text-slate-500"></p>
+  </main>
+  <script>
+    // 业务 Select 独立加载。审查工具只在按钮点击时导入，不接管业务组件生命周期。
+    let selectPromise = null;
+    function loadSelect() {
+      return selectPromise || (selectPromise = JquanUI.import('select', { install: false })
+        .then(api => api.mount('#sample-select'))
+        .catch(error => { selectPromise = null; throw error; }));
+    }
+    loadSelect().catch(() => { document.getElementById('load-status').textContent = '下拉框加载失败，点击审查按钮重试。'; });
+    document.getElementById('start-review').addEventListener('click', async event => {
+      const button = event.currentTarget; button.disabled = true;
+      try {
+        await loadSelect();
+        const review = await JquanUI.import('reviewMode');
+        if (!review.state().enabled) review.configure({ enabled: true, root: '#preview', allowURL: false });
+        review.open();
+        document.getElementById('load-status').textContent = '';
+      } catch (_) { document.getElementById('load-status').textContent = '加载失败，请再次点击重试。'; }
+      finally { button.disabled = false; }
+    });
+  </script>
+</body>
+</html>

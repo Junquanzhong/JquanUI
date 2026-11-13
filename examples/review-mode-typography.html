@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Review Mode · 文字排版</title>
+  <script>
+    window.JQUAN_CONFIG={theme:{extend:{colors:{brand:'#596be8'},fontFamily:{brand:['Georgia','serif'],reading:['Arial','sans-serif']}}}};
+  </script>
+  <script src="../dist/core/JquanUI@Core.js"></script>
+</head>
+<body class="min-h-screen bg-slate-50 p-4 text-slate-900 md:p-10">
+  <main class="mx-auto max-w-3xl">
+    <p class="text-sm font-semibold text-brand">JQUANUI · TYPOGRAPHY REVIEW</p>
+    <h1 class="mt-3 text-3xl font-bold">让文字表达，更接近你的想法</h1>
+    <p class="mt-4 text-slate-600">打开审查，选择标题调整字体和文字装饰，选择段落调整空白与换行。项目字体可以搜索 brand、reading。</p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <button id="open-review" type="button" class="rounded-lg bg-brand px-5 py-3 font-semibold text-white disabled:opacity-50">打开审查</button>
+      <button id="copy-plan" type="button" class="rounded-lg border border-slate-300 bg-white px-5 py-3 font-semibold">复制修改方案</button>
+    </div>
+    <p id="status" role="status" class="mt-3 text-sm text-slate-600">点击按钮后才加载审查组件。</p>
+    <section id="preview" class="mt-8 rounded-2xl bg-white p-6 shadow-sm md:p-8">
+      <h2 id="sample-title" data-jq-review-key="sample-title" class="font-sans text-2xl font-bold no-underline md:text-3xl">A little change, a clearer message.</h2>
+      <p id="sample-copy" data-jq-review-key="sample-copy" class="mt-5 whitespace-normal leading-relaxed text-slate-600">让想法成为清晰的文字。
+保留这一行，或让它自然换行。
+把每一个    细节，都调整到舒服的位置。</p>
+    </section>
+  </main>
+  <script>
+    let review=null,pending=null;
+    const button=document.getElementById('open-review'),status=document.getElementById('status');
+    button.addEventListener('click',async()=>{
+      if(pending)return;
+      button.disabled=true;pending=JquanUI.import('reviewMode');
+      try{review=await pending;if(!review.state().enabled)review.configure({enabled:true,root:'#preview',allowURL:false});review.open();review.select('#sample-title');status.textContent='已打开审查，可调整字体、文字装饰和换行。';}
+      catch(error){status.textContent='加载失败，请再次点击重试。';console.error(error);}
+      finally{pending=null;button.disabled=false;}
+    });
+    document.getElementById('copy-plan').addEventListener('click',async()=>{status.textContent=review&&await review.copyPlan()?'修改方案已复制。':'请先修改预览；复制需要浏览器授权。';});
+    addEventListener('pagehide',()=>review?.destroy());
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/nested/">
+  <title>JquanUI component import integration</title>
+  <!-- CORE_ENTRY -->
+</head>
+<body>
+  <p id="status">Loading</p>
+  <div id="table"></div>
+  <script nonce="component-import-test">
+    window.importCheck = (async () => {
+      function assert(condition, message) { if (!condition) throw new Error(message); }
+      const before = document.querySelectorAll('script[data-jquan-component]').length;
+      assert(before === 0, 'Importer started downloads before it was called');
+      const [dom, sameDom] = await Promise.all([JquanUI.import('dom'), JquanUI.import('dom.js')]);
+      assert(dom === sameDom && dom === JquanUIComponents.domApi, 'DOM import identity');
+      dom.text('#status', 'DOM loaded');
+      assert(document.querySelector('#status').textContent === 'DOM loaded', 'DOM API executes');
+      const [table, select, drawer, schemaForm, storage] = await JquanUI.import(['table', 'select', 'drawer', 'schemaForm', 'storage']);
+      assert(table === JquanUIComponents.tableApi && select === JquanUIComponents.selectApi, 'Batch returns APIs in order');
+      assert(drawer === JquanUIComponents.drawerApi && schemaForm === JquanUIComponents.schemaFormApi && storage === JquanUIComponents.storageApi, 'Dependency consumers return APIs');
+      for (const name of ['jquanui-dom', 'jquanui-pagination', 'jquanui-table', 'jquanui-select', 'jquanui-modal', 'jquanui-drawer', 'jquanui-form-validator', 'jquanui-schema-form', 'jquanui-storage']) {
+        assert(JquanUI.hasPlugin(name), 'Missing installed plugin: ' + name);
+      }
+      const handle = await table.mount('#table', {
+        columns: [{ key: 'name', title: 'Name' }],
+        data: [{ id: 1, name: 'Imported table' }],
+        pagination: { page: 1, pageSize: 10 }
+      });
+      assert(document.querySelector('#table').textContent.includes('Imported table'), 'Imported table mounts');
+      assert(document.querySelector('#table [data-role="pagination"]').children.length > 0, 'Pagination dependency renders');
+      handle.destroy();
+      assert(document.querySelector('#table').children.length === 0, 'Table handle destroys');
+      const beforeRepeat = document.querySelectorAll('script[data-jquan-component]').length;
+      await JquanUI.import(['dom', 'table', 'select']);
+      assert(document.querySelectorAll('script[data-jquan-component]').length === beforeRepeat, 'Repeat imports create no scripts');
+      const entry = new URL(location.href).searchParams.get('entry');
+      const retryBase = '/retry-' + entry + '/';
+      let failure;
+      try { await JquanUI.import('watermark', { baseURL: retryBase }); } catch (error) { failure = error; }
+      assert(failure && failure.code === 'COMPONENT_LOAD_FAILED' && failure.component === 'watermark', '404 is a structured failure');
+      const watermark = await JquanUI.import('watermark', { baseURL: retryBase });
+      assert(watermark === JquanUIComponents.watermarkApi, 'Failed download can be retried');
+      assert(Array.from(document.querySelectorAll('script[data-jquan-component]')).every(script => script.nonce === 'component-import-test'), 'Dynamic scripts inherit CSP nonce');
+      dom.text('#status', 'ok');
+      return { ok: true, entry, installed: JquanUI.getInstalledPlugins().length, scripts: document.querySelectorAll('script[data-jquan-component]').length };
+    })().catch(error => ({ ok: false, error: error.stack || String(error) }));
+  </script>
+</body>
+</html>

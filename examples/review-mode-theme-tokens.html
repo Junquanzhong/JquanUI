@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Review Mode · 项目主题令牌</title>
+  <script>
+    window.JQUAN_CONFIG = { theme: { extend: {
+      colors: { brand: '#596be8' },
+      fontSize: { heading: ['34px', '1.2'], compact: '22px' },
+      borderRadius: { card: '22px' },
+      boxShadow: { soft: '0 12px 36px rgb(60 70 120 / .15)' },
+      fluid: { fontSize: { display: { min: '28px', preferred: '5vw', max: '48px', lineHeight: '1.1' } } }
+    } } };
+  </script>
+  <script src="../dist/core/JquanUI@Core.js"></script>
+</head>
+<body class="min-h-screen bg-slate-50 p-4 text-slate-900 md:p-10">
+  <main class="mx-auto max-w-3xl">
+    <p class="text-sm font-semibold text-brand">JQUANUI · REVIEW MODE</p>
+    <h1 class="mt-3 text-3xl font-bold">把项目的设计语言交给审查人</h1>
+    <p class="mt-4 text-slate-600">打开审查，选择下方标题或卡片，搜索 heading、display、card、soft，即可使用项目配置的字号、圆角和阴影。</p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <button id="open-review" type="button" class="rounded-lg bg-brand px-5 py-3 font-semibold text-white disabled:opacity-50">打开审查</button>
+      <button id="copy-plan" type="button" class="rounded-lg border border-slate-300 bg-white px-5 py-3 font-semibold">复制修改方案</button>
+    </div>
+    <p id="status" role="status" class="mt-3 text-sm text-slate-600">普通访问只加载 Core；点击按钮后再加载审查组件。</p>
+    <section id="preview" class="mt-8">
+      <article id="project-card" data-jq-review-key="project-card" class="rounded-lg bg-white p-6 shadow-sm md:p-8">
+        <p class="text-sm font-semibold text-brand">给客户的预览区域</p>
+        <h2 id="project-title" data-jq-review-key="project-title" class="mt-3 text-2xl font-bold">每个想法，都可以看见</h2>
+        <p class="mt-4 leading-relaxed text-slate-600">试着把标题改为项目字号，再为卡片选择项目圆角与柔和阴影。反复修改同一字段时，方案只保留最终选择。</p>
+      </article>
+    </section>
+  </main>
+  <script>
+    let review = null, pending = null;
+    const status = document.getElementById('status'), openButton = document.getElementById('open-review');
+    openButton.addEventListener('click', async () => {
+      if (pending) return;
+      openButton.disabled = true;
+      pending = JquanUI.import('reviewMode');
+      try {
+        review = await pending;
+        if (!review.state().enabled) review.configure({ enabled: true, root: '#preview', allowURL: false });
+        review.open(); review.select('#project-title');
+        status.textContent = '已打开审查。可以搜索项目字号、圆角与阴影。';
+      } catch (error) { status.textContent = '加载失败，请再次点击重试。'; console.error(error); }
+      finally { pending = null; openButton.disabled = false; }
+    });
+    document.getElementById('copy-plan').addEventListener('click', async () => {
+      if (!review) { status.textContent = '请先打开审查并调整预览。'; return; }
+      status.textContent = await review.copyPlan() ? '修改方案已复制。' : '没有可复制的修改，或浏览器未允许复制。';
+    });
+    addEventListener('pagehide', () => review?.destroy());
+  </script>
+</body>
+</html>

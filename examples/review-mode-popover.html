@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review Mode：Popover 配置审查</title>
+  <script src="../dist/core/JquanUI@Core.js"></script>
+</head>
+<body class="bg-slate-50 p-6 text-slate-900">
+  <main id="preview" class="mx-auto max-w-xl">
+    <h1 class="text-3xl font-bold">Popover 交互审查</h1>
+    <p class="mt-3 text-slate-600">业务 Popover 先独立挂载，Review Mode 只提供开关状态编辑。</p>
+    <div id="sample-popover" data-jq-review-key="sample-popover" jq-popover class="relative mt-8 inline-block">
+      <button type="button" jq-popover-trigger class="rounded-xl bg-blue-600 px-4 py-3 font-medium text-white">查看说明</button>
+      <section jq-popover-panel class="w-72 rounded-2xl border border-slate-200 bg-white p-4 shadow-xl">
+        <h2 class="font-semibold">交付说明</h2>
+        <p class="mt-2 text-sm text-slate-600">此面板内容保持不变，只调整是否打开。</p>
+      </section>
+    </div>
+    <button id="start-review" type="button" class="mt-8 block rounded-xl bg-slate-900 px-4 py-3 font-medium text-white">打开 Popover 审查</button>
+    <p id="status" role="status" class="mt-3 text-sm text-slate-500"></p>
+  </main>
+  <script>
+    let popoverPromise = null, popoverHandle = null, reviewApi = null;
+    const status = document.getElementById('status');
+    function loadPopover() {
+      return popoverPromise || (popoverPromise = JquanUI.import('popover', { install: false }).then(api => {
+        const handle = api.mount('#sample-popover', { trapFocus: true });
+        if (!handle) throw new Error('Popover mount did not complete');
+        popoverHandle = handle;
+        return handle;
+      }).catch(error => { popoverPromise = null; throw error; }));
+    }
+    loadPopover().catch(() => { status.textContent = 'Popover 加载失败，请重试。'; });
+    document.getElementById('start-review').addEventListener('click', async event => {
+      const button = event.currentTarget; button.disabled = true;
+      try {
+        await loadPopover();
+        const review = await JquanUI.import('reviewMode');
+        reviewApi = review;
+        if (!review.state().enabled) review.configure({ enabled: true, root: '#preview', allowURL: false });
+        review.open(); review.select('#sample-popover');
+        status.textContent = '已选中 Popover；在面板的“浮层设置”中切换开关。';
+      } catch (_) { status.textContent = '审查加载失败，请再次点击重试。'; }
+      finally { button.disabled = false; }
+    });
+    addEventListener('pagehide', () => {
+      reviewApi?.destroy();
+      popoverHandle?.destroy();
+    }, { once: true });
+  </script>
+</body>
+</html>

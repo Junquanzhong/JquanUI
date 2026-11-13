@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JquanUI 动态编译完成示例</title>
+  <script src="../js/JquanUI@core.min.js"></script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+  <main class="mx-auto max-w-3xl space-y-6 p-6 md:p-10">
+    <header class="space-y-3">
+      <p class="text-sm font-semibold text-indigo-600">Core 4.72 · 动态样式</p>
+      <h1 class="text-3xl font-bold">等待本批编译，再展示内容</h1>
+      <p class="text-sm leading-relaxed text-slate-600">示例预先编译 41 个完整类名。使用 Promise 确认完成；预算排空返回部分结果时，原来的 Promise 仍会继续等待。</p>
+    </header>
+    <section class="space-y-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div class="flex flex-wrap gap-3">
+        <button id="compile-button" type="button" class="rounded-lg bg-indigo-600 px-4 py-2 text-white disabled:opacity-50 focus:ring-2">异步编译并显示</button>
+        <button id="flush-button" type="button" class="rounded-lg border border-slate-300 px-4 py-2 disabled:opacity-50 focus:ring-2">预算排空后显示</button>
+      </div>
+      <p id="status" role="status" class="text-sm text-slate-600">准备就绪</p>
+      <div id="output" class="space-y-3" aria-live="polite"></div>
+    </section>
+    <pre class="overflow-auto rounded-xl bg-slate-900 p-4 text-xs text-slate-100"><code id="result">点击按钮查看本批结果。</code></pre>
+  </main>
+  <script>
+    (() => {
+      let generation = 0;
+      let run = 0;
+      const status = document.getElementById('status');
+      const output = document.getElementById('output');
+      const result = document.getElementById('result');
+      const buttons = [...document.querySelectorAll('button')];
+      async function show(budgeted) {
+        const current = ++generation;
+        const classes = Array.from({ length: 41 }, (_, i) => `p-[${++run + i + 40}px]`);
+        buttons.forEach(button => { button.disabled = true; });
+        status.textContent = '正在编译本批样式…';
+        const pending = JquanUI.compile(classes);
+        const partial = budgeted ? await JquanUI.flush({ maxMs: 0 }) : null;
+        const completion = await pending;
+        if (current !== generation || completion.cancelled) return;
+        result.textContent = JSON.stringify({ partial, completion }, null, 2);
+        if (!completion.complete || completion.unresolved.length || completion.failed.length) {
+          status.textContent = '请检查 pending、unresolved 与 failed。';
+        } else {
+          const card = document.createElement('article');
+          card.className = classes[0];
+          card.textContent = '这段内容在本批 CSS 已尝试生成后才插入。';
+          output.replaceChildren(card);
+          status.textContent = `已完成 ${completion.processed.length} 个类；本批无解析或插入失败。`;
+        }
+        buttons.forEach(button => { button.disabled = false; });
+      }
+      document.getElementById('compile-button').addEventListener('click', () => show(false));
+      document.getElementById('flush-button').addEventListener('click', () => show(true));
+      window.addEventListener('pagehide', () => { generation++; });
+    })();
+  </script>
+</body>
+</html>

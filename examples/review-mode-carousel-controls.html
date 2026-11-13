@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review Mode · Carousel 控制</title>
+  <script src="../dist/core/JquanUI@Core.js"></script>
+</head>
+<body class="min-h-screen bg-slate-50 p-6 text-slate-900">
+  <main id="preview" class="mx-auto max-w-2xl">
+    <p class="text-sm font-semibold text-blue-600">JQUANUI · CAROUSEL REVIEW</p>
+    <h1 class="mt-3 text-3xl font-bold">保留内容，只调整轮播控件</h1>
+    <p class="mt-4 text-slate-600">审查模式可以切换圆点指示器和播放进度条；当前页、内容和播放计时会保留。</p>
+    <section id="sample-carousel" data-jq-review-key="sample-carousel" class="mt-8 h-52 rounded-2xl bg-white shadow-lg" aria-label="Carousel 控制示例">
+      <article jq-carousel-item class="flex h-full items-center justify-center bg-blue-100 text-2xl font-semibold text-blue-900">第一张内容</article>
+      <article jq-carousel-item class="flex h-full items-center justify-center bg-indigo-100 text-2xl font-semibold text-indigo-900">第二张内容</article>
+      <article jq-carousel-item class="flex h-full items-center justify-center bg-emerald-100 text-2xl font-semibold text-emerald-900">第三张内容</article>
+    </section>
+    <button id="start-review" type="button" class="mt-6 rounded-xl bg-blue-600 px-4 py-3 font-medium text-white disabled:opacity-50">打开轮播审查</button>
+    <p id="load-status" role="status" class="mt-3 text-sm text-slate-500">普通访问只加载 Core，点击后按需加载 Carousel 与 Review Mode。</p>
+  </main>
+  <script>
+    document.getElementById('start-review').addEventListener('click', async event => {
+      const button = event.currentTarget; button.disabled = true;
+      try {
+        const carousel = await JquanUI.import('carousel');
+        if (!carousel.getHandle('#sample-carousel')) carousel.mount('#sample-carousel', { autoplay: false, indicators: true, progress: false });
+        JquanUI.use(JquanUIComponents.carousel);
+        const review = await JquanUI.import('reviewMode');
+        if (!review.state().enabled) review.configure({ enabled: true, root: '#preview', allowURL: false });
+        review.open(); review.select('#sample-carousel');
+        document.getElementById('load-status').textContent = '已打开审查，可切换圆点指示器和播放进度条。';
+      } catch (error) { document.getElementById('load-status').textContent = '加载失败，请再次点击重试。'; console.error(error); }
+      finally { button.disabled = false; }
+    });
+    addEventListener('pagehide', () => window.JquanUIComponents?.reviewModeApi?.destroy());
+  </script>
+</body>
+</html>

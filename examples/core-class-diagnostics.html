@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JquanUI 类诊断与动态渲染</title>
+  <script src="../js/JquanUI@core.min.js"></script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+  <main class="mx-auto max-w-3xl space-y-6 p-6 md:p-10">
+    <header class="space-y-3">
+      <p class="text-sm font-semibold text-indigo-600">Core · 类诊断</p>
+      <h1 class="text-3xl font-bold">先查原因，再等待本次渲染</h1>
+      <p class="text-sm leading-relaxed text-slate-600">校验只读取当前解析结果；生成样式时，用本批 compile 的完成信号。</p>
+    </header>
+    <section class="space-y-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <label for="classes" class="block text-sm font-semibold">完整类名或变体组</label>
+      <textarea id="classes" rows="3" class="w-full rounded-lg border border-slate-300 bg-slate-50 p-3 font-mono text-sm">grid hover:(p-2 m-2) diagnostic-missing jquan-ready</textarea>
+      <button id="check" type="button" class="rounded-lg bg-indigo-600 px-4 py-2 text-white focus:ring-2">只读校验</button>
+      <p id="check-status" role="status" class="text-sm text-slate-600">等待校验。</p>
+      <pre id="report" class="max-h-80 overflow-auto rounded-lg bg-slate-900 p-4 font-mono text-xs text-slate-100"></pre>
+    </section>
+    <section class="space-y-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <h2 class="text-lg font-semibold">动态渲染与自动化</h2>
+      <p class="text-sm leading-relaxed text-slate-600">下方按钮插入含 41 个新类的内容，在本批样式完成后显示。初始 ready 不能替代本次完成信号。</p>
+      <button id="render" type="button" class="rounded-lg border border-slate-300 px-4 py-2 disabled:opacity-50 focus:ring-2">生成并等待本批样式</button>
+      <p id="render-status" role="status" class="text-sm text-slate-600">准备就绪。</p>
+      <div id="preview" class="space-y-2" hidden></div>
+    </section>
+  </main>
+  <script>
+    (() => {
+      let generation = 0;
+      let run = 0;
+      const input = document.getElementById('classes');
+      const report = document.getElementById('report');
+      const checkStatus = document.getElementById('check-status');
+      const renderButton = document.getElementById('render');
+      const renderStatus = document.getElementById('render-status');
+      const preview = document.getElementById('preview');
+      document.getElementById('check').addEventListener('click', () => {
+        const result = JquanUI.checkClasses(input.value);
+        report.textContent = JSON.stringify(result, null, 2);
+        checkStatus.textContent = result.ok ? '全部已解析或为保留标记；没有生成样式。' : '请查看未命中、错误或预算跳过项。';
+      });
+      renderButton.addEventListener('click', async () => {
+        const current = ++generation;
+        renderButton.disabled = true;
+        preview.hidden = true;
+        renderStatus.textContent = '正在等待本次样式完成…';
+        const classes = Array.from({ length: 41 }, (_, i) => `gap-[${100 * ++run + i}px]`);
+        const fragment = document.createDocumentFragment();
+        classes.forEach((className, index) => {
+          const item = document.createElement('div');
+          item.className = `flex ${className}`;
+          item.textContent = `第 ${index + 1} 项`;
+          fragment.appendChild(item);
+        });
+        preview.replaceChildren(fragment);
+        const completion = await JquanUI.compile(classes);
+        if (current !== generation) return;
+        const success = completion.complete && !completion.cancelled && !completion.unresolved.length && !completion.failed.length;
+        preview.hidden = !success;
+        preview.dataset.compiled = String(success);
+        renderStatus.textContent = success ? '本批 41 类已完成，可以等待实际布局后截图。' : '本批未就绪，请检查完成结果。';
+        renderButton.disabled = false;
+      });
+      window.addEventListener('pagehide', () => { generation++; });
+    })();
+  </script>
+</body>
+</html>

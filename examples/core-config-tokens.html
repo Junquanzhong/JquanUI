@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JquanUI 普通设计令牌</title>
+  <script>
+    window.JQUAN_CONFIG = {
+      theme: { extend: {
+        colors: { brand: '#596be8' },
+        borderRadius: { card: '18px' },
+        boxShadow: { soft: '0 16px 40px rgba(86,103,214,0.12)' },
+        fontSize: { headline: ['37px', { lineHeight: '1.25', letterSpacing: '-0.01em', fontWeight: 650 }] }
+      } }
+    };
+  </script>
+  <script src="../dist/core/JquanUI@Core.js"></script>
+</head>
+<body class="min-h-screen bg-slate-50 p-6 text-slate-900 md:p-12">
+  <main class="mx-auto max-w-2xl">
+    <p class="text-sm font-semibold text-brand">JQUANUI · DESIGN TOKENS</p>
+    <article id="token-card" class="mt-6 rounded-card border border-slate-200 bg-white p-6 shadow-soft md:p-8">
+      <h1 id="token-title" class="text-headline">把设计约定写成令牌</h1>
+      <p class="mt-4 leading-7 text-slate-600">圆角、阴影、字号只配置一次。页面使用 rounded-card、shadow-soft、text-headline，构建提取复用相同配置。</p>
+      <p id="diagnostics" role="status" class="mt-6 text-sm text-brand"></p>
+    </article>
+    <p class="mt-6 text-sm text-slate-500">控制台调用 JquanUI.debug().configWarnings 查看配置路径诊断；本示例无需组件。</p>
+  </main>
+  <script>
+    const showDiagnostics = () => {
+      const warnings = JquanUI.debug().configWarnings;
+      document.getElementById('diagnostics').textContent = warnings.length ? '配置诊断：' + warnings.map(item => item.path).join('、') : '配置校验通过，三个设计令牌已生效。';
+    };
+    if (JquanUI.isReady()) showDiagnostics();
+    else document.addEventListener('jquan:ready', showDiagnostics, { once: true });
+    addEventListener('pagehide', () => JquanUI.destroy(), { once: true });
+  </script>
+</body>
+</html>

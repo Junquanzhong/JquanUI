@@ -1,0 +1,577 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JquanUI CRUD Demo</title>
+    <style>
+        :root {
+            --color-surface: 255 255 255;
+            --color-text: 15 23 42;
+            --color-border: 226 232 240;
+            --primary-hue-500: 59 130 246;
+            --primary-hue-600: 37 99 235;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: rgb(241 245 249);
+            color: rgb(15 23 42);
+        }
+
+        .page {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 28px 20px 72px;
+        }
+
+        .hero {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 34px;
+            line-height: 1.05;
+        }
+
+        .hero p {
+            margin: 0;
+            color: rgb(71 85 105);
+            font-size: 15px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.8fr) minmax(320px, .9fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .panel {
+            background: #fff;
+            border: 1px solid rgb(226 232 240);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 12px 32px rgb(15 23 42 / .05);
+        }
+
+        .panel + .panel {
+            margin-top: 20px;
+        }
+
+        .panel-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .panel-head h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .muted {
+            color: rgb(100 116 139);
+            font-size: 13px;
+        }
+
+        .stack {
+            display: grid;
+            gap: 14px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .stat {
+            border: 1px solid rgb(226 232 240);
+            border-radius: 12px;
+            padding: 14px;
+            background: rgb(248 250 252);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .demo-box {
+            border: 1px dashed rgb(203 213 225);
+            border-radius: 12px;
+            padding: 14px;
+            background: rgb(248 250 252);
+        }
+
+        .log {
+            min-height: 180px;
+            max-height: 280px;
+            overflow: auto;
+            padding: 12px;
+            border-radius: 12px;
+            background: rgb(15 23 42);
+            color: rgb(226 232 240);
+            font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            white-space: pre-wrap;
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select {
+            min-height: 38px;
+            padding: 0 12px;
+            border: 1px solid rgb(203 213 225);
+            border-radius: 10px;
+        }
+
+        @media (max-width: 1100px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <section class="hero">
+            <h1>JquanUI Enterprise CRUD Demo</h1>
+            <p>Standard business page pattern with CRUD, table, form validation, upload, pagination, state, and permissions.</p>
+        </section>
+
+        <section class="layout">
+            <div>
+                <div class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>SPA Shell</h2>
+                            <div class="muted">Router, stable shell, keep-alive views, tabs, breadcrumb, and permission-aware navigation.</div>
+                        </div>
+                    </div>
+                    <div id="app-shell-root"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Customer Management</h2>
+                            <div class="muted">A combined example for `crud + table + modal + formValidator + upload + store`.</div>
+                        </div>
+                        <div class="toolbar">
+                            <button id="create-customer" jq-button data-variant="primary" data-permission="customer:create">Create Customer</button>
+                            <button id="reload-customers" jq-button>Reload List</button>
+                        </div>
+                    </div>
+                    <div id="crud-root"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Upload Center</h2>
+                            <div class="muted">Drag, paste, preview, manual upload, retry, and chunk upload hooks.</div>
+                        </div>
+                    </div>
+                    <div id="upload-root"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Schema Form Modal</h2>
+                            <div class="muted">`modal.form.schema` is now wired to `formValidator` automatically.</div>
+                        </div>
+                    </div>
+                    <div class="stack">
+                        <div class="row">
+                            <button id="open-form-modal" jq-button data-variant="primary">Open Validation Modal</button>
+                        </div>
+                        <div class="demo-box muted">
+                            Fields using `required`, `min`, `max`, `pattern`, `matchField`, or `rules` in schema will generate validation rules automatically.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Runtime State</h2>
+                            <div class="muted">This page uses `store` for demo stats and `permission` for action visibility.</div>
+                        </div>
+                    </div>
+                    <div class="stack">
+                        <div class="row">
+                            <button id="grant-delete" jq-button>Grant Delete</button>
+                            <button id="revoke-delete" jq-button>Revoke Delete</button>
+                        </div>
+                        <div class="stat-grid" id="stats-root"></div>
+                        <div class="log" id="demo-log"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="./core/JquanUI@Core.js"></script>
+    <script src="./components/JquanUI@components.js"></script>
+    <script>
+        window.JquanUI.use(window.JquanUIComponents.appShell);
+        window.JquanUI.use(window.JquanUIComponents.button);
+        window.JquanUI.use(window.JquanUIComponents.upload);
+        window.JquanUI.use(window.JquanUIComponents.pagination);
+        window.JquanUI.use(window.JquanUIComponents.formValidator);
+        window.JquanUI.use(window.JquanUIComponents.permission);
+
+        JquanUIComponents.permissionApi.setPermissions([
+            'customer:create',
+            'customer:edit',
+            'customer:column:email'
+        ]);
+
+        const customerSeed = [
+            { id: 'C001', name: 'Hangzhou Cloud Elephant', owner: 'Jquan', email: 'ops@yuxiang.com', level: 'A', employees: 120, status: 'active' },
+            { id: 'C002', name: 'Shanghai North Star Supply', owner: 'Luna', email: 'biz@beichen.com', level: 'B', employees: 58, status: 'active' },
+            { id: 'C003', name: 'Shenzhen Qiming Industry', owner: 'Aria', email: 'admin@qiming.com', level: 'A', employees: 240, status: 'paused' },
+            { id: 'C004', name: 'Chengdu Data Bridge Medical', owner: 'Ming', email: 'it@shuqiao.com', level: 'C', employees: 34, status: 'active' },
+            { id: 'C005', name: 'Suzhou Origin Manufacturing', owner: 'Damon', email: 'factory@yuandian.com', level: 'B', employees: 87, status: 'active' }
+        ];
+
+        const logEl = document.getElementById('demo-log');
+        const statsRoot = document.getElementById('stats-root');
+
+        function log(message, payload) {
+            const line = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logEl.textContent = `${line}${payload ? ` ${JSON.stringify(payload)}` : ''}\n${logEl.textContent}`.trim();
+        }
+
+        const statsStore = JquanUIComponents.storeApi.create({
+            id: 'demo-stats',
+            state: {
+                totalCustomers: customerSeed.length,
+                selectedCustomers: 0,
+                uploadFiles: 0
+            }
+        });
+
+        statsStore.watch(
+            state => state,
+            state => {
+                statsRoot.innerHTML = `
+                    <div class="stat"><strong>${state.totalCustomers}</strong><span class="muted">Customers</span></div>
+                    <div class="stat"><strong>${state.selectedCustomers}</strong><span class="muted">Selected</span></div>
+                    <div class="stat"><strong>${state.uploadFiles}</strong><span class="muted">Upload Queue</span></div>
+                `;
+            }
+        );
+
+        const memoryDb = { rows: customerSeed.slice() };
+
+        function wait(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        const appShell = JquanUIComponents.appShellApi.mount('#app-shell-root', {
+            title: 'Mini SPA Workspace',
+            brand: 'JquanUI',
+            layout: 'mixed',
+            headerActions: [
+                {
+                    key: 'home',
+                    label: 'Home',
+                    onClick(context) {
+                        context.router.push('/');
+                    }
+                },
+                {
+                    key: 'refresh-report',
+                    label: 'Refresh Reports',
+                    onClick(context) {
+                        context.router.push('/reports');
+                    }
+                }
+            ],
+            menu: [
+                { label: 'Dashboard', path: '/' },
+                { label: 'Customers', path: '/customers', permission: 'customer:create' },
+                { label: 'Reports', path: '/reports' },
+                { label: 'Admin', path: '/admin', permission: 'customer:delete' }
+            ],
+            router: {
+                cacheLimit: 6,
+                routes: [
+                    {
+                        path: '/',
+                        title: 'Dashboard',
+                        meta: { keepAlive: true },
+                        component() {
+                            return `
+                                <div class="demo-box">
+                                    <strong>Dashboard</strong>
+                                    <p class="muted">This is the default shell route. It stays cached when you switch tabs.</p>
+                                </div>
+                            `;
+                        }
+                    },
+                    {
+                        path: '/customers',
+                        title: 'Customers',
+                        meta: { keepAlive: true },
+                        component() {
+                            return `
+                                <div class="demo-box">
+                                    <strong>Customers</strong>
+                                    <p class="muted">This route is cacheable and works well for list pages in a small SPA.</p>
+                                </div>
+                            `;
+                        }
+                    },
+                    {
+                        path: '/reports',
+                        title: 'Reports',
+                        component() {
+                            return `
+                                <div class="demo-box">
+                                    <strong>Reports</strong>
+                                    <p class="muted">This route is non-cached, good for pages that should refresh each time.</p>
+                                </div>
+                            `;
+                        }
+                    },
+                    {
+                        path: '/admin',
+                        title: 'Admin',
+                        meta: { permission: 'customer:delete' },
+                        component() {
+                            return `
+                                <div class="demo-box">
+                                    <strong>Admin</strong>
+                                    <p class="muted">This route is hidden and blocked until delete permission is granted.</p>
+                                </div>
+                            `;
+                        }
+                    }
+                ]
+            }
+        });
+
+        JquanUIComponents.crudApi.mount('#crud-root', {
+            title: 'Customer',
+            rowKey: 'id',
+            messages: {
+                createTitle: 'Create Customer',
+                editTitle: 'Edit Customer',
+                removeTitle: 'Delete Customer',
+                removeContent: 'This action cannot be undone. Continue?',
+                removeOkText: 'Delete'
+            },
+            table: {
+                columns: [
+                    { key: 'id', title: 'Customer ID', width: 120, sortable: true },
+                    { key: 'name', title: 'Customer Name', filterable: true, sortable: true },
+                    { key: 'owner', title: 'Owner', filterable: true },
+                    { key: 'email', title: 'Email', permission: 'customer:column:email' },
+                    { key: 'level', title: 'Tier', width: 90, sortable: true },
+                    { key: 'employees', title: 'Employees', width: 100, sortable: true, align: 'right' },
+                    { key: 'status', title: 'Status', width: 100, render(value) { return value === 'active' ? 'Active' : 'Paused'; } }
+                ],
+                summary(context) {
+                    return `Current page: ${context.rows.length} row(s), selected: ${context.selection.length}`;
+                },
+                onChange(payload) {
+                    if (payload.selection) statsStore.update('selectedCustomers', payload.selection.length);
+                    log('table change', payload);
+                }
+            },
+            permissions: {
+                create: 'customer:create',
+                edit: 'customer:edit',
+                remove: 'customer:delete'
+            },
+            forms: {
+                create: {
+                    schema: [
+                        { name: 'id', label: 'Customer ID', required: true, minLength: 4, initialFocus: true },
+                        { name: 'name', label: 'Customer Name', required: true, minLength: 2 },
+                        { name: 'owner', label: 'Owner', required: true },
+                        { name: 'email', label: 'Email', type: 'email', required: true },
+                        { name: 'level', label: 'Tier', type: 'select', required: true, options: ['A', 'B', 'C'] },
+                        { name: 'employees', label: 'Employees', type: 'number', required: true, min: 1 },
+                        { name: 'status', label: 'Active', type: 'checkbox', value: true }
+                    ],
+                    validator: { validateOnBlur: true }
+                },
+                edit: {
+                    schema: [
+                        { name: 'id', label: 'Customer ID', required: true, readonly: true, initialFocus: true },
+                        { name: 'name', label: 'Customer Name', required: true, minLength: 2 },
+                        { name: 'owner', label: 'Owner', required: true },
+                        { name: 'email', label: 'Email', type: 'email', required: true },
+                        { name: 'level', label: 'Tier', type: 'select', required: true, options: ['A', 'B', 'C'] },
+                        { name: 'employees', label: 'Employees', type: 'number', required: true, min: 1 },
+                        { name: 'status', label: 'Active', type: 'checkbox', value: true }
+                    ],
+                    validator: { validateOnBlur: true }
+                }
+            },
+            request: {
+                async list(payload) {
+                    await wait(180);
+                    let rows = memoryDb.rows.slice();
+                    if (payload.filters?.name) rows = rows.filter(item => item.name.includes(payload.filters.name));
+                    if (payload.filters?.owner) rows = rows.filter(item => item.owner.includes(payload.filters.owner));
+                    if (payload.sort?.key && payload.sort?.order) {
+                        rows = rows.slice().sort((a, b) => {
+                            const av = a[payload.sort.key];
+                            const bv = b[payload.sort.key];
+                            if (av === bv) return 0;
+                            return payload.sort.order === 'desc' ? (av > bv ? -1 : 1) : (av > bv ? 1 : -1);
+                        });
+                    }
+                    const start = (payload.page - 1) * payload.pageSize;
+                    return {
+                        data: rows.slice(start, start + payload.pageSize),
+                        total: rows.length
+                    };
+                },
+                async create(values) {
+                    await wait(220);
+                    memoryDb.rows.unshift(Object.assign({}, values, {
+                        employees: Number(values.employees) || 0,
+                        status: values.status ? 'active' : 'paused'
+                    }));
+                    statsStore.update('totalCustomers', memoryDb.rows.length);
+                    log('create customer', values);
+                    return { ok: true };
+                },
+                async update(row, values) {
+                    await wait(220);
+                    const index = memoryDb.rows.findIndex(item => item.id === row.id);
+                    if (index >= 0) {
+                        memoryDb.rows[index] = Object.assign({}, memoryDb.rows[index], values, {
+                            employees: Number(values.employees) || 0,
+                            status: values.status ? 'active' : 'paused'
+                        });
+                    }
+                    log('update customer', { before: row, after: values });
+                    return { ok: true };
+                },
+                async remove(row) {
+                    await wait(180);
+                    memoryDb.rows = memoryDb.rows.filter(item => item.id !== row.id);
+                    statsStore.update('totalCustomers', memoryDb.rows.length);
+                    log('remove customer', row);
+                    return { ok: true };
+                }
+            }
+        });
+
+        JquanUIComponents.uploadApi.mount('#upload-root', {
+            autoUpload: false,
+            preview: true,
+            paste: true,
+            chunked: true,
+            chunkSize: 512 * 1024,
+            chunkRequest(record, item, chunk) {
+                return wait(80).then(() => ({
+                    ok: true,
+                    fileName: item.name,
+                    chunkIndex: chunk.index
+                }));
+            },
+            onChange(files) {
+                statsStore.update('uploadFiles', files.length);
+                log('upload change', files.map(item => ({ name: item.name, status: item.status, progress: item.progress })));
+            },
+            onSuccess(item) {
+                log('upload success', { name: item.name });
+            },
+            onError(item, error) {
+                log('upload error', { name: item.name, message: error.message });
+            }
+        });
+
+        document.getElementById('create-customer').addEventListener('click', () => {
+            JquanUIComponents.crudApi.create('crud-root');
+        });
+
+        document.getElementById('reload-customers').addEventListener('click', () => {
+            JquanUIComponents.crudApi.reload('crud-root', 'manual');
+        });
+
+        document.getElementById('grant-delete').addEventListener('click', async () => {
+            JquanUIComponents.permissionApi.grant('customer:delete');
+            await JquanUIComponents.crudApi.reload('crud-root', 'permission');
+            appShell.update();
+            log('permission grant', { permission: 'customer:delete' });
+        });
+
+        document.getElementById('revoke-delete').addEventListener('click', async () => {
+            JquanUIComponents.permissionApi.revoke('customer:delete');
+            await JquanUIComponents.crudApi.reload('crud-root', 'permission');
+            appShell.update();
+            log('permission revoke', { permission: 'customer:delete' });
+        });
+
+        document.getElementById('open-form-modal').addEventListener('click', () => {
+            JquanUIComponents.modalApi.open({
+                type: 'form',
+                title: 'Validation Demo',
+                form: {
+                    schema: [
+                        { name: 'username', label: 'Username', required: true, minLength: 4, initialFocus: true },
+                        { name: 'password', label: 'Password', type: 'password', required: true, minLength: 6 },
+                        { name: 'confirmPassword', label: 'Confirm Password', type: 'password', required: true, matchField: 'password' },
+                        { name: 'email', label: 'Email', type: 'email', required: true },
+                        { name: 'agree', label: 'Accept Terms', type: 'checkbox', required: true }
+                    ],
+                    validator: {
+                        validateOnBlur: true,
+                        validateOnInput: true
+                    },
+                    closeOnSubmit: false
+                },
+                onSubmit(context) {
+                    log('modal submit', context.values || context.data);
+                    context.instance.close('submit');
+                    return false;
+                }
+            });
+        });
+
+        log('demo ready');
+    </script>
+</body>
+</html>

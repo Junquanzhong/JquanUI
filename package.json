@@ -1,0 +1,242 @@
+{
+  "name": "jquanui",
+  "version": "4.72.0",
+  "description": "JquanUI runtime atomic CSS engine with build-time extraction tools.",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "browser": "./dist/core/JquanUI@Core.js",
+  "unpkg": "./dist/full/JquanUI@full.js",
+  "jsdelivr": "./dist/full/JquanUI@full.js",
+  "sideEffects": [
+    "./dist/core/*.js",
+    "./dist/full/*.js",
+    "./dist/components/*.js"
+  ],
+  "files": [
+    "dist",
+    "skills",
+    "!dist/**/*DESKTOP*",
+    "!skills/**/*DESKTOP*",
+    "!dist/demo.html",
+    "!dist/manifest.json",
+    "!dist/release-summary.md",
+    "!dist/cli/README.md",
+    "!dist/core/jquanui-core-4.5.3.min.js",
+    "!dist/data/data-api-surface.json",
+    "!dist/components/components.manifest.json",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "bin": {
+    "jquan-extract": "dist/cli/jquan-extract.cjs",
+    "jquan-tokens": "dist/cli/jquan-tokens.cjs",
+    "jquan-migrate": "dist/cli/jquan-migrate.cjs"
+  },
+  "exports": {
+    "./components/reviewMode": {
+      "types": "./dist/components/reviewMode.d.ts",
+      "browser": "./dist/components/reviewMode.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/components/reviewMode.js"
+    },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.cjs"
+    },
+    "./core": {
+      "types": "./dist/browser-globals.d.ts",
+      "browser": "./dist/core/JquanUI@Core.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/core/JquanUI@Core.js"
+    },
+    "./core-archive-v4.5": {
+      "types": "./dist/browser-globals.d.ts",
+      "browser": "./dist/core/JquanUI@Core v4.5.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/core/JquanUI@Core v4.5.js"
+    },
+    "./full": {
+      "types": "./dist/browser-globals.d.ts",
+      "browser": "./dist/full/JquanUI@full.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/full/JquanUI@full.js"
+    },
+    "./components": {
+      "types": "./dist/browser-globals.d.ts",
+      "browser": "./dist/components/JquanUI@components.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/components/JquanUI@components.js"
+    },
+    "./components/*": {
+      "types": "./dist/browser-globals.d.ts",
+      "browser": "./dist/components/*.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/components/*.js"
+    },
+    "./extract": {
+      "types": "./dist/cli/jquan-extract.d.ts",
+      "import": "./dist/cli/jquan-extract.mjs",
+      "require": "./dist/cli/jquan-extract.cjs",
+      "default": "./dist/cli/jquan-extract.cjs"
+    },
+    "./vite": {
+      "types": "./dist/cli/jquan-vite-plugin.d.ts",
+      "import": "./dist/cli/jquan-vite-plugin.mjs",
+      "require": "./dist/cli/jquan-vite-plugin.cjs",
+      "default": "./dist/cli/jquan-vite-plugin.cjs"
+    },
+    "./postcss": {
+      "types": "./dist/cli/jquan-postcss-plugin.d.ts",
+      "import": "./dist/cli/jquan-postcss-plugin.mjs",
+      "require": "./dist/cli/jquan-postcss-plugin.cjs",
+      "default": "./dist/cli/jquan-postcss-plugin.cjs"
+    },
+    "./tokens": {
+      "types": "./dist/cli/jquan-tokens.d.ts",
+      "import": "./dist/cli/jquan-tokens.mjs",
+      "require": "./dist/cli/jquan-tokens.cjs",
+      "default": "./dist/cli/jquan-tokens.cjs"
+    },
+    "./migrate": {
+      "types": "./dist/cli/jquan-migrate.d.ts",
+      "import": "./dist/cli/jquan-migrate.mjs",
+      "require": "./dist/cli/jquan-migrate.cjs",
+      "default": "./dist/cli/jquan-migrate.cjs"
+    },
+    "./ssr": {
+      "types": "./dist/ssr/jquan-ssr.d.ts",
+      "import": "./dist/ssr/jquan-ssr.mjs",
+      "require": "./dist/ssr/jquan-ssr.cjs",
+      "default": "./dist/ssr/jquan-ssr.cjs"
+    },
+    "./data": {
+      "types": "./dist/data/jquan-data.d.ts",
+      "import": "./dist/data/jquan-data.mjs",
+      "require": "./dist/data/jquan-data.cjs",
+      "browser": "./dist/data/JquanUI@Data.js",
+      "default": "./dist/data/jquan-data.cjs"
+    },
+    "./package.json": "./package.json",
+    "./components/drawer": {
+      "types": "./dist/components/drawer.d.ts",
+      "browser": "./dist/components/drawer.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/components/drawer.js"
+    },
+    "./components/popover": {
+      "types": "./dist/components/popover.d.ts",
+      "browser": "./dist/components/popover.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/components/popover.js"
+    },
+    "./components/modal": {
+      "types": "./dist/components/modal.d.ts",
+      "browser": "./dist/components/modal.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/components/modal.js"
+    },
+    "./components/select": {
+      "types": "./dist/components/select.d.ts",
+      "browser": "./dist/components/select.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/components/select.js"
+    },
+    "./components/overlayManager": {
+      "types": "./dist/components/overlayManager.d.ts",
+      "browser": "./dist/components/overlayManager.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/components/overlayManager.js"
+    },
+    "./components/carousel": {
+      "types": "./dist/components/carousel.d.ts",
+      "browser": "./dist/components/carousel.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/components/carousel.js"
+    },
+    "./components/tabs": {
+      "types": "./dist/components/tabs.d.ts",
+      "browser": "./dist/components/tabs.js",
+      "node": "./dist/browser-noop.cjs",
+      "default": "./dist/components/tabs.js"
+    }
+  },
+  "scripts": {
+    "build:core": "node scripts/build-core.cjs",
+    "build:components": "node scripts/build-component-bundles.cjs",
+    "build:full": "node scripts/build-component-bundles.cjs",
+    "build:bundles": "node scripts/build-component-bundles.cjs",
+    "check:bundles": "node scripts/build-component-bundles.cjs --check",
+    "check:iframe-bridge": "node scripts/check-iframe-bridge.cjs",
+    "check:favicon": "node scripts/check-favicon.cjs",
+    "check:favicon:browser": "node scripts/check-favicon-browser.cjs",
+    "check:template": "node scripts/check-template-component.cjs",
+    "check:template-runtime": "node scripts/check-template-runtime.cjs",
+    "check:template-build": "node scripts/check-template-build.cjs",
+    "check:template-performance": "node scripts/check-template-performance.cjs",
+    "check:visual": "node scripts/check-visual-fixtures.cjs",
+    "check:component-docs": "node scripts/check-component-documentation.cjs",
+    "check:component-docs:browser": "node scripts/check-component-docs-browser.cjs",
+    "check:vite": "node scripts/check-vite-plugin.cjs",
+    "check:postcss": "node scripts/check-postcss-plugin.cjs",
+    "check:baseline": "node scripts/check-baseline-output.cjs",
+    "check:migrate": "node scripts/check-migrate.cjs",
+    "check:types-surface": "node scripts/check-types-surface.cjs",
+    "check:packlist": "node scripts/check-packlist.cjs",
+    "check:manifest": "node scripts/check-manifest.cjs",
+    "build:data": "node scripts/build-data-browser.cjs",
+    "benchmark:data": "node scripts/benchmark-data.cjs",
+    "benchmark:data:large": "node scripts/benchmark-data.cjs --large",
+    "benchmark:core": "node scripts/benchmark-core.cjs",
+    "check:core-performance": "node scripts/benchmark-core.cjs --check",
+    "check:data:browser": "node scripts/check-data-browser.cjs",
+    "check:data": "node scripts/build-data-browser.cjs && node scripts/check-data-layer.cjs",
+    "check:data:surface": "node scripts/check-data-surface.cjs",
+    "check:docs": "node scripts/check-documentation.cjs",
+    "check:core": "node --check js/JquanUI@core.min.js && node scripts/check-duplicate-mappings.cjs && node scripts/check-core-regressions.cjs && node scripts/check-core-config-tokens.cjs && node scripts/check-core-compile-contract.cjs && node scripts/check-core-class-diagnostics.cjs && node scripts/check-core-distribution.cjs",
+    "check:core-config": "node scripts/check-core-config-tokens.cjs",
+    "check:core-compile": "node scripts/check-core-compile-contract.cjs",
+    "check": "node scripts/check-version.cjs && node scripts/check-core-distribution.cjs && node scripts/check-package.cjs && node scripts/check-size.cjs && node scripts/check-manifest.cjs && node scripts/check-packlist.cjs && node scripts/check-ssr-api.cjs && node scripts/check-doctor.cjs && node scripts/check-baseline-output.cjs && node scripts/check-migrate.cjs && node scripts/check-vite-plugin.cjs && node scripts/check-postcss-plugin.cjs && node scripts/check-data-layer.cjs && node scripts/check-iframe-bridge.cjs && node scripts/check-favicon.cjs && node scripts/check-documentation.cjs && node scripts/check-component-documentation.cjs && node scripts/build-component-bundles.cjs --check && node scripts/check-template-component.cjs && node scripts/check-template-runtime.cjs && node scripts/check-template-build.cjs && node scripts/check-template-performance.cjs && node scripts/check-visual-fixtures.cjs && node scripts/check-duplicate-mappings.cjs && node scripts/check-core-regressions.cjs && node scripts/check-core-config-tokens.cjs && node scripts/check-core-compile-contract.cjs && node scripts/check-core-class-diagnostics.cjs && node scripts/check-types-surface.cjs && node --check scripts/benchmark-core.cjs && node --check scripts/check-baseline-output.cjs && node --check scripts/check-package.cjs && node --check scripts/check-size.cjs && node --check scripts/check-manifest.cjs && node --check scripts/check-packlist.cjs && node --check scripts/check-ssr-api.cjs && node --check scripts/check-doctor.cjs && node --check scripts/check-migrate.cjs && node --check scripts/check-vite-plugin.cjs && node --check scripts/check-postcss-plugin.cjs && node --check scripts/build-component-bundles.cjs && node --check scripts/check-iframe-bridge.cjs && node --check scripts/check-favicon.cjs && node --check scripts/check-template-component.cjs && node --check scripts/check-template-runtime.cjs && node --check scripts/check-template-build.cjs && node --check scripts/check-template-performance.cjs && node --check scripts/check-visual-fixtures.cjs && node --check scripts/check-duplicate-mappings.cjs && node --check scripts/check-core-regressions.cjs && node --check scripts/check-types-surface.cjs && node --check scripts/update-manifest.cjs && node --check scripts/update-release-summary.cjs && node --check scripts/smoke-pack.cjs && node --check scripts/split-component-docs.cjs && node --check scripts/normalize-component-doc-modules.cjs && node --check scripts/check-component-documentation.cjs && node --check scripts/check-component-docs-browser.cjs && node --check scripts/migrate-component-doc-controller.cjs && node --check dist/cli/jquan-extract.cjs && node --check dist/cli/jquan-vite-plugin.cjs && node --check dist/cli/jquan-postcss-plugin.cjs && node --check dist/cli/jquan-tokens.cjs && node --check dist/cli/jquan-migrate.cjs && node --check dist/index.cjs && node --check dist/index.mjs && node --check dist/cli/jquan-extract.mjs && node --check dist/cli/jquan-vite-plugin.mjs && node --check dist/cli/jquan-postcss-plugin.mjs && node --check dist/cli/jquan-tokens.mjs && node --check dist/cli/jquan-migrate.mjs",
+    "manifest": "node scripts/update-manifest.cjs && node scripts/update-release-summary.cjs && node scripts/update-manifest.cjs && node scripts/update-release-summary.cjs",
+    "summary": "node scripts/update-release-summary.cjs",
+    "smoke:pack": "node scripts/smoke-pack.cjs",
+    "verify": "npm run manifest && npm run check && npm run smoke:pack",
+    "prepack": "npm run manifest && npm run check",
+    "prepublishOnly": "npm run verify && node scripts/prepublish-guard.cjs",
+    "check:semantic-overlays": "node scripts/check-semantic-overlays-browser.cjs",
+    "check:dark-mapping": "node scripts/check-dark-mapping-browser.cjs",
+    "check:semantic-theme": "node scripts/check-semantic-theme-browser.cjs",
+    "check:semantic-inputs": "node scripts/check-semantic-inputs-browser.cjs",
+    "check:select": "node scripts/check-select-browser.cjs",
+    "check:overlays": "node scripts/check-overlay-browser.cjs && node scripts/check-modal-browser.cjs && node scripts/check-popover-browser.cjs",
+    "check:highfreq-lifecycle": "node scripts/check-highfreq-lifecycle-browser.cjs",
+    "check:review-mode": "node scripts/check-review-mode-browser.cjs && node scripts/check-review-mode-editing-browser.cjs && node scripts/check-review-mode-loading-browser.cjs && node scripts/check-review-mode-editing-browser.cjs --draft-check && node scripts/check-review-mode-editing-browser.cjs --apply-check && node scripts/check-review-mode-popover-browser.cjs && node scripts/check-review-mode-theme-tokens-browser.cjs && node scripts/check-review-mode-typography-browser.cjs && node scripts/check-review-mode-tabs-loop-browser.cjs && node scripts/check-review-mode-input-drafts-browser.cjs && node scripts/check-review-mode-manual-copy-browser.cjs && node scripts/check-review-mode-carousel-controls-browser.cjs && node scripts/check-review-mode-manual-copy-browser.cjs --race-check",
+    "check:core-diagnostics": "node scripts/check-core-class-diagnostics.cjs",
+    "check:core-distribution": "node scripts/check-core-distribution.cjs",
+    "check:review-theme": "node scripts/check-review-mode-theme-tokens-browser.cjs",
+    "check:review-typography": "node scripts/check-review-mode-typography-browser.cjs",
+    "check:review-tabs-loop": "node scripts/check-review-mode-tabs-loop-browser.cjs",
+    "check:review-input-drafts": "node scripts/check-review-mode-input-drafts-browser.cjs",
+    "check:review-copy-race": "node scripts/check-review-mode-manual-copy-browser.cjs --race-check",
+    "check:review-manual-copy": "node scripts/check-review-mode-manual-copy-browser.cjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "css",
+    "atomic-css",
+    "runtime-css",
+    "vite",
+    "postcss",
+    "design-tokens",
+    "ai-skill"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "fake-indexeddb": "^6.2.5",
+    "terser": "5.44.0"
+  }
+}

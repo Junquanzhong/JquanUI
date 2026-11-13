@@ -1,0 +1,63 @@
+<!doctype html>
+<meta charset="utf-8">
+<body data-status="running">
+<script src="/dist/data/JquanUI@Data.js"></script>
+<script>
+(async () => {
+  const data = window.JquanUIData;
+  const assert = (value, message) => { if (!value) throw new Error(message); };
+  const name = `jquanui-browser-${Date.now()}`;
+  const adapter = data.createIndexedDBAdapter({ name, store: 'primary', stores: ['secondary'], key: 'value', version: 1 });
+  await adapter.save([{ id: 1, value: 'indexed' }]);
+  assert((await adapter.load())[0].value === 'indexed', 'IndexedDB roundtrip');
+  await adapter.saveBackup([{ id: 2, value: 'backup' }]);
+  assert((await adapter.loadBackup())[0].value === 'backup', 'IndexedDB backup roundtrip');
+  assert(adapter.stores.length === 2 && (await adapter.estimate()) !== undefined, 'IndexedDB metadata');
+
+  const persistedAdapter = data.createIndexedDBAdapter({ name, store: 'primary', key: 'persisted' });
+  const persisted = data.createCollection('browser-persisted', { historyLimit: 1 });
+  const persistence = await persisted.persist(persistedAdapter, { debounce: 100 });
+  persisted.insert({ id: 1 });
+  persisted.insert({ id: 2 });
+  assert(persisted.changes().length === 1 && persisted.pendingChanges().length === 2, 'independent Outbox');
+  await persistence.flush();
+  assert((await persistedAdapter.load()).pendingChanges.length === 2, 'persistence flush');
+  await persistence.close();
+  assert(persistence.status().state === 'closed', 'persistence close');
+
+  const bridgeScript = document.createElement('script');
+  bridgeScript.src = '/dist/components/iframeBridge.js';
+  document.head.appendChild(bridgeScript);
+  await new Promise((resolve, reject) => { bridgeScript.onload = resolve; bridgeScript.onerror = reject; });
+  const frame = document.createElement('iframe');
+  frame.title = 'iframe bridge child';
+  frame.src = '/scripts/iframe-child-fixture.html';
+  document.body.appendChild(frame);
+  await new Promise((resolve, reject) => { frame.addEventListener('load', resolve, { once: true }); frame.addEventListener('error', reject, { once: true }); });
+  const parentBridge = window.JquanUIComponents.iframeBridgeApi.createParent({ iframe: frame, targetOrigin: location.origin, namespace: 'browser-bridge', timeout: 1500 });
+  try { await parentBridge.ready(); } catch (error) { throw new Error(`${error.message}; parent=${JSON.stringify(parentBridge.state())}; child=${frame.contentDocument?.body?.textContent || 'empty'}`); }
+  const health = await parentBridge.request('health', { probe: true });
+  assert(health.ok === true, 'iframe request response');
+  parentBridge.destroy();
+  frame.remove();
+
+  const first = data.createCollection('browser-tabs-a');
+  const second = data.createCollection('browser-tabs-a');
+  const left = data.createBroadcastAdapter({ channel: `browser-tabs-${Date.now()}` });
+  const right = data.createBroadcastAdapter({ channel: left.channelName || `unused-${Date.now()}` });
+  left.close(); right.close();
+  const channel = `browser-tabs-${Date.now()}`;
+  const leftAdapter = data.createBroadcastAdapter({ channel });
+  const rightAdapter = data.createBroadcastAdapter({ channel });
+  const stopLeft = first.connect(leftAdapter);
+  const stopRight = second.connect(rightAdapter);
+  first.insert({ id: 1, value: 'from-left' });
+  await new Promise(resolve => setTimeout(resolve, 300));
+  assert(second.get(1).value === 'from-left', 'BroadcastChannel propagation');
+  stopLeft(); stopRight(); leftAdapter.close(); rightAdapter.close();
+  await adapter.deleteDatabase();
+  document.body.dataset.status = 'ok';
+  document.body.textContent = 'JquanUI Data browser check ok';
+  setTimeout(() => window.close(), 50);
+})().catch(error => { document.body.dataset.status = 'failed'; document.body.textContent = error.stack || error.message; });
+</script>

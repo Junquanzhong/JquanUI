@@ -1,0 +1,36 @@
+<!doctype html>
+<html class="light" lang="zh-CN">
+<head><meta charset="utf-8"><script>
+window.JQUAN_CONFIG = {
+  componentPresets: { ui: new URLSearchParams(location.search).get('mode') || 'semantic' },
+  theme: { semantic: {
+    surface: { light: 'white', dark: 'slate-900' },
+    'surface-muted': { light: 'slate-50', dark: 'slate-800' },
+    text: { light: 'slate-700', dark: 'slate-100' },
+    'text-muted': { light: 'slate-500', dark: 'slate-400' },
+    border: { light: 'slate-200', dark: 'slate-700' },
+    accent: { light: 'blue-600', dark: 'blue-400' },
+    focus: { light: 'blue-200', dark: 'blue-500' }
+  } }
+};
+</script><!-- CORE_ENTRY --></head>
+<body>
+<div id="table"></div>
+<div id="scope"><div id="local" class="bg-surface text-text border border-border">局部主题</div></div>
+<div id="alpha" class="bg-surface/90">透明度</div>
+<div id="legacy" class="bg-white/90 text-slate-700">旧类</div>
+<button id="accent" class="bg-accent">品牌色</button>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const tableApi = await JquanUI.import('table');
+    window.themeTable = await tableApi.mount('#table', {
+      columns: [{ key: 'name', title: '名称', sortable: true }],
+      data: [{ id: 1, name: 'Alpha' }, { id: 2, name: 'Beta' }],
+      toolbar: { refresh: true }
+    });
+    JquanUI.scan();
+    window.themeReady = { ok: true };
+  } catch (error) { window.themeReady = { ok: false, error: error.stack }; }
+});
+</script></body></html>

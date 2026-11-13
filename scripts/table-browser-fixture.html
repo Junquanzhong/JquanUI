@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Table lifecycle checks</title>
+<!-- CORE_ENTRY -->
+</head>
+<body>
+  <form id="form"><div id="local"></div></form>
+  <div id="remote"></div>
+  <div id="pending"></div>
+  <script>
+    window.tableCheck = (async () => {
+      let assertions = 0;
+      const assert = (condition, message) => { if (!condition) throw new Error(message); assertions++; };
+      function deferred() { let resolve, reject; const promise = new Promise((ok, fail) => { resolve = ok; reject = fail; }); return { promise, resolve, reject }; }
+      const api = await JquanUI.import('table');
+      const local = await api.mount('#local', {
+        columns: [{ key: 'name', title: 'Name', filterable: true }, { key: 'id', title: 'ID', sortable: false }],
+        data: [{ id: 2, name: 'Zoe' }, { id: 1, name: 'Ada' }],
+        pagination: { page: 1, pageSize: 10 }
+      });
+      const root = document.querySelector('#local');
+      assert(root.querySelector('[data-sort-key]').tagName === 'BUTTON', 'Sorting must use a native button');
+      assert(root.querySelector('[data-sort-key]').type === 'button', 'Sorting must not submit its enclosing form');
+      assert(root.querySelector('th').getAttribute('aria-sort') === 'none', 'Initial sort state is exposed');
+      assert(root.querySelectorAll('th[aria-sort]').length === 1, 'Non-sortable columns do not expose sort state');
+      const oldPagination = root.querySelector('[data-role="pagination"]');
+      assert(JquanUIComponents.paginationApi.get(oldPagination), 'Pagination mounted');
+      let filter = root.querySelector('[data-filter-key]');
+      filter.focus(); filter.value = 'Ada'; filter.setSelectionRange(1, 2);
+      const enter = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true });
+      filter.dispatchEvent(enter);
+      filter = root.querySelector('[data-filter-key]');
+      assert(enter.defaultPrevented, 'Filter Enter prevents form submission');
+      assert(document.activeElement === filter && filter.selectionStart === 1 && filter.selectionEnd === 2, 'Filter focus and selection survive rendering');
+      assert(root.querySelectorAll('tbody tr').length === 1 && root.querySelector('tbody').textContent.includes('Ada'), 'Filter still works');
+      assert(JquanUIComponents.paginationApi.get(oldPagination) === null, 'Replaced pagination instance is released');
+      local.setFilter('name', '');
+      assert(root.querySelector('[data-filter-key]').value === '', 'Programmatic setFilter replaces the focused draft');
+      const tasks = [];
+      let fail = false;
+      let errorEvent;
+      const remote = await api.mount('#remote', {
+        columns: [{ key: 'name', title: 'Name', filterable: true }], pagination: { page: 1, pageSize: 10 },
+        onError(error) { errorEvent = error; },
+        remote: { enabled: true, load(payload) { if (payload.reason === 'init') return []; if (fail) throw new Error('network'); const task = deferred(); tasks.push({ ...task, payload }); return task.promise; } }
+      });
+      const older = remote.reload('older'); const newer = remote.reload('newer');
+      assert(tasks[0].payload.signal.aborted && tasks[1].payload.requestId > tasks[0].payload.requestId, 'Superseded request is aborted');
+      const remoteRoot = document.querySelector('#remote');
+      let draft = remoteRoot.querySelector('[data-filter-key]');
+      draft.focus(); draft.value = 'draft'; draft.setSelectionRange(2, 3);
+      tasks[1].resolve({ data: [{ id: 1, name: 'newer' }], total: 0 }); await newer;
+      draft = remoteRoot.querySelector('[data-filter-key]');
+      assert(document.activeElement === draft && draft.value === 'draft' && draft.selectionStart === 2, 'Async rendering preserves an unsubmitted filter draft');
+      assert(JquanUIComponents.paginationApi.get(remoteRoot.querySelector('[data-role="pagination"]')).state().total === 0, 'Explicit zero total is preserved');
+      tasks[0].resolve([{ id: 2, name: 'older' }]); await older;
+      assert(remoteRoot.querySelector('tbody').textContent.includes('newer') && !remoteRoot.querySelector('tbody').textContent.includes('older'), 'Late data cannot overwrite current rows');
+      const stale = remote.reload('stale'); const current = remote.reload('current');
+      tasks[2].reject(new Error('obsolete')); await stale;
+      assert(remote.state().loading && remote.state().error === null, 'Stale errors do not modify current state');
+      tasks[3].resolve([]); await current;
+      fail = true; try { await remote.reload(); } catch (error) { assert(error.message === 'network', 'Reload rejects its current failure'); }
+      assert(remote.state().error === errorEvent && !remote.state().loading && remoteRoot.querySelector('[role="alert"]'), 'Error state and callback are observable');
+      fail = false; const recovery = remote.reload(); tasks[4].resolve([{ name: 'recovered' }]); await recovery;
+      assert(remote.state().error === null, 'Recovery clears the error');
+      const late = remote.reload(); const lateTask = tasks[5];
+      const lastPagination = remoteRoot.querySelector('[data-role="pagination"]');
+      remote.destroy();
+      assert(lateTask.payload.signal.aborted && remote.state().destroyed && !remote.state().loading, 'Destroy aborts and updates public state');
+      assert(JquanUIComponents.paginationApi.get(lastPagination) === null, 'Destroy releases the pagination instance');
+      lateTask.resolve([{ name: 'resurrected' }]); await late;
+      assert(remoteRoot.children.length === 0 && api.get('#remote') === null, 'Late result cannot resurrect a destroyed view');
+      const initTask = deferred();
+      const mounting = api.mount('#pending', { remote: { enabled: true, load() { return initTask.promise; } } });
+      api.get('#pending').destroy(); initTask.resolve([]);
+      assert(await mounting === null && document.querySelector('#pending').children.length === 0, 'Destroyed pending mount yields null');
+      let submits = 0; document.querySelector('#form').addEventListener('submit', event => { submits++; event.preventDefault(); });
+      window.keyboardTable = local;
+      root.querySelector('[data-sort-key]').focus();
+      window.tableSubmits = () => submits;
+      return { ok: true, assertions };
+    })().catch(error => ({ ok: false, error: error.stack || String(error) }));
+  </script>
+</body>
+</html>

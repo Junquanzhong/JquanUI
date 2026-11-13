@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Select shared overlay regression</title></head>
+<body style="overflow:scroll !important">
+<button id="outside">Outside</button>
+<select id="single" jq-select data-placeholder="Choose">
+  <option value="">Choose</option><option value="alpha">Alpha</option><option value="beta">Beta</option><option value="gamma" disabled>Gamma</option>
+</select>
+<select id="multi" jq-select multiple data-select-max="2" data-select-search-debounce="0">
+  <option value="one">One</option><option value="two">Two</option><option value="three">Three</option>
+</select>
+<select id="remote" jq-select data-select-search-debounce="0"><option value="old">Old</option></select>
+<!-- CORE_ENTRY -->
+<!-- PROBE_SCRIPTS -->
+<script>
+const pause = (ms = 30) => new Promise(resolve => setTimeout(resolve, ms));
+const $ = id => id.startsWith('#') ? document.querySelector(id) : document.getElementById(id);
+window.selectReady = (async () => {
+  if (window.selectProbe) {
+    JquanUI.use(JquanUIComponents.overlayManager);
+    JquanUI.use(JquanUIComponents.modal);
+    JquanUI.use(JquanUIComponents.select);
+  } else await JquanUI.import('select');
+  JquanUI.enhance(document.body);
+  await pause();
+  return true;
+})();
+function selectState() {
+  const api = JquanUIComponents.selectApi;
+  const handle = api.get('#single');
+  return `modal=${window.selectModal?.element() ? 'open' : 'closed'} select=${handle?.state()?.open ? 'open' : 'closed'} stack=${JquanUIComponents.overlayManagerApi.stack().length}`;
+}
+window.prepareSelectKeyboard = () => {
+  window.selectModal = JquanUIComponents.modalApi.open({ title: 'Parent', content: '<p>Parent</p>' });
+  const handle = JquanUIComponents.selectApi.get('#single');
+  handle.open();
+};
+window.runSelectChecks = async () => {
+  await selectReady;
+  await JquanUI.import('modal');
+  const api = JquanUIComponents.selectApi;
+  let assertions = 0;
+  const check = (condition, label) => { if (!condition) throw new Error(label); assertions++; };
+  check(JquanUI.hasPlugin('jquanui-overlay-manager'), 'Select importer installs shared manager');
+  check(await JquanUI.import('select.js') === api, 'Select importer returns singleton API');
+  const single = api.get('#single'), multi = api.get('#multi'), remote = api.get('#remote');
+  check(single && api.mount($('#single')) === single, 'Repeated mount returns canonical handle');
+  const trigger = $('#single').nextElementSibling.querySelector('[jq-select-trigger]');
+  const panel = document.querySelector('[jq-select-panel]');
+  check(trigger.getAttribute('role') === 'combobox' && trigger.getAttribute('aria-haspopup') === 'listbox', 'Trigger exposes combobox semantics');
+  check(panel.getAttribute('role') === 'dialog' && panel.getAttribute('aria-hidden') === 'true', 'Panel starts hidden and labelled');
+  check(single.open() && single.state().open, 'Open returns true and updates state');
+  check(JquanUIComponents.overlayManagerApi.stack().length === 1 && document.activeElement.matches('[jq-select-search]'), 'Select joins shared stack and focuses search');
+  check(trigger.getAttribute('aria-expanded') === 'true' && panel.getAttribute('aria-hidden') === 'false', 'Open ARIA state synchronizes');
+  const options = panel.querySelectorAll('[jq-select-option]');
+  check(options[0].getAttribute('role') === 'option' && options[0].getAttribute('aria-selected') === 'false', 'Options expose listbox state');
+  panel.querySelector('[data-value="alpha"]').click();
+  check(single.value() === 'alpha' && $('#single').value === 'alpha' && !single.state().open, 'Single selection syncs native value and closes');
+  single.open(); panel.querySelector('[data-value="gamma"]').click();
+  check(single.value() === 'alpha' && single.state().open, 'Disabled option is ignored');
+  document.body.click(); await pause();
+  check(!single.state().open, 'Shared outside click closes Select');
+  multi.open(); multi.select('one'); multi.select('two');
+  check(JSON.stringify(multi.values()) === JSON.stringify(['one', 'two']) && $('#multi').selectedOptions.length === 2, 'Multiple values sync native options');
+  check(!multi.select('three') && multi.state().values.length === 2, 'Maximum selection blocks extra value');
+  multi.clear(); check(multi.values().length === 0 && $('#multi').selectedOptions.length === 0, 'Clear synchronizes native multi-select');
+  multi.search('two'); check(multi.state().filteredCount === 1, 'Programmatic search filters options');
+  multi.update({ maxSelections: 1 }); multi.select('one'); multi.select('two');
+  check(multi.values().length === 1, 'Live update changes selection limit');
+  const requests = [];
+  remote.update({ remoteMethod(search, handle, context) { return new Promise(resolve => requests.push({ search, handle, context, resolve })); } });
+  remote.open();
+  const remoteSearch = document.querySelectorAll('[jq-select-search]')[2];
+  remoteSearch.value = 'first'; remoteSearch.dispatchEvent(new Event('input', { bubbles: true }));
+  await pause(20); remoteSearch.value = 'second'; remoteSearch.dispatchEvent(new Event('input', { bubbles: true }));
+  await pause(20);
+  check(requests.length === 2 && requests[0].context.requestId < requests[1].context.requestId && requests[0].context.signal, 'Remote search supplies request id and AbortSignal');
+  requests[1].resolve([{ value: 'second', label: 'second' }]); await pause();
+  requests[0].resolve([{ value: 'stale', label: 'Stale' }]); await pause();
+  check(remote.state().filteredCount === 1 && remote.state().search === 'second' && remote.state().requestId === requests[1].context.requestId, 'Latest remote result wins over stale result');
+  let lateResolve;
+  const pending = new Promise(resolve => { lateResolve = resolve; });
+  remoteSearch.value = 'destroyed'; remoteSearch.dispatchEvent(new Event('input', { bubbles: true }));
+  for (let i = 0; i < 30 && requests.length < 3; i++) await pause(10);
+  remote.destroy();
+  requests.at(-1)?.resolve([{ value: 'late', label: 'Late' }]);
+  lateResolve(); await pending; await pause();
+  check(api.get('#remote') === null && $('#remote').value === 'old', 'Destroy restores native source and ignores late remote result');
+  const old = single; old.destroy(); const replacement = api.mount($('#single')); check(old.open() === false && old.state() === null && replacement.open(), 'Old Select handle cannot affect replacement'); replacement.destroy(); api.mount($('#single'));
+  window.selectModal = JquanUIComponents.modalApi.open({ title: 'Parent', content: '<p>Parent</p>' });
+  const nested = api.mount($('#multi')); nested.open();
+  check(JquanUIComponents.overlayManagerApi.stack().length === 2, 'Select nests over Modal');
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true })); await pause();
+  check(!nested.state().open && !window.selectModal.state().destroyed, 'Escape closes only top Select');
+  window.selectModal.destroy(); nested.destroy();
+  check(document.body.style.overflow === 'scroll' && JquanUIComponents.overlayManagerApi.stack().length === 0, 'Shared stack and scroll state fully restore');
+  return { assertions };
+};
+window.runSelectLifecycleChecks = async () => {
+  const api=JquanUIComponents.selectApi, modal=JquanUIComponents.modalApi, overlays=JquanUIComponents.overlayManagerApi;
+  let assertions=0;
+  const check=(ok,label)=>{if(!ok)throw Error(label);assertions++;};
+  const source=document.createElement('select');source.id='lifecycle';source.innerHTML='<option value="old">Old</option>';document.body.append(source);
+  const requests=[];
+  const handle=api.mount(source,{searchDebounce:60,remoteMethod(query,instance,context){return new Promise((resolve,reject)=>requests.push({query,instance,context,resolve,reject}));}});
+  check(api.get(handle)===handle&&api.mount(source)===handle,'Canonical handles resolve through API');
+  handle.open();
+  const panel=document.querySelector('[jq-select-panel]:not([hidden])'),input=panel.querySelector('[jq-select-search]');
+  handle.search('first');
+  check(handle.state().loading&&requests[0].instance===handle&&panel.querySelector('[role=listbox]').getAttribute('aria-busy')==='true','Programmatic remote search exposes live loading state');
+  input.value='second';input.dispatchEvent(new Event('input',{bubbles:true}));
+  check(requests[0].context.signal.aborted,'New input aborts previous request before debounce expires');
+  requests[0].resolve([{value:'stale',label:'Stale'}]);await pause(10);
+  check(!panel.textContent.includes('Stale'),'Stale result is blocked during next debounce');
+  await pause(80);requests[1].resolve([{value:'fresh',label:'Fresh label'}]);await pause();
+  check(!handle.state().loading&&panel.querySelector('[data-value="fresh"]'),'Server options need not match literal query');
+  handle.select('fresh');check(source.value==='fresh'&&source.selectedOptions[0].textContent==='Fresh label','Remote selection materializes native option');
+  handle.search('reject');requests.at(-1).reject(Error('network'));await pause();
+  check(!handle.state().loading&&panel.querySelector('[data-value="fresh"]'),'Rejected query retains last options and clears busy state');
+  handle.search('update');const update=requests.at(-1);handle.update({helperText:'Current'});update.resolve([{value:'ignored',label:'Ignored'}]);await pause();
+  check(update.context.signal.aborted&&!panel.textContent.includes('Ignored'),'Update invalidates pending remote result');
+  input.value='cancel-debounce';input.dispatchEvent(new Event('input',{bubbles:true}));const count=requests.length;handle.close();await pause(90);
+  check(requests.length===count&&!handle.state().loading,'Close cancels queued debounce');
+  handle.open();handle.search('destroy');const last=requests.at(-1);handle.destroy();last.resolve([{value:'late',label:'Late'}]);await pause();
+  check(last.context.signal.aborted&&handle.state()===null&&source.value==='fresh'&&!panel.isConnected,'Destroy aborts and ignores late work');
+  const replacement=api.mount(source);check(api.get(handle)===null&&api.destroy(handle)===false&&replacement.open(),'Stale handle target cannot resolve replacement');
+  source.remove();await pause();check(replacement.state()===null&&!overlays.top(),'Detached native owner releases portal and registry');
+  const bad=document.createElement('select');bad.innerHTML='<option>Value</option>';document.body.append(bad);
+  const throws=api.mount(bad,{onClose(){throw Error('consumer-close');}});throws.open();let thrown=false;try{throws.destroy();}catch(error){thrown=error.message==='consumer-close';}
+  check(thrown&&!bad.hidden&&throws.state()===null&&!overlays.top(),'Throwing Select callback still tears down resources');bad.remove();
+  const parent=modal.open({content:'<button id="parent-focus">Parent</button>'});await pause();
+  check(parent.state().isTop&&document.activeElement.id==='parent-focus','Modal joins manager and receives initial focus');
+  let resolveGuard,calls=0;
+  const child=modal.open({content:'<button>Child</button>',beforeClose(){calls++;return new Promise(resolve=>{resolveGuard=resolve;});}});await pause();
+  const pending=child.close();const duplicate=child.close();await pause();check(pending===duplicate&&calls===1&&overlays.stack().length===2,'Modal deduplicates close guards');
+  child.update({title:'Keep latest'});resolveGuard(true);check(await pending===false&&child.state().isTop,'Modal update invalidates old close decision');
+  child.update({beforeClose:null});child.setBusy(true);check(await child.close()===false,'Modal busy state blocks closing');child.setBusy(false);
+  await child.close();check(child.state().isClosing&&child.update({title:'late'})===null,'Modal keeps layer during exit animation');await pause(230);
+  check(child.state().destroyed&&parent.state().isTop&&document.activeElement.id==='parent-focus','Closing Modal restores lower focus');
+  parent.destroy();check(!overlays.top()&&document.body.style.overflow==='scroll'&&document.body.style.getPropertyPriority('overflow')==='important','Modal restores original scroll priority');
+  let invalid=false;try{modal.open({zIndex:NaN});}catch(error){invalid=error instanceof TypeError;}
+  check(invalid&&!overlays.top()&&modal.getOpenCount()===0,'Invalid layer leaves no partially opened Modal');
+  const {default:usage}=await import('/content/components/select.js');
+  const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
+  const published=await new AsyncFunction(usage.examples.find(example=>example.id==='remote-api').code+'\nreturn {select,dispose};')();
+  await pause(120);
+  check(published.select.state().filteredCount===1&&!published.select.state().loading&&published.select.select('milk'),'Published remote example executes');
+  published.dispose();check(published.select.state()===null&&!overlays.top(),'Published remote example disposes resources');
+  return {assertions};
+};
+</script>
+</body>
+</html>

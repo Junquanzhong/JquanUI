@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="--theme-color:#ffdd00;">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="renderer" content="webkit" />
+  <title>404 - 目标失联</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.10.0/dist/es-module-shims.min.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #000103;
+      color: #0f172a;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      user-select: none;
+    }
+
+    #planet-energy-bg canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .screen-overlay {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 50% 50%, transparent 0 40%, rgba(0,0,0,.14) 58%, rgba(0,0,0,.62) 100%),
+        linear-gradient(90deg, rgba(0,0,0,.18), transparent 28%, rgba(0,0,0,.32) 70%, rgba(0,0,0,.72));
+    }
+
+    .status-shell {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .status-card {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      width: min(880px, 100%);
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,.72);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.93), rgba(248,250,252,.88)),
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,.8), transparent 28%),
+        radial-gradient(circle at 100% 0%, rgba(255,221,0,.09), transparent 26%);
+      box-shadow:
+        0 42px 140px rgba(0,0,0,.48),
+        0 0 90px rgba(255,221,0,.1),
+        inset 0 1px 0 rgba(255,255,255,.96);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+    }
+
+    .status-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.28), transparent 38%),
+        radial-gradient(circle at 16% 12%, rgba(255,255,255,.55), transparent 22%),
+        radial-gradient(circle at 86% 10%, rgba(255,221,0,.11), transparent 24%);
+    }
+
+    .status-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 24px;
+      padding: 22px;
+    }
+
+    .status-topbar,
+    .status-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,.22);
+      background: rgba(255,255,255,.72);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #0f172a;
+    }
+
+    .status-chip-dot {
+      width: 10px;
+      height: 10px;
+      flex: none;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 35% 35%, rgba(255,255,255,.95), transparent 34%),
+        linear-gradient(135deg, #ffcf3f, #ff6b1a);
+      box-shadow:
+        0 0 0 4px rgba(255,166,0,.12),
+        0 0 24px rgba(255,119,0,.3);
+    }
+
+    .status-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(15,23,42,.46);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .status-meta-line {
+      width: 44px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(15,23,42,.2), transparent);
+    }
+
+    .hero-panel {
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+      border-radius: 28px;
+      border: 1px solid rgba(148,163,184,.18);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.86), rgba(241,245,249,.8)),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.96), rgba(241,245,249,.82));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.86),
+        inset 0 -28px 60px rgba(148,163,184,.08);
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.34), transparent 12%, transparent 88%, rgba(255,255,255,.24)),
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.45), transparent 34%);
+    }
+
+    .hero-telemetry {
+      position: absolute;
+      inset: 18px 18px auto 18px;
+      z-index: 6;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .telemetry-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: rgba(15,23,42,.44);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .telemetry-bars {
+      display: flex;
+      gap: 4px;
+    }
+
+    .telemetry-bars span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.13);
+    }
+
+    .telemetry-bars span:nth-child(2) {
+      width: 28px;
+      background: rgba(255,179,0,.24);
+    }
+
+    .telemetry-bars span:nth-child(3) {
+      width: 12px;
+    }
+
+    .hero-inner {
+      position: relative;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 54px 28px 40px;
+    }
+
+    .hero-ambient {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(255,183,0,.13), transparent 30%),
+        radial-gradient(circle at 50% 56%, rgba(0,92,255,.1), transparent 36%);
+      filter: blur(22px);
+    }
+
+    .hero-orbit-ring {
+      position: absolute;
+      z-index: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,.15);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.28);
+      pointer-events: none;
+    }
+
+    .ring-a {
+      width: 560px;
+      height: 180px;
+      transform: rotate(-8deg);
+    }
+
+    .ring-b {
+      width: 620px;
+      height: 220px;
+      transform: rotate(10deg);
+    }
+
+    .ring-c {
+      width: 430px;
+      height: 130px;
+      transform: rotate(2deg);
+    }
+
+    .hero-orbit-dot {
+      position: absolute;
+      z-index: 2;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 35% 35%, rgba(255,255,255,.92), transparent 30%),
+        linear-gradient(135deg, #ffd94a, #ff7814);
+      box-shadow: 0 0 18px rgba(255,154,0,.38);
+    }
+
+    .dot-a {
+      top: 88px;
+      left: calc(50% - 248px);
+    }
+
+    .dot-b {
+      right: calc(50% - 276px);
+      bottom: 92px;
+      width: 8px;
+      height: 8px;
+      background:
+        radial-gradient(circle at 35% 35%, rgba(255,255,255,.9), transparent 30%),
+        linear-gradient(135deg, #72d1ff, #1d4fff);
+      box-shadow: 0 0 18px rgba(0,108,255,.34);
+    }
+
+    .hero-code-stack {
+      position: relative;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .hero-code-base,
+    .hero-code-energy,
+    .hero-code-cut,
+    .hero-code-outline {
+      font-weight: 900;
+      letter-spacing: -.08em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .hero-code-base {
+      position: relative;
+      z-index: 1;
+      color: #0f172a;
+      opacity: .94;
+      text-shadow: 0 10px 26px rgba(15,23,42,.08);
+    }
+
+    .hero-code-energy-layer {
+      position: absolute;
+      inset: -14% -10%;
+      z-index: 2;
+      overflow: hidden;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: .98;
+      filter: saturate(140%);
+    }
+
+    .hero-code-energy-layer::before,
+    .hero-code-energy-layer::after {
+      content: "";
+      position: absolute;
+      inset: -12%;
+      background:
+        radial-gradient(circle at 22% 46%, rgba(255,183,0,.9), transparent 18%),
+        radial-gradient(circle at 76% 40%, rgba(255,255,255,.82), transparent 16%),
+        radial-gradient(circle at 62% 70%, rgba(0,123,255,.8), transparent 20%),
+        linear-gradient(115deg, rgba(255,200,0,.34), rgba(255,255,255,.08) 38%, rgba(0,82,255,.46) 68%, rgba(255,122,0,.34));
+      filter: blur(14px);
+      animation: energy-drift 10s linear infinite;
+    }
+
+    .hero-code-energy-layer::after {
+      inset: -16%;
+      opacity: .82;
+      background:
+        repeating-linear-gradient(118deg, rgba(255,255,255,0) 0 12px, rgba(255,255,255,.18) 12px 14px, rgba(255,221,0,0) 14px 26px),
+        radial-gradient(circle at 34% 50%, rgba(255,200,0,.58), transparent 16%),
+        radial-gradient(circle at 68% 50%, rgba(0,130,255,.56), transparent 16%);
+      filter: blur(7px);
+      animation-duration: 6.8s;
+      animation-direction: reverse;
+    }
+
+    .hero-code-energy {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.9);
+      mix-blend-mode: screen;
+      text-shadow:
+        0 0 18px rgba(255,255,255,.36),
+        0 10px 34px rgba(255,255,255,.16);
+      -webkit-text-stroke: 1.2px rgba(255,255,255,.35);
+    }
+
+    .hero-code-cut {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.98);
+      mix-blend-mode: lighten;
+      opacity: .9;
+    }
+
+    .hero-code-outline {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: transparent;
+      -webkit-text-stroke: 1.2px rgba(15,23,42,.14);
+      pointer-events: none;
+    }
+
+    .status-info {
+      display: grid;
+      gap: 16px;
+      text-align: center;
+      padding: 0 8px 6px;
+    }
+
+    .status-title {
+      margin: 0;
+      font-size: clamp(1.75rem, 2.5vw, 2.35rem);
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      color: #0f172a;
+    }
+
+    .status-desc {
+      margin: 0 auto;
+      max-width: 620px;
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(15,23,42,.66);
+    }
+
+    .status-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .status-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 148px;
+      height: 46px;
+      padding: 0 18px;
+      border-radius: 14px;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
+    }
+
+    .status-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .status-btn:active {
+      transform: translateY(0);
+    }
+
+    .status-btn-primary {
+      color: #fff;
+      background: #0f172a;
+      box-shadow: 0 18px 40px rgba(15,23,42,.2);
+    }
+
+    .status-btn-primary:hover {
+      background: #111f3d;
+    }
+
+    .status-btn-secondary {
+      color: #0f172a;
+      background: rgba(255,255,255,.74);
+      border: 1px solid rgba(148,163,184,.28);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.92);
+    }
+
+    .status-btn-secondary:hover {
+      background: rgba(255,255,255,.92);
+      border-color: rgba(148,163,184,.4);
+    }
+
+    .status-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .status-tag {
+      display: inline-flex;
+      align-items: center;
+      height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.04);
+      border: 1px solid rgba(148,163,184,.16);
+      color: rgba(15,23,42,.56);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .status-signature {
+      color: rgba(15,23,42,.38);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @keyframes energy-drift {
+      0% {
+        transform: translate3d(-8%, 0, 0) scale(1.02);
+      }
+      50% {
+        transform: translate3d(8%, -2%, 0) scale(1.08);
+      }
+      100% {
+        transform: translate3d(-8%, 0, 0) scale(1.02);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .ring-a {
+        width: 460px;
+        height: 160px;
+      }
+
+      .ring-b {
+        width: 520px;
+        height: 190px;
+      }
+
+      .ring-c {
+        width: 360px;
+        height: 118px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .status-shell {
+        padding: 16px;
+      }
+
+      .status-card {
+        border-radius: 26px;
+      }
+
+      .status-grid {
+        gap: 20px;
+        padding: 16px;
+      }
+
+      .status-topbar,
+      .status-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .status-meta {
+        white-space: normal;
+      }
+
+      .hero-panel {
+        min-height: 250px;
+        border-radius: 22px;
+      }
+
+      .hero-inner {
+        min-height: 250px;
+        padding: 52px 16px 24px;
+      }
+
+      .ring-a {
+        width: 320px;
+        height: 120px;
+      }
+
+      .ring-b {
+        width: 360px;
+        height: 142px;
+      }
+
+      .ring-c {
+        width: 250px;
+        height: 92px;
+      }
+
+      .dot-a {
+        top: 78px;
+        left: calc(50% - 146px);
+      }
+
+      .dot-b {
+        right: calc(50% - 160px);
+        bottom: 74px;
+      }
+
+      .status-actions {
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .status-btn {
+        width: 100%;
+      }
+
+      .status-title {
+        font-size: 1.72rem;
+      }
+
+      .status-desc {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-code-energy-layer::before,
+      .hero-code-energy-layer::after {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="planet-energy-bg" aria-hidden="true" class="fixed inset-0 z-0 overflow-hidden bg-[#000103]"></div>
+  <div aria-hidden="true" class="screen-overlay"></div>
+
+  <main class="status-shell">
+    <section class="status-card">
+      <div class="status-grid">
+        <div class="status-topbar">
+          <div class="status-chip">
+            <span class="status-chip-dot"></span>
+            <span id="chipText">Route Lost</span>
+          </div>
+
+          <div class="status-meta">
+            <span class="status-meta-line"></span>
+            <span id="metaText">Orbit Status Panel</span>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="hero-telemetry">
+            <div class="telemetry-block">
+              <span>Signal</span>
+              <div class="telemetry-bars">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="telemetry-block" style="align-items:flex-end;">
+              <span id="telemetryCode">Status 404</span>
+              <div class="telemetry-bars">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-inner">
+            <div class="hero-ambient" aria-hidden="true"></div>
+            <div class="hero-orbit-ring ring-a" aria-hidden="true"></div>
+            <div class="hero-orbit-ring ring-b" aria-hidden="true"></div>
+            <div class="hero-orbit-ring ring-c" aria-hidden="true"></div>
+            <div class="hero-orbit-dot dot-a" aria-hidden="true"></div>
+            <div class="hero-orbit-dot dot-b" aria-hidden="true"></div>
+
+            <div class="hero-code-stack">
+              <div id="heroCodeBase" class="hero-code-base text-[122px] sm:text-[180px] md:text-[220px]">404</div>
+              <div class="hero-code-energy-layer" aria-hidden="true"></div>
+              <div id="heroCodeEnergy" class="hero-code-energy text-[122px] sm:text-[180px] md:text-[220px]">404</div>
+              <div id="heroCodeCut" class="hero-code-cut text-[122px] sm:text-[180px] md:text-[220px]">404</div>
+              <div id="heroCodeOutline" class="hero-code-outline text-[122px] sm:text-[180px] md:text-[220px]">404</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-info">
+          <h1 id="statusTitle" class="status-title">目标失联</h1>
+          <p id="statusDesc" class="status-desc">
+            当前访问目标未能在既定轨道上定位到。它可能已经迁移、下线，或你输入了一条不存在的路径。
+          </p>
+
+          <div class="status-actions">
+            <a id="primaryAction" href="/" class="status-btn status-btn-primary">返回首页</a>
+            <button type="button" class="status-btn status-btn-secondary" onclick="history.length > 1 ? history.back() : location.href='/'">
+              返回上一页
+            </button>
+          </div>
+        </div>
+
+        <div class="status-footer">
+          <div class="status-tags">
+            <span class="status-tag" id="tagCode">Status 404</span>
+            <span class="status-tag" id="tagRoute">Route Lost</span>
+            <span class="status-tag" id="tagTrace">Trace Online</span>
+          </div>
+
+          <div class="status-signature" id="statusSignature">Gaopeng Majan Orbital Response Node</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const statusConfig = {
+      code: '404',
+      title: '目标失联',
+      desc: '当前访问目标未能在既定轨道上定位到。它可能已经迁移、下线，或你输入了一条不存在的路径。',
+      primaryText: '返回首页',
+      primaryHref: '/',
+      chipText: 'Route Lost',
+      metaText: 'Orbit Status Panel',
+      tagRoute: 'Route Lost',
+      tagTrace: 'Trace Online',
+      signature: 'Gaopeng Majan Orbital Response Node'
+    };
+
+    document.title = `${statusConfig.code} - ${statusConfig.title}`;
+    document.getElementById('heroCodeBase').textContent = statusConfig.code;
+    document.getElementById('heroCodeEnergy').textContent = statusConfig.code;
+    document.getElementById('heroCodeCut').textContent = statusConfig.code;
+    document.getElementById('heroCodeOutline').textContent = statusConfig.code;
+    document.getElementById('statusTitle').textContent = statusConfig.title;
+    document.getElementById('statusDesc').textContent = statusConfig.desc;
+    document.getElementById('primaryAction').textContent = statusConfig.primaryText;
+    document.getElementById('primaryAction').href = statusConfig.primaryHref;
+    document.getElementById('chipText').textContent = statusConfig.chipText;
+    document.getElementById('metaText').textContent = statusConfig.metaText;
+    document.getElementById('telemetryCode').textContent = `Status ${statusConfig.code}`;
+    document.getElementById('tagCode').textContent = `Status ${statusConfig.code}`;
+    document.getElementById('tagRoute').textContent = statusConfig.tagRoute;
+    document.getElementById('tagTrace').textContent = statusConfig.tagTrace;
+    document.getElementById('statusSignature').textContent = statusConfig.signature;
+  </script>
+
+  <script type="module">
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+  import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+  import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+  import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+  const container = document.getElementById('planet-energy-bg');
+
+  const theme = {
+    core: [
+      new THREE.Color(0.05, 0.02, 0.0),
+      new THREE.Color(0.8, 0.4, 0.0),
+      new THREE.Color(1.0, 0.8, 0.2),
+      new THREE.Color(1.5, 1.5, 1.5)
+    ],
+    vein: {
+      surface: new THREE.Color(0.0, 0.3, 2.0),
+      coreA: new THREE.Color(1.0, 0.8, 0.0),
+      coreB: new THREE.Color(1.0, 0.3, 0.0)
+    },
+    boundary: new THREE.Color(1.5, 1.5, 2.5),
+    volcano: new THREE.Color(0xffffff),
+    dust: new THREE.Color(0x443311),
+    bg: new THREE.Color(0x000103)
+  };
+
+  const snoise3GLSL = `
+    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
+    vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+
+    float snoise(vec3 v) {
+      const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+      const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+
+      vec3 i = floor(v + dot(v, C.yyy));
+      vec3 x0 = v - i + dot(i, C.xxx);
+
+      vec3 g = step(x0.yzx, x0.xyz);
+      vec3 l = 1.0 - g;
+      vec3 i1 = min(g.xyz, l.zxy);
+      vec3 i2 = max(g.xyz, l.zxy);
+
+      vec3 x1 = x0 - i1 + C.xxx;
+      vec3 x2 = x0 - i2 + C.yyy;
+      vec3 x3 = x0 - D.yyy;
+
+      i = mod289(i);
+
+      vec4 p = permute(
+        permute(
+          permute(i.z + vec4(0.0, i1.z, i2.z, 1.0))
+          + i.y + vec4(0.0, i1.y, i2.y, 1.0)
+        )
+        + i.x + vec4(0.0, i1.x, i2.x, 1.0)
+      );
+
+      float n_ = 0.142857142857;
+      vec3 ns = n_ * D.wyz - D.xzx;
+
+      vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+      vec4 x_ = floor(j * ns.z);
+      vec4 y_ = floor(j - 7.0 * x_);
+
+      vec4 x = x_ * ns.x + ns.yyyy;
+      vec4 y = y_ * ns.x + ns.yyyy;
+      vec4 h = 1.0 - abs(x) - abs(y);
+
+      vec4 b0 = vec4(x.xy, y.xy);
+      vec4 b1 = vec4(x.zw, y.zw);
+
+      vec4 s0 = floor(b0) * 2.0 + 1.0;
+      vec4 s1 = floor(b1) * 2.0 + 1.0;
+      vec4 sh = -step(h, vec4(0.0));
+
+      vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;
+      vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
+
+      vec3 p0 = vec3(a0.xy, h.x);
+      vec3 p1 = vec3(a0.zw, h.y);
+      vec3 p2 = vec3(a1.xy, h.z);
+      vec3 p3 = vec3(a1.zw, h.w);
+
+      vec4 norm = taylorInvSqrt(vec4(
+        dot(p0,p0),
+        dot(p1,p1),
+        dot(p2,p2),
+        dot(p3,p3)
+      ));
+
+      p0 *= norm.x;
+      p1 *= norm.y;
+      p2 *= norm.z;
+      p3 *= norm.w;
+
+      vec4 m = max(
+        0.5 - vec4(
+          dot(x0,x0),
+          dot(x1,x1),
+          dot(x2,x2),
+          dot(x3,x3)
+        ),
+        0.0
+      );
+
+      m = m * m;
+
+      return 42.0 * dot(
+        m * m,
+        vec4(
+          dot(p0,x0),
+          dot(p1,x1),
+          dot(p2,x2),
+          dot(p3,x3)
+        )
+      );
+    }
+  `;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(theme.bg.getHex(), 0.012);
+
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
+
+  camera.position.set(9, 6.5, 16);
+
+  const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    alpha: false,
+    powerPreference: 'high-performance'
+  });
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(theme.bg);
+
+  container.innerHTML = '';
+  container.appendChild(renderer.domElement);
+
+  const composer = new EffectComposer(renderer);
+  const renderScene = new RenderPass(scene, camera);
+
+  const bloomPass = new UnrealBloomPass(
+    new THREE.Vector2(window.innerWidth, window.innerHeight),
+    1.85,
+    0.46,
+    0.72
+  );
+
+  composer.addPass(renderScene);
+  composer.addPass(bloomPass);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.8;
+  controls.maxDistance = 28;
+  controls.minDistance = 8;
+  controls.enablePan = false;
+
+  const mainGroup = new THREE.Group();
+  mainGroup.scale.setScalar(window.innerWidth > 768 ? 1.55 : 1.25);
+  scene.add(mainGroup);
+
+  const CORE_RADIUS = 2.2;
+  const OUTER_RADIUS = 10.0;
+  const NUM_VEINS = 1200;
+  const POINTS_PER_VEIN = 45;
+
+  const textureLoader = new THREE.TextureLoader();
+  const earthTex = textureLoader.load(
+    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg'
+  );
+
+  const uniforms = {
+    time: { value: 0 },
+    cDark: { value: theme.core[0].clone() },
+    cRed: { value: theme.core[1].clone() },
+    cOrange: { value: theme.core[2].clone() },
+    cYellow: { value: theme.core[3].clone() },
+    cSurface: { value: theme.vein.surface.clone() },
+    cCoreA: { value: theme.vein.coreA.clone() },
+    cCoreB: { value: theme.vein.coreB.clone() },
+    boundaryColor: { value: theme.boundary.clone() },
+    tEarth: { value: earthTex }
+  };
+
+  function getPointOnSphere(radius) {
+    const u = Math.random();
+    const v = Math.random();
+    const theta = 2 * Math.PI * u;
+    const phi = Math.acos(2 * v - 1);
+
+    return new THREE.Vector3(
+      radius * Math.sin(phi) * Math.cos(theta),
+      radius * Math.sin(phi) * Math.sin(theta),
+      radius * Math.cos(phi)
+    );
+  }
+
+  const dustGeo = new THREE.BufferGeometry();
+  const dustPositions = [];
+
+  for (let i = 0; i < 2000; i++) {
+    dustPositions.push(
+      (Math.random() - 0.5) * 100,
+      (Math.random() - 0.5) * 100,
+      (Math.random() - 0.5) * 100
+    );
+  }
+
+  dustGeo.setAttribute(
+    'position',
+    new THREE.Float32BufferAttribute(dustPositions, 3)
+  );
+
+  const dustMat = new THREE.PointsMaterial({
+    color: theme.dust.clone(),
+    size: 0.1,
+    transparent: true,
+    opacity: 0.3,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+
+  const dustMesh = new THREE.Points(dustGeo, dustMat);
+  scene.add(dustMesh);
+
+  const coreGeo = new THREE.SphereGeometry(CORE_RADIUS, 128, 128);
+
+  const coreMat = new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader: `
+      uniform float time;
+      varying vec3 vPosition;
+      varying vec3 vNormal;
+
+      ${snoise3GLSL}
+
+      void main() {
+        vPosition = position;
+        vNormal = normal;
+
+        float displacement = snoise(position * 1.8 + time * 0.4) * 0.15;
+        vec3 newPosition = position + normal * displacement;
+
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float time;
+      uniform vec3 cDark;
+      uniform vec3 cRed;
+      uniform vec3 cOrange;
+      uniform vec3 cYellow;
+
+      varying vec3 vPosition;
+      varying vec3 vNormal;
+
+      ${snoise3GLSL}
+
+      void main() {
+        float n1 = snoise(vPosition * 1.5 - time * 0.5);
+        float n2 = snoise(vPosition * 4.0 + time * 0.3);
+        float noiseVal = n1 * 0.6 + n2 * 0.4;
+
+        vec3 color;
+
+        if (noiseVal < -0.1) {
+          color = mix(cDark, cRed, smoothstep(-0.5, -0.1, noiseVal));
+        } else if (noiseVal < 0.3) {
+          color = mix(cRed, cOrange, smoothstep(-0.1, 0.3, noiseVal));
+        } else {
+          color = mix(cOrange, cYellow, smoothstep(0.3, 0.8, noiseVal));
+        }
+
+        float fresnel = dot(vNormal, vec3(0.0, 0.0, 1.0));
+        fresnel = clamp(1.0 - fresnel, 0.0, 1.0);
+
+        color += cOrange * pow(fresnel, 2.0) * 0.8;
+        color *= 1.5;
+
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `
+  });
+
+  const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+  mainGroup.add(coreMesh);
+
+  const volcanoPoints = [];
+
+  for (let i = 0; i < 150; i++) {
+    volcanoPoints.push(getPointOnSphere(OUTER_RADIUS));
+  }
+
+  const veinPositions = [];
+  const veinProgress = [];
+  const veinOffsets = [];
+  const veinRands = [];
+
+  for (let i = 0; i < NUM_VEINS; i++) {
+    const start = getPointOnSphere(OUTER_RADIUS);
+    const end = start.clone().normalize().multiplyScalar(CORE_RADIUS * 0.85);
+
+    const mid = new THREE.Vector3().lerpVectors(start, end, 0.5);
+    mid.normalize().multiplyScalar(OUTER_RADIUS * 0.55);
+
+    const tangent = new THREE.Vector3().crossVectors(
+      start,
+      new THREE.Vector3(0, 1, 0)
+    );
+
+    if (tangent.lengthSq() < 0.001) {
+      tangent.set(1, 0, 0);
+    }
+
+    tangent.normalize();
+
+    const bitangent = new THREE.Vector3()
+      .crossVectors(start, tangent)
+      .normalize();
+
+    mid.add(tangent.multiplyScalar((Math.random() - 0.5) * 6));
+    mid.add(bitangent.multiplyScalar((Math.random() - 0.5) * 6));
+
+    const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
+    const points = curve.getPoints(POINTS_PER_VEIN);
+    const offset = Math.random();
+    const randSeed = Math.random();
+
+    for (let j = 0; j < POINTS_PER_VEIN; j++) {
+      veinPositions.push(points[j].x, points[j].y, points[j].z);
+      veinPositions.push(points[j + 1].x, points[j + 1].y, points[j + 1].z);
+
+      veinProgress.push(j / POINTS_PER_VEIN, (j + 1) / POINTS_PER_VEIN);
+      veinOffsets.push(offset, offset);
+      veinRands.push(randSeed, randSeed);
+    }
+  }
+
+  const veinGeo = new THREE.BufferGeometry();
+
+  veinGeo.setAttribute(
+    'position',
+    new THREE.Float32BufferAttribute(veinPositions, 3)
+  );
+
+  veinGeo.setAttribute(
+    'progress',
+    new THREE.Float32BufferAttribute(veinProgress, 1)
+  );
+
+  veinGeo.setAttribute(
+    'offset',
+    new THREE.Float32BufferAttribute(veinOffsets, 1)
+  );
+
+  veinGeo.setAttribute(
+    'randomSeed',
+    new THREE.Float32BufferAttribute(veinRands, 1)
+  );
+
+  const veinMat = new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader: `
+      attribute float progress;
+      attribute float offset;
+      attribute float randomSeed;
+
+      varying float vProgress;
+      varying float vOffset;
+      varying float vRandom;
+
+      void main() {
+        vProgress = progress;
+        vOffset = offset;
+        vRandom = randomSeed;
+
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float time;
+      uniform vec3 cSurface;
+      uniform vec3 cCoreA;
+      uniform vec3 cCoreB;
+
+      varying float vProgress;
+      varying float vOffset;
+      varying float vRandom;
+
+      void main() {
+        vec3 targetCoreColor = mix(cCoreA, cCoreB, vRandom);
+        vec3 color = mix(cSurface, targetCoreColor, pow(vProgress, 1.35));
+
+        float speed = 0.26;
+        float phase = vProgress - time * speed + vOffset * 10.0;
+        float flow = fract(phase);
+        float pulse = exp(-flow * 9.0);
+
+        float fiberCore = 0.11;
+        float fiberGlow = pulse * 0.48;
+        float alpha = fiberCore + fiberGlow;
+
+        color += color * pulse * 4.2;
+        color += targetCoreColor * 0.42;
+
+        alpha *= smoothstep(0.0, 0.035, vProgress)
+              * smoothstep(1.0, 0.78, vProgress);
+
+        gl_FragColor = vec4(color * 1.28, alpha);
+      }
+    `,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+
+  const veinMesh = new THREE.LineSegments(veinGeo, veinMat);
+  mainGroup.add(veinMesh);
+
+  const earthGlobeGeo = new THREE.SphereGeometry(
+    OUTER_RADIUS * 0.995,
+    128,
+    128
+  );
+
+  const earthGlobeMat = new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader: `
+      varying vec2 vUv;
+      varying vec3 vNormal;
+
+      void main() {
+        vUv = uv;
+        vNormal = normalize(normalMatrix * normal);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform sampler2D tEarth;
+      uniform vec3 boundaryColor;
+
+      varying vec2 vUv;
+      varying vec3 vNormal;
+
+      void main() {
+        vec2 texel = vec2(1.5 / 2048.0, 1.5 / 1024.0);
+
+        float c = texture2D(tEarth, vUv).r;
+        float r = texture2D(tEarth, vUv + vec2(texel.x, 0.0)).r;
+        float u = texture2D(tEarth, vUv + vec2(0.0, texel.y)).r;
+        float l = texture2D(tEarth, vUv + vec2(-texel.x, 0.0)).r;
+        float d = texture2D(tEarth, vUv + vec2(0.0, -texel.y)).r;
+
+        float edge = abs(4.0 * c - r - u - l - d);
+        float outline = smoothstep(0.1, 0.8, edge);
+
+        vec3 color = boundaryColor * outline;
+        color *= 2.5;
+
+        float fresnel = pow(
+          1.0 - max(dot(vNormal, vec3(0.0, 0.0, 1.0)), 0.0),
+          3.0
+        );
+
+        color += boundaryColor * fresnel * 0.5;
+
+        float alpha = outline * 0.8 + fresnel * 0.2;
+
+        gl_FragColor = vec4(color, alpha);
+      }
+    `,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+
+  const earthGlobeMesh = new THREE.Mesh(earthGlobeGeo, earthGlobeMat);
+  mainGroup.add(earthGlobeMesh);
+
+  const volcanoGeo = new THREE.BufferGeometry().setFromPoints(volcanoPoints);
+
+  const volcanoMat = new THREE.ShaderMaterial({
+    uniforms: {
+      color: { value: theme.volcano.clone() },
+      size: { value: 5.5 * Math.min(window.devicePixelRatio || 1, 2) },
+      time: uniforms.time
+    },
+    vertexShader: `
+      uniform float size;
+
+      void main() {
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = size * (20.0 / -mvPosition.z);
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 color;
+      uniform float time;
+
+      void main() {
+        vec2 pt = gl_PointCoord - vec2(0.5);
+
+        if (abs(pt.x) > 0.35 || abs(pt.y) > 0.35) {
+          discard;
+        }
+
+        float throb = sin(time * 3.0 + gl_FragCoord.x) * 0.5 + 0.5;
+
+        gl_FragColor = vec4(color * (1.2 + throb), 0.55);
+      }
+    `,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+
+  const volcanoMesh = new THREE.Points(volcanoGeo, volcanoMat);
+  mainGroup.add(volcanoMesh);
+
+  const clock = new THREE.Clock();
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    const delta = clock.getDelta();
+    const elapsedTime = clock.getElapsedTime();
+
+    uniforms.time.value = elapsedTime;
+
+    dustMesh.rotation.y += 0.02 * delta;
+
+    controls.update();
+    composer.render();
+  }
+
+  window.addEventListener(
+    'resize',
+    () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+
+      mainGroup.scale.setScalar(width > 768 ? 1.55 : 1.25);
+
+      renderer.setSize(width, height);
+      composer.setSize(width, height);
+      bloomPass.setSize(width, height);
+
+      volcanoMat.uniforms.size.value = 5.5 * Math.min(window.devicePixelRatio || 1, 2);
+    },
+    { passive: true }
+  );
+
+  animate();
+</script>
+</body>
+</html>

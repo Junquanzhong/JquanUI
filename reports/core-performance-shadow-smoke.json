@@ -1,0 +1,98 @@
+{
+  "version": "4.69.0",
+  "generatedAt": "2026-09-04T16:16:22.041Z",
+  "samples": 1,
+  "browser": "Edg/150.0.4078.83",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "node": "v24.12.0",
+    "cpu": "AMD Ryzen 9 7845HX with Radeon Graphics        ",
+    "cpuCount": 24,
+    "memoryBytes": 33591947264
+  },
+  "budgets": {
+    "smallColdMs": 750,
+    "largeColdMs": 2000,
+    "warmStartMs": 750,
+    "mutationBatchMs": 1000,
+    "shadowAdoptMs": 750,
+    "buildExtractionMs": 2000
+  },
+  "budgetResults": {
+    "smallCold": true,
+    "largeCold": true,
+    "warmStart": true,
+    "mutationBatch": true,
+    "shadowAdopt": true,
+    "buildExtraction": true
+  },
+  "passed": true,
+  "coreBytes": {
+    "source": 265528,
+    "minified": 152281,
+    "minifiedGzip": 39570
+  },
+  "scenarios": {
+    "smallCold": {
+      "samples": [
+        342.5
+      ],
+      "minMs": 342.5,
+      "medianMs": 342.5,
+      "maxMs": 342.5,
+      "nodeCount": 32
+    },
+    "largeCold": {
+      "samples": [
+        533.6
+      ],
+      "minMs": 533.6,
+      "medianMs": 533.6,
+      "maxMs": 533.6,
+      "nodeCount": 2500,
+      "processedClassCount": 189
+    },
+    "warmStart": {
+      "samples": [
+        273.3
+      ],
+      "minMs": 273.3,
+      "medianMs": 273.3,
+      "maxMs": 273.3,
+      "cacheHydrate": "hit",
+      "cacheBytes": 9852
+    },
+    "mutationBatch": {
+      "samples": [
+        83.9
+      ],
+      "minMs": 83.9,
+      "medianMs": 83.9,
+      "maxMs": 83.9,
+      "mutationCount": 160
+    },
+    "shadowAdopt": {
+      "samples": [
+        59.2
+      ],
+      "minMs": 59.2,
+      "medianMs": 59.2,
+      "maxMs": 59.2,
+      "shadowRootCount": 100,
+      "styleMode": "constructable"
+    },
+    "buildExtraction": {
+      "samples": [
+        167.56
+      ],
+      "minMs": 167.56,
+      "medianMs": 167.56,
+      "maxMs": 167.56,
+      "fileCount": 1,
+      "classCount": 188,
+      "ruleCount": 188,
+      "cssBytes": 22641
+    }
+  }
+}

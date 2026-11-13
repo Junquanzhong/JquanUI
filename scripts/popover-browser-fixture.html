@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Popover lifecycle regression</title>
+<body style="overflow:scroll !important">
+<button id="outside">Outside</button>
+<div id="pop" jq-popover><button jq-popover-trigger>Open</button><section jq-popover-panel><button id="first">First</button><button id="last" jq-popover-close>Close</button></section></div>
+<!-- CORE_ENTRY -->
+<script>
+const pause = (ms = 40) => new Promise(resolve => setTimeout(resolve, ms));
+window.popoverReady = (async () => {
+  await JquanUI.import('popover', { install: false });
+  await JquanUI.import('modal');
+  window.popApi = JquanUIComponents.popoverApi;
+  window.overlays = JquanUIComponents.overlayManagerApi;
+  window.pop = popApi.mount('#pop');
+})();
+window.popoverProbe = () => {
+  pop.open();
+  return 'stable=' + (popApi.mount('#pop') === pop) + '; stack=' + overlays.stack().length;
+};
+window.runPopoverChecks = async () => {
+  let assertions = 0;
+  const check = (condition, label) => { if (!condition) throw Error(label); assertions++; };
+  const root = document.getElementById('pop'), trigger = root.querySelector('[jq-popover-trigger]');
+  const key = value => document.dispatchEvent(new KeyboardEvent('keydown', {key:value,bubbles:true,cancelable:true}));
+  check(popApi.mount(root) === pop, 'Repeated mount returns stable handle');
+  trigger.focus(); check(pop.open() && pop.state(), 'Open retains boolean state');
+  check(overlays.stack().length === 1 && document.body.style.overflow === 'scroll', 'Popover shares stack without scroll lock');
+  check(trigger.getAttribute('aria-expanded') === 'true' && document.activeElement.id === 'first', 'Trigger ARIA and initial focus');
+  key('Escape'); check(!pop.state() && document.activeElement === trigger && overlays.stack().length === 0, 'Escape restores focus');
+  const parent = JquanUIComponents.modalApi.open({content:'<button id="modal-pop-trigger">Parent control</button>'}); await pause();
+  pop.open();
+  check(overlays.stack().length === 2 && Number(root.querySelector('[jq-popover-panel]').style.zIndex) > Number(parent.element().style.zIndex), 'Popover orders above Modal');
+  key('Escape'); await pause(240);
+  check(!pop.state() && !parent.state().destroyed && overlays.stack().length === 1, 'Escape dismisses Popover only');
+  parent.destroy();
+  pop.open();
+  const nested = document.createElement('div'); nested.innerHTML = '<button jq-popover-trigger>Nested</button><section jq-popover-panel><button>Nested action</button></section>';
+  root.querySelector('[jq-popover-panel]').append(nested);
+  const nestedHandle = popApi.mount(nested);
+  check(nestedHandle !== pop && nestedHandle.element() === nested, 'Nested root mounts independently');
+  nestedHandle.open();
+  check(pop.state() && nestedHandle.state() && overlays.stack().length === 2, 'Nested Popovers retain separate layers');
+  key('Escape'); check(!nestedHandle.state() && pop.state(), 'Nested Escape closes only child');
+  nestedHandle.destroy(); nested.remove(); pop.close();
+  pop.open(); document.getElementById('outside').click();
+  check(!pop.state(), 'Outside click closes top Popover');
+  pop.open(); const old = pop; old.destroy(); const fresh = popApi.mount(root);
+  check(old.state() === null && old.element() === null && fresh !== old, 'Destroy retires old handle');
+  fresh.open(); check(old.open() === false && old.close() === false && old.destroy() === false && fresh.state(), 'Old handle cannot control replacement');
+  check(popApi.close(old) === false && popApi.destroy(old) === false, 'API rejects retired handle');
+  check(popApi.close(fresh) && !fresh.state(), 'API resolves current handle');
+  const hover = document.createElement('div'); hover.setAttribute('data-popover-trigger','hover');
+  hover.innerHTML = '<button jq-popover-trigger>Hover</button><section jq-popover-panel><button>Control</button></section>'; document.body.append(hover);
+  const hoverHandle = popApi.mount(hover); document.getElementById('outside').focus(); hoverHandle.open(); await pause();
+  check(document.activeElement.id === 'outside' && !overlays.top().state().trapFocus, 'Hover does not move or trap focus');
+  hoverHandle.destroy(); hover.remove();
+  fresh.open(); fresh.destroy(); const style = root.querySelector('[jq-popover-panel]').getAttribute('style'); await pause();
+  check(root.querySelector('[jq-popover-panel]').getAttribute('style') === style && !overlays.top(), 'Destroy cancels scheduled position and focus work');
+  const detached = popApi.mount(root); detached.open(); root.remove(); await pause();
+  check(!detached.state() && !overlays.top(), 'Detached owner releases shared layer');
+  document.body.append(root); detached.destroy(); pop = popApi.mount(root);
+  const {default: usage} = await import('/content/components/popover.js');
+  root.id = 'demo-popover';
+  const documented = await new (Object.getPrototypeOf(async function(){}).constructor)(usage.imperative + '\nreturn popover;')();
+  check(documented.state() && overlays.stack().length === 1, 'Published Popover example runs');
+  documented.close();
+  check(document.body.style.overflow === 'scroll' && document.body.style.getPropertyPriority('overflow') === 'important', 'Original scroll state survives mixed layers');
+  return {assertions};
+};
+window.preparePopoverKeyboard = async () => { pop.open(); await pause(240); document.getElementById('last').focus(); };
+</script></body></html>

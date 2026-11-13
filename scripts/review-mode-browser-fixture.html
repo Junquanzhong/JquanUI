@@ -1,0 +1,122 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>Review mode regression</title>
+<script>
+window.errors = [];
+addEventListener('error', event => errors.push(event.message));
+addEventListener('unhandledrejection', event => errors.push(String(event.reason)));
+if (new URL(location.href).searchParams.get('config') === '1') window.JQUAN_CONFIG = { reviewMode: { enabled: true, root: '#review-root' } };
+</script>
+<!-- CORE_ENTRY -->
+<!-- COMPONENT_ENTRY -->
+</head><body class="bg-slate-50 p-6">
+<button id="entry" type="button" data-jq-review-open>审查页面</button>
+<button id="outside" type="button">Outside</button>
+<main id="review-root" class="max-w-lg p-4">
+  <h1 id="title" data-jq-review-key="hero-title" class="text-2xl font-semibold">页面审查示例</h1>
+  <p id="nested">保留 <strong>结构化内容</strong> 的原貌</p>
+  <button id="action" type="button" class="p-3 bg-blue-600 text-white" jq-button data-label="&lt;img src=x onerror=alert(1)&gt;">原页面按钮</button>
+  <p class="duplicate" data-jq-review-key="duplicate">重复键一</p><p class="duplicate" data-jq-review-key="duplicate">重复键二</p>
+  <input id="secret" type="password" value="do-not-show">
+</main>
+<script>
+window.pageClicks = 0; document.getElementById('action').addEventListener('click', () => pageClicks++);
+window.outsideClicks = 0; document.getElementById('outside').addEventListener('click', () => outsideClicks++);
+window.reviewReady = (async () => {
+  if (new URL(location.href).searchParams.get('baseline') === '1') {
+    try { await JquanUI.import('reviewMode'); return 'unexpected'; } catch (error) { return error.code; }
+  }
+  return await JquanUI.import('reviewMode');
+})();
+window.runReviewChecks = async () => {
+  const api = await reviewReady, results = {};
+  const check = (name, value) => { results[name] = !!value; };
+  const root = document.getElementById('review-root'), title = document.getElementById('title');
+  const fingerprint = node => Array.from(node.querySelectorAll('*')).map(item => [item.tagName, item.textContent, Array.from(item.attributes).sort((a, b) => a.name.localeCompare(b.name)).map(attr => [attr.name, attr.value])]);
+  const originalFingerprint = JSON.stringify(fingerprint(root));
+  const ui = () => document.querySelector('[data-jq-review-ui]');
+  const button = text => Array.from(ui().querySelectorAll('button')).find(node => node.textContent === text);
+  check('urlAloneDisabled', !api.state().enabled && !ui() && api.open() === false);
+  document.getElementById('entry').click();
+  check('buttonDisabledBeforeOptIn', !api.state().active);
+  check('configureRoot', api.configure({ enabled: true, root, allowURL: false }));
+  check('invalidSelectorLeavesConfig', api.configure({ enabled: false, root: '[' }) === false && api.state().enabled);
+  const shadowHost = document.createElement('div'); root.append(shadowHost);
+  const shadowRoot = shadowHost.attachShadow({mode:'open'}); shadowRoot.innerHTML = '<p>Shadow element</p>';
+  check('shadowRootRejected', !api.configure({enabled:true,root:shadowRoot.firstElementChild}) && api.state().enabled);
+  shadowHost.remove();
+  check('noAutoOpenWhenURLDisabled', !api.state().active);
+  document.getElementById('entry').focus(); document.getElementById('entry').click();
+  check('buttonOpens', api.state().active && ui());
+  check('openIdempotent', api.open() && document.querySelectorAll('[data-jq-review-ui]').length === 1);
+  check('selectStableKey', api.select(title) && api.state().selection.target.selector === '[data-jq-review-key="hero-title"]' && api.state().selection.target.stable);
+  const info = api.state().selection;
+  check('snapshotIncludesStyles', info.computed.fontSize === '24px' && info.classes.includes('text-2xl'));
+  info.classes.push('bad');
+  check('stateIsDetachedSnapshot', !api.state().selection.classes.includes('bad'));
+  check('uiCannotSelectItself', !api.select(ui().querySelector('button')));
+  check('outsideRootRejected', !api.select('#outside'));
+  check('invalidSelectionRejected', !api.select('['));
+  document.getElementById('action').click();
+  check('pickingSuppressesPageClick', pageClicks === 0 && api.state().selection.tag === 'button');
+  check('attributesRenderedAsText', ui().textContent.includes('<img src=x onerror=alert(1)>') && !ui().querySelector('img'));
+  check('componentsRecognized', api.state().selection.components.includes('jq-button'));
+  document.getElementById('outside').click();
+  check('outsideRootStillInteractive', outsideClicks === 1);
+  button('浏览页面').click(); document.getElementById('action').click();
+  check('browseRestoresPageClick', pageClicks === 1 && !api.state().picking);
+  button('继续选择').click();
+  check('resumePicking', api.state().picking);
+  api.select(document.querySelector('.duplicate'));
+  check('duplicateKeyUsesStructuralPath', !api.state().selection.target.stable && document.querySelectorAll(api.state().selection.target.selector).length === 1);
+  api.select('#secret');
+  check('passwordAttributeRedacted', api.state().selection.attributes.find(attr => attr.name === 'value').value === '••••' && !ui().textContent.includes('do-not-show'));
+  api.select(title);
+  const marker = title.getAttribute('data-jq-review-key'); title.removeAttribute('data-jq-review-key');
+  await new Promise(resolve => setTimeout(resolve, 30));
+  check('attributeChangeRefreshesPanel', api.state().selection.target.selector === '#title' && ui().textContent.includes('#title'));
+  title.setAttribute('data-jq-review-key', marker);
+  const removed = document.createElement('div'); removed.textContent = 'temporary'; root.append(removed); api.select(removed); removed.remove();
+  await new Promise(resolve => setTimeout(resolve, 30));
+  check('removedSelectionClears', api.state().selection === null && ui().querySelector('[aria-label="审查元素信息"]').textContent.includes('点击页面元素'));
+  api.select('#nested');
+  check('nestedHTMLPreserved', root.querySelector('#nested strong').textContent === '结构化内容');
+  api.close();
+  check('closeRemovesUI', !ui() && !api.state().active && api.state().enabled);
+  document.getElementById('entry').focus(); api.open(); api.close();
+  check('closeRestoresOpenerFocus', document.activeElement.id === 'entry');
+  // Focus outside the inspector is not stolen on close.
+  api.open(); document.getElementById('outside').focus(); api.close();
+  check('closePreservesExternalFocus', document.activeElement.id === 'outside');
+  check('readonlyLeavesPageHTMLUnchanged', JSON.stringify(fingerprint(root)) === originalFingerprint);
+  api.configure({ enabled: true, root });
+  check('urlOptInOpens', api.state().active);
+  api.configure({ enabled: false, root });
+  check('disableClosesAndGates', !api.state().active && !ui() && !api.open());
+  document.getElementById('entry').click();
+  check('disabledTriggerInert', !api.state().active);
+  api.configure({ enabled: true, root, allowURL: false }); api.open(); root.remove();
+  await new Promise(resolve => setTimeout(resolve, 30));
+  check('removedRootClosesSession', !api.state().active && !ui());
+  document.body.append(root);
+  api.configure({ enabled: true, root, allowURL: false }); api.open();
+  await new Promise(resolve => setTimeout(resolve, 40));
+  const savedRaf = window.requestAnimationFrame, savedCancel = window.cancelAnimationFrame, frames = new Map(); let id = 0;
+  window.requestAnimationFrame = fn => { frames.set(++id, fn); return id; };
+  window.cancelAnimationFrame = key => frames.delete(key);
+  try {
+    window.dispatchEvent(new Event('resize')); window.dispatchEvent(new Event('resize'));
+    check('geometryFramesCoalesced', frames.size === 1);
+    api.destroy();
+    check('destroyCancelsPendingFrame', frames.size === 0);
+  } finally { window.requestAnimationFrame = savedRaf; window.cancelAnimationFrame = savedCancel; }
+  document.getElementById('entry').click();
+  check('destroyDisablesAllEntries', !ui() && !api.state().enabled && !api.open());
+  api.configure({enabled:true,allowURL:false}); api.open(); api.select(document.body);
+  check('defaultBodySummaryExcludesToolAndScripts', !api.state().selection.text.includes('元素信息') && !api.state().selection.text.includes('window.pageClicks'));
+  api.destroy();
+  api.configure({ enabled: true, root, allowURL: false }); api.open();
+  check('canReconfigureAfterDestroy', api.state().active);
+  api.destroy();
+  check('noRuntimeErrors', errors.length === 0);
+  return { results, errors, assertions: Object.keys(results).length };
+};
+</script></body></html>

@@ -1,0 +1,6 @@
+{% for item in items %}
+<a href="{{ item.href }}" class="{{ item.className }}"{% if item.active %} aria-current="page"{% endif %}>
+    <i class="ph {{ item.icon }}"></i>
+    <span>{{ item.label }}</span>
+</a>
+{% endfor %}

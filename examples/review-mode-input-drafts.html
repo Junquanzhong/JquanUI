@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Review Mode 动态页面输入</title>
+  <script src="../dist/core/JquanUI@Core.js"></script>
+</head>
+<body class="bg-slate-50 p-6 text-slate-900">
+  <main id="preview" class="mx-auto max-w-xl">
+    <p class="mb-3 text-sm font-semibold text-blue-600">动态页面审查</p>
+    <h1 id="sample-title" data-jq-review-key="title" class="text-3xl font-bold">欢迎审查这个页面</h1>
+    <p class="mt-4 text-slate-600">打开审查后在文字框输入新标题。后台每秒刷新一次，当前输入会保留；点击“应用文字”才更新页面。</p>
+    <p id="live-status" role="status" class="mt-3 text-sm text-slate-500">后台更新：0</p>
+    <button id="start-review" type="button" class="mt-6 rounded-xl bg-blue-600 px-4 py-3 font-medium text-white disabled:opacity-50">打开审查</button>
+    <p id="load-status" role="status" class="mt-3 text-sm text-slate-500"></p>
+  </main>
+  <script>
+    let tick = 0;
+    const timer = setInterval(() => { document.getElementById('live-status').textContent = `后台更新：${++tick}`; }, 1000);
+    document.getElementById('start-review').addEventListener('click', async event => {
+      const button = event.currentTarget; button.disabled = true;
+      try {
+        const review = await JquanUI.import('reviewMode');
+        if (!review.state().enabled) review.configure({enabled:true,root:'#preview',allowURL:false});
+        review.open(); review.select('#sample-title');
+      } catch (_) { document.getElementById('load-status').textContent = '加载失败，请再次点击重试。'; }
+      finally { button.disabled = false; }
+    });
+    addEventListener('pagehide', () => { clearInterval(timer); window.JquanUIComponents?.reviewModeApi?.destroy(); });
+  </script>
+</body>
+</html>

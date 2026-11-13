@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/brand-original.ico" type="image/x-icon">
+</head>
+<body>
+  <div id="status">pending</div>
+  <script src="/dist/components/favicon.js"></script>
+  <script>
+    (() => {
+      try {
+        const api = window.JquanUIComponents.faviconApi;
+        const link = document.querySelector('link[rel~="icon"]');
+        const original = link.getAttribute('href');
+        const svg = '<svg xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" fill="#2563eb"/></svg>';
+        api.set({ svg });
+        if (document.querySelectorAll('link[rel~="icon"]').length !== 1 || !link.href.startsWith('data:image/svg+xml')) throw new Error('set failed');
+        api.badge(1000);
+        if (!decodeURIComponent(link.href).includes('999+')) throw new Error('badge failed');
+        api.status('loading', { animate: false });
+        if (!link.href.startsWith('data:image/svg+xml')) throw new Error('status failed');
+        api.restore();
+        if (link.getAttribute('href') !== original) throw new Error('restore failed');
+        document.body.dataset.status = 'ok';
+        document.getElementById('status').textContent = 'ok';
+      } catch (error) {
+        document.body.dataset.status = 'error:' + error.message;
+        document.getElementById('status').textContent = document.body.dataset.status;
+      }
+    })();
+  </script>
+</body>
+</html>

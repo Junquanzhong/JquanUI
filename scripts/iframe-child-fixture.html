@@ -1,0 +1,10 @@
+<!doctype html>
+<meta charset="utf-8">
+<script src="/dist/components/iframeBridge.js"></script>
+<script>
+  const childBridge = JquanUIComponents.iframeBridgeApi.createChild({
+    targetOrigin: location.origin,
+    namespace: 'browser-bridge'
+  });
+  childBridge.on('request:health', payload => ({ ok: payload.probe === true }));
+</script>

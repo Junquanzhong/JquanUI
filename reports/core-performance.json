@@ -1,0 +1,110 @@
+{
+  "version": "4.72.0",
+  "generatedAt": "2026-11-08T14:40:57.624Z",
+  "samples": 3,
+  "browser": "Edg/150.0.4078.83",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "node": "v24.12.0",
+    "cpu": "AMD Ryzen 9 7845HX with Radeon Graphics        ",
+    "cpuCount": 24,
+    "memoryBytes": 33591947264
+  },
+  "budgets": {
+    "smallColdMs": 750,
+    "largeColdMs": 2000,
+    "warmStartMs": 750,
+    "mutationBatchMs": 1000,
+    "shadowAdoptMs": 750,
+    "buildExtractionMs": 2000
+  },
+  "budgetResults": {
+    "smallCold": true,
+    "largeCold": true,
+    "warmStart": true,
+    "mutationBatch": true,
+    "shadowAdopt": true,
+    "buildExtraction": true
+  },
+  "passed": true,
+  "coreBytes": {
+    "source": 296913,
+    "minified": 169492,
+    "minifiedGzip": 45290
+  },
+  "scenarios": {
+    "smallCold": {
+      "samples": [
+        69.2,
+        23.5,
+        26.9
+      ],
+      "minMs": 23.5,
+      "medianMs": 26.9,
+      "maxMs": 69.2,
+      "nodeCount": 32
+    },
+    "largeCold": {
+      "samples": [
+        73,
+        55.4,
+        91.6
+      ],
+      "minMs": 55.4,
+      "medianMs": 73,
+      "maxMs": 91.6,
+      "nodeCount": 2500,
+      "processedClassCount": 189
+    },
+    "warmStart": {
+      "samples": [
+        44.1,
+        63,
+        57.3
+      ],
+      "minMs": 44.1,
+      "medianMs": 57.3,
+      "maxMs": 63,
+      "cacheHydrate": "hit",
+      "cacheBytes": 9876
+    },
+    "mutationBatch": {
+      "samples": [
+        69,
+        68.5,
+        66.8
+      ],
+      "minMs": 66.8,
+      "medianMs": 68.5,
+      "maxMs": 69,
+      "mutationCount": 160
+    },
+    "shadowAdopt": {
+      "samples": [
+        24.5,
+        26.5,
+        28.8
+      ],
+      "minMs": 24.5,
+      "medianMs": 26.5,
+      "maxMs": 28.8,
+      "shadowRootCount": 100,
+      "styleMode": "constructable"
+    },
+    "buildExtraction": {
+      "samples": [
+        48.8,
+        18.4,
+        13.59
+      ],
+      "minMs": 13.59,
+      "medianMs": 18.4,
+      "maxMs": 48.8,
+      "fileCount": 1,
+      "classCount": 188,
+      "ruleCount": 188,
+      "cssBytes": 22641
+    }
+  }
+}

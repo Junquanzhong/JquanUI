@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>OverlayManager regression fixture</title></head>
+<body style="overflow:scroll !important">
+<button id="open-parent" jq-dialog-trigger jq-target="#parent">Open parent</button>
+<button id="outside">Outside focus</button>
+<div id="parent" jq-dialog aria-label="Parent">
+  <div jq-dialog-backdrop id="parent-backdrop"></div>
+  <section jq-dialog-panel>
+    <button id="parent-first">Parent first</button>
+    <button id="open-child" jq-dialog-trigger jq-target="#child">Open child</button>
+    <button id="parent-close" jq-dialog-close><span id="close-icon">Close</span></button>
+  </section>
+</div>
+<div id="child" jq-dialog aria-label="Child">
+  <div jq-dialog-backdrop id="child-backdrop"></div>
+  <section jq-dialog-panel>
+    <button hidden>Hidden</button><button disabled>Disabled</button><button style="visibility:hidden">Invisible</button>
+    <button tabindex="-1">Programmatic only</button><fieldset disabled><button>Disabled fieldset</button></fieldset>
+    <span inert><button>Inert</button></span>
+    <button id="child-first">Child first</button>
+    <button id="child-last" jq-dialog-close>Child last</button>
+  </section>
+</div>
+<!-- CORE_ENTRY -->
+<!-- PROBE_SCRIPTS -->
+<script>
+const $ = id => document.getElementById(id);
+const pause = () => new Promise(resolve => setTimeout(resolve, 30));
+function dialogState() { return { parent: $('parent').getAttribute('data-state'), child: $('child').getAttribute('data-state'), overflow: document.body.style.overflow || 'empty', focus: document.activeElement.id }; }
+function prepareKeyboard() { $('open-parent').focus(); $('open-parent').click(); $('open-child').focus(); $('open-child').click(); }
+window.overlayReady = (async () => {
+  if (window.overlayProbe) {
+    if (JquanUIComponents.overlayManager) JquanUI.use(JquanUIComponents.overlayManager);
+    JquanUI.use(JquanUIComponents.dialog);
+  } else await JquanUI.import('dialog');
+  JquanUI.enhance(document.body);
+  await pause();
+  return true;
+})();
+window.runOverlayChecks = async () => {
+  await overlayReady;
+  const api = JquanUIComponents.overlayManagerApi;
+  let assertions = 0;
+  const check = (condition, label) => { if (!condition) throw new Error(label); assertions++; };
+  check(JquanUI.hasPlugin('jquanui-overlay-manager'), 'Dialog importer installs manager');
+  check(await JquanUI.import('overlayManager') === api, 'Typed service importer returns singleton API');
+  const baselineOverflow = document.body.style.getPropertyValue('overflow');
+  const baselinePriority = document.body.style.getPropertyPriority('overflow');
+  $('open-parent').focus(); $('open-parent').click();
+  const parent = api.top();
+  check(parent && parent.state().element === $('parent'), 'Dialog joins shared stack');
+  check(document.activeElement === $('parent-first'), 'Dialog initial focus skips hidden controls');
+  check($('open-parent').getAttribute('aria-expanded') === 'true', 'Trigger reports open');
+  check(document.body.style.overflow === 'hidden', 'First layer acquires scroll lock');
+  $('open-child').focus(); $('open-child').click();
+  const child = api.top();
+  check(api.stack().length === 2 && child !== parent, 'Nested overlays share ordered stack');
+  check(Number($('child').style.zIndex) > Number($('parent').style.zIndex), 'Higher entry has higher z-index');
+  check(document.activeElement === $('child-first'), 'Initial focus excludes hidden disabled inert controls');
+  $('outside').focus(); check(document.activeElement === $('child-first'), 'Top trap redirects outside programmatic focus');
+  $('child-last').focus();
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true }));
+  check(document.activeElement === $('child-first'), 'Tab wraps top layer');
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, cancelable: true }));
+  check(document.activeElement === $('child-last'), 'Shift Tab wraps top layer');
+  const escape = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true });
+  document.dispatchEvent(escape);
+  check(escape.defaultPrevented && dialogState().parent === 'open' && dialogState().child === 'closed', 'Escape closes only top layer');
+  check(document.activeElement === $('open-child'), 'Child close restores parent trigger');
+  check($('open-child').getAttribute('aria-expanded') === 'false', 'Escape updates trigger state');
+  check(document.body.style.overflow === 'hidden' && api.stack().length === 1, 'Lower lock survives top close');
+  check(child.close() === false && child.destroy() === false, 'Stale handle is idempotent');
+  $('close-icon').click();
+  check(dialogState().parent === 'closed', 'Delegated close handles icon clicks');
+  check(document.activeElement === $('open-parent'), 'Last close restores external trigger');
+  check(document.body.style.overflow === baselineOverflow && document.body.style.getPropertyPriority('overflow') === baselinePriority, 'Original overflow value and priority restored');
+  check(!$('parent').style.zIndex && !$('child').style.zIndex, 'Managed inline z-index released');
+  prepareKeyboard(); $('child-backdrop').click();
+  check(dialogState().parent === 'open' && dialogState().child === 'closed', 'Outside click closes only top');
+  $('parent-backdrop').click(); check(api.stack().length === 0, 'Final backdrop releases stack');
+  $('parent').querySelector('[jq-dialog-panel]').append($('child'));
+  prepareKeyboard(); $('child-last').click();
+  check(dialogState().parent === 'open' && dialogState().child === 'closed', 'Physically nested close button does not bubble into parent close');
+  $('parent-backdrop').click();
+  document.body.append($('child'));
+  await pause();
+  check(api.stack().length === 0 && $('child').hidden, 'Moving closed dialog preserves released state');
+
+  const first = document.createElement('section'); first.innerHTML = '<button id="service-first">First</button><button id="service-last">Last</button>';
+  const second = document.createElement('section'); second.innerHTML = '<button>Second</button>';
+  document.body.append(first, second);
+  first.style.setProperty('z-index', '42', 'important');
+  document.body.setAttribute('data-jquan-overlay-scroll-lock', 'existing');
+  $('outside').focus();
+  let reasons = [];
+  const a = api.open({ element: first, onClose: reason => reasons.push(reason) });
+  check(api.open({ element: first }) === a, 'Repeated open of same element returns same handle');
+  first.querySelector('button').focus();
+  const b = api.open({ element: second });
+  a.close();
+  check(b.isTop() && document.body.style.overflow === 'hidden', 'Closing lower layer preserves top and lock');
+  b.close();
+  check(document.activeElement === $('outside'), 'Return target rebased when lower layer closes');
+  check(first.style.zIndex === '42' && first.style.getPropertyPriority('z-index') === 'important', 'Original layer style and priority restored');
+  check(document.body.getAttribute('data-jquan-overlay-scroll-lock') === 'existing', 'Original scroll marker restored');
+
+  const undismissable = api.open({ element: first, closeOnEscape: false, closeOnOutside: false, lockScroll: false });
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+  $('outside').click();
+  check(undismissable.isTop() && document.body.style.overflow === baselineOverflow, 'Non-dismissable non-locking layer stays open');
+  undismissable.destroy();
+  const empty = document.createElement('section'); empty.textContent = 'Empty'; document.body.append(empty);
+  const emptyHandle = api.open({ element: empty });
+  check(document.activeElement === empty && empty.getAttribute('tabindex') === '-1', 'Empty layer receives managed focus');
+  emptyHandle.destroy(); check(!empty.hasAttribute('tabindex'), 'Temporary tabindex released');
+  const detached = api.open({ element: second, onClose: reason => reasons.push(reason) });
+  second.remove(); await pause();
+  check(detached.state().closed && reasons.includes('detached') && !api.top(), 'Detached layer releases resources');
+  const callback = api.open({ element: first, onClose() { api.open({ element: empty }); } });
+  callback.close();
+  check(api.top().state().element === empty && document.activeElement === empty, 'Reentrant close hook keeps new layer focus');
+  api.destroy();
+  const throws = api.open({ element: first, onClose() { throw new Error('consumer failure'); } });
+  api.open({ element: empty });
+  let hookFailed = false; try { api.destroy(); } catch (error) { hookFailed = error.message === 'consumer failure'; }
+  check(hookFailed && throws.state().closed && !api.top() && document.body.style.overflow === baselineOverflow, 'Throwing hook cannot leak destroy resources');
+  const before = api.stack().length;
+  let invalid = false; try { api.open({ element: first, initialFocus: '[' }); } catch { invalid = true; }
+  check(invalid && api.stack().length === before, 'Invalid focus selector does not acquire resources');
+  const inline = document.createElement('div'); inline.setAttribute('jq-dialog', ''); inline.setAttribute('data-state', 'open'); inline.innerHTML = '<section jq-dialog-panel><button>Initial open</button></section>';
+  document.body.append(inline); JquanUI.enhance(inline);
+  check(api.top()?.state().element === inline && document.body.style.overflow === 'hidden', 'Initially open dialog is registered');
+  inline.remove(); await pause();
+  check(!api.top() && document.body.style.overflow === baselineOverflow, 'Removed dialog tears down stack');
+  const explicit = document.createElement('div');
+  explicit.innerHTML = '<button id="explicit-trigger" jq-dialog-trigger jq-target="#explicit-dialog">Open</button><button id="duplicate-trigger" jq-dialog-trigger jq-target="#explicit-dialog">Open again</button><div id="explicit-dialog" jq-dialog><div jq-dialog-backdrop></div><section jq-dialog-panel><button>Fallback</button><button id="explicit-focus" jq-dialog-initial-focus>Priority</button><button jq-dialog-close><span id="explicit-close-icon">Close</span></button></section></div>';
+  document.body.append(explicit); JquanUI.enhance(explicit); await pause();
+  $('explicit-trigger').focus(); $('explicit-trigger').click();
+  check(document.activeElement === $('explicit-focus') && api.stack().length === 1, 'Explicit initial focus joins one shared layer');
+  check($('duplicate-trigger').getAttribute('aria-expanded') === 'true' && $('duplicate-trigger').getAttribute('aria-controls') === 'explicit-dialog', 'All matching triggers synchronize on open');
+  $('duplicate-trigger').click();
+  check(api.stack().length === 1 && document.activeElement === $('explicit-focus'), 'Repeated trigger activation reuses active layer');
+  $('explicit-close-icon').click();
+  check($('duplicate-trigger').getAttribute('aria-expanded') === 'false' && document.activeElement === $('explicit-trigger'), 'Nested close icon synchronizes triggers and restores original opener');
+  check(!('__jquanOpenDialog' in $('explicit-dialog')) && !('__jquanCloseDialog' in $('explicit-dialog')), 'Dialog exposes no private node controls');
+  const malformed = document.createElement('button'); malformed.setAttribute('jq-dialog-trigger', ''); malformed.setAttribute('jq-target', '['); explicit.append(malformed); JquanUI.enhance(malformed); malformed.click();
+  check(api.stack().length === 0 && document.body.style.overflow === baselineOverflow, 'Invalid target selector does not acquire resources');
+  $('explicit-trigger').click(); const retiredDialog = api.top(); $('explicit-dialog').remove(); await pause();
+  check(retiredDialog.state().closed && $('explicit-trigger').getAttribute('aria-expanded') === 'false' && !api.top(), 'Removed Dialog closes shared handle and synchronizes triggers');
+  explicit.remove();
+  first.remove(); empty.remove(); document.body.removeAttribute('data-jquan-overlay-scroll-lock');
+  check(reasons[0] === 'programmatic', 'Service reports close reason');
+  document.body.style.removeProperty('overflow');
+  document.body.style.setProperty('overflow-x', 'auto', 'important');
+  document.body.style.setProperty('overflow-y', 'scroll');
+  const axes = document.createElement('section'); axes.innerHTML = '<button>Axes</button>'; document.body.append(axes);
+  const axisHandle = api.open({ element: axes, closeOnEscape: undefined });
+  const composed = new KeyboardEvent('keydown', { key: 'Escape', isComposing: true, bubbles: true, cancelable: true });
+  document.dispatchEvent(composed);
+  check(axisHandle.isTop() && !composed.defaultPrevented, 'IME Escape leaves overlay open');
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+  check(axisHandle.state().closed, 'Undefined optional flag retains default Escape behavior');
+  check(document.body.style.getPropertyValue('overflow-x') === 'auto' && document.body.style.getPropertyPriority('overflow-x') === 'important' && document.body.style.getPropertyValue('overflow-y') === 'scroll' && document.body.style.getPropertyPriority('overflow-y') === '', 'Mixed axis overflow values and priorities restored');
+  axes.remove();
+  const idleEscape = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true });
+  document.dispatchEvent(idleEscape); $('outside').focus();
+  check(!idleEscape.defaultPrevented && document.activeElement === $('outside'), 'Empty stack releases global key and focus handling');
+  document.body.style.setProperty('overflow', baselineOverflow, baselinePriority);
+  const { default: usage } = await import('/content/components/overlayManager.js');
+  const docHost = document.createElement('div'); docHost.innerHTML = usage.declarative; document.body.append(docHost);
+  docHost.querySelectorAll('[class]').forEach(node => JquanUI.compile(Array.from(node.classList)));
+  const AsyncFunction = Object.getPrototypeOf(async function() {}).constructor;
+  const documented = await new AsyncFunction(usage.imperative + '\nreturn layer;')();
+  check(documented.isTop() && $('custom-overlay').getClientRects().length > 0, 'Published usage opens a visible overlay');
+  $('custom-close').click();
+  check(documented.state().closed && $('custom-overlay').getClientRects().length === 0 && !api.top(), 'Published usage hides DOM and releases its layer');
+  docHost.remove();
+  const detachedLower = document.createElement('section'), detachedUpper = document.createElement('section');
+  detachedLower.innerHTML = '<button>Lower</button>'; detachedUpper.innerHTML = '<button>Upper</button>';
+  document.body.append(detachedLower, detachedUpper);
+  let detachedHookFailed = false;
+  const onExpectedError = event => { if (event.message.includes('detached consumer failure')) { detachedHookFailed = true; event.preventDefault(); } };
+  window.addEventListener('error', onExpectedError);
+  const lowerDetachedHandle = api.open({ element: detachedLower });
+  const upperDetachedHandle = api.open({ element: detachedUpper, onClose() { throw new Error('detached consumer failure'); } });
+  detachedUpper.remove(); detachedLower.remove(); await pause();
+  window.removeEventListener('error', onExpectedError);
+  check(detachedHookFailed && lowerDetachedHandle.state().closed && upperDetachedHandle.state().closed && !api.top() && document.body.style.overflow === baselineOverflow, 'Throwing detached hook cannot leak other detached layers or locks');
+  return { assertions };
+};
+</script>
+</body>
+</html>

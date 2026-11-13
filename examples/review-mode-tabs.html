@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review Mode Tabs 配置预览</title>
+  <script src="../dist/core/JquanUI@Core.js"></script>
+</head>
+<body class="bg-slate-50 p-6 text-slate-900">
+  <main id="preview" class="mx-auto max-w-xl">
+    <h1 class="text-3xl font-bold">标签页节奏审查</h1>
+    <div id="sample-tabs" data-jq-review-key="sample-tabs" class="mt-6 rounded-2xl bg-white p-6 shadow-lg">
+      <nav jq-tab-list aria-label="示例标签页">
+        <button type="button" jq-tab jq-target="#tab-a">项目介绍</button>
+        <button type="button" jq-tab jq-target="#tab-b">交付说明</button>
+      </nav>
+      <div jq-tab-content>
+        <section id="tab-a" jq-tab-panel>第一面板内容</section>
+        <section id="tab-b" jq-tab-panel>第二面板内容</section>
+      </div>
+    </div>
+    <button id="start-review" type="button" class="mt-6 rounded-xl bg-blue-600 px-4 py-3 font-medium text-white">打开标签页配置审查</button>
+    <p class="mt-3 text-sm text-slate-600">选择“首尾循环”，比较末页停留与回到首页，再复制最终修改方案。</p>
+    <p id="load-status" role="status" class="mt-3 text-sm text-slate-500"></p>
+  </main>
+  <script>
+    document.getElementById('start-review').addEventListener('click', async event => {
+      const button = event.currentTarget; button.disabled = true;
+      try {
+        const tabs = await JquanUI.import('tabs');
+        if (!tabs.getHandle('#sample-tabs')) tabs.mount('#sample-tabs', { autoplay: false, interval: 3200, loop: true, duration: 0 });
+        const review = await JquanUI.import('reviewMode');
+        if (!review.state().enabled) review.configure({ enabled: true, root: '#preview', allowURL: false });
+        review.open(); review.select('#sample-tabs');
+      } catch (_) { document.getElementById('load-status').textContent = '加载失败，请再次点击重试。'; }
+      finally { button.disabled = false; }
+    });
+    addEventListener('pagehide', () => {
+      window.JquanUIComponents?.reviewModeApi?.destroy();
+      window.JquanUIComponents?.tabsApi?.getHandle('#sample-tabs')?.destroy();
+    });
+  </script>
+</body>
+</html>

@@ -1,5 +1,312 @@
-/* 导航 */
+/* 字体 */
+@font-face {
+    font-family: "MiSans Light";
+    src: url("../fonts/MiSans/woff2/MiSans-Light.woff2") format("woff2"),
+        url("../fonts/MiSans/woff/MiSans-Light.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    font-display: optional
+}
+@font-face {
+    font-family: "MiSans Regular";
+    src: url("../fonts/MiSans/woff2/MiSans-Regular.woff2") format("woff2"),
+        url("../fonts/MiSans/woff/MiSans-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    font-display: optional
+}
+@font-face {
+    font-family: "MiSans Medium";
+    src: url("../fonts/MiSans/woff2/MiSans-Medium.woff2") format("woff2"),
+        url("../fonts/MiSans/woff/MiSans-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    font-display: optional
+}
 
+@font-face {
+    font-family: "MiSans SemiBold";
+    src: url("../fonts/MiSans/woff2/MiSans-Semibold.woff2") format("woff2"),
+        url("../fonts/MiSans/woff/MiSans-Semibold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "MiSans VF";
+    src: url("../fonts/MiSans/MiSansVF.ttf") format("truetype");
+    font-variation-settings: "wght" 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+  font-family: "阿里妈妈灵动体 VF Thin";src: url("../fonts/阿里妈妈灵动体/AlimamaAgileVF-Thin.woff2") format("woff2"),
+  url("../fonts/阿里妈妈灵动体/AlimamaAgileVF-Thin.woff") format("woff"),url("../fonts/阿里妈妈灵动体/AlimamaAgileVF-Thin.ttf") format("truetype");
+  font-variation-settings: "SRIF" 0, "slnt" 0, "wdth" 75, "wght" 100;
+  font-display: swap;
+}
+@font-face{
+  font-family: "MonaSans VF";src:url("../fonts/mona-sans/MonaSansVF[wdth\,wght\,opsz\,ital].woff2") format("woff2"),
+  url("../fonts/mona-sans/MonaSansVF[wdth\,wght\,opsz\,ital].woff") format("woff");
+  font-variation-settings: "opsz" 12, "wdth" 100, "wght" 400, "ital" 0;
+  font-display: swap;
+}
+/* 特殊文字 */
+@font-face {
+  font-family: "Monoton";
+  font-display: optional;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Monoton"), local("Monoton-Regular"),
+    url(../fonts/AKI-lyzyNHXByGHeOcds_w.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Iceland";
+  font-display: optional;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Iceland"), local("Iceland-Regular"),
+    url(../fonts/F6LYTZLHrG9BNYXRjU7RSw.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Pacifico";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Pacifico Regular"), local("Pacifico-Regular"),
+    url(../fonts/yunJt0R8tCvMyj_V4xSjafesZW2xOQ-xsNqO47m55DA.woff) format("woff");
+}
+
+@font-face {
+  font-family: "PressStart";
+  font-display: optional;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Press Start 2P"), local("PressStart2P-Regular"),
+    url(../fonts/8Lg6LX8-ntOHUQnvQ0E7o3dD2UuwsmbX3BOp4SL_VwM.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Audiowide";
+  font-display: optional;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Audiowide"), local("Audiowide-Regular"),
+    url(../fonts/8XtYtNKEyyZh481XVWfVOj8E0i7KZn-EPnyo3HZu7kw.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Vampiro One";
+  font-style: normal;
+  font-display: optional;
+  font-weight: 400;
+  src: local("Vampiro One"), local("VampiroOne-Regular"),
+    url(../fonts/Ho2Xld8UbQyBA8XLxF1_NYbN6UDyHWBl620a-IRfuBk.woff) format("woff");
+}
+/* 字体样式 */
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+.font-serif {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.font-sans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.font-misans-regular{
+  font-family: "MiSans Regular";
+}
+.font-misans-medium{
+  font-family: "MiSans Medium";
+}
+.font-misans-light{
+  font-family: "MiSans Light";
+}
+.font-misans-vf{
+  font-family: "MiSans VF";
+  font-variation-settings: "wght" var(--wght);
+}
+.font-misans-semibold{
+  font-family: "MiSans SemiBold";
+}
+.font-ali-bold {
+  font-family: "阿里妈妈数黑体 Bold";
+}
+.font-ali-agile {
+  font-family: "阿里妈妈灵动体 VF Thin";
+  --srif: 0; /*衬线*/
+  --slnt: 0;  /*倾斜度*/
+  --wdth: 100; /*字宽*/
+  --wght: 400; /*字高*/
+  font-variation-settings: 
+    "SRIF" var(--srif), 
+    "slnt" var(--slnt), 
+    "wdth" var(--wdth), 
+    "wght" var(--wght);
+}
+.font-mona{
+  font-family: "MonaSans VF";
+  --opsz:14;
+  --wdth:100;
+  --wght:400;
+  --ital:0;
+  font-variation-settings: 
+    "opsz" var(--opsz), 
+    "wdth" var(--wdth), 
+    "wght" var(--wght), 
+    "ital" var(--ital);
+}
+
+/* v1.3渐变定义 */
+.bg-gradient.bg-seasalt,
+.bg-gradient.hover-bg-seasalt:hover {
+  background-image: linear-gradient(to right,
+      #25aae1,
+      #40e495,
+      #30dd8a,
+      #2bb673);
+}
+
+.bg-gradient.bg-taurine,
+.bg-gradient.hover-bg-taurine:hover {
+  background-image: linear-gradient(to right,
+      #f5ce62,
+      #e43603,
+      #fa7199,
+      #e85a19);
+}
+
+.bg-gradient.bg-blueberry,
+.bg-gradient.hover-bg-blueberry:hover {
+  background-image: linear-gradient(to right,
+      #667eea,
+      #764ba2,
+      #6b8dd6,
+      #8e37d7);
+}
+
+.bg-gradient.bg-strawberry,
+.bg-gradient.hover-bg-strawberry:hover {
+  background-image: linear-gradient(to right,
+      #fc6076,
+      #ff9a44,
+      #ef9d43,
+      #e75516);
+}
+
+.bg-gradient.bg-cranberry,
+.bg-gradient.hover-bg-cranberry:hover {
+  background-image: linear-gradient(to right,
+      #0ba360,
+      #3cba92,
+      #30dd8a,
+      #2bb673);
+}
+
+.bg-gradient.bg-lemon,
+.bg-gradient.hover-bg-lemon:hover {
+  background-image: linear-gradient(to right,
+      #009245,
+      #fcee21,
+      #00a8c5,
+      #d9e021);
+}
+
+.bg-gradient.bg-violetblue,
+.bg-gradient.hover-bg-violetblue:hover {
+  background-image: linear-gradient(to right,
+      #6253e1,
+      #852d91,
+      #a3a1ff,
+      #f24645);
+}
+
+.bg-gradient.bg-basalt,
+.bg-gradient.hover-bg-basalt:hover {
+  background-image: linear-gradient(to right,
+      #29323c,
+      #485563,
+      #2b5876,
+      #4e4376);
+}
+
+.bg-gradient.bg-iceblue,
+.bg-gradient.hover-bg-iceblue:hover {
+  background-image: linear-gradient(to right,
+      #25aae1,
+      #4481eb,
+      #04befe,
+      #3f86ed);
+}
+
+.bg-gradient.bg-straw,
+.bg-gradient.hover-bg-straw:hover {
+  background-image: linear-gradient(to right,
+      #ed6ea0,
+      #ec8c69,
+      #f7186a,
+      #fbb03b);
+}
+
+.bg-gradient.bg-fireunicorn,
+.bg-gradient.hover-bg-fireunicorn:hover {  
+  background-image: linear-gradient(to right,
+      #eb3941,
+      #f15e64,
+      #e14e53,
+      #e2373f);
+}
+
+/* 发光效果 */
+.bg-gradient.bg-seasalt.glowing {
+  box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+
+.bg-gradient.bg-taurine.glowing {
+  box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+}
+
+.bg-gradient.bg-blueberry.glowing {
+  box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+
+.bg-gradient.bg-strawberry.glowing {
+  box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+}
+
+.bg-gradient.bg-cranberry.glowing {
+  box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
+.bg-gradient.bg-lemon.glowing {
+  box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
+}
+
+.bg-gradient.bg-violetblue.glowing {
+  box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+}
+
+.bg-gradient.bg-basalt.glowing {
+  box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+
+.bg-gradient.bg-iceblue.glowing {
+  box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+
+.bg-gradient.bg-straw.glowing {
+  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+
+.bg-gradient.bg-fireunicorn.glowing {
+  box-shadow: 0 4px 15px 0 rgba(242, 97, 103, 0.4);
+}
 
 /*面包屑*/
 /* 基础面包屑样式 */

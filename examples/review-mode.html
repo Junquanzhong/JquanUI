@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JquanUI Review Mode 按需审查示例</title>
+  <script>
+    window.JQUAN_CONFIG = { theme: { extend: { colors: { brand: '#2563eb', mist: '#eff6ff' }, spacing: { section: '3rem' } } } };
+  </script>
+  <script src="../dist/core/JquanUI@Core.js"></script>
+</head>
+<body class="bg-slate-50 p-8 text-slate-900">
+  <button type="button" data-jq-review-open class="rounded-lg bg-blue-600 px-4 py-2 text-white">打开页面审查</button>
+  <span id="review-load-status" role="status" class="ml-3 text-sm text-slate-600"></span>
+  <div class="mt-3 flex flex-wrap gap-2">
+    <button type="button" id="save-draft" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700">保存客户草稿</button>
+    <button type="button" id="load-draft" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700">读取草稿</button>
+    <button type="button" id="clear-draft" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700">清理草稿</button>
+  </div>
+  <pre id="draft-output" hidden class="mx-auto mt-4 max-w-xl overflow-auto rounded-xl border border-slate-200 bg-white p-4 text-xs text-slate-700" aria-label="已保存的修改方案"></pre>
+  <main id="preview" class="mx-auto mt-8 max-w-xl rounded-xl bg-white p-8 shadow-lg">
+    <h1 id="hero-title" data-jq-review-key="hero-title" class="text-3xl font-bold">客户预览标题</h1>
+    <p data-jq-review-key="hero-body" class="mt-3 text-slate-600">点选文字后可用“外层容器”选中整张卡片，再搜索“圆角”或“brand”调整样式，再到修改清单核对、逐项还原并复制最终方案。</p>
+    <section data-jq-review-key="feature-grid" class="grid grid-cols-2 gap-4 mt-6">
+      <article data-jq-review-key="feature-card" class="p-4 rounded-xl bg-mist border border-blue-100">
+        <p class="text-sm font-semibold text-brand">直接看见改变</p>
+        <p class="mt-2 text-sm text-slate-600">试着修改这张卡片的内边距、圆角与阴影。</p>
+      </article>
+      <article data-jq-review-key="second-card" class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+        <p class="text-sm font-semibold">只交付最终方案</p>
+        <p class="mt-2 text-sm text-slate-600">反复调整同一字段，导出仍只保留最后的选择。</p>
+      </article>
+    </section>
+    <a href="#preview" data-jq-review-key="hero-link" class="inline-block mt-4 text-blue-600">了解更多</a>
+  </main>
+  <script>
+    // 普通访问仅加载 Core；页面入口负责首次导入，组件负责后续审查交互。
+    const reviewButton = document.querySelector('[data-jq-review-open]');
+    const reviewStatus = document.getElementById('review-load-status');
+    let reviewPromise = null;
+    let reviewApi = null;
+    const draftKey = 'review-demo-client-home';
+    async function openReview() {
+      reviewButton.disabled = true;
+      reviewStatus.textContent = '';
+      try {
+        const review = await (reviewPromise || (reviewPromise = JquanUI.import('reviewMode')));
+        reviewApi = review;
+        // 重开保留已有预览和历史；destroy 后再创建会话。
+        if (!review.state().enabled) review.configure({ enabled: true, root: '#preview', allowURL: false });
+        review.open();
+      } catch (error) {
+        reviewPromise = null;
+        reviewStatus.textContent = '审查工具加载失败，请再次点击重试。';
+      } finally {
+        reviewButton.disabled = false;
+      }
+    }
+    reviewButton.addEventListener('click', openReview);
+    async function withReview(action) {
+      try {
+        const review = reviewApi || await (reviewPromise || (reviewPromise = JquanUI.import('reviewMode')));
+        reviewApi = review;
+        return action(review);
+      } catch (_) {
+        reviewPromise = null;
+        reviewStatus.textContent = '审查工具尚未加载，请先打开页面审查。';
+        return false;
+      }
+    }
+    document.getElementById('save-draft').addEventListener('click', () => withReview(review => {
+      reviewStatus.textContent = review.saveDraft(draftKey) ? '草稿已保存：只记录最终值，不改变页面。' : '没有可保存的修改或浏览器存储不可用。';
+    }));
+    document.getElementById('load-draft').addEventListener('click', () => withReview(review => {
+      const draft = review.loadDraft(draftKey);
+      const output = document.getElementById('draft-output');
+      output.hidden = !draft;
+      output.textContent = draft ? JSON.stringify(draft, null, 2) : '';
+      reviewStatus.textContent = draft ? `已读取 ${draft.changes.length} 项修改，方案显示在下方。` : '没有可读取的草稿。';
+    }));
+    document.getElementById('clear-draft').addEventListener('click', () => withReview(review => {
+      reviewStatus.textContent = review.clearDraft(draftKey) ? '草稿已清理。' : '没有可清理的草稿。';
+      document.getElementById('draft-output').hidden = true;
+      document.getElementById('draft-output').textContent = '';
+    }));
+    // URL 是本页面选择加载工具的入口；Core 自身不会扫描参数或下载该组件。
+    if (new URL(location.href).searchParams.get('jqui-review') === '1') openReview();
+  </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>Carousel and Tabs lifecycle regression</title></head><body>
+<button id="outside">Outside focus</button>
+<!-- CORE_ENTRY -->
+<!-- COMPONENT_ENTRY -->
+<script>
+const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+window.highfreqReady = (async () => {
+  await JquanUI.import(['carousel', 'tabs']);
+  return true;
+})();
+window.runHighfreqChecks = async () => {
+  await highfreqReady;
+  const carousel = JquanUIComponents.carouselApi, tabs = JquanUIComponents.tabsApi;
+  const results = {}, details = {};
+  const check = (name, pass, detail) => { results[name] = !!pass; if (!pass) details[name] = typeof detail === 'object' && detail ? JSON.parse(JSON.stringify(detail, (key, value) => typeof value === 'string' && value.length > 320 ? value.slice(0, 320) + '…' : value)) : detail; };
+  const makeCarousel = id => {
+    const root = document.createElement('div'); root.id = id; root.style.cssText = 'width:360px;height:100px';
+    root.innerHTML = '<article jq-carousel-item data-carousel-thumb="One">One</article><article jq-carousel-item data-carousel-thumb="Two">Two</article><article jq-carousel-item data-carousel-thumb="Three">Three</article>';
+    document.body.append(root); return root;
+  };
+  const makeTabs = id => {
+    const root = document.createElement('section'); root.id = id;
+    root.innerHTML = '<div jq-tab-list><button jq-tab>One</button><button jq-tab>Two</button><button jq-tab>Three</button></div><div jq-tab-content><section jq-tab-panel>One</section><section jq-tab-panel>Two</section><section jq-tab-panel>Three</section></div>';
+    root.style.width = '360px'; document.body.append(root); return root;
+  };
+  const swipe = (root, distance) => {
+    const content = root.querySelector('[jq-tab-content]');
+    const start = new Touch({ identifier: 1, target: content, clientX: 180, clientY: 40 });
+    const end = new Touch({ identifier: 1, target: content, clientX: 180 - distance, clientY: 40 });
+    content.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, touches: [start], changedTouches: [start] }));
+    content.dispatchEvent(new TouchEvent('touchmove', { bubbles: true, cancelable: true, touches: [end], changedTouches: [end] }));
+    content.dispatchEvent(new TouchEvent('touchend', { bubbles: true, touches: [], changedTouches: [end] }));
+  };
+
+  // This is a real elapsed-time check of unchanged defaults, not an accelerated clock.
+  const defaultsRoot = makeCarousel('defaults');
+  const scheduled = [], originalTimeout = window.setTimeout;
+  window.setTimeout = function (callback, delay, ...args) { scheduled.push(delay); return originalTimeout(callback, delay, ...args); };
+  const defaults = carousel.mount(defaultsRoot);
+  window.setTimeout = originalTimeout;
+  check('carouselDefaultInterval4000', defaults.state().interval === 4000 && scheduled.includes(4000), { state: defaults.state(), scheduled });
+  defaults.next();
+  check('carouselDefaultSpeed420', defaultsRoot.querySelector('[jq-carousel-track]').style.transition.includes('420ms'), defaultsRoot.querySelector('[jq-carousel-track]').style.transition);
+  check('carouselNextUpdatesPublicIndex', defaults.state().currentIndex === 1, defaults.state());
+  defaults.prev();
+  check('carouselPrevUpdatesPublicIndex', defaults.state().currentIndex === 0, defaults.state());
+  defaults.goTo(0, false);
+  await pause(3750);
+  check('carouselDefaultNotEarly', defaults.state().currentIndex === 0, defaults.state());
+  await pause(600);
+  check('carouselDefaultAutoplayTick', defaults.state().currentIndex === 1 && defaults.state().isPlaying, defaults.state());
+  defaults.destroy(); defaultsRoot.remove();
+
+  const root = makeTabs('tabs-contract'); let changed = 0;
+  const t = tabs.mount(root, { mode: 'slide', duration: 0, onChange() { changed++; } });
+  check('tabsMountStable', tabs.mount(root) === t);
+  const initial = changed; t.goTo(1, { focus: true });
+  check('tabsDurationZeroImmediate', changed === initial + 1 && document.activeElement === root.querySelectorAll('[jq-tab]')[1], { changed, initial, focus: document.activeElement.id });
+  await pause(350); t.goTo(0, { animate: false });
+  swipe(root, 10); await pause(350);
+  check('tabsShortSwipeKeepsIndex', t.state().currentIndex === 0, t.state());
+  swipe(root, 48); await pause(350);
+  check('tabsThreshold48KeepsIndex', t.state().currentIndex === 0, t.state());
+  swipe(root, 49); await pause(350);
+  check('tabsOver48ChangesIndex', t.state().currentIndex === 1, t.state());
+  const same = t.update({ duration: 140 });
+  check('tabsUpdateStable', same === t);
+  const beforeUpdate = changed;
+  t.goTo(2, { focus: true });
+  t.update({ mode: 'static' });
+  document.querySelector('#outside').focus(); const afterUpdate = changed;
+  await pause(200);
+  check('tabsUpdateCancelsOldTransition', changed === afterUpdate && document.activeElement.id === 'outside' && t.next() === true, { changed, afterUpdate, beforeUpdate, focus: document.activeElement.id });
+  // Retire while focus and onChange are still waiting for the transition.
+  t.update({ duration: 140 }); t.goTo(1, { focus: true });
+  const beforeDestroy = changed; t.destroy(); document.querySelector('#outside').focus();
+  await pause(200);
+  check('tabsDestroyCancelsOldTransition', changed === beforeDestroy && document.activeElement.id === 'outside', { changed, beforeDestroy, focus: document.activeElement.id });
+  const remounted = tabs.mount(root, { duration: 0 }); const remountIndex = remounted.state().currentIndex;
+  const stale = [t.next(), t.goTo(2), t.update({ defaultIndex: 2 }), t.destroy(), t.state(), t.element()];
+  check('tabsOldHandleInert', stale.every(value => value === false || value === null) && remounted.state().currentIndex === remountIndex, stale);
+  remounted.destroy(); root.remove();
+
+  const external = document.createElement('div'), indicators = document.createElement('div');
+  document.body.append(external, indicators);
+  const cRoot = makeCarousel('carousel-contract'), originalHtml = cRoot.innerHTML;
+  const c = carousel.mount(cRoot, { autoplay: false, thumbnails: true, thumbnailsTarget: external, indicatorsTarget: indicators });
+  check('carouselMountStable', carousel.mount(cRoot) === c);
+  const updated = c.update({ gap: 8 });
+  check('carouselUpdateStable', updated === c);
+  c.update({ visibleCount: 1 });
+  check('carouselUpdateKeepsOriginalSlides', c.state().total === 3 && cRoot.querySelectorAll('[jq-carousel-slide]:not([data-carousel-clone])').length === 3 && external.querySelectorAll('[jq-carousel-thumb]').length === 3, { total: c.state().total, slides: cRoot.querySelectorAll('[jq-carousel-slide]').length, thumbs: external.querySelectorAll('[jq-carousel-thumb]').length });
+  c.destroy();
+  check('carouselDestroyRestoresOriginalHtml', cRoot.innerHTML === originalHtml, { actual: cRoot.innerHTML });
+  check('carouselDestroyRemovesExternalControls', external.querySelectorAll('[jq-carousel-thumbs]').length === 0 && indicators.querySelectorAll('[jq-carousel-indicators]').length === 0, { thumbs: external.innerHTML, indicators: indicators.innerHTML });
+  const next = carousel.mount(cRoot, { autoplay: false }); const nextIndex = next.state().currentIndex;
+  const cStale = [c.next(), c.goTo(2), c.update({ gap: 22 }), c.destroy(), c.state(), c.element()];
+  check('carouselOldHandleInert', cStale.every(value => value === false || value === null) && next.state().currentIndex === nextIndex, cStale);
+  next.destroy(); cRoot.remove(); external.remove(); indicators.remove();
+
+  const autoplayRoot = makeCarousel('carousel-autoplay-reentrant');
+  let ticks = 0, replacement = null;
+  const oldAutoplay = carousel.mount(autoplayRoot, {
+    interval: 1200,
+    onChange(index, handle) {
+      if (++ticks !== 2) return;
+      handle.destroy();
+      replacement = carousel.mount(autoplayRoot, { autoplay: true });
+      replacement.pause();
+    }
+  });
+  await pause(1400);
+  check('carouselAutoplayRetiredCallbackCannotPlayReplacement', replacement && !replacement.state().isPlaying && oldAutoplay.state() === null, { ticks, replacement: replacement?.state(), old: oldAutoplay.state() });
+  replacement?.destroy(); oldAutoplay.destroy(); autoplayRoot.remove();
+
+  for (const [name, api, make, callbackArgs] of [['carousel', carousel, makeCarousel, 2], ['tabs', tabs, makeTabs, 3]]) {
+    const mountRoot = make(name + '-mount-reentrant'); let nextHandle = null;
+    const retired = api.mount(mountRoot, {
+      autoplay: true, duration: 0,
+      onChange(...args) {
+        args[callbackArgs - 1].destroy();
+        nextHandle = api.mount(mountRoot, { autoplay: true, duration: 0 });
+        nextHandle.pause();
+      }
+    });
+    check(name + 'MountReentrantReturnsNull', retired === null && nextHandle && !nextHandle.state().isPlaying, { retired: !!retired, next: nextHandle?.state() });
+    nextHandle?.destroy(); mountRoot.remove();
+
+    const updateRoot = make(name + '-update-reentrant');
+    const oldHandle = api.mount(updateRoot, { autoplay: true, duration: 0 }); let updatedHandle = null;
+    const replace = () => {
+      oldHandle.destroy();
+      updatedHandle = api.mount(updateRoot, { autoplay: true, duration: 0 });
+      updatedHandle.pause();
+    };
+    if (name === 'carousel') updateRoot.addEventListener('jquan:carousel:update', replace, { once: true });
+    const returned = oldHandle.update(name === 'tabs' ? { onChange: replace } : { gap: 4 });
+    check(name + 'UpdateReentrantReturnsNull', returned === null && updatedHandle && !updatedHandle.state().isPlaying && oldHandle.state() === null, { returned: !!returned, next: updatedHandle?.state(), old: oldHandle.state() });
+    updatedHandle?.destroy(); oldHandle.destroy(); updateRoot.remove();
+  }
+
+  // Hold RAF callbacks to observe cancellation without relying on frame timing.
+  const savedRaf = window.requestAnimationFrame, savedCancel = window.cancelAnimationFrame;
+  const frames = new Map(); let seed = 0;
+  window.requestAnimationFrame = callback => { frames.set(++seed, callback); return seed; };
+  window.cancelAnimationFrame = id => frames.delete(id);
+  const progressRoot = makeCarousel('carousel-progress'); let p;
+  try {
+    p = carousel.mount(progressRoot, { progress: true });
+    check('carouselProgressScheduled', frames.size > 0, frames.size);
+    p.pause();
+    check('carouselPauseCancelsProgressRaf', frames.size === 0, frames.size);
+    p.play(); p.update({ gap: 5 });
+    check('carouselUpdateHasSingleProgressRaf', frames.size <= 1, frames.size);
+    p.destroy();
+    check('carouselDestroyCancelsProgressRaf', frames.size === 0, frames.size);
+  } finally {
+    p?.destroy(); frames.clear(); window.requestAnimationFrame = savedRaf; window.cancelAnimationFrame = savedCancel; progressRoot.remove();
+  }
+  return { assertions: Object.keys(results).length, results, details };
+};
+window.prepareNativeTabs = () => {
+  const root = document.createElement('section'); root.id = 'native-tabs';
+  root.innerHTML = '<div jq-tab-list><button jq-tab id="native-first">One</button><button jq-tab id="native-second">Two</button></div><div jq-tab-content><section jq-tab-panel>One</section><section jq-tab-panel>Two</section></div>';
+  document.body.append(root);
+  window.nativeTabs = JquanUIComponents.tabsApi.mount(root, { duration: 0 });
+  document.getElementById('native-first').focus();
+};
+</script></body></html>

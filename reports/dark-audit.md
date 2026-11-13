@@ -1,0 +1,259 @@
+# JquanUI CSS Migration Audit
+
+- Files: 0
+- Rules: 0
+- Declarations: 0
+- Semantic replacements: 0 (0.0%)
+- Arbitrary-value candidates: 0
+- Manual review: 0
+- Total expressible: 0.0%
+
+- Config format: `jquanui`
+
+
+## Class order audit
+
+- Out-of-order class strings: 90
+
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:13: `mb-8 max-w-4xl` -> `max-w-4xl mb-8`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:14: `mb-2 text-3xl font-bold tracking-tight text-slate-800` -> `mb-2 font-bold text-3xl tracking-tight text-slate-800`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:18: `mb-8 overflow-hidden rounded-xl border border-primary/20 bg-primary/5 shadow-sm` -> `overflow-hidden mb-8 bg-primary/5 border border-primary/20 rounded-xl shadow-sm`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:19: `flex items-center justify-between gap-4 border-b border-primary/10 bg-white/60 px-6 py-4` -> `flex items-center justify-between gap-4 px-6 py-4 bg-white/60 border-b border-primary/10`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:21: `ph ph-flask text-xl text-primary` -> `text-xl text-primary ph ph-flask`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:24: `hidden rounded-md border border-primary/20 bg-primary/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary sm:inline-flex` -> `hidden sm:inline-flex px-2.5 py-1 font-bold tracking-wider uppercase bg-primary/10 text-[10px] text-primary border border-primary/20 rounded-md`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:26: `grid gap-6 p-6 md:p-8 lg:grid-cols-5` -> `grid lg:grid-cols-5 gap-6 p-6 md:p-8`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:29: `mb-1 text-sm font-bold text-slate-800` -> `mb-1 font-bold text-sm text-slate-800`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:30: `text-sm leading-relaxed text-slate-600` -> `leading-relaxed text-sm text-slate-600`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:32: `grid gap-2 sm:grid-cols-2` -> `grid sm:grid-cols-2 gap-2`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:33: `rounded-lg border border-primary bg-primary/10 px-3 py-2 text-left text-sm font-semibold text-primary transition-colors hover:bg-primary/15` -> `px-3 py-2 font-semibold text-left text-sm bg-primary/10 text-primary hover:bg-primary/15 border border-primary rounded-lg transition-colors`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:34: `rounded-lg border border-slate-200 bg-white px-3 py-2 text-left text-sm font-semibold text-slate-700 transition-colors hover:border-primary hover:text-primary` -> `px-3 py-2 font-semibold text-left text-sm bg-white text-slate-700 hover:text-primary border border-slate-200 rounded-lg hover:border-primary transition-colors`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:38: `rounded-lg border border-slate-200 bg-white p-4 text-xs leading-relaxed text-slate-500` -> `p-4 leading-relaxed text-xs bg-white text-slate-500 border border-slate-200 rounded-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:43: `rounded-xl border border-slate-200 bg-white p-5 shadow-inner lg:col-span-3` -> `p-5 bg-white border border-slate-200 rounded-xl shadow-inner lg:col-span-3`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:44: `space-y-4 rounded-lg bg-slate-50 p-4 transition-colors dark:bg-slate-900` -> `space-y-4 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg transition-colors`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:46: `text-xs font-bold uppercase tracking-wider text-slate-400` -> `font-bold text-xs tracking-wider uppercase text-slate-400`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:47: `rounded-full bg-success/10 px-2 py-1 text-xs font-semibold text-success` -> `px-2 py-1 font-semibold text-xs bg-success/10 text-success rounded-full`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:49: `group rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800` -> `p-4 bg-white dark:bg-slate-800 border border-slate-200 rounded-lg dark:border-slate-700 group`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:50: `cursor-pointer list-none font-semibold text-slate-800 dark:text-white` -> `font-semibold text-slate-800 dark:text-white cursor-pointer list-none`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:51: `hidden mt-3 text-sm text-slate-600 details-open:block dark:text-slate-300` -> `hidden details-open:block mt-3 text-sm text-slate-600 dark:text-slate-300`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:49: `rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800` -> `p-4 bg-white dark:bg-slate-800 border border-slate-200 rounded-lg dark:border-slate-700`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:54: `text-xl font-bold text-slate-800 lang-en:text-lg dark:text-white` -> `font-bold text-xl lang-en:text-lg text-slate-800 dark:text-white`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:57: `block text-sm font-medium text-slate-700 dark:text-slate-200` -> `block font-medium text-sm text-slate-700 dark:text-slate-200`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:58: `mt-2 block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none user-invalid:border-danger user-invalid:ring-2 user-invalid:ring-danger/20 user-valid:border-success dark:border-slate-600 dark:bg-slate-700 dark:text-white` -> `block w-full mt-2 px-3 py-2 bg-white dark:bg-slate-700 dark:text-white border border-slate-300 outline-none rounded-lg dark:border-slate-600 user-invalid:border-danger user-invalid:ring-2 user-invalid:ring-danger/20 user-valid:border-success`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:61: `mt-4 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 font-mono text-xs leading-relaxed text-slate-600` -> `mt-4 px-4 py-3 font-mono leading-relaxed text-xs bg-slate-50 text-slate-600 border border-slate-200 rounded-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:65: `space-y-4 rounded-xl border border-slate-200 bg-white p-5 shadow-inner lg:col-span-5` -> `space-y-4 p-5 bg-white border border-slate-200 rounded-xl shadow-inner lg:col-span-5`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:69: `mt-1 text-sm leading-relaxed text-slate-600` -> `mt-1 leading-relaxed text-sm text-slate-600`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:71: `rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-500` -> `px-2.5 py-1 font-semibold text-xs bg-slate-100 text-slate-500 rounded-full`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:73: `grid gap-4 md:grid-cols-3` -> `grid md:grid-cols-3 gap-4`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:74: `rounded-lg border border-slate-200 bg-slate-50 p-4` -> `p-4 bg-slate-50 border border-slate-200 rounded-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:75: `mb-3 flex flex-wrap gap-2` -> `flex flex-wrap gap-2 mb-3`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:76: `rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90` -> `px-3 py-2 font-semibold text-sm bg-primary text-white hover:bg-primary/90 rounded-lg transition-colors`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:77: `rounded-lg border border-primary/30 bg-primary/10 px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/20` -> `px-3 py-2 font-semibold text-sm bg-primary/10 text-primary hover:bg-primary/20 border border-primary/30 rounded-lg transition-colors`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:38: `text-xs leading-relaxed text-slate-500` -> `leading-relaxed text-xs text-slate-500`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:82: `mb-3 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-700 transition-colors hover:bg-amber-100` -> `mb-3 px-3 py-2 font-semibold text-sm bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-300 rounded-lg transition-colors`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:83: `rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-600 transition-all inert:pointer-events-none inert:opacity-50 inert:grayscale` -> `p-3 text-sm bg-white text-slate-600 border border-slate-200 rounded-lg transition-all inert:opacity-50 inert:grayscale inert:pointer-events-none`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:88: `mb-2 flex flex-wrap gap-2 text-xs font-semibold` -> `flex flex-wrap gap-2 mb-2 font-semibold text-xs`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:89: `hidden rounded-full bg-emerald-100 px-2 py-1 text-emerald-700 pointer-fine:inline-flex` -> `hidden pointer-fine:inline-flex px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:90: `hidden rounded-full bg-amber-100 px-2 py-1 text-amber-700 pointer-coarse:inline-flex` -> `hidden pointer-coarse:inline-flex px-2 py-1 bg-amber-100 text-amber-700 rounded-full`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:91: `hidden rounded-full bg-blue-100 px-2 py-1 text-blue-700 hover-hover:inline-flex` -> `hidden hover-hover:inline-flex px-2 py-1 bg-blue-100 text-blue-700 rounded-full`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:92: `hidden rounded-full bg-slate-200 px-2 py-1 text-slate-600 hover-none:inline-flex` -> `hidden hover-none:inline-flex px-2 py-1 bg-slate-200 text-slate-600 rounded-full`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:93: `rounded-full bg-primary/10 px-2 py-1 text-primary forced-colors:outline-w-2 forced-colors:outline-solid forced-colors:outline-primary` -> `px-2 py-1 bg-primary/10 text-primary rounded-full forced-colors:outline-primary forced-colors:outline-solid forced-colors:outline-w-2`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:96: `h-2.5 w-2.5 rounded-full bg-primary animate-pulse motion-reduce:animate-none` -> `h-2.5 w-2.5 bg-primary rounded-full animate-pulse motion-reduce:animate-none`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:101: `w-[min(90vw,28rem)] rounded-xl border border-slate-200 bg-white p-0 text-slate-800 opacity-0 shadow-2xl transition-opacity duration-300 starting:opacity-0 modal:opacity-100 backdrop:bg-slate-950/40` -> `w-[min(90vw,28rem)] p-0 bg-white text-slate-800 backdrop:bg-slate-950/40 border border-slate-200 rounded-xl duration-300 opacity-0 shadow-2xl transition-opacity modal:opacity-100 starting:opacity-0`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:108: `rounded-md p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700` -> `p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-700 rounded-md transition-colors`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:110: `w-full rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90` -> `w-full px-4 py-2 font-semibold text-sm bg-primary text-white hover:bg-primary/90 rounded-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:113: `w-[min(90vw,22rem)] rounded-xl border border-primary/20 bg-white p-5 text-slate-800 opacity-0 shadow-xl transition-opacity duration-300 starting:opacity-0 popover-open:opacity-100` -> `w-[min(90vw,22rem)] p-5 bg-white text-slate-800 border border-primary/20 rounded-xl duration-300 opacity-0 shadow-xl transition-opacity popover-open:opacity-100 starting:opacity-0`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:115: `ph ph-popover text-xl text-primary` -> `text-xl text-primary ph ph-popover`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:122: `opacity-0 starting:opacity-0 modal:opacity-100` -> `opacity-0 modal:opacity-100 starting:opacity-0`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:123: `opacity-0 starting:opacity-0 popover-open:opacity-100` -> `opacity-0 popover-open:opacity-100 starting:opacity-0`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:83: `inert:pointer-events-none inert:opacity-50` -> `inert:opacity-50 inert:pointer-events-none`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:125: `hidden pointer-fine:inline-flex hover-hover:inline-flex` -> `hidden hover-hover:inline-flex pointer-fine:inline-flex`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:130: `mb-8 grid gap-6 lg:grid-cols-2` -> `grid lg:grid-cols-2 gap-6 mb-8`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:18: `overflow-hidden rounded-xl border border-primary/20 bg-primary/5 shadow-sm` -> `overflow-hidden bg-primary/5 border border-primary/20 rounded-xl shadow-sm`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:132: `flex items-center gap-2 border-b border-primary/10 bg-white/60 px-6 py-4` -> `flex items-center gap-2 px-6 py-4 bg-white/60 border-b border-primary/10`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:133: `ph ph-toggle-left text-xl text-primary` -> `text-xl text-primary ph ph-toggle-left`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:139: `group rounded-lg border border-slate-200 bg-white p-4 shadow-sm` -> `p-4 bg-white border border-slate-200 rounded-lg shadow-sm group`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:50: `cursor-pointer list-none font-semibold text-slate-800` -> `font-semibold text-slate-800 cursor-pointer list-none`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:57: `block text-sm font-medium text-slate-700` -> `block font-medium text-sm text-slate-700`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:144: `mt-2 block w-full rounded-lg border border-slate-300 px-3 py-2 outline-none user-invalid:border-danger user-invalid:ring-2 user-invalid:ring-danger/20 user-valid:border-success` -> `block w-full mt-2 px-3 py-2 border border-slate-300 outline-none rounded-lg user-invalid:border-danger user-invalid:ring-2 user-invalid:ring-danger/20 user-valid:border-success`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:155: `overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm` -> `overflow-hidden bg-white border border-slate-200 rounded-xl shadow-sm`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:156: `flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-6 py-4` -> `flex items-center gap-2 px-6 py-4 bg-slate-50 border-b border-slate-200`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:157: `ph ph-device-mobile text-xl text-emerald-600` -> `text-xl text-emerald-600 ph ph-device-mobile`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:162: `relative overflow-hidden rounded-lg border border-slate-200 bg-slate-900 p-4 text-white before:absolute before:inset-0 before:bg-primary/10` -> `relative before:absolute before:inset-0 overflow-hidden p-4 bg-slate-900 text-white before:bg-primary/10 border border-slate-200 rounded-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:163: `relative flex min-h-32 flex-col justify-between pb-safe-2 pt-safe-2` -> `flex flex-col relative justify-between min-h-32 pb-safe-2 pt-safe-2`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:166: `text-xl font-bold lang-en:text-lg` -> `font-bold text-xl lang-en:text-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:180: `ph ph-stack text-xl text-indigo-500` -> `text-xl text-indigo-500 ph ph-stack`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:184: `rounded-lg bg-[oklch(65%_0.2_250)] p-4 text-white shadow-lg` -> `p-4 bg-[oklch(65%_0.2_250)] text-white rounded-lg shadow-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:185: `rounded-lg bg-primary/10 p-4 text-primary ring-1 ring-primary/30` -> `p-4 bg-primary/10 text-primary ring-1 ring-primary/30 rounded-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:197: `ph ph-arrows-in-line-vertical text-xl text-amber-500` -> `text-xl text-amber-500 ph ph-arrows-in-line-vertical`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:200: `rounded-lg border border-amber-200 bg-amber-50 p-5` -> `p-5 bg-amber-50 border border-amber-200 rounded-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:201: `text-fluid-display font-bold text-slate-900` -> `font-bold text-fluid-display text-slate-900`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:214: `ph ph-file-magnifying-glass text-xl text-rose-500` -> `text-xl text-rose-500 ph ph-file-magnifying-glass`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:215: `grid gap-6 p-6 lg:grid-cols-[1fr_1.1fr] lg:items-center` -> `grid lg:grid-cols-[1fr_1.1fr] lg:items-center gap-6 p-6`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:217: `mb-4 text-sm leading-relaxed text-slate-600` -> `mb-4 leading-relaxed text-sm text-slate-600`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:218: `flex flex-wrap gap-2 text-xs font-medium` -> `flex flex-wrap gap-2 font-medium text-xs`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:218: `rounded-md bg-emerald-50 px-2 py-1 text-emerald-700` -> `px-2 py-1 bg-emerald-50 text-emerald-700 rounded-md`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:218: `rounded-md bg-amber-50 px-2 py-1 text-amber-700` -> `px-2 py-1 bg-amber-50 text-amber-700 rounded-md`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:218: `rounded-md bg-rose-50 px-2 py-1 text-rose-700` -> `px-2 py-1 bg-rose-50 text-rose-700 rounded-md`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:233: `px-6 pb-6 text-sm leading-relaxed text-slate-600` -> `pb-6 px-6 leading-relaxed text-sm text-slate-600`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:243: `mt-8 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm` -> `overflow-hidden mt-8 bg-white border border-slate-200 rounded-xl shadow-sm`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:244: `ph ph-crosshair text-xl text-cyan-600` -> `text-xl text-cyan-600 ph ph-crosshair`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:245: `grid gap-6 p-6 lg:grid-cols-2` -> `grid lg:grid-cols-2 gap-6 p-6`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:248: `relative min-h-32 rounded-lg border border-cyan-200 bg-cyan-50 p-5` -> `relative min-h-32 p-5 bg-cyan-50 border border-cyan-200 rounded-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:249: `anchor-name-[--demo-anchor] inline-flex rounded-lg bg-cyan-600 px-4 py-2 font-semibold text-white` -> `inline-flex px-4 py-2 font-semibold bg-cyan-600 text-white rounded-lg anchor-name-[--demo-anchor]`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:250: `position-fixed position-anchor-[--demo-anchor] position-area-top-span-right rounded-lg border border-cyan-200 bg-white px-3 py-2 text-sm text-cyan-800 shadow-md` -> `px-3 py-2 text-sm bg-white text-cyan-800 border border-cyan-200 rounded-lg shadow-md position-anchor-[--demo-anchor] position-area-top-span-right position-fixed`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:253: `position-fixed position-anchor-[--tooltip] position-area-top` -> `position-anchor-[--tooltip] position-area-top position-fixed`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:259: `rounded-lg border border-indigo-200 bg-indigo-50 p-5` -> `p-5 bg-indigo-50 border border-indigo-200 rounded-lg`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:260: `view-transition-name-card view-transition-group-nearest rounded-lg bg-white p-4 shadow-sm motion-reduce:transition-none` -> `p-4 bg-white rounded-lg shadow-sm motion-reduce:transition-none view-transition-group-nearest view-transition-name-card`
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:260: `view-transition-name-card view-transition-group-nearest` -> `view-transition-group-nearest view-transition-name-card`
+
+## Dark-mode migration audit
+
+- Class strings: 76
+- Hardcoded color candidates: 131
+- Shadow candidates: 12
+- Semantic role classes: 0
+- Missing dark variants: 118
+
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:7: `text-slate-500` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:9: `text-slate-300` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:10: `text-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:14: `text-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:15: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:18: `shadow-sm` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:19: `bg-white/60` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:22: `text-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:29: `text-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:30: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:34: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:34: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:34: `text-slate-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:38: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:38: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:38: `text-slate-500` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:34: `text-slate-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:43: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:43: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:43: `shadow-inner` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:44: `bg-slate-50` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:44: `dark:bg-slate-900` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:46: `text-slate-400` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:49: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:49: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:49: `dark:border-slate-700` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:49: `dark:bg-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:50: `text-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:50: `dark:text-white` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:51: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:51: `dark:text-slate-300` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:49: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:49: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:49: `dark:border-slate-700` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:49: `dark:bg-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:54: `text-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:54: `dark:text-white` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:55: `text-slate-500` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:55: `dark:text-slate-400` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:57: `text-slate-700` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:57: `dark:text-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:58: `border-slate-300` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:58: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:58: `dark:border-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:58: `dark:bg-slate-700` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:58: `dark:text-white` — hardcoded-color; literal palette or arbitrary color needs role review
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:61: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:61: `bg-slate-50` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:61: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:46: `text-slate-400` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:65: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:65: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:65: `shadow-inner` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:69: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:71: `bg-slate-100` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:71: `text-slate-500` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:74: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:74: `bg-slate-50` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:76: `text-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:38: `text-slate-500` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:82: `border-amber-300` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:82: `bg-amber-50` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:82: `text-amber-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:82: `hover:bg-amber-100` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:83: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:83: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:83: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:89: `bg-emerald-100` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:89: `text-emerald-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:90: `bg-amber-100` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:90: `text-amber-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:91: `bg-blue-100` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:91: `text-blue-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:92: `bg-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:92: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:95: `text-slate-500` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:101: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:101: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:101: `text-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:101: `shadow-2xl` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:101: `backdrop:bg-slate-950/40` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:55: `text-slate-500` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:108: `text-slate-400` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:108: `hover:bg-slate-100` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:108: `hover:text-slate-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:110: `text-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:113: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:113: `text-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:113: `shadow-xl` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:18: `shadow-sm` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:132: `bg-white/60` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:139: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:139: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:139: `shadow-sm` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:50: `text-slate-800` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:51: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:57: `text-slate-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:144: `border-slate-300` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:155: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:155: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:155: `shadow-sm` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:156: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:156: `bg-slate-50` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:157: `text-emerald-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:162: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:162: `bg-slate-900` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:162: `text-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:164: `text-slate-300` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:167: `text-slate-300` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:180: `text-indigo-500` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:184: `bg-[oklch(65%_0.2_250)]` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:184: `text-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:184: `shadow-lg` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:197: `text-amber-500` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:200: `border-amber-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:200: `bg-amber-50` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:201: `text-slate-900` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:202: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:214: `text-rose-500` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:217: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:218: `bg-emerald-50` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:218: `text-emerald-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:218: `bg-amber-50` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:218: `text-amber-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:218: `bg-rose-50` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:218: `text-rose-700` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:233: `text-slate-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:243: `border-slate-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:243: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:243: `shadow-sm` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:244: `text-cyan-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:248: `border-cyan-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:248: `bg-cyan-50` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:249: `bg-cyan-600` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:249: `text-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:250: `border-cyan-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:250: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:250: `text-cyan-800` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:250: `shadow-md` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:259: `border-indigo-200` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:259: `bg-indigo-50` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:260: `bg-white` — hardcoded-color; literal palette or arbitrary color needs role review; add a role or explicit dark variant
+- E:\OneDrive\Documents\web\JquanUI V3.2\content\modern-css.js:260: `shadow-sm` — shadow; fixed shadow needs dark-mode review; add a role or explicit dark variant

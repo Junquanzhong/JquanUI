@@ -1,0 +1,171 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Modal shared overlay checks</title></head>
+<body style="overflow:scroll !important">
+<button id="open-dialog" jq-dialog-trigger jq-target="#dialog">Dialog</button>
+<div id="dialog" jq-dialog aria-label="Dialog"><div jq-dialog-backdrop></div><section jq-dialog-panel>
+  <button id="dialog-first">First</button><button id="dialog-launch-modal">Open Modal</button><button id="dialog-close" jq-dialog-close>Close</button>
+</section></div>
+<!-- CORE_ENTRY -->
+<!-- PROBE_SCRIPTS -->
+<script>
+const $ = id => document.getElementById(id);
+const pause = (ms = 40) => new Promise(resolve => setTimeout(resolve, ms));
+const deferred = () => { let resolve; const promise = new Promise(done => { resolve = done; }); return { promise, resolve }; };
+window.modalReady = (async () => {
+  await JquanUI.import('dialog');
+  if (window.modalProbe) JquanUI.use(JquanUIComponents.modal);
+  else await JquanUI.import('drawer');
+  JquanUI.enhance(document.body); await pause(); return true;
+})();
+window.prepareModalKeyboard = async () => {
+  $('open-dialog').focus(); $('open-dialog').click(); $('dialog-launch-modal').focus();
+  window.keyboardModal = JquanUIComponents.modalApi.open({ title: 'Keyboard', content: '<button id="modal-first">First</button><button id="modal-last">Last</button>' });
+  await pause();
+};
+window.modalKeyboardState = () => ({ dialog: $('dialog').getAttribute('data-state'), modal: keyboardModal.element() ? 'open' : 'closed', overflow: document.body.style.overflow || 'empty', focus: document.activeElement.id });
+window.runModalChecks = async () => {
+  await modalReady;
+  const overlays = JquanUIComponents.overlayManagerApi, modal = JquanUIComponents.modalApi, drawer = JquanUIComponents.drawerApi;
+  let assertions = 0;
+  const check = (condition, label) => { console.debug('modal-check', label); if (!condition) throw new Error(label); assertions++; };
+  const key = value => document.dispatchEvent(new KeyboardEvent('keydown', { key: value, bubbles: true, cancelable: true }));
+  const clean = () => overlays.destroy();
+  document.body.style.setProperty('padding-right', '19px', 'important');
+  check(JquanUI.hasPlugin('jquanui-overlay-manager') && JquanUI.hasPlugin('jquanui-modal') && JquanUI.hasPlugin('jquanui-drawer'), 'Drawer importer installs shared dependency chain');
+  check(await JquanUI.import('modal') === modal && await JquanUI.import('drawer') === drawer, 'Importer reuses service APIs');
+  $('open-dialog').focus(); $('open-dialog').click(); $('dialog-launch-modal').focus();
+  const parent = modal.open({ title: 'Parent', content: '<button id="drawer-opener" data-modal-initial-focus>Open drawer</button>' });
+  await pause(); $('drawer-opener').focus();
+  const child = drawer.open({ title: 'Child', content: '<button>Drawer control</button>' });
+  await pause();
+  check(overlays.stack().length === 3 && parent.state().isTop === false && child.state().isTop, 'Dialog Modal Drawer share one ordered stack');
+  check(Number(child.element().style.zIndex) > Number(parent.element().style.zIndex), 'Drawer is above Modal');
+  check(parent.element().getAttribute('aria-hidden') === 'true', 'Covered Modal marked inactive');
+  key('Escape'); await pause(230);
+  check(child.state().destroyed && parent.state().isTop && $('dialog').getAttribute('data-state') === 'open', 'Escape releases only Drawer');
+  check(document.activeElement.id === 'drawer-opener' && parent.element().getAttribute('aria-hidden') === 'false', 'Drawer close restores Modal focus and accessibility state');
+  check(document.body.style.overflow === 'hidden', 'Lower scroll locks survive Drawer close');
+  check(await parent.close() === true && parent.state().isClosing && overlays.stack().length === 2, 'Animation retains active layer until removal');
+  check(parent.update({ title: 'late' }) === null && parent.patch({ content: 'late' }) === null, 'Closing handles cannot update DOM');
+  await pause(230);
+  check(parent.state().destroyed && document.activeElement === $('dialog-launch-modal'), 'Modal close returns Dialog focus');
+  $('dialog-close').click();
+  check(document.body.style.overflow === 'scroll' && document.body.style.getPropertyPriority('overflow') === 'important', 'Final mixed close restores overflow');
+  check(document.body.style.paddingRight === '19px' && document.body.style.getPropertyPriority('padding-right') === 'important', 'Final mixed close restores original padding priority');
+
+  let guardCalls = 0; const veto = deferred();
+  const guarded = modal.open({ content: 'Guarded', beforeClose() { guardCalls++; return veto.promise; } });
+  const pending = guarded.close(); const duplicate = guarded.close();
+  key('Escape'); key('Escape'); await pause();
+  check(pending === duplicate && guardCalls === 1 && guarded.state().closePending, 'Pending guard requests deduplicate across API and Escape');
+  veto.resolve(false); check(await pending === false && !guarded.state().isClosing, 'Guard veto keeps instance and lock');
+  const staleGuard = deferred(); guarded.update({ beforeClose: () => staleGuard.promise });
+  const staleClose = guarded.close(); guarded.update({ title: 'Keep new state' }); staleGuard.resolve(true);
+  check(await staleClose === false && guarded.element().textContent.includes('Keep new state'), 'Update invalidates old async close result');
+  guarded.update({ beforeClose: () => { throw new Error('veto'); } });
+  check(await guarded.close() === false, 'Throwing guard vetoes close');
+  guarded.update({ beforeClose: null }); guarded.setBusy(true);
+  key('Escape'); guarded.element().querySelector('[data-modal-backdrop]').click(); await pause();
+  check(await guarded.close() === false && guarded.state().busy && guarded.state().isTop, 'Busy instance blocks API Escape and backdrop');
+  guarded.setBusy(false);
+  guarded.update({ closeOnEscape: false, closeOnBackdropClick: false, trapFocus: false, lockScroll: false, zIndex: 2200 });
+  key('Escape'); guarded.element().querySelector('[data-modal-backdrop]').click(); await pause();
+  check(guarded.state().isTop && document.body.style.overflow === 'scroll' && guarded.element().style.zIndex === '2200', 'Updated dismissal lock and layer policies take effect');
+  guarded.destroy(); check(guarded.destroy() === false && await guarded.close() === false && guarded.element() === null, 'Destroyed handles remain inert');
+
+  const late = deferred(); let closes = 0, destroys = 0, opens = 0;
+  const retired = modal.open({ beforeClose: () => late.promise, onOpen() { opens++; }, onClose() { closes++; }, onDestroy() { destroys++; } });
+  const retirement = retired.close(); retired.destroy(); late.resolve(true);
+  check(await retirement === false, 'Destroy cancels pending close guard');
+  await pause(240); check(closes === 1 && destroys === 1 && opens === 0, 'Destroy cancels enter frame and invokes cleanup callbacks once');
+  const lowerGuard = deferred(); const lower = modal.open({ beforeClose: () => lowerGuard.promise }); const lowerPending = lower.close();
+  const upper = modal.open({ content: '<button id="upper-focus" data-modal-initial-focus>Upper</button>' });
+  await pause(); lowerGuard.resolve(true); await lowerPending; await pause(230);
+  check(lower.state().destroyed && upper.state().isTop && document.activeElement.id === 'upper-focus', 'Retired lower layer cannot steal newer layer focus');
+  upper.destroy();
+  const timer = modal.open({ onClose() { closes++; } }); await timer.close(); timer.destroy(); await pause(230);
+  check(closes === 2 && modal.getOpenCount() === 0 && overlays.stack().length === 0, 'Forced destroy cancels scheduled close timer');
+
+  const keep = modal.open({ title: 'Keep' });
+  const transient = modal.open({ onClose() { throw new Error('consumer close failure'); }, onDestroy() { destroys++; } });
+  let callbackFailed = false; try { transient.destroy(); } catch (error) { callbackFailed = error.message === 'consumer close failure'; }
+  check(callbackFailed && transient.state().destroyed && keep.state().isTop && destroys === 2, 'Throwing close callback preserves cleanup and onDestroy');
+  clean();
+  const a = drawer.open({ id: 'same-drawer', title: 'A' }); const b = drawer.open({ id: 'same-drawer', title: 'B', placement: 'left' });
+  check(a.state().destroyed && b.state().isTop && a.destroy() === false, 'Same-id Drawer replacement retires stale wrapper');
+  b.update({ title: 'Updated' }); b.patch({ description: 'Retained' }); b.update({ content: 'New content' });
+  check(b.element().textContent.includes('Updated') && b.element().textContent.includes('Retained'), 'Drawer update and patch accumulate current options');
+  check(drawer.update(a, { title: 'stale' }) === null && drawer.destroy(a) === false, 'Stale Drawer targets do not resolve replacement');
+  check(drawer.destroy('same-drawer') === true && b.state().destroyed, 'Replacement stays addressable after stale destroy');
+  const updatedDrawer = drawer.open({ id: 'updated-drawer' }); updatedDrawer.update({ title: 'Updated' });
+  await updatedDrawer.close(); await pause(230);
+  check(drawer.close('updated-drawer') === false, 'Updated Drawer keeps registry cleanup callbacks');
+  let reopened;
+  const reentrantDrawer = drawer.open({ id: 'reentrant', onClose() { reopened = drawer.open({ id: 'reentrant', title: 'Reopened' }); } });
+  reentrantDrawer.destroy();
+  check(reopened?.state().isTop && drawer.destroy('reentrant') === true, 'Old Drawer destroy callback preserves reentrant replacement');
+
+  await JquanUI.import('formValidator');
+  const submission = deferred(); let submitted;
+  const form = modal.open({ type: 'form', form: { schema: [{ name: 'name', required: true, initialFocus: true }], values: { name: 'Ada' } }, onSubmit({ data }) { submitted = data; return submission.promise; } });
+  await pause(); const formNode = form.element().querySelector('form');
+  formNode.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); await pause();
+  check(submitted?.name === 'Ada' && form.state().busy && form.getFormData().name === 'Ada', 'Form validator and async submit still compose');
+  key('Escape'); await pause(); check(form.state().isTop, 'Busy form retains top layer');
+  submission.resolve(false); await pause(); check(!form.state().busy && !form.state().isClosing, 'False submit result leaves form open');
+  form.update({ onSubmit: () => true });
+  form.element().querySelector('form').dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); await pause(270);
+  check(form.state().destroyed, 'Successful form submission closes through shared lifecycle');
+  const oldSubmission = deferred();
+  const replacedForm = modal.open({ type: 'form', form: { schema: [{ name: 'name' }], validator: false }, onSubmit: () => oldSubmission.promise });
+  replacedForm.element().querySelector('form').dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  replacedForm.update({ title: 'Replacement form', onSubmit: () => false });
+  check(!replacedForm.state().busy, 'Replacing an in-flight form retires the previous busy flag');
+  replacedForm.element().querySelector('form').dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  oldSubmission.resolve(true); await pause(230);
+  check(replacedForm.state().isTop && !replacedForm.state().busy && !replacedForm.state().isClosing, 'Old submit result cannot close or change replacement form state');
+  replacedForm.destroy();
+
+  const image = modal.open({ type: 'image', imageOptions: { src: ['data:,one', 'data:,two'] } }); await pause();
+  key('ArrowRight'); check(image.element().querySelector('.jq-modal-image').getAttribute('src') === 'data:,two', 'Image gallery navigation is retained');
+  const cover = modal.open({ content: 'Cover' }); await pause(); key('ArrowLeft');
+  check(image.element().querySelector('.jq-modal-image').getAttribute('src') === 'data:,two', 'Covered gallery ignores navigation');
+  cover.destroy(); image.destroy();
+  const text = modal.open('Text shorthand'); check(text.element().textContent.includes('Text shorthand'), 'String open shorthand has complete classes'); text.destroy();
+  const confirm = modal.confirm('Confirm?'); const confirmRoot = overlays.top().state().element;
+  confirmRoot.querySelectorAll('.jq-modal-footer button')[1].click(); check(await confirm === true, 'Confirm resolves selected action'); await pause(230);
+  const promised = deferred(); const result = modal.promise(promised.promise, { success: { title: 'Done', closeOnEscape: true } }); promised.resolve(42);
+  check(await result === 42 && overlays.top().state().element.textContent.includes('Done'), 'Promise state updates preserve handle'); clean();
+  const detached = modal.open({ content: 'Detach' }); detached.element().remove(); await pause();
+  check(detached.state().destroyed && modal.getOpenCount() === 0 && !overlays.top(), 'Removed Modal releases instance registry');
+  const outer = modal.open({ content: '<button id="inner-trigger" jq-dialog-trigger jq-target="#inner-dialog">Inner</button><div id="inner-dialog" jq-dialog><div jq-dialog-backdrop></div><section jq-dialog-panel><button jq-dialog-close>Close inner</button></section></div>' });
+  JquanUI.enhance(outer.element()); await pause(); $('inner-trigger').focus(); $('inner-trigger').click();
+  check(outer.element().getAttribute('aria-hidden') === 'false' && $('inner-dialog').contains(document.activeElement), 'Physically nested Dialog retains accessible ancestor');
+  key('Escape'); check(outer.state().isTop && document.activeElement === $('inner-trigger'), 'Nested Dialog closes back into Modal'); clean();
+  check(modal.getOpenCount() === 0 && overlays.stack().length === 0 && document.body.style.overflow === 'scroll', 'All composed instances and locks released');
+  const selfDestroy = modal.open({ onUpdate(handle) { handle.destroy(); } });
+  check(selfDestroy.update({ title: 'Retire during render' }) === null && selfDestroy.state().destroyed && !overlays.top(), 'onUpdate destruction does not rebind a retired instance');
+  let invalidLayer = false; try { modal.open({ zIndex: NaN }); } catch (error) { invalidLayer = error instanceof TypeError; }
+  check(invalidLayer && modal.getOpenCount() === 0 && !overlays.top(), 'Invalid layer options clean up the partially opened Modal');
+  const AsyncFunction = Object.getPrototypeOf(async function() {}).constructor;
+  const { default: modalUsage } = await import('/content/components/modal.js');
+  const documentedModal = await new AsyncFunction(modalUsage.imperative + '\nreturn modal;')();
+  check(documentedModal.state().isTop && documentedModal.element().textContent.includes('记录详情'), 'Published Modal usage executes with typed importer and patch');
+  documentedModal.destroy();
+  const { default: drawerUsage } = await import('/content/components/drawer.js');
+  const documentedDrawer = await new AsyncFunction(drawerUsage.imperative + '\nreturn panel;')();
+  check(documentedDrawer.state().isTop && documentedDrawer.element().textContent.includes('高级筛选'), 'Published Drawer usage executes with shared lifecycle');
+  documentedDrawer.destroy();
+  const previousForm = document.createElement('form'), currentForm = document.createElement('form');
+  previousForm.id = currentForm.id = 'validator-replacement'; previousForm.innerHTML = '<input name="value" value="old">'; currentForm.innerHTML = '<input name="value" value="new">';
+  document.body.append(previousForm);
+  const oldValidator = JquanUIComponents.formValidatorApi.mount(previousForm); JquanUI.enhance(previousForm);
+  document.body.append(currentForm);
+  const newValidator = JquanUIComponents.formValidatorApi.mount(currentForm, { onSuccess: () => false }); JquanUI.enhance(currentForm);
+  previousForm.remove(); await pause();
+  const oldDestroyed = oldValidator.destroy(), currentValues = JquanUIComponents.formValidatorApi.get(currentForm)?.values();
+  check(oldDestroyed === false && currentValues?.value === 'new', 'Old validator node and handle cleanup preserve same-id replacement: ' + JSON.stringify({ oldDestroyed, currentValues }));
+  newValidator.destroy(); currentForm.remove();
+  document.body.style.removeProperty('padding-right');
+  return { assertions };
+};
+</script></body></html>

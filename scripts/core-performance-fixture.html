@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JquanUI Core Performance Fixture</title>
+</head>
+<body>
+  <main id="benchmark-root"></main>
+  <script>
+    (() => {
+      const params = new URLSearchParams(location.search);
+      const scenario = params.get('scenario') || 'small';
+      if (params.get('clear') === '1') localStorage.clear();
+      window.__JQUAN_SHADOW_LIFECYCLE__ = { setups: 0, teardowns: 0 };
+      window.JQUAN_CONFIG = { constructableStylesheets: true };
+      if (scenario === 'shadow') {
+        window.JQUAN_CONFIG.theme = { semantic: { primary: { light: 'blue-600', dark: 'red-400' } } };
+        window.JQUAN_CONFIG.plugins = [{
+          name: 'benchmark-shadow-lifecycle',
+          install({ addBehaviors }) {
+            addBehaviors({
+              selector: '[data-shadow-behavior]',
+              setup() {
+                window.__JQUAN_SHADOW_LIFECYCLE__.setups++;
+                return () => { window.__JQUAN_SHADOW_LIFECYCLE__.teardowns++; };
+              }
+            });
+          }
+        }];
+      }
+      window.__JQUAN_BENCHMARK_START__ = performance.now();
+      window.__JQUAN_BENCHMARK_SCENARIO__ = scenario;
+
+      const root = document.getElementById('benchmark-root');
+      const count = scenario === 'large' || scenario === 'warm' ? 2500 : 32;
+      const fragment = document.createDocumentFragment();
+      for (let index = 0; index < count; index++) {
+        const item = document.createElement('article');
+        item.className = `flex items-center gap-2 rounded-lg border border-slate-200 p-4 text-sm mt-[${index % 180}px]`;
+        item.textContent = `row-${index}`;
+        fragment.appendChild(item);
+      }
+      root.appendChild(fragment);
+      window.__JQUAN_BENCHMARK_NODE_COUNT__ = count;
+    })();
+  </script>
+  <script src="../dist/core/JquanUI@Core.js"></script>
+  <script>
+    (() => {
+      const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+      const waitFor = async (predicate, timeoutMs = 10000) => {
+        const startedAt = performance.now();
+        while (performance.now() - startedAt < timeoutMs) {
+          if (predicate()) return;
+          await delay(16);
+        }
+        throw new Error('benchmark condition timed out');
+      };
+
+      const compactMetrics = metrics => ({
+        scans: metrics.scans,
+        totalResolves: metrics.totalResolves,
+        processedClassCount: metrics.processedClassCount,
+        dynamicRuleCount: metrics.dynamicRuleCount,
+        insertedRuleCount: metrics.insertedRuleCount,
+        unresolvedClassCount: metrics.unresolvedClassCount,
+        failedRuleCount: metrics.failedRuleCount,
+        cacheHydrate: metrics.cacheHydrate,
+        cacheHydrateMs: metrics.cacheHydrateMs,
+        cacheBytes: metrics.cacheBytes,
+        performance: metrics.performance
+      });
+
+      async function run() {
+        await waitFor(() => window.JquanUI && JquanUI.isReady());
+        const scenario = window.__JQUAN_BENCHMARK_SCENARIO__;
+        const startupMs = performance.now() - window.__JQUAN_BENCHMARK_START__;
+        const result = {
+          scenario,
+          startupMs,
+          durationMs: startupMs,
+          nodeCount: window.__JQUAN_BENCHMARK_NODE_COUNT__,
+          styleMode: JquanUI.styleMode
+        };
+
+        if (scenario === 'mutation') {
+          const root = document.getElementById('benchmark-root');
+          const fragment = document.createDocumentFragment();
+          const mutationCount = 160;
+          for (let index = 0; index < mutationCount; index++) {
+            const item = document.createElement('div');
+            item.className = `grid grid-cols-2 ml-[${200 + index}px]`;
+            fragment.appendChild(item);
+          }
+          const targetClass = `ml-[${200 + mutationCount - 1}px]`;
+          const startedAt = performance.now();
+          root.appendChild(fragment);
+          await waitFor(() => JquanUI.getProcessedClasses().has(targetClass));
+          result.durationMs = performance.now() - startedAt;
+          result.mutationCount = mutationCount;
+          result.targetClass = targetClass;
+        }
+
+        if (scenario === 'shadow') {
+          const roots = [];
+          const thirdPartySheet = new CSSStyleSheet();
+          thirdPartySheet.replaceSync(':host { --third-party-sheet: 1; }');
+          const startedAt = performance.now();
+          for (let index = 0; index < 100; index++) {
+            const host = document.createElement('div');
+            document.body.appendChild(host);
+            const shadowRoot = host.attachShadow({ mode: 'open' });
+            if (index === 0) shadowRoot.adoptedStyleSheets = [thirdPartySheet];
+            shadowRoot.innerHTML = `<div class="p-4 text-sm ml-[${3100 + index}px]" ${index === 0 ? 'data-shadow-behavior' : ''}>shadow</div>`;
+            if (!JquanUI.adopt(shadowRoot)) throw new Error('ShadowRoot stylesheet adoption failed');
+            roots.push(shadowRoot);
+          }
+          if (!JquanUI.getProcessedClasses().has('ml-[3199px]')) throw new Error('ShadowRoot initial class scan failed');
+          const firstRoot = roots[0];
+          const firstStatus = JquanUI.getAdoptionStatus(firstRoot);
+          if (!firstStatus.adopted || !firstStatus.observed || firstStatus.sheetCount !== 2) throw new Error('ShadowRoot adoption status is incomplete');
+          if (!JquanUI.adopt(firstRoot) || firstRoot.adoptedStyleSheets.length !== 3) throw new Error('ShadowRoot repeated adoption is not idempotent');
+
+          const dynamicNode = document.createElement('div');
+          dynamicNode.className = 'mt-[9900px]';
+          firstRoot.appendChild(dynamicNode);
+          await waitFor(() => JquanUI.getProcessedClasses().has('mt-[9900px]'));
+
+          const lightProbe = document.createElement('span');
+          lightProbe.className = 'text-primary';
+          firstRoot.appendChild(lightProbe);
+          const darkScope = document.createElement('div');
+          darkScope.className = 'dark';
+          darkScope.innerHTML = '<span class="text-primary">theme</span>';
+          firstRoot.appendChild(darkScope);
+          JquanUI.compile('text-primary');
+          const lightColor = getComputedStyle(lightProbe).color;
+          const darkColor = getComputedStyle(darkScope.firstElementChild).color;
+          if (!lightColor || !darkColor || lightColor === darkColor) throw new Error('ShadowRoot theme inheritance or local dark scope failed');
+
+          result.durationMs = performance.now() - startedAt;
+          result.shadowRootCount = roots.length;
+          result.adoptedSheetCount = roots.reduce((total, shadowRoot) => total + shadowRoot.adoptedStyleSheets.length, 0);
+          result.engineSheetCount = roots.reduce((total, shadowRoot) => total + JquanUI.getAdoptionStatus(shadowRoot).sheetCount, 0);
+          result.themeInheritance = { lightColor, darkColor };
+          result.lifecycleSetups = window.__JQUAN_SHADOW_LIFECYCLE__.setups;
+
+          if (!JquanUI.detach(firstRoot) || !JquanUI.detach(firstRoot)) throw new Error('ShadowRoot detach is not idempotent');
+          if (firstRoot.adoptedStyleSheets.length !== 1 || firstRoot.adoptedStyleSheets[0] !== thirdPartySheet) throw new Error('ShadowRoot detach removed a third-party stylesheet');
+          if (JquanUI.getAdoptionStatus(firstRoot).adopted || !JquanUI.getAdoptionStatus(roots[1]).adopted) throw new Error('ShadowRoot detach isolation failed');
+          if (window.__JQUAN_SHADOW_LIFECYCLE__.teardowns !== 1) throw new Error('ShadowRoot plugin teardown failed');
+          const ignoredNode = document.createElement('div');
+          ignoredNode.className = 'mb-[9901px]';
+          firstRoot.appendChild(ignoredNode);
+          await delay(50);
+          if (JquanUI.getProcessedClasses().has('mb-[9901px]')) throw new Error('Detached ShadowRoot observer remained active');
+          roots.slice(1).forEach(shadowRoot => JquanUI.detach(shadowRoot));
+        }
+
+        if (new URLSearchParams(location.search).get('persist') === '1') await delay(1300);
+        result.metrics = compactMetrics(JquanUI.getMetrics());
+        result.cacheStored = Object.keys(localStorage).some(key => key.startsWith('jquan_runtime_cache_v'));
+        window.__JQUAN_BENCHMARK__ = result;
+        document.body.dataset.status = 'ok';
+      }
+
+      const fail = error => {
+        window.__JQUAN_BENCHMARK_ERROR__ = error && (error.stack || error.message) || String(error);
+        document.body.dataset.status = 'error';
+      };
+      window.addEventListener('error', event => fail(event.error || event.message));
+      window.addEventListener('unhandledrejection', event => fail(event.reason));
+      run().catch(fail);
+    })();
+  </script>
+</body>
+</html>

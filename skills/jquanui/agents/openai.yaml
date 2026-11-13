@@ -1,0 +1,4 @@
+interface:
+  display_name: "JquanUI Atomic UI"
+  short_description: "Build JquanUI interfaces with semantic atomic classes"
+  default_prompt: "Use $jquanui to build this interface with semantic atomic classes and no custom CSS unless necessary."

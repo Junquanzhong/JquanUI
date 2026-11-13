@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquan的第二大脑</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind 配置 & 自定义样式 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gray: {
+                            100: '#f3f4f6', // bg-gray-100
+                            400: '#9ca3af',
+                            500: '#6b7280',
+                        },
+                        primary: {
+                            50: '#e6f9e6',
+                            500: '#2bb673',
+                            600: '#229954',
+                        }
+                    },
+                    backgroundImage: {
+                        'magic': 'linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673)',
+                    },
+                    boxShadow: {
+                        'glowing': '0 4px 15px 0 rgba(49, 196, 190, 0.75)',
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="/app/template/css/app.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    
+    <!-- Header -->
+    <header class="w-full h-14 bg-white fixed top-0 left-0 z-50 shadow-sm">
+        <div class="container mx-auto h-full flex justify-between items-center px-4">
+            <!-- Logo -->
+            <div class="flex items-center w-56 flex-shrink-0">
+                <a href="index.html" class="flex items-center group">
+                    <h1 class="text-2xl font-semibold text-seasalt hover:bg-[100%_0]">Jquan</h1> 
+                    <small class="text-sm text-gray-500 ml-1 mt-1">的第二大脑</small>
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex h-full flex-grow justify-center">
+                <ul class="flex h-full items-center gap-8">
+                                        <li>
+                        <a href="/" class="nav-link group active">
+                            <i class="ph ph-house-simple text-md vertical-bottom group-hover:text-seasalt transition-colors"></i> 首页                        </a>
+                    </li>
+                                        <li>
+                        <a href="/第二大脑/" class="nav-link group ">
+                            <i class="ph ph-brain text-md vertical-bottom group-hover:text-seasalt transition-colors"></i> 第二大脑                        </a>
+                    </li>
+                                        <li>
+                        <a href="/应用中心/" class="nav-link group ">
+                            <i class="ph ph-squares-four text-md vertical-bottom group-hover:text-seasalt transition-colors"></i> 应用中心                        </a>
+                    </li>
+                                        <li>
+                        <a href="/工作机会" class="nav-link group ">
+                            <i class="ph ph-code text-md vertical-bottom group-hover:text-seasalt transition-colors"></i> 工作机会                        </a>
+                    </li>
+                                    </ul>
+            </nav>
+
+            <!-- Search -->
+            <div class="w-56 flex-shrink-0 relative hidden sm:block">
+                <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                <input type="search" id="top_search" class="w-full h-9 pl-9 pr-3 rounded border border-gray-300 bg-white text-sm transition-all search-focus" placeholder="搜索"/>
+            </div>
+        </div>
+    </header>    <!-- Hero / Showcase -->
+    <section class="w-full mt-32 mb-10">
+        <div class="container mx-auto px-4">
+           <ul class="flex flex-col md:flex-row justify-between gap-8">
+                <!-- Card 1 -->
+                                                                                                <li class="flex-1 aspect-video rounded-lg overflow-hidden relative shadow-md bg-black">
+                    <figure class="effect-sadie w-full h-full relative cursor-pointer group text-center">
+                        <a href="/Python In Excel/12.html"><img src="/upload/20250715/47e1c0bb1c8f4d.webp" alt="Excel Dev" class="w-full h-full object-cover opacity-80 block transition-opacity duration-300 group-hover:opacity-60"></a>
+                        <figcaption class="absolute inset-0">
+                                                        <a href="/Python In Excel/12.html"><h2 class="text-2xl font-bold">Python In Excel：修改数据集指定字段内容</h2></a>
+                            <p class="text-xl font-medium">[ 查看全文 ]</p>
+                            <a href="/Python In Excel/12.html" class="absolute inset-0 z-10"></a>
+                        </figcaption>
+                    </figure>
+                </li>
+                
+                <!-- Card 2 -->
+                                                                                                 <li class="flex-1 aspect-video rounded-lg overflow-hidden relative shadow-md bg-black">
+                    <figure class="effect-sadie w-full h-full relative cursor-pointer group text-center">
+                        <a href="/Python In Excel/11.html"><img src="/upload/20250715/0841b19e993748.webp" alt="Excel Dev" class="w-full h-full object-cover opacity-80 block transition-opacity duration-300 group-hover:opacity-60"></a>
+                        <figcaption class="absolute inset-0">
+                                                        <a href="/Python In Excel/11.html"><h2 class="text-2xl font-bold">Python In Excel：创建数据集</h2></a>
+                            <p class="text-xl font-medium">[ 查看全文 ]</p>
+                            <a href="/Python In Excel/11.html" class="absolute inset-0 z-10"></a>
+                        </figcaption>
+                    </figure>
+                </li>
+                           </ul>
+        </div>
+    </section>
+
+    <!-- Library / Knowledge Base -->
+    <section class="w-full mt-10">
+        <div class="container mx-auto px-4 mb-3">
+            <p class="text-lg text-gray-400 flex items-center">
+                <i class="ph ph-sparkle text-2xl text-seasalt mr-2"></i> 知识库
+            </p>
+        </div>
+        <div class="container mx-auto px-4 flex flex-col md:flex-row gap-6 justify-between items-start">
+            
+            <!-- Left Group -->
+            <ul class="flex-1 bg-white rounded-lg p-3 shadow-sm grid grid-cols-2 lg:grid-cols-4 gap-1">
+                                                <li class="text-center group cursor-pointer p-2 rounded hover:bg-gray-50 transition-colors">
+                    <div class="border border-gray-200 rounded-lg p-4 h-full flex flex-col items-center justify-center group-hover:border-transparent group-hover:shadow-md transition-all bg-[url('/app/template/images/price_bg.png')] bg-no-repeat bg-center">
+                        <i class="ph ph-file-xls text-3xl text-gray-500 mb-2 group-hover:text-seasalt"></i>
+                        <a href="/Excel 应用化开发/" class="block"><h2 class="text-md font-medium text-gray-600 group-hover:text-seasalt line-clamp-1">Excel 应用化开发</h2></a>
+                    </div>
+                </li>
+                                                                <li class="text-center group cursor-pointer p-2 rounded hover:bg-gray-50 transition-colors">
+                    <div class="border border-gray-200 rounded-lg p-4 h-full flex flex-col items-center justify-center group-hover:border-transparent group-hover:shadow-md transition-all bg-[url('/app/template/images/price_bg.png')] bg-no-repeat bg-center">
+                        <i class="ph ph-file-xls text-3xl text-gray-500 mb-2 group-hover:text-seasalt"></i>
+                        <a href="/Excel WEB API/" class="block"><h2 class="text-md font-medium text-gray-600 group-hover:text-seasalt line-clamp-1">Excel WEB API</h2></a>
+                    </div>
+                </li>
+                                                                <li class="text-center group cursor-pointer p-2 rounded hover:bg-gray-50 transition-colors">
+                    <div class="border border-gray-200 rounded-lg p-4 h-full flex flex-col items-center justify-center group-hover:border-transparent group-hover:shadow-md transition-all bg-[url('/app/template/images/price_bg.png')] bg-no-repeat bg-center">
+                        <i class="ph ph-number-one text-3xl text-gray-500 mb-2 group-hover:text-seasalt"></i>
+                        <a href="/1CSM模板开发文档/" class="block"><h2 class="text-md font-medium text-gray-600 group-hover:text-seasalt line-clamp-1">1CSM模板开发文档</h2></a>
+                    </div>
+                </li>
+                                                                <li class="text-center group cursor-pointer p-2 rounded hover:bg-gray-50 transition-colors">
+                    <div class="border border-gray-200 rounded-lg p-4 h-full flex flex-col items-center justify-center group-hover:border-transparent group-hover:shadow-md transition-all bg-[url('/app/template/images/price_bg.png')] bg-no-repeat bg-center">
+                        <i class="ph ph-file-xls text-3xl text-gray-500 mb-2 group-hover:text-seasalt"></i>
+                        <a href="/Excel VBA for Access/" class="block"><h2 class="text-md font-medium text-gray-600 group-hover:text-seasalt line-clamp-1">Excel VBA for Access</h2></a>
+                    </div>
+                </li>
+                                                                                                                                                                                                            </ul>
+
+            <!-- Center Icon -->
+            <div class="w-full md:w-auto flex justify-center py-4 md:py-0">
+                <div class="w-14 h-14 bg-seasalt glowing rounded-lg flex items-center justify-center mt-0 md:mt-8" data-tips="随便看看">
+                    <a href="{$$.66618103.link}"><i class="ph ph-confused text-3xl text-white"></i></a>
+                </div>
+            </div>
+
+            <!-- Right Group -->
+            <ul class="flex-1 bg-white rounded-lg p-3 shadow-sm grid grid-cols-2 lg:grid-cols-4 gap-1">
+                                                                                                                                                                                <li class="text-center group cursor-pointer p-2 rounded hover:bg-gray-50 transition-colors">
+                    <div class="border border-gray-200 rounded-lg p-4 h-full flex flex-col items-center justify-center group-hover:border-transparent group-hover:shadow-md transition-all">
+                        <i class="ph ph-chart-scatter text-3xl text-gray-500 mb-2 group-hover:text-seasalt"></i>
+                        <a href="/可视化图表/" class="block"><h2 class="text-md font-medium text-gray-600 group-hover:text-seasalt line-clamp-1">可视化图表</h2></a>
+                    </div>
+                </li>
+                                                                <li class="text-center group cursor-pointer p-2 rounded hover:bg-gray-50 transition-colors">
+                    <div class="border border-gray-200 rounded-lg p-4 h-full flex flex-col items-center justify-center group-hover:border-transparent group-hover:shadow-md transition-all">
+                        <i class="ph ph-checks text-3xl text-gray-500 mb-2 group-hover:text-seasalt"></i>
+                        <a href="/OKR-极客时间/" class="block"><h2 class="text-md font-medium text-gray-600 group-hover:text-seasalt line-clamp-1">OKR-极客时间</h2></a>
+                    </div>
+                </li>
+                                                                <li class="text-center group cursor-pointer p-2 rounded hover:bg-gray-50 transition-colors">
+                    <div class="border border-gray-200 rounded-lg p-4 h-full flex flex-col items-center justify-center group-hover:border-transparent group-hover:shadow-md transition-all">
+                        <i class="ph ph-atom text-3xl text-gray-500 mb-2 group-hover:text-seasalt"></i>
+                        <a href="/创业酵母蹲马步第十三期/" class="block"><h2 class="text-md font-medium text-gray-600 group-hover:text-seasalt line-clamp-1">创业酵母蹲马步第十三期</h2></a>
+                    </div>
+                </li>
+                                                                <li class="text-center group cursor-pointer p-2 rounded hover:bg-gray-50 transition-colors">
+                    <div class="border border-gray-200 rounded-lg p-4 h-full flex flex-col items-center justify-center group-hover:border-transparent group-hover:shadow-md transition-all">
+                        <i class="ph ph-barbell text-3xl text-gray-500 mb-2 group-hover:text-seasalt"></i>
+                        <a href="/管理研修院-MBA智库/" class="block"><h2 class="text-md font-medium text-gray-600 group-hover:text-seasalt line-clamp-1">管理研修院-MBA智库</h2></a>
+                    </div>
+                </li>
+                                                                            </ul>
+        </div>
+    </section>
+
+    <!-- Library List / Random Look -->
+    <section class="w-full mt-10">
+        <div class="container mx-auto px-4">
+            <p class="text-lg text-gray-400 flex items-center mb-4">
+                <i class="ph ph-squares-four text-2xl text-seasalt mr-2"></i> 随便看看
+            </p>
+            
+            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                                                                                                <li class="list-none">
+                    <div class="rounded-lg bg-white p-3 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            
+                        <a href="/1CSM模板开发文档/" class="inline-block mb-3">
+                            <span class="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:border hover:border-gray-200 transition-all hover:bg-white hover:text-seasalt">1CSM模板开发文档</span>
+                        </a>
+                        <div class="overflow-hidden rounded-lg border border-gray-100 mb-3">
+                            <a href="/1CSM模板开发文档/4.html"><img src="/upload/20250626/0d509f2b69421e.webp" alt="Cover" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"></a>
+                        </div>
+                        <h3 class="text-md font-medium text-black mb-3 line-clamp-2 h-12 flex-grow">伪静态</h3>
+                        <a href="/1CSM模板开发文档/4.html" class="bg-seasalt glowing w-full py-1.5 rounded-lg text-sm text-center flex items-center justify-center gap-2 mt-auto">
+                            <i class="ph ph-paper-plane-right"></i> 查看全文
+                        </a>
+                    </div>
+                </li>
+                                <li class="list-none">
+                    <div class="rounded-lg bg-white p-3 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            
+                        <a href="/Excel 应用化开发/" class="inline-block mb-3">
+                            <span class="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:border hover:border-gray-200 transition-all hover:bg-white hover:text-seasalt">Excel 应用化开发</span>
+                        </a>
+                        <div class="overflow-hidden rounded-lg border border-gray-100 mb-3">
+                            <a href="/Excel 应用化开发/13.html"><img src="/upload/20260614/4f8e919455e8a3.webp" alt="Cover" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"></a>
+                        </div>
+                        <h3 class="text-md font-medium text-black mb-3 line-clamp-2 h-12 flex-grow">Excel 动态分页器：轻松解决 FILTER 查询“#溢出”问题</h3>
+                        <a href="/Excel 应用化开发/13.html" class="bg-seasalt glowing w-full py-1.5 rounded-lg text-sm text-center flex items-center justify-center gap-2 mt-auto">
+                            <i class="ph ph-paper-plane-right"></i> 查看全文
+                        </a>
+                    </div>
+                </li>
+                                <li class="list-none">
+                    <div class="rounded-lg bg-white p-3 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            
+                        <a href="/Excel WEB API/" class="inline-block mb-3">
+                            <span class="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:border hover:border-gray-200 transition-all hover:bg-white hover:text-seasalt">Excel WEB API</span>
+                        </a>
+                        <div class="overflow-hidden rounded-lg border border-gray-100 mb-3">
+                            <a href="/Excel WEB API/2.html"><img src="/upload/20250625/f97dccbe3dd807.webp" alt="Cover" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"></a>
+                        </div>
+                        <h3 class="text-md font-medium text-black mb-3 line-clamp-2 h-12 flex-grow">GetIpinfo函数：调用API获取IP信息，可批量查询</h3>
+                        <a href="/Excel WEB API/2.html" class="bg-seasalt glowing w-full py-1.5 rounded-lg text-sm text-center flex items-center justify-center gap-2 mt-auto">
+                            <i class="ph ph-paper-plane-right"></i> 查看全文
+                        </a>
+                    </div>
+                </li>
+                                <li class="list-none">
+                    <div class="rounded-lg bg-white p-3 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            
+                        <a href="/1CSM模板开发文档/" class="inline-block mb-3">
+                            <span class="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:border hover:border-gray-200 transition-all hover:bg-white hover:text-seasalt">1CSM模板开发文档</span>
+                        </a>
+                        <div class="overflow-hidden rounded-lg border border-gray-100 mb-3">
+                            <a href="/1CSM模板开发文档/3.html"><img src="/upload/20250626/6171b29245ff83.webp" alt="Cover" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"></a>
+                        </div>
+                        <h3 class="text-md font-medium text-black mb-3 line-clamp-2 h-12 flex-grow">公共标签</h3>
+                        <a href="/1CSM模板开发文档/3.html" class="bg-seasalt glowing w-full py-1.5 rounded-lg text-sm text-center flex items-center justify-center gap-2 mt-auto">
+                            <i class="ph ph-paper-plane-right"></i> 查看全文
+                        </a>
+                    </div>
+                </li>
+                                <li class="list-none">
+                    <div class="rounded-lg bg-white p-3 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            
+                        <a href="/Excel 应用化开发/" class="inline-block mb-3">
+                            <span class="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:border hover:border-gray-200 transition-all hover:bg-white hover:text-seasalt">Excel 应用化开发</span>
+                        </a>
+                        <div class="overflow-hidden rounded-lg border border-gray-100 mb-3">
+                            <a href="/Excel 应用化开发/10.html"><img src="/upload/20250709/ffc6b3abbf7121.webp" alt="Cover" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"></a>
+                        </div>
+                        <h3 class="text-md font-medium text-black mb-3 line-clamp-2 h-12 flex-grow">GetJson函数：根据JSON提取指定参数</h3>
+                        <a href="/Excel 应用化开发/10.html" class="bg-seasalt glowing w-full py-1.5 rounded-lg text-sm text-center flex items-center justify-center gap-2 mt-auto">
+                            <i class="ph ph-paper-plane-right"></i> 查看全文
+                        </a>
+                    </div>
+                </li>
+                                <li class="list-none">
+                    <div class="rounded-lg bg-white p-3 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            
+                        <a href="/1CSM模板开发文档/" class="inline-block mb-3">
+                            <span class="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:border hover:border-gray-200 transition-all hover:bg-white hover:text-seasalt">1CSM模板开发文档</span>
+                        </a>
+                        <div class="overflow-hidden rounded-lg border border-gray-100 mb-3">
+                            <a href="/1CSM模板开发文档/7.html"><img src="/upload/20250626/647e9a0e71e2c6.webp" alt="Cover" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"></a>
+                        </div>
+                        <h3 class="text-md font-medium text-black mb-3 line-clamp-2 h-12 flex-grow">栏目</h3>
+                        <a href="/1CSM模板开发文档/7.html" class="bg-seasalt glowing w-full py-1.5 rounded-lg text-sm text-center flex items-center justify-center gap-2 mt-auto">
+                            <i class="ph ph-paper-plane-right"></i> 查看全文
+                        </a>
+                    </div>
+                </li>
+                                <li class="list-none">
+                    <div class="rounded-lg bg-white p-3 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            
+                        <a href="/1CSM模板开发文档/" class="inline-block mb-3">
+                            <span class="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:border hover:border-gray-200 transition-all hover:bg-white hover:text-seasalt">1CSM模板开发文档</span>
+                        </a>
+                        <div class="overflow-hidden rounded-lg border border-gray-100 mb-3">
+                            <a href="/1CSM模板开发文档/5.html"><img src="/upload/20250626/2a170408a3db79.webp" alt="Cover" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"></a>
+                        </div>
+                        <h3 class="text-md font-medium text-black mb-3 line-clamp-2 h-12 flex-grow">站点信息</h3>
+                        <a href="/1CSM模板开发文档/5.html" class="bg-seasalt glowing w-full py-1.5 rounded-lg text-sm text-center flex items-center justify-center gap-2 mt-auto">
+                            <i class="ph ph-paper-plane-right"></i> 查看全文
+                        </a>
+                    </div>
+                </li>
+                                <li class="list-none">
+                    <div class="rounded-lg bg-white p-3 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            
+                        <a href="/1CSM模板开发文档/" class="inline-block mb-3">
+                            <span class="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:border hover:border-gray-200 transition-all hover:bg-white hover:text-seasalt">1CSM模板开发文档</span>
+                        </a>
+                        <div class="overflow-hidden rounded-lg border border-gray-100 mb-3">
+                            <a href="/1CSM模板开发文档/8.html"><img src="/upload/20250709/8f173241320911.webp" alt="Cover" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"></a>
+                        </div>
+                        <h3 class="text-md font-medium text-black mb-3 line-clamp-2 h-12 flex-grow">内容列表</h3>
+                        <a href="/1CSM模板开发文档/8.html" class="bg-seasalt glowing w-full py-1.5 rounded-lg text-sm text-center flex items-center justify-center gap-2 mt-auto">
+                            <i class="ph ph-paper-plane-right"></i> 查看全文
+                        </a>
+                    </div>
+                </li>
+                                <li class="list-none">
+                    <div class="rounded-lg bg-white p-3 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            
+                        <a href="/Python In Excel/" class="inline-block mb-3">
+                            <span class="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:border hover:border-gray-200 transition-all hover:bg-white hover:text-seasalt">Python In Excel</span>
+                        </a>
+                        <div class="overflow-hidden rounded-lg border border-gray-100 mb-3">
+                            <a href="/Python In Excel/12.html"><img src="/upload/20250715/47e1c0bb1c8f4d.webp" alt="Cover" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"></a>
+                        </div>
+                        <h3 class="text-md font-medium text-black mb-3 line-clamp-2 h-12 flex-grow">修改数据集指定字段内容</h3>
+                        <a href="/Python In Excel/12.html" class="bg-seasalt glowing w-full py-1.5 rounded-lg text-sm text-center flex items-center justify-center gap-2 mt-auto">
+                            <i class="ph ph-paper-plane-right"></i> 查看全文
+                        </a>
+                    </div>
+                </li>
+                                <li class="list-none">
+                    <div class="rounded-lg bg-white p-3 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            
+                        <a href="/Python In Excel/" class="inline-block mb-3">
+                            <span class="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:border hover:border-gray-200 transition-all hover:bg-white hover:text-seasalt">Python In Excel</span>
+                        </a>
+                        <div class="overflow-hidden rounded-lg border border-gray-100 mb-3">
+                            <a href="/Python In Excel/11.html"><img src="/upload/20250715/0841b19e993748.webp" alt="Cover" class="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"></a>
+                        </div>
+                        <h3 class="text-md font-medium text-black mb-3 line-clamp-2 h-12 flex-grow">创建数据集</h3>
+                        <a href="/Python In Excel/11.html" class="bg-seasalt glowing w-full py-1.5 rounded-lg text-sm text-center flex items-center justify-center gap-2 mt-auto">
+                            <i class="ph ph-paper-plane-right"></i> 查看全文
+                        </a>
+                    </div>
+                </li>
+                            </ul>
+
+            <div class="text-center mt-10 mb-10">
+                <a href="article_list.html" class="bg-seasalt glowing inline-flex items-center px-6 py-3 rounded-lg text-lg font-medium gap-2">
+                    <i class="ph ph-smiley-wink text-xl"></i>
+                    加载更多
+                </a>
+            </div>
+        </div>
+    </section>
+            <!-- Footer -->
+    <footer class="w-full bg-white h-14 border-t border-gray-200 flex items-center justify-center">
+        <p class="text-gray-600 text-sm">©Jquan的第二大脑 记录日常办公解决方案</p>
+    </footer>
+    <div class="hidden">
+            </div>
+<script>(function(){var cltj=document.createElement("script");cltj.src="https://www.jquan.win/tongji/?v=1.4";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(cltj,s);})();</script></body>
+</html>
